@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,11 +62,14 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 	private void recordLog(String name, Object object) {
 		if(object instanceof FilterInvocation){
 			FilterInvocation invocation = (FilterInvocation) object;
+			HttpServletRequest httpRequest = invocation.getHttpRequest();
 			OperationLog log = new OperationLog();
 			log.setFunctionName("");
 			log.setOperationTime(new Date());
 			log.setUsername(name);
 			log.setFunctionUri(invocation.getRequestUrl());
+			log.setIp(httpRequest.getRemoteHost());
+			log.setRealname(httpRequest.getRemoteUser());
 			operationService.save(log);
 		}
 	}

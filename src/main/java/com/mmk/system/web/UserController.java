@@ -4,25 +4,28 @@
  */
 package com.mmk.system.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.mmk.common.ExtJsPage;
 import com.mmk.common.ExtJsPageable;
-import com.mmk.system.service.UserService;
-import com.mmk.system.model.User;
+import com.mmk.common.model.Tree;
 import com.mmk.system.condition.UserCondition;
+import com.mmk.system.model.User;
+import com.mmk.system.service.UserService;
 
 /**
 *UserController ： 系统用户 的web控制层
@@ -142,5 +145,10 @@ public class UserController{
         }
         return true; 
     }
-	
+    
+    @RequestMapping("/login")
+    public ModelAndView login(){
+    	return new ModelAndView("login");
+    }
+    
 }

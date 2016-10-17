@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<meta charset="utf-8"/>
+<title>用户登录</title>
+<script>
+	function submitForm(){
+		$('#loginform').submit();
+	}
+	
+	function clearForm(){
+		$('#loginform').form('clear');
+	}
+	
+	//回车登录
+	function enterlogin(){
+		if (event.keyCode == 13){
+        	event.returnValue=false;
+        	event.cancel = true;
+        	$('#loginform').submit();
+    	}
+	}
+	
+</script>
+</head>
+<body onkeydown="enterlogin();">
+	<div class="login">
+		<form  method="post" action="/login" id="loginform">
+		<div class="logo"></div>
+	    <div class="login_form">
+	    	<div class="user">
+	        	<input class="text_value" type="text" name="username" data-options="required:true" value="admin" ></input>
+	            <input class="text_value" type="password" name="password" value="" ></input>
+	        </div>
+	        <button class="button"  type="submit" onclick="submitForm()">登录</button>
+	    </div>
+	    
+	    <div id="tip" th:if="${param.error}">用戶名或者密码错误</div>
+	    
+	    </form>
+	</div>
+	</body>
+</html>

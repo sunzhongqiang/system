@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- [EasyUI] -->
+<link id="easyuiTheme" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/gray/easyui.css" type="text/css" />
+<link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+
+<title>管理后台</title>
+<script type="text/javascript" src="/js/index.js"></script>
+</head>
+<body>
+    <div id="index_layout">
+        <div data-options="region:'north',border:false" style=" overflow: hidden;" >
+            <div id="header">
+            <span style="float: right; padding-right: 20px;">欢迎 <b th:text="${username}">${session.name}</b>&nbsp;&nbsp; 
+            <a href="javascript:void(0)" onclick="editUserPwd()" style="color: #fff">修改密码</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" onclick="logout()" style="color: #fff">安全退出</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="header2">JAVA快速开发框架</span>
+            </div>
+        </div>
+        <div data-options="region:'west',split:true" title="主导航" style="width: 230px; overflow: hidden;overflow-y:auto;">
+            <div class="well well-small" style="padding: 5px 5px 5px 5px;">
+                <ul id="layout_west_tree"></ul>
+            </div>
+        </div>
+        <div data-options="region:'center'" style="overflow: hidden;">
+            <div id="index_tabs" style="overflow: hidden;">
+                <div title="首页" data-options="border:false" style="overflow: hidden;">
+                    <div style="padding:10px 0 10px 10px">
+                        <h2>系统介绍</h2>
+                        <div class="light-info">
+                            <div class="light-tip icon-tip"></div>
+                            <div>JAVA快速开发平台。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >版权所有@</div>
+    </div>
+    
+    <!--[if lte IE 7]>
+    <div id="ie6-warning"><p>您正在使用 低版本浏览器，在本页面可能会导致部分功能无法使用。建议您升级到 <a href="http://www.microsoft.com/china/windows/internet-explorer/" target="_blank">Internet Explorer 8</a> 或以下浏览器：
+    <a href="http://www.mozillaonline.com/" target="_blank">Firefox</a> / <a href="http://www.google.com/chrome/?hl=zh-CN" target="_blank">Chrome</a> / <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> / <a href="http://www.operachina.com/" target="_blank">Opera</a></p></div>
+    <![endif]-->
+    
+    <style>
+        /*ie6提示*/
+        #ie6-warning{width:100%;position:absolute;top:0;left:0;background:#fae692;padding:5px 0;font-size:12px}
+        #ie6-warning p{width:960px;margin:0 auto;}
+    </style>
+</body>
+</html>

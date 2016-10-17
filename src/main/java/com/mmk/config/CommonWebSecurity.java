@@ -19,6 +19,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.expression.WebExpressionVoter;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 
 import com.mmk.security.service.impl.DbVoter;
@@ -66,7 +67,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	            	.loginPage("/login")
 	            	.permitAll()
             	.and()
-            	.logout()
+            	.logout().invalidateHttpSession(true)
             		.logoutSuccessUrl("/login?logout")
             		.logoutUrl("/logout")
             		.permitAll();
@@ -76,9 +77,10 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	  @Bean
 	  AffirmativeBased getBase(DbVoter voter){
 		  List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<AccessDecisionVoter<? extends Object>>();
-		  decisionVoters.add(voter);
-		  decisionVoters.add(new AuthenticatedVoter());
 		  decisionVoters.add(new RoleVoter());
+		  decisionVoters.add(new AuthenticatedVoter());
+		  decisionVoters.add(new WebExpressionVoter());
+		  decisionVoters.add(voter);
 		return new AffirmativeBased(decisionVoters);
 	  }
 	  
