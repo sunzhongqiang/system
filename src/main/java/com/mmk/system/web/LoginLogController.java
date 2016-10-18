@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.common.ExtJsPage;
-import com.mmk.common.ExtJsPageable;
+import com.mmk.common.model.ExtJsPage;
+import com.mmk.common.model.ExtJsPageable;
 import com.mmk.system.condition.LoginLogCondition;
 import com.mmk.system.model.LoginLog;
 import com.mmk.system.service.LoginLogService;

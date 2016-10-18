@@ -77,9 +77,9 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	  @Bean
 	  AffirmativeBased getBase(DbVoter voter){
 		  List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<AccessDecisionVoter<? extends Object>>();
+		  decisionVoters.add(new WebExpressionVoter());
 		  decisionVoters.add(new RoleVoter());
 		  decisionVoters.add(new AuthenticatedVoter());
-		  decisionVoters.add(new WebExpressionVoter());
 		  decisionVoters.add(voter);
 		return new AffirmativeBased(decisionVoters);
 	  }

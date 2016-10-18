@@ -1,4 +1,4 @@
-package com.mmk.common;
+package com.mmk.common.model;
 
 import java.util.List;
 

@@ -5,12 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.common.model.Tree;
 
+@CacheConfig(cacheNames="demo1")
 @RestController
 public class IndexController {
 	
@@ -88,5 +92,20 @@ public class IndexController {
 		tree.add(func4);
 		return tree;
 	}
+	
+	@Cacheable
+	@RequestMapping("/cachetest")
+	public String cache(){
+		return "test";
+	}
+	
+	@CacheEvict
+	@RequestMapping("/cacheclear")
+	public String cacheclear(){
+		return "success";
+	}
+	
+	
+	
 
 }

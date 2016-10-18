@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mmk.common.ExtJsPage;
-import com.mmk.common.ExtJsPageable;
+import com.mmk.common.model.ExtJsPage;
+import com.mmk.common.model.ExtJsPageable;
 import com.mmk.common.model.Tree;
 import com.mmk.system.condition.UserCondition;
 import com.mmk.system.model.User;
@@ -146,9 +146,5 @@ public class UserController{
         return true; 
     }
     
-    @RequestMapping("/login")
-    public ModelAndView login(){
-    	return new ModelAndView("login");
-    }
     
 }
