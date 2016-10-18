@@ -3,6 +3,7 @@ var index_tabs;
 var index_tabsMenu;
 var layout_west_tree;
 var layout_west_tree_url = '/functionTree';
+var EDIT_PASSD_URL  = '/user/changePwdForm';
 
 $(function() {
 	index_layout = $('#index_layout').layout({
@@ -56,7 +57,7 @@ $(function() {
 			}
 		}
 	});
-	
+
 });
 
 function addTab(params) {
@@ -83,7 +84,6 @@ function logout() {
 	$.messager.confirm('提示', '确定要退出?', function(r) {
 		if (r) {
 			$.post('/logout', function(result) {
-				progressLoad();
 				location.reload();
 			});
 		}
@@ -92,23 +92,19 @@ function logout() {
 
 function directLogout() {
 	$.post('/logout', function(result) {
-		progressLoad();
 		location.reload();
 	});
 }
 
 function editUserPwd() {
-	parent.$.modalDialog({
-		title : '修改密码',
-		width : 300,
-		height : 250,
-		href : '/adminUser/editPwdPage',
-		buttons : [ {
-			text : '修改',
-			handler : function() {
-				var f = parent.$.modalDialog.handler.find('#editUserPwdForm');
-				f.submit();
-			}
-		} ]
+	$('#editUserPwd').dialog({
+	    title: '修改密码',
+	    width: 400,
+	    height: 200,
+	    closed: false,
+	    cache: false,
+	    href: EDIT_PASSD_URL,
+	    modal: true
 	});
+	
 }

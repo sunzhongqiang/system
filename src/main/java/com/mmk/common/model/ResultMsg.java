@@ -1,6 +1,9 @@
 package com.mmk.common.model;
 
-public class ResultMsg<T> implements java.io.Serializable {
+import java.util.HashMap;
+import java.util.Map;
+
+public class ResultMsg implements java.io.Serializable {
 
 	/**
 	 * 默认生成的序列号
@@ -11,7 +14,7 @@ public class ResultMsg<T> implements java.io.Serializable {
 
 	private String msg = "";
 
-	private T obj = null;
+	private Map<String,Object> message = new HashMap<String, Object>();
 	
 	public ResultMsg() {
 	}
@@ -21,10 +24,10 @@ public class ResultMsg<T> implements java.io.Serializable {
 		this.msg = msg;
 	}
 	
-	public ResultMsg(boolean success,String msg,T object){
+	public ResultMsg(boolean success,String msg,Map<String,Object> message){
 		this.success = success;
 		this.msg = msg;
-		this.obj = object;
+		this.setMessage(message);
 	}
 	
 
@@ -44,12 +47,14 @@ public class ResultMsg<T> implements java.io.Serializable {
 		this.msg = msg;
 	}
 
-	public Object getObj() {
-		return obj;
+	public Map<String,Object> getMessage() {
+		return message;
 	}
 
-	public void setObj(T obj) {
-		this.obj = obj;
+	public void setMessage(Map<String,Object> message) {
+		this.message = message;
 	}
+
+	
 
 }

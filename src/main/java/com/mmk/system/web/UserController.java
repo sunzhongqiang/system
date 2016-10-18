@@ -4,25 +4,24 @@
  */
 package com.mmk.system.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.common.CurrentUser;
 import com.mmk.common.model.ExtJsPage;
 import com.mmk.common.model.ExtJsPageable;
-import com.mmk.common.model.Tree;
+import com.mmk.common.model.ResultMsg;
 import com.mmk.system.condition.UserCondition;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
@@ -146,5 +145,44 @@ public class UserController{
         return true; 
     }
     
+    /**
+     * 判断用户名是否重复
+     * @param username 当前的用户名
+     * @param id 当前的用户id
+     * @return  true or false
+     */ 
+    @RequestMapping("/user/username/exist")
+    @ResponseBody
+    public boolean existsUsername(String username,Long id){
+        log.info("检测用户是否存在  username");
+        User userInfo = userService.findByUsername(username);
+        if (userInfo != null && !userInfo.getId().equals(id)) {
+        	return true;
+        }
+        return false;
+    }
+    
+    
+    @RequestMapping("/user/changePwd")
+    @ResponseBody
+    public ResultMsg changePwd(String oldPwd,String pwd){
+    	User user = CurrentUser.getUser();
+    	if(user==null){
+    		return new ResultMsg(false,"没有可以修改密码的用户");
+    	}
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+    	if (encoder.matches(oldPwd, user.getPassword())) {// 说明原密码输入正确
+    		user.setPassword(encoder.encode(pwd));
+    		userService.save(user);
+    		return new ResultMsg(true,"修改成功，请重新登录！"); 
+    	}else{
+    		return new ResultMsg(false,"原密码错误！"); 
+    	}
+    }
+    
+    @RequestMapping("/user/changePwdForm")
+    public ModelAndView changePwdForm(){
+    	return new ModelAndView("user/changePwdForm");
+    }
     
 }
