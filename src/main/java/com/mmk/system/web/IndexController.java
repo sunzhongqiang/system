@@ -39,15 +39,13 @@ public class IndexController {
 		Tree root = new Tree();
 		root.setId("00");
 		root.setText("功能列表");
-		root.setIconCls("icon-folder");
 		
 		
 
 		Tree user = new Tree();
 		user.setId("1");
-		user.setText("管理员管理");
+		user.setText("用户管理");
 		user.setPid("00");
-		user.setIconCls("icon-company");
 		Map<String, Object> attr = new HashMap<String, Object>();
 		attr.put("url", "/user/list");
 		user.setAttributes(attr);
@@ -56,7 +54,6 @@ public class IndexController {
 		organization.setId("2");
 		organization.setText("组织架构管理");
 		organization.setPid("00");
-		organization.setIconCls("icon-company");
 		Map<String, Object> attr2 = new HashMap<String, Object>();
 		attr2.put("url", "/organization/list");
 		organization.setAttributes(attr2);
@@ -64,9 +61,8 @@ public class IndexController {
 
 		Tree resourceMenu = new Tree();
 		resourceMenu.setId("3");
-		resourceMenu.setText("功能模块");
+		resourceMenu.setText("功能模块管理");
 		resourceMenu.setPid("00");
-		resourceMenu.setIconCls("icon-company");
 		Map<String, Object> menuAttr = new HashMap<String, Object>();
 		menuAttr.put("url", "/resourceMenu/list");
 		resourceMenu.setAttributes(menuAttr);
@@ -75,7 +71,6 @@ public class IndexController {
 		loginLog.setId("4");
 		loginLog.setText("登录日志");
 		loginLog.setPid("00");
-		loginLog.setIconCls("icon-company");
 		Map<String, Object> attr3 = new HashMap<String, Object>();
 		attr3.put("url", "/loginLog/list");
 		loginLog.setAttributes(attr3);
@@ -84,7 +79,6 @@ public class IndexController {
 		operationLog.setId("5");
 		operationLog.setText("操作日志");
 		operationLog.setPid("00");
-		operationLog.setIconCls("icon-company");
 		Map<String, Object> attr4 = new HashMap<String, Object>();
 		attr4.put("url", "/operationLog/list");
 		operationLog.setAttributes(attr4);
