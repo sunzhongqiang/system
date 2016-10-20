@@ -47,7 +47,7 @@ public class IndexController {
 		user.setText("用户管理");
 		user.setPid("00");
 		Map<String, Object> attr = new HashMap<String, Object>();
-		attr.put("url", "/user/list");
+		attr.put("url", "/user/index");
 		user.setAttributes(attr);
 
 		Tree organization = new Tree();

@@ -1,0 +1,95 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+	$(function() {
+		$('#modelForm').on('submit', function(event){
+			var $form = $(this);
+			progressLoad();
+			var isValid = $form.form('validate');
+			if (!isValid) {
+				progressClose();
+				return isValid;
+			}
+			$.ajax({
+				url: '/user/save',
+				data: $form.serialize(),
+				success: function(result){
+					progressClose();
+					if (result.success) {
+						parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+						parent.$.modalDialog.handler.dialog('close');
+					} else {
+						parent.$.messager.alert('提示', result.msg, 'warning');
+					}
+				},
+				error: function(){
+					progressClose();
+					alert("系统错误");
+				}
+			});
+			return false;
+		});
+	});
+	
+	function isExist(){
+		var username = $("#username").val();
+		if (username == null || username =='') {
+			return false;
+		}
+	 	$.ajax({
+			url: '/user/username/exist',
+			data: {"username":username},
+			success: function(result){
+				if (result) {
+					$("#erroMsg").html("用户名已存在");
+					/* $("#username").val(''); */
+				} 
+			},
+			error: function(){
+				alert("系统错误");
+			}
+		}); 
+	}
+	function cleanMsg() {
+		$("#erroMsg").html("");
+	}
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+		<form id="modelForm" method="post">
+			<table class="grid">
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>用户名：</label></td>
+                        <td>
+                        <input type="text"  name="username"  id="username"  class="easyui-validatebox" data-options="required:true" th:value="${user.username}" onblur="isExist()" onfocus ="cleanMsg()"/>
+                        <span id="erroMsg" style="color:red;width:90px;display:inline-block" ></span>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>真实姓名：</label></td>
+                        <td>
+                        <input type="text"  name="realname"   class="easyui-validatebox" data-options="required:true" th:value="${user.realname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>密码：</label></td>
+                        <td>
+                        <input type="password"  name="password"   class="easyui-validatebox" data-options="required:true" th:value="${user.password}"/>
+                        </td>
+                    </tr>
+                      <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>状态：</label></td>
+                        <td>
+                        <select name="status" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                            <option th:selected="${user.status} == 'enable' ? 'selected' " value="enable" >启用</option>
+                            <option th:selected="${user.status} == 'disable' ? 'selected' "  value="disable">禁用</option>
+                       </select>
+                        </td>
+                    </tr>
+			</table>
+			<input type="hidden"  id ="hidId"  th:value="${user.id}" name="id" />
+		</form>
+	</div>
+</div>

@@ -4,6 +4,7 @@
  */
 package com.mmk.system.web;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,8 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.CurrentUser;
-import com.mmk.common.model.ExtJsPage;
+import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.ExtJsPageable;
+import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.system.condition.UserCondition;
 import com.mmk.system.model.User;
@@ -47,12 +49,46 @@ public class UserController{
 	 * @author sunzhongqiang 孙中强
      * 
 	 */
-	@RequestMapping("/user/list")
+	@RequestMapping("/user/index")
+	public ModelAndView list(UserCondition userCondition, ExtJsPageable pageable){		
+	    log.info("系统用户index");
+	    ModelAndView modelAndView = new ModelAndView("/user/index");
+		return  modelAndView;
+	}
+	
+	/**
+	 * 加载表格数据  用户
+	 * @param userCondition
+	 * @param pageable
+	 * @return
+	 */
+	@RequestMapping("/user/gridData")
 	@ResponseBody
-	public ExtJsPage<User> list(UserCondition userCondition, ExtJsPageable pageable){		
-	    log.info("系统用户列表查询");
-		Page<User> userPage =userService.list(userCondition,pageable.pageable());		
-		return  new ExtJsPage< User >(userPage);
+	public GridData<User> loadList(UserCondition userCondition, EasyPageable pageable){
+		Page<User> userPage = userService.list(userCondition,pageable.pageable());	
+		GridData<User> grid = new GridData<User>(userPage);
+		return grid;
+	}
+	
+	/**
+	 * 新增页面
+	 * @return
+	 */
+	@RequestMapping("/user/form")
+	public ModelAndView addPage(User user){
+		ModelAndView modelAndView = new ModelAndView("/user/form");
+		//如果存在id获取该用户信息
+		if(user.getId()!=null){
+			user = userService.find(user.getId());
+		}
+		//如果用户为空，新增用户
+		if(user==null){
+			user = new User();
+		}
+		
+		modelAndView.addObject("user", user);
+		
+		return modelAndView;
 	}
 	
 	
@@ -65,9 +101,26 @@ public class UserController{
 	 */
 	@RequestMapping("/user/save")
 	@ResponseBody
-	public User save(User user){
+	public ResultMsg save(User user){
 		log.info("系统用户保存");
-		return userService.save(user);
+		
+		//盘点id是否存在，如果不存在进行新增，否则进行编辑
+		if(user.getId()==null){
+			user.setCreateTime(new Date());
+			user.setModifiedTime(new Date());
+			user = userService.save(user);
+		}else{
+			User bean = userService.find(user.getId());
+			//如果存在则进行更新，否则不进行任何处理
+			if(bean!=null){
+				bean.setModifiedTime(new Date());
+				bean.setRealname(user.getRealname());
+				bean.setStatus(user.getStatus());
+				bean.setDescription(user.getDescription());
+				user = userService.save(bean);
+			}
+		}
+		return new ResultMsg(true,"用户保存成功");
 	}
 	
 	/**
@@ -115,15 +168,15 @@ public class UserController{
      * 
 	 */
 	@RequestMapping("/user/delete")
-	public boolean delete(User user){
+	public ResultMsg delete(User user){
 		log.info("系统用户删除");
         try {
             userService.delete(user);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return false;
+            return new ResultMsg(false, e.getMessage());
         }
-        return true; 
+        return new ResultMsg(true,"删除成功");
 	}
 	
 	/**
