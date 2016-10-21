@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionVoter;
@@ -28,6 +29,7 @@ import com.mmk.security.service.impl.DbVoter;
 
 @Configuration
 @EnableWebSecurity
+@EnableCaching
 public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	
 	@Resource
@@ -49,7 +51,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
     public void configure(WebSecurity web) throws Exception {
       web
         .ignoring()
-           .antMatchers("/resources/**","/css/**","/style/**","/js/**","/jslib/**","/api/**","/images/**","/Javascript/**","/img/**","/favicon.ico");
+           .antMatchers("/resources/**","/css/**","/style/**","/js/**","/api/**","/images/**","/Javascript/**","/img/**","/favicon.ico");
     }
 	
 	  protected void configure(HttpSecurity http) throws Exception {

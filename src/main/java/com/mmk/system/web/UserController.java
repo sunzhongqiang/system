@@ -8,20 +8,21 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.common.BaseController;
 import com.mmk.common.CurrentUser;
 import com.mmk.common.model.EasyPageable;
-import com.mmk.common.model.ExtJsPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.system.condition.UserCondition;
@@ -35,26 +36,24 @@ import com.mmk.system.service.UserService;
 *@version 1.0
 */
 @RestController
-public class UserController{
-	private Log log = LogFactory.getLog(this.getClass());
+public class UserController extends BaseController{
+	
 	
 	@Resource 
 	private UserService userService;
 
     /**
 	 * 跳转至列表页面
-	 * @param userCondition 查询参数
-	 * @param pageable 分页参数
 	 * @return 返回页面以及页面模型
-	 * @author sunzhongqiang 孙中强
      * 
 	 */
-	@RequestMapping("/user/index")
-	public ModelAndView list(UserCondition userCondition, ExtJsPageable pageable){		
+	@RequestMapping(value="/user/index")
+	public ModelAndView index(){		
 	    log.info("系统用户index");
-	    ModelAndView modelAndView = new ModelAndView("/user/index");
+	    ModelAndView modelAndView = new ModelAndView("user/index");
 		return  modelAndView;
 	}
+	
 	
 	/**
 	 * 加载表格数据  用户
@@ -64,7 +63,8 @@ public class UserController{
 	 */
 	@RequestMapping("/user/gridData")
 	@ResponseBody
-	public GridData<User> loadList(UserCondition userCondition, EasyPageable pageable){
+	public GridData<User> loadList(String username,UserCondition userCondition, EasyPageable pageable){
+		log.info("获取用户列表数据");
 		Page<User> userPage = userService.list(userCondition,pageable.pageable());	
 		GridData<User> grid = new GridData<User>(userPage);
 		return grid;
@@ -76,19 +76,30 @@ public class UserController{
 	 */
 	@RequestMapping("/user/form")
 	public ModelAndView addPage(User user){
-		ModelAndView modelAndView = new ModelAndView("/user/form");
+		ModelAndView modelAndView = new ModelAndView("user/form");
 		//如果存在id获取该用户信息
-		if(user.getId()!=null){
-			user = userService.find(user.getId());
-		}
-		//如果用户为空，新增用户
-		if(user==null){
-			user = new User();
-		}
+	
+			if(user.getId()!=null){
+				user = userService.find(user.getId());
+			}
+			//如果用户为空，新增用户
+			if(user==null){
+				user = new User();
+			}	
+		
 		
 		modelAndView.addObject("user", user);
 		
 		return modelAndView;
+	}
+	
+	/**
+	 * 新增页面
+	 * @return
+	 */
+	@RequestMapping("/user/add")
+	public ModelAndView add(){
+		return  new ModelAndView("user/form","user", new User());
 	}
 	
 	

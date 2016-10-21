@@ -86,7 +86,7 @@
 			title : '添加',
 			width : 500,
 			height : 300,
-			href : '/user/form',
+			href : '/user/add',
 			buttons : [ {
 				text : '添加',
 				handler : function() {

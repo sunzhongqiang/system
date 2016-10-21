@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.common.BaseController;
 import com.mmk.common.model.Tree;
 
 @CacheConfig(cacheNames="demo1")
 @RestController
-public class IndexController {
+public class IndexController extends BaseController{
 	
 	
 	@RequestMapping("/")

@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.mmk.system.model.User;
+import com.mmk.tool.StringTool;
 import com.mmk.system.dao.UserDao;
 
 import com.mmk.system.condition.UserCondition;
@@ -53,6 +54,18 @@ public class UserDaoImpl extends SpringDataQueryDaoImpl<User> implements UserDao
         if(userCondition.getId()!=null){
             sb.append(" and model.id = :id ");
             params.put("id",userCondition.getId());
+        }
+        if(StringUtils.isNotBlank(userCondition.getUsername())){
+        	sb.append(" and model.username like :username ");
+        	params.put("username",StringTool.anyMatch(userCondition.getUsername()));
+        }
+        if(StringUtils.isNotBlank(userCondition.getRealname())){
+        	sb.append(" and model.realname like :realname ");
+        	params.put("realname",StringTool.anyMatch(userCondition.getRealname()));
+        }
+        if(StringUtils.isNotBlank(userCondition.getStatus())){
+        	sb.append(" and model.status = :status ");
+        	params.put("status",userCondition.getRealname());
         }
         if(userCondition.getCreateTime()!=null){
             sb.append(" and model.createTime = :createTime ");
