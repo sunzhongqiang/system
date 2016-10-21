@@ -24,7 +24,6 @@ public class Function {
      * 统一资源标识符
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="uri")
     private String uri;
 

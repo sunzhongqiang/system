@@ -46,9 +46,9 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun('+row['uri']+');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun('+row['uri']+');" class="btn_delete" >删除</a>', row.id);
                     return str;
                 }
             }] ],
@@ -93,7 +93,7 @@
             if (b) {
                 progressLoad();
                     $.post('/function/delete', {
-                        id : id
+                        uri : id
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
@@ -116,7 +116,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '/function/edit?id=' + id,
+            href : '/function/edit?uri=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {

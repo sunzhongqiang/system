@@ -38,6 +38,12 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>资源地址：</label></td>
+                        <td>
+                        <input type="text"  name="uri"   class="easyui-validatebox" data-options="required:true" th:value="${function.uri}"/>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>资源名称：</label></td>
                         <td>
                         <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${function.name}"/>
@@ -62,7 +68,7 @@
                         </td>
                     </tr>
             </table>
-            <input type="hidden" name="uri" th:value="${function.uri}"/>
+            
         </form>
     </div>
 </div>
