@@ -15,11 +15,9 @@ import com.mmk.system.condition.UserCondition;
 import com.mmk.system.service.UserService;
 import com.mmk.system.dao.UserDao;
 /**
-*@Title: UserServiceImpl
-*@Description: 系统用户 业务服务层实现
+* 系统用户 业务服务层实现
 *@author 孙中强 sunzhongqiang
 *@version 1.0
-*@date 2016-10-11 16:53:53
 */
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, Long> implements UserService {
@@ -31,6 +29,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     private UserRepository userRepository;
     /**
     *构造方法
+    * @param userRepository 资源服务
     */
     @Autowired
     public UserServiceImpl( UserRepository userRepository) {

@@ -4,26 +4,23 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.system.service.RoleService;
-import com.mmk.system.model.Role;
 import com.mmk.common.model.ExtJsPage;
 import com.mmk.common.model.ExtJsPageable;
 import com.mmk.system.condition.RoleCondition;
+import com.mmk.system.model.Role;
+import com.mmk.system.service.RoleService;
 
 /**
 *RoleController ： 系统角色 的web控制层

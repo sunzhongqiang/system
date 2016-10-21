@@ -65,7 +65,7 @@ public class IndexController extends BaseController{
 		resourceMenu.setText("功能模块管理");
 		resourceMenu.setPid("00");
 		Map<String, Object> menuAttr = new HashMap<String, Object>();
-		menuAttr.put("url", "/resourceMenu/list");
+		menuAttr.put("url", "/function/list");
 		resourceMenu.setAttributes(menuAttr);
 
 		Tree loginLog = new Tree();
