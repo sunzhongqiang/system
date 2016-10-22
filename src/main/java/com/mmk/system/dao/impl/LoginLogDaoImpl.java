@@ -1,29 +1,31 @@
 /*
  * 
- *  LoginLogDaoImpl 创建于 2016-10-12 11:54:12 版权归作者和作者当前组织所有
+ *  LoginLogDaoImpl 创建于 2016-10-22 13:46:30 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
+import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import com.mmk.system.condition.LoginLogCondition;
-import com.mmk.system.dao.LoginLogDao;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmk.system.model.LoginLog;
+import com.mmk.system.dao.LoginLogDao;
+
+import com.mmk.system.condition.LoginLogCondition;
 
 
 
 /**
 * LoginLogDaoImpl: 系统登录日志 数据持久层接口实现
-*@author sunzhongqiang 孙中强
+*@author codegenerator
 *@version 1.0
 *
 */
@@ -41,20 +43,20 @@ public class LoginLogDaoImpl extends SpringDataQueryDaoImpl<LoginLog> implements
      * @param loginLogCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author sunzhongqiang 孙中强
+     * @author codegenerator
      * 
      */
     @Override 
     public Page<LoginLog> list(LoginLogCondition loginLogCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from LoginLog model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(loginLogCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",loginLogCondition.getId());
+        if(StringUtils.isNotBlank(loginLogCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+loginLogCondition.getUsername()+"%");
         }
-        if(loginLogCondition.getUserId()!=null){
-            sb.append(" and model.userId = :userId ");
-            params.put("userId",loginLogCondition.getUserId());
+        if(StringUtils.isNotBlank(loginLogCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+loginLogCondition.getRealname()+"%");
         }
         if(loginLogCondition.getLoginTime()!=null){
             sb.append(" and model.loginTime = :loginTime ");
@@ -67,13 +69,13 @@ public class LoginLogDaoImpl extends SpringDataQueryDaoImpl<LoginLog> implements
     public List<LoginLog> list(LoginLogCondition loginLogCondition){
         StringBuffer sb=new StringBuffer("select model from LoginLog model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(loginLogCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",loginLogCondition.getId());
+        if(StringUtils.isNotBlank(loginLogCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+loginLogCondition.getUsername()+"%");
         }
-        if(loginLogCondition.getUserId()!=null){
-            sb.append(" and model.userId = :userId ");
-            params.put("userId",loginLogCondition.getUserId());
+        if(StringUtils.isNotBlank(loginLogCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+loginLogCondition.getRealname()+"%");
         }
         if(loginLogCondition.getLoginTime()!=null){
             sb.append(" and model.loginTime = :loginTime ");
@@ -87,13 +89,13 @@ public class LoginLogDaoImpl extends SpringDataQueryDaoImpl<LoginLog> implements
     public Page< Map<String,Object>> listBySql(LoginLogCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,user_id,username,realname,login_time,status,ip from system_login_log  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getId()!=null){
-            sb.append(" and id = ?1 ");
-            params.put(1,condition.getId());
+        if(StringUtils.isNotBlank(condition.getUsername())){
+            sb.append(" and username like ?3 ");
+            params.put(3,"%"+condition.getUsername()+"%");
         }
-        if(condition.getUserId()!=null){
-            sb.append(" and user_id = ?2 ");
-            params.put(2,condition.getUserId());
+        if(StringUtils.isNotBlank(condition.getRealname())){
+            sb.append(" and realname like ?4 ");
+            params.put(4,"%"+condition.getRealname()+"%");
         }
         if(condition.getLoginTime()!=null){
             sb.append(" and login_time = ?5 ");

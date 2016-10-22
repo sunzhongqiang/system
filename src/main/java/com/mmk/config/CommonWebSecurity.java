@@ -86,5 +86,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 		return new AffirmativeBased(decisionVoters);
 	  }
 	  
+	 
+	  
 
 }

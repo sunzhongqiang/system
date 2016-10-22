@@ -1,6 +1,6 @@
 /*
  * 
- *  LoginLog 创建于 2016-10-12 11:54:12 版权归作者和作者当前组织所有
+ *  LoginLog 创建于 2016-10-22 13:46:30 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 
 /**
 * LoginLog: 系统登录日志 数据领域模型
-* 2016-10-12 11:54:12
-*@author sunzhongqiang 孙中强
+* 2016-10-22 13:46:30
+*@author codegenerator
 *@version 1.0
 */
 @Entity

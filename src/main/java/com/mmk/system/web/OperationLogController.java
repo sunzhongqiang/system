@@ -32,7 +32,7 @@ import com.mmk.system.condition.OperationLogCondition;
 *@Description: 系统操作日志 的web控制层
 *@author 孙中强
 *@version 1.0
-*@date 2016-10-22 11:38:04
+*@date 2016-10-22 12:17:33
 */
 @RestController
 public class OperationLogController extends BaseController {

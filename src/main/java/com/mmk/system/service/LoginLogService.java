@@ -9,8 +9,8 @@ import com.mmk.system.condition.LoginLogCondition;
 
 /**
 * LoginLogService: 系统登录日志 业务服务层接口
-*2016-10-12 11:54:12
-*@author sunzhongqiang 孙中强
+*2016-10-22 13:46:31
+*@author codegenerator
 *@version 1.0
 */
 public interface LoginLogService extends BaseService<LoginLog, Long> {
@@ -19,7 +19,7 @@ public interface LoginLogService extends BaseService<LoginLog, Long> {
      * @param loginLogCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author sunzhongqiang 孙中强
+     * @author codegenerator
      * 
      */
     Page<LoginLog> list(LoginLogCondition loginLogCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface LoginLogService extends BaseService<LoginLog, Long> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  loginLog 查询类
      * @return 查询的结果集
-     * @author sunzhongqiang 孙中强
+     * @author codegenerator
      * 
      */
     public List<LoginLog> list(LoginLogCondition loginLog);
@@ -38,7 +38,7 @@ public interface LoginLogService extends BaseService<LoginLog, Long> {
      * @param field LoginLog 中的某个字段
      * @param value 字段的值
      * @return LoginLog 返回符合条件的结果，如果没有返回null
-     * @author sunzhongqiang 孙中强
+     * @author codegenerator
      * 
      * 
      */
@@ -49,7 +49,7 @@ public interface LoginLogService extends BaseService<LoginLog, Long> {
      * @param field LoginLog中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author sunzhongqiang 孙中强
+     * @author codegenerator
      * 
      * 
      */

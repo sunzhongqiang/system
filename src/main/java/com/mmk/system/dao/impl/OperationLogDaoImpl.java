@@ -1,6 +1,6 @@
 /*
  * 
- *  OperationLogDaoImpl 创建于 2016-10-22 11:38:04 版权归作者和作者当前组织所有
+ *  OperationLogDaoImpl 创建于 2016-10-22 12:17:32 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
@@ -17,7 +17,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.mmk.system.model.OperationLog;
-import com.mmk.tool.SqlStringTool;
 import com.mmk.system.dao.OperationLogDao;
 
 import com.mmk.system.condition.OperationLogCondition;
@@ -51,17 +50,21 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
     public Page<OperationLog> list(OperationLogCondition operationLogCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from OperationLog model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(operationLogCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",operationLogCondition.getId());
+        if(StringUtils.isNotBlank(operationLogCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+operationLogCondition.getUsername()+"%");
+        }
+        if(StringUtils.isNotBlank(operationLogCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+operationLogCondition.getRealname()+"%");
         }
         if(StringUtils.isNotBlank(operationLogCondition.getFunctionUri())){
-            sb.append(" and model.functionUri like :uri ");
-            params.put("uri",SqlStringTool.anyMatch(operationLogCondition.getFunctionUri()));
+            sb.append(" and model.functionUri like :functionUri ");
+            params.put("functionUri","%"+operationLogCondition.getFunctionUri()+"%");
         }
-        if(operationLogCondition.getOperationTime()!=null){
-            sb.append(" and model.operationTime = :operationTime ");
-            params.put("operationTime",operationLogCondition.getOperationTime());
+        if(StringUtils.isNotBlank(operationLogCondition.getFunctionName())){
+            sb.append(" and model.functionName like :functionName ");
+            params.put("functionName","%"+operationLogCondition.getFunctionName()+"%");
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -70,13 +73,21 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
     public List<OperationLog> list(OperationLogCondition operationLogCondition){
         StringBuffer sb=new StringBuffer("select model from OperationLog model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(operationLogCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",operationLogCondition.getId());
+        if(StringUtils.isNotBlank(operationLogCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+operationLogCondition.getUsername()+"%");
         }
-        if(operationLogCondition.getOperationTime()!=null){
-            sb.append(" and model.operationTime = :operationTime ");
-            params.put("operationTime",operationLogCondition.getOperationTime());
+        if(StringUtils.isNotBlank(operationLogCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+operationLogCondition.getRealname()+"%");
+        }
+        if(StringUtils.isNotBlank(operationLogCondition.getFunctionUri())){
+            sb.append(" and model.functionUri like :functionUri ");
+            params.put("functionUri","%"+operationLogCondition.getFunctionUri()+"%");
+        }
+        if(StringUtils.isNotBlank(operationLogCondition.getFunctionName())){
+            sb.append(" and model.functionName like :functionName ");
+            params.put("functionName","%"+operationLogCondition.getFunctionName()+"%");
         }
         return queryByJpql(sb.toString(), params);
     }
@@ -86,13 +97,21 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
     public Page< Map<String,Object>> listBySql(OperationLogCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,user_id,username,realname,role_code,role_name,function_uri,function_name,operation_time,status,ip from system_operation_log  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getId()!=null){
-            sb.append(" and id = ?1 ");
-            params.put(1,condition.getId());
+        if(StringUtils.isNotBlank(condition.getUsername())){
+            sb.append(" and username like ?3 ");
+            params.put(3,"%"+condition.getUsername()+"%");
         }
-        if(condition.getOperationTime()!=null){
-            sb.append(" and operation_time = ?9 ");
-            params.put(9,condition.getOperationTime());
+        if(StringUtils.isNotBlank(condition.getRealname())){
+            sb.append(" and realname like ?4 ");
+            params.put(4,"%"+condition.getRealname()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getFunctionUri())){
+            sb.append(" and function_uri like ?7 ");
+            params.put(7,"%"+condition.getFunctionUri()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getFunctionName())){
+            sb.append(" and function_name like ?8 ");
+            params.put(8,"%"+condition.getFunctionName()+"%");
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

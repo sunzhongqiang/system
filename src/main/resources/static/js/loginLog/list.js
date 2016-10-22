@@ -4,7 +4,7 @@
     $(function() {
     
         dataGrid = $('#dataGrid').datagrid({
-            url : '/operationLog/gridData',
+            url : '/loginLog/gridData',
             fit : true,
             striped : true,
             rownumbers : true,
@@ -16,12 +16,12 @@
             columns : [ [ 
                     {
                 width : '80',
-                title : '日志',
+                title : '主键',
                 field : 'id',
             },
                     {
                 width : '80',
-                title : '用户id',
+                title : '用户主键',
                 field : 'userId',
             },
                     {
@@ -31,42 +31,22 @@
             },
                     {
                 width : '80',
-                title : '用户真实名称',
+                title : '真实姓名',
                 field : 'realname',
             },
                     {
                 width : '80',
-                title : '角色编码',
-                field : 'roleCode',
+                title : '登录时间',
+                field : 'loginTime',
             },
                     {
                 width : '80',
-                title : '角色名称',
-                field : 'roleName',
-            },
-                    {
-                width : '80',
-                title : '访问资源地址',
-                field : 'functionUri',
-            },
-                    {
-                width : '80',
-                title : '资源名称',
-                field : 'functionName',
-            },
-                    {
-                width : '80',
-                title : '访问日期',
-                field : 'operationTime',
-            },
-                    {
-                width : '80',
-                title : '访问状态，成功还是失败',
+                title : '验证结果：成功，失败',
                 field : 'status',
             },
                     {
                 width : '80',
-                title : '调用IP',
+                title : '登录ip',
                 field : 'ip',
             },
             {
@@ -100,7 +80,7 @@
             title : '添加',
             width : 500,
             height : 300,
-            href : '/operationLog/add',
+            href : '/loginLog/add',
             buttons : [ {
                 text : '添加',
                 handler : function() {
@@ -119,10 +99,10 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除系统操作日志？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除系统登录日志？', function(b) {
             if (b) {
                 progressLoad();
-                    $.post('/operationLog/delete', {
+                    $.post('/loginLog/delete', {
                         id : id
                     }, function(result) {
                         if (result.success) {
@@ -146,7 +126,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '/operationLog/edit?id=' + id,
+            href : '/loginLog/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {

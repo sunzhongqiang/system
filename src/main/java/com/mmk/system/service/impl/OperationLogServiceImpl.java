@@ -16,7 +16,7 @@ import com.mmk.system.service.OperationLogService;
 import com.mmk.system.dao.OperationLogDao;
 /**
 * OperationLogServiceImpl: 系统操作日志 业务服务层实现
-* 2016-10-22 11:38:04
+* 2016-10-22 12:17:33
 * @author 孙中强
 * @version 1.0
 */

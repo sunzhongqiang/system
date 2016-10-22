@@ -16,8 +16,8 @@ import com.mmk.system.service.LoginLogService;
 import com.mmk.system.dao.LoginLogDao;
 /**
 * LoginLogServiceImpl: 系统登录日志 业务服务层实现
-* 2016-10-12 11:54:12
-* @author sunzhongqiang 孙中强
+* 2016-10-22 13:46:31
+* @author codegenerator
 * @version 1.0
 */
 @Service

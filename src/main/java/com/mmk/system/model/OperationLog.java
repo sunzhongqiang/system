@@ -1,6 +1,6 @@
 /*
  * 
- *  OperationLog 创建于 2016-10-12 11:54:15 版权归作者和作者当前组织所有
+ *  OperationLog 创建于 2016-10-22 12:17:32 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 
 /**
 * OperationLog: 系统操作日志 数据领域模型
-* 2016-10-12 11:54:15
-*@author sunzhongqiang 孙中强
+* 2016-10-22 12:17:32
+*@author 孙中强
 *@version 1.0
 */
 @Entity

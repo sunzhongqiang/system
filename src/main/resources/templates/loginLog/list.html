@@ -15,9 +15,9 @@
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
-<title>系统操作日志</title>
+<title>系统登录日志</title>
 <script type="text/javascript" src="/js/extJs.js"></script>
-<script type="text/javascript" src="/js/operationLog/list.js"></script>
+<script type="text/javascript" src="/js/loginLog/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
@@ -26,19 +26,18 @@
                 <tr>
                     <th>用户名：</th>
                       <td>
-                        <input type="text" name="username" th:value="${operationLogCondition} ? ${operationLogCondition.username} :''"/>
+                        <input type="text" name="username" th:value="${loginLogCondition} ? ${loginLogCondition.username} :''"/>
                       </td>
-                    <th>用户真实名称：</th>
+                    <th>真实姓名：</th>
                       <td>
-                        <input type="text" name="realname" th:value="${operationLogCondition} ? ${operationLogCondition.realname} :''"/>
+                        <input type="text" name="realname" th:value="${loginLogCondition} ? ${loginLogCondition.realname} :''"/>
                       </td>
-                    <th>访问资源地址：</th>
+                    <th>登录时间：</th>
                       <td>
-                        <input type="text" name="functionUri" th:value="${operationLogCondition} ? ${operationLogCondition.functionUri} :''"/>
+                        <input type="text" class="easyui-datebox"  name="loginTimeBegin" th:value="${loginLogCondition} ? ${loginLogCondition.loginTimeBegin} :''"/>
                       </td>
-                    <th>资源名称：</th>
-                      <td>
-                        <input type="text" name="functionName" th:value="${operationLogCondition} ? ${operationLogCondition.functionName} :''"/>
+                       <td>
+                        <input type="text" class="easyui-datebox"  name="loginTimeEnd" th:value="${loginLogCondition} ? ${loginLogCondition.loginTimeEnd} :''"/>
                       </td>
                       <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
@@ -48,7 +47,7 @@
             </table>
         </form>
     </div>
-    <div data-options="region:'center',border:true,title:'系统操作日志'" >
+    <div data-options="region:'center',border:true,title:'系统登录日志'" >
         <table id="dataGrid" data-options="fit:true,border:false"></table>
     </div>
 </body>
