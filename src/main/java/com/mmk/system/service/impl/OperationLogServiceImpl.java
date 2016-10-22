@@ -3,8 +3,6 @@ package com.mmk.system.service.impl;
 import javax.annotation.Resource;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,11 +16,10 @@ import com.mmk.system.service.OperationLogService;
 import com.mmk.system.dao.OperationLogDao;
 /**
 * OperationLogServiceImpl: 系统操作日志 业务服务层实现
-* 2016-10-12 11:54:15
-* @author sunzhongqiang 孙中强
+* 2016-10-22 11:38:04
+* @author 孙中强
 * @version 1.0
 */
-@CacheConfig(cacheNames="demo")
 @Service
 public class OperationLogServiceImpl extends BaseServiceImpl<OperationLog, Long> implements OperationLogService {
 
@@ -40,9 +37,7 @@ public class OperationLogServiceImpl extends BaseServiceImpl<OperationLog, Long>
         super(operationLogRepository);
         this.operationLogRepository = operationLogRepository;
     }
-    
-    
-    @Cacheable(cacheNames="demo")
+
     @Override
     public Page<OperationLog> list(OperationLogCondition operationLogCondition, Pageable pageable) {
         log.info("系统操作日志查询列表");

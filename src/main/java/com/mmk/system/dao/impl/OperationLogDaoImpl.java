@@ -1,29 +1,32 @@
 /*
  * 
- *  OperationLogDaoImpl 创建于 2016-10-12 11:54:15 版权归作者和作者当前组织所有
+ *  OperationLogDaoImpl 创建于 2016-10-22 11:38:04 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
+import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import com.mmk.system.condition.OperationLogCondition;
-import com.mmk.system.dao.OperationLogDao;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmk.system.model.OperationLog;
+import com.mmk.tool.SqlStringTool;
+import com.mmk.system.dao.OperationLogDao;
+
+import com.mmk.system.condition.OperationLogCondition;
 
 
 
 /**
 * OperationLogDaoImpl: 系统操作日志 数据持久层接口实现
-*@author sunzhongqiang 孙中强
+*@author 孙中强
 *@version 1.0
 *
 */
@@ -41,7 +44,7 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
      * @param operationLogCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author sunzhongqiang 孙中强
+     * @author 孙中强
      * 
      */
     @Override 
@@ -51,6 +54,10 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
         if(operationLogCondition.getId()!=null){
             sb.append(" and model.id = :id ");
             params.put("id",operationLogCondition.getId());
+        }
+        if(StringUtils.isNotBlank(operationLogCondition.getFunctionUri())){
+            sb.append(" and model.functionUri like :uri ");
+            params.put("uri",SqlStringTool.anyMatch(operationLogCondition.getFunctionUri()));
         }
         if(operationLogCondition.getOperationTime()!=null){
             sb.append(" and model.operationTime = :operationTime ");

@@ -9,8 +9,8 @@ import com.mmk.system.condition.OperationLogCondition;
 
 /**
 * OperationLogService: 系统操作日志 业务服务层接口
-*2016-10-12 11:54:15
-*@author sunzhongqiang 孙中强
+*2016-10-22 11:38:04
+*@author 孙中强
 *@version 1.0
 */
 public interface OperationLogService extends BaseService<OperationLog, Long> {
@@ -19,7 +19,7 @@ public interface OperationLogService extends BaseService<OperationLog, Long> {
      * @param operationLogCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author sunzhongqiang 孙中强
+     * @author 孙中强
      * 
      */
     Page<OperationLog> list(OperationLogCondition operationLogCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface OperationLogService extends BaseService<OperationLog, Long> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  operationLog 查询类
      * @return 查询的结果集
-     * @author sunzhongqiang 孙中强
+     * @author 孙中强
      * 
      */
     public List<OperationLog> list(OperationLogCondition operationLog);
@@ -38,7 +38,7 @@ public interface OperationLogService extends BaseService<OperationLog, Long> {
      * @param field OperationLog 中的某个字段
      * @param value 字段的值
      * @return OperationLog 返回符合条件的结果，如果没有返回null
-     * @author sunzhongqiang 孙中强
+     * @author 孙中强
      * 
      * 
      */
@@ -49,7 +49,7 @@ public interface OperationLogService extends BaseService<OperationLog, Long> {
      * @param field OperationLog中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author sunzhongqiang 孙中强
+     * @author 孙中强
      * 
      * 
      */
