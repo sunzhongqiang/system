@@ -46,8 +46,6 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun('+row['uri']+');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun('+row['uri']+');" class="btn_delete" >删除</a>', row.id);
                     return str;
                 }
