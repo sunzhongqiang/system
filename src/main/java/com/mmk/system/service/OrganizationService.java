@@ -1,6 +1,8 @@
 package com.mmk.system.service;
 
 import java.util.List;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,4 +56,11 @@ public interface OrganizationService extends BaseService<Organization, Long> {
      * 
      */
     List<Organization> findAllBy(String field,Object value);
+
+    /**
+     * 组织结构树
+     * @param organizationCondition 
+     * @return
+     */
+    List<Organization> tree();
 }

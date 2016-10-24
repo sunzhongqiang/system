@@ -3,7 +3,10 @@
  *  OrganizationCondition 创建于 2016-10-24 10:07:36 版权归作者和作者当前组织所有
  */
 package com.mmk.system.condition;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import com.mmk.system.model.Organization;
 
 /**
@@ -16,5 +19,14 @@ import com.mmk.system.model.Organization;
 public class OrganizationCondition extends Organization{
 
 
+	private List<OrganizationCondition> children = new ArrayList<OrganizationCondition>();
+
+	public List<OrganizationCondition> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<OrganizationCondition> children) {
+		this.children = children;
+	}
 
 }
