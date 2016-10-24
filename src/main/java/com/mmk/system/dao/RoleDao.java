@@ -1,6 +1,6 @@
 /*
  * 
- *  RoleDao 创建于 2016-10-12 11:54:19 版权归作者和作者当前组织所有
+ *  RoleDao 创建于 2016-10-24 14:26:41 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao;
 
@@ -13,10 +13,8 @@ import com.mmk.system.condition.RoleCondition;
 import com.mmk.system.model.Role;
 /**
 * RoleDao:系统角色 数据持久层接口
-* @author sunzhongqiang 孙中强
+* @author huguangling 胡广玲
 * @version 1.0
-* Modified By
-* Modified Date
 */
 public interface RoleDao extends SpringDataQueryDao<Role>{
     
@@ -25,7 +23,7 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      * @param role 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -34,7 +32,7 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param role 查询类
      * @return 符合条件的查询结果集
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      */
     List<Role> list(RoleCondition role);
@@ -43,7 +41,7 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      * @param role Role类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -53,7 +51,7 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      * @param field Role 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的结果，如果没有返回null
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -64,7 +62,7 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      * @param field Role 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的所有结果
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */

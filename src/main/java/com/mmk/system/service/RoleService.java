@@ -9,17 +9,17 @@ import com.mmk.system.condition.RoleCondition;
 
 /**
 * RoleService: 系统角色 业务服务层接口
-*2016-10-12 11:54:19
-*@author sunzhongqiang 孙中强
+*2016-10-24 14:26:41
+*@author huguangling 胡广玲
 *@version 1.0
 */
-public interface RoleService extends BaseService<Role, String> {
+public interface RoleService extends BaseService<Role, Long> {
     /**
      * 生成的列表分页查询方法
      * @param roleCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      */
     Page<Role> list(RoleCondition roleCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface RoleService extends BaseService<Role, String> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  role 查询类
      * @return 查询的结果集
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      */
     public List<Role> list(RoleCondition role);
@@ -38,7 +38,7 @@ public interface RoleService extends BaseService<Role, String> {
      * @param field Role 中的某个字段
      * @param value 字段的值
      * @return Role 返回符合条件的结果，如果没有返回null
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -49,7 +49,7 @@ public interface RoleService extends BaseService<Role, String> {
      * @param field Role中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author sunzhongqiang 孙中强
+     * @author huguangling 胡广玲
      * 
      * 
      */

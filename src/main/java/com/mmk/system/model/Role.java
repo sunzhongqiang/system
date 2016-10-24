@@ -1,6 +1,6 @@
 /*
  * 
- *  Role 创建于 2016-10-12 11:54:19 版权归作者和作者当前组织所有
+ *  Role 创建于 2016-10-24 14:26:41 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -13,18 +13,24 @@ import javax.persistence.Column;
 
 /**
 * Role: 系统角色 数据领域模型
-* 2016-10-12 11:54:19
-*@author sunzhongqiang 孙中强
+* 2016-10-24 14:26:41
+*@author huguangling 胡广玲
 *@version 1.0
 */
 @Entity
 @Table(name="system_role")
 public class Role {
     /**
-     * 角色编码
+     * 角色主键
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private Long id;
+
+    /**
+     * 角色编码
+     */
     @Column(name="code")
     private String code;
 
@@ -40,6 +46,19 @@ public class Role {
     @Column(name="status")
     private String status;
 
+
+    /** 
+	* @return id ：角色主键
+	*/
+    public Long getId() {
+        return id;
+    }
+    /** 
+    *@param id 设置角色主键 
+    */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /** 
 	* @return code ：角色编码

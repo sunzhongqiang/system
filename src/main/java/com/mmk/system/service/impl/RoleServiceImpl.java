@@ -16,12 +16,12 @@ import com.mmk.system.service.RoleService;
 import com.mmk.system.dao.RoleDao;
 /**
 * RoleServiceImpl: 系统角色 业务服务层实现
-* 2016-10-12 11:54:19
-* @author sunzhongqiang 孙中强
+* 2016-10-24 14:26:41
+* @author huguangling 胡广玲
 * @version 1.0
 */
 @Service
-public class RoleServiceImpl extends BaseServiceImpl<Role, String> implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements RoleService {
 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
