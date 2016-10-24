@@ -4,35 +4,28 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.system.service.LoginLogService;
-import com.mmk.system.model.LoginLog;
 import com.mmk.system.condition.LoginLogCondition;
+import com.mmk.system.model.LoginLog;
+import com.mmk.system.service.LoginLogService;
 
 /**
 *@Title: LoginLogController
 *@Description: 系统登录日志 的web控制层
 *@author codegenerator
-*@version 1.0
-*@date 2016-10-22 13:46:31
 */
 @RestController
 public class LoginLogController extends BaseController {
@@ -47,7 +40,7 @@ public class LoginLogController extends BaseController {
     @RequestMapping("/loginLog/list")
     public ModelAndView list(){
         log.info("系统登录日志列表查询");
-        ModelAndView modelAndView = new ModelAndView("/loginLog/list");
+        ModelAndView modelAndView = new ModelAndView("loginLog/list");
         return  modelAndView;
     }
     
