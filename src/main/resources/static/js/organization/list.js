@@ -4,7 +4,7 @@
     $(function() {
     
         dataGrid = $('#dataGrid').treegrid({
-            url : '/organization/gridData',
+            url : '/organization/tree',
             fit : true,
             striped : true,
             rownumbers : false,
