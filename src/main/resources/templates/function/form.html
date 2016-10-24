@@ -38,7 +38,7 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>资源地址：</label></td>
+                        <td class="tdTit"><strong class="red" >*</strong><label>统一资源标识符：</label></td>
                         <td>
                         <input type="text"  name="uri"   class="easyui-validatebox" data-options="required:true" th:value="${function.uri}"/>
                         </td>
@@ -58,7 +58,7 @@
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>父类：</label></td>
                         <td>
-                        <input type="text"  name="parentUri"   class="easyui-validatebox" data-options="required:true" th:value="${function.parentUri}"/>
+                        <input type="text"  name="parentId"   class="easyui-validatebox" data-options="required:true" th:value="${function.parentId}"/>
                         </td>
                     </tr>
                     <tr>
@@ -67,8 +67,14 @@
                         <input type="text"  name="description"   class="easyui-validatebox" data-options="required:true" th:value="${function.description}"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="tdTit"><label>：</label></td>
+                        <td>
+                        <input type="text"  name="parentUri"   class="easyui-validatebox" data-options="required:true" th:value="${function.parentUri}"/>
+                        </td>
+                    </tr>
             </table>
-            
+            <input type="hidden" name="id" th:value="${function.id}"/>
         </form>
     </div>
 </div>

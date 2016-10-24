@@ -1,6 +1,6 @@
 /*
  * 
- *  FunctionDao 创建于 2016-10-21 15:48:04 版权归作者和作者当前组织所有
+ *  FunctionDao 创建于 2016-10-24 15:52:09 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao;
 
@@ -13,10 +13,8 @@ import com.mmk.system.condition.FunctionCondition;
 import com.mmk.system.model.Function;
 /**
 * FunctionDao:系统功能 数据持久层接口
-* @author codegenerator
+* @author huguangling 胡广玲
 * @version 1.0
-* Modified By
-* Modified Date
 */
 public interface FunctionDao extends SpringDataQueryDao<Function>{
     
@@ -25,7 +23,7 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * @param function 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -34,7 +32,7 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param function 查询类
      * @return 符合条件的查询结果集
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      */
     List<Function> list(FunctionCondition function);
@@ -43,7 +41,7 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * @param function Function类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -53,7 +51,7 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * @param field Function 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的结果，如果没有返回null
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -64,7 +62,7 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * @param field Function 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的所有结果
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */

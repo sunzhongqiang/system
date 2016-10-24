@@ -16,6 +16,11 @@
             columns : [ [ 
                     {
                 width : '80',
+                title : '功能主键',
+                field : 'id',
+            },
+                    {
+                width : '80',
                 title : '统一资源标识符',
                 field : 'uri',
             },
@@ -32,12 +37,17 @@
                     {
                 width : '80',
                 title : '父类',
-                field : 'parentUri',
+                field : 'parentId',
             },
                     {
                 width : '80',
                 title : '描述',
                 field : 'description',
+            },
+                    {
+                width : '80',
+                title : '',
+                field : 'parentUri',
             },
             {
                 field : 'action',
@@ -46,7 +56,9 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun('+row['uri']+');" class="btn_delete" >删除</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
+                    str += '&nbsp;|&nbsp;';
+                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
                     return str;
                 }
             }] ],
@@ -91,7 +103,7 @@
             if (b) {
                 progressLoad();
                     $.post('/function/delete', {
-                        uri : id
+                        id : id
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
@@ -114,7 +126,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '/function/edit?uri=' + id,
+            href : '/function/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {

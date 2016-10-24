@@ -30,9 +30,7 @@ import com.mmk.system.condition.FunctionCondition;
 /**
 *@Title: FunctionController
 *@Description: 系统功能 的web控制层
-*@author codegenerator
-*@version 1.0
-*@date 2016-10-21 15:48:04
+*@author huguangling 胡广玲
 */
 @RestController
 public class FunctionController extends BaseController {
@@ -47,7 +45,7 @@ public class FunctionController extends BaseController {
     @RequestMapping("/function/list")
     public ModelAndView list(){
         log.info("系统功能列表查询");
-        ModelAndView modelAndView = new ModelAndView("/function/list");
+        ModelAndView modelAndView = new ModelAndView("function/list");
         return  modelAndView;
     }
     
@@ -88,8 +86,8 @@ public class FunctionController extends BaseController {
     @RequestMapping("/function/edit")
     public ModelAndView editPage(Function function){
         log.info("系统功能编辑页面");
-        function = functionService.find(function.getUri());
-        ModelAndView modelAndView = new ModelAndView("/function/form");
+        function = functionService.find(function.getId());
+        ModelAndView modelAndView = new ModelAndView("function/form");
         modelAndView.addObject("function", function);
         return modelAndView ;
     }
@@ -123,7 +121,7 @@ public class FunctionController extends BaseController {
     @ResponseBody
     public Function details(Function function){
         log.info("系统功能详细信息");
-        function = functionService.find(function.getUri());
+        function = functionService.find(function.getId());
         return function;
     }
     

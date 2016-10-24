@@ -16,12 +16,12 @@ import com.mmk.system.service.FunctionService;
 import com.mmk.system.dao.FunctionDao;
 /**
 * FunctionServiceImpl: 系统功能 业务服务层实现
-* 2016-10-21 15:48:04
-* @author codegenerator
+* 2016-10-24 15:52:09
+* @author huguangling 胡广玲
 * @version 1.0
 */
 @Service
-public class FunctionServiceImpl extends BaseServiceImpl<Function, String> implements FunctionService {
+public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> implements FunctionService {
 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource

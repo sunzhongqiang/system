@@ -9,17 +9,17 @@ import com.mmk.system.condition.FunctionCondition;
 
 /**
 * FunctionService: 系统功能 业务服务层接口
-*2016-10-21 15:48:04
-*@author codegenerator
+*2016-10-24 15:52:09
+*@author huguangling 胡广玲
 *@version 1.0
 */
-public interface FunctionService extends BaseService<Function, String> {
+public interface FunctionService extends BaseService<Function, Long> {
     /**
      * 生成的列表分页查询方法
      * @param functionCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      */
     Page<Function> list(FunctionCondition functionCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface FunctionService extends BaseService<Function, String> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  function 查询类
      * @return 查询的结果集
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      */
     public List<Function> list(FunctionCondition function);
@@ -38,7 +38,7 @@ public interface FunctionService extends BaseService<Function, String> {
      * @param field Function 中的某个字段
      * @param value 字段的值
      * @return Function 返回符合条件的结果，如果没有返回null
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */
@@ -49,7 +49,7 @@ public interface FunctionService extends BaseService<Function, String> {
      * @param field Function中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      * 
      */

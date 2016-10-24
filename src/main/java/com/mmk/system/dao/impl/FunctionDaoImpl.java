@@ -1,29 +1,31 @@
 /*
  * 
- *  FunctionDaoImpl 创建于 2016-10-21 15:48:04 版权归作者和作者当前组织所有
+ *  FunctionDaoImpl 创建于 2016-10-24 15:52:09 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
+import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import com.mmk.system.condition.FunctionCondition;
-import com.mmk.system.dao.FunctionDao;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmk.system.model.Function;
+import com.mmk.system.dao.FunctionDao;
+
+import com.mmk.system.condition.FunctionCondition;
 
 
 
 /**
 * FunctionDaoImpl: 系统功能 数据持久层接口实现
-*@author codegenerator
+*@author huguangling 胡广玲
 *@version 1.0
 *
 */
@@ -41,16 +43,24 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
      * @param functionCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author codegenerator
+     * @author huguangling 胡广玲
      * 
      */
     @Override 
     public Page<Function> list(FunctionCondition functionCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Function model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(functionCondition.getParentUri()!=null){
-            sb.append(" and model.parentUri = :parentUri ");
-            params.put("parentUri",functionCondition.getParentUri());
+        if(StringUtils.isNotBlank(functionCondition.getUri())){
+            sb.append(" and model.uri like :uri ");
+            params.put("uri","%"+functionCondition.getUri()+"%");
+        }
+        if(StringUtils.isNotBlank(functionCondition.getName())){
+            sb.append(" and model.name like :name ");
+            params.put("name","%"+functionCondition.getName()+"%");
+        }
+        if(StringUtils.isNotBlank(functionCondition.getType())){
+            sb.append(" and model.type = :type ");
+            params.put("type",functionCondition.getType());
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -59,9 +69,17 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
     public List<Function> list(FunctionCondition functionCondition){
         StringBuffer sb=new StringBuffer("select model from Function model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(functionCondition.getParentUri()!=null){
-            sb.append(" and model.parentUri = :parentUri ");
-            params.put("parentUri",functionCondition.getParentUri());
+        if(StringUtils.isNotBlank(functionCondition.getUri())){
+            sb.append(" and model.uri like :uri ");
+            params.put("uri","%"+functionCondition.getUri()+"%");
+        }
+        if(StringUtils.isNotBlank(functionCondition.getName())){
+            sb.append(" and model.name like :name ");
+            params.put("name","%"+functionCondition.getName()+"%");
+        }
+        if(StringUtils.isNotBlank(functionCondition.getType())){
+            sb.append(" and model.type = :type ");
+            params.put("type",functionCondition.getType());
         }
         return queryByJpql(sb.toString(), params);
     }
@@ -69,11 +87,19 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
     
     @Override 
     public Page< Map<String,Object>> listBySql(FunctionCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select uri,name,type,parent_uri,description from system_function  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,uri,name,type,parent_id,description,parent_uri from system_function  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getParentUri()!=null){
-            sb.append(" and parent_uri = ?4 ");
-            params.put(4,condition.getParentUri());
+        if(StringUtils.isNotBlank(condition.getUri())){
+            sb.append(" and uri like ?2 ");
+            params.put(2,"%"+condition.getUri()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getName())){
+            sb.append(" and name like ?3 ");
+            params.put(3,"%"+condition.getName()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getType())){
+            sb.append(" and type = ?4 ");
+            params.put(4,condition.getType());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

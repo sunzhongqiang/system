@@ -1,6 +1,6 @@
 /*
  * 
- *  Function 创建于 2016-10-21 15:48:04 版权归作者和作者当前组织所有
+ *  Function 创建于 2016-10-24 15:52:09 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -13,17 +13,24 @@ import javax.persistence.Column;
 
 /**
 * Function: 系统功能 数据领域模型
-* 2016-10-21 15:48:04
-*@author codegenerator
+* 2016-10-24 15:52:09
+*@author huguangling 胡广玲
 *@version 1.0
 */
 @Entity
 @Table(name="system_function")
 public class Function {
     /**
-     * 统一资源标识符
+     * 功能主键
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private Long id;
+
+    /**
+     * 统一资源标识符
+     */
     @Column(name="uri")
     private String uri;
 
@@ -42,8 +49,8 @@ public class Function {
     /**
      * 父类
      */
-    @Column(name="parent_uri")
-    private Long parentUri;
+    @Column(name="parent_id")
+    private Long parentId;
 
     /**
      * 描述
@@ -51,6 +58,25 @@ public class Function {
     @Column(name="description")
     private String description;
 
+    /**
+     * 
+     */
+    @Column(name="parent_uri")
+    private Long parentUri;
+
+
+    /** 
+	* @return id ：功能主键
+	*/
+    public Long getId() {
+        return id;
+    }
+    /** 
+    *@param id 设置功能主键 
+    */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /** 
 	* @return uri ：统一资源标识符
@@ -92,16 +118,16 @@ public class Function {
     }
 
     /** 
-	* @return parentUri ：父类
+	* @return parentId ：父类
 	*/
-    public Long getParentUri() {
-        return parentUri;
+    public Long getParentId() {
+        return parentId;
     }
     /** 
-    *@param parentUri 设置父类 
+    *@param parentId 设置父类 
     */
-    public void setParentUri(Long parentUri) {
-        this.parentUri = parentUri;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     /** 
@@ -115,6 +141,19 @@ public class Function {
     */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /** 
+	* @return parentUri ：
+	*/
+    public Long getParentUri() {
+        return parentUri;
+    }
+    /** 
+    *@param parentUri 设置 
+    */
+    public void setParentUri(Long parentUri) {
+        this.parentUri = parentUri;
     }
 
 
