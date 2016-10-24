@@ -18,7 +18,7 @@
                 success: function(result){
                     progressClose();
                     if (result.success) {
-                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.openner_datagrid.treegrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
                         parent.$.modalDialog.handler.dialog('close');
                     } else {
                         parent.$.messager.alert('提示', result.msg, 'warning');
@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>资源类型：function:功能;menu:菜单;module:模块;system:系统;一个系统有多个模块，一个模块包含多个功能：</label></td>
+                        <td class="tdTit"><strong class="red" >*</strong><label>资源类型：</label></td>
                         <td>
                         <input type="text"  name="type"   class="easyui-validatebox" data-options="required:true" th:value="${function.type}"/>
                         </td>
@@ -58,19 +58,24 @@
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>父类：</label></td>
                         <td>
-                        <input type="text"  name="parentId"   class="easyui-validatebox" data-options="required:true" th:value="${function.parentId}"/>
+                        <input class="easyui-combotreegrid" name="parentId"  data-options="
+						        width:'200',
+						        panelWidth:200,
+						        url:'/function/tree',
+						        idField:'id',
+						        treeField:'name',
+						        columns:[[
+						            {field:'name',title:'功能',width:100},
+						            {field:'uri',title:'地址',width:80},
+
+						        ]]" />
+                        
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>描述：</label></td>
                         <td>
                         <input type="text"  name="description"   class="easyui-validatebox" data-options="required:true" th:value="${function.description}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>：</label></td>
-                        <td>
-                        <input type="text"  name="parentUri"   class="easyui-validatebox" data-options="required:true" th:value="${function.parentUri}"/>
                         </td>
                     </tr>
             </table>

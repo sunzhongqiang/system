@@ -3,7 +3,10 @@
  *  FunctionCondition 创建于 2016-10-24 15:52:09 版权归作者和作者当前组织所有
  */
 package com.mmk.system.condition;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import com.mmk.system.model.Function;
 
 /**
@@ -15,6 +18,15 @@ import com.mmk.system.model.Function;
 */
 public class FunctionCondition extends Function{
 
+	private List<FunctionCondition> children = new ArrayList<FunctionCondition>();
+
+	public List<FunctionCondition> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<FunctionCondition> children) {
+		this.children = children;
+	}
 
 
 }

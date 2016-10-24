@@ -1,53 +1,52 @@
 //代码生成工具自动生成，请在此处填写 查询页面使用的js代码
-    var dataGrid;
-    var organizationTree;
+    var treegrid;
     $(function() {
     
-        dataGrid = $('#dataGrid').datagrid({
-            url : '/function/gridData',
+        treegrid = $('#dataGrid').treegrid({
+            url : '/function/tree',
             fit : true,
             striped : true,
-            rownumbers : true,
-            pagination : true,
+            rownumbers : false,
+            pagination : false,
             singleSelect : true,
             idField : 'id',
+            treeField : 'name',
+            animate: true,  
+            checkbox: true,  
+            cascadeCheck:true,//层叠选中  
+            lines:true,//显示虚线效果  
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
-                width : '80',
+                          {
+                width : '180',
+                title : '资源名称',
+                field : 'name',
+            },{
+                width : '180',
                 title : '功能主键',
                 field : 'id',
             },
                     {
-                width : '80',
-                title : '统一资源标识符',
+                width : '180',
+                title : '标识符',
                 field : 'uri',
             },
+              
                     {
-                width : '80',
-                title : '资源名称',
-                field : 'name',
-            },
-                    {
-                width : '80',
-                title : '资源类型：function:功能;menu:菜单;module:模块;system:系统;一个系统有多个模块，一个模块包含多个功能',
+                width : '180',
+                title : '资源类型',
                 field : 'type',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '父类',
                 field : 'parentId',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '描述',
                 field : 'description',
-            },
-                    {
-                width : '80',
-                title : '',
-                field : 'parentUri',
             },
             {
                 field : 'action',
@@ -70,7 +69,7 @@
             onLoadSuccess : function(data){
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
+                $(this).treegrid('fixRowHeight');
             }
         });
     });
@@ -84,9 +83,10 @@
             buttons : [ {
                 text : '添加',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_datagrid = treegrid;//因为添加成功之后，需要刷新这个treegrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
+                    $('#dataGrid').treegrid('reload');
                 }
             } ]
         });
@@ -94,10 +94,10 @@
     
     function deleteFun(id) {
         if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = treegrid.treegrid('getSelections');
             id = rows[0].id;
         } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	treegrid.treegrid('unselectAll').treegrid('uncheckAll');
         }
         parent.$.messager.confirm('询问', '您是否要删除系统功能？', function(b) {
             if (b) {
@@ -107,7 +107,7 @@
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
+                            treegrid.treegrid('reload');
                         }
                         progressClose();
                     }, 'JSON');
@@ -117,10 +117,10 @@
     
     function editFun(id) {
         if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = treegrid.treegrid('getSelections');
             id = rows[0].id;
         } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	treegrid.treegrid('unselectAll').treegrid('uncheckAll');
         }
         parent.$.modalDialog({
             title : '编辑',
@@ -130,9 +130,11 @@
             buttons : [ {
                 text : '编辑',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_datagrid = treegrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
+                    $('#dataGrid').treegrid('reload');
+                    
                 }
             } 
             ]
@@ -141,12 +143,12 @@
     
     function searchFun() {
         ////将searchForm表单内的元素序列为对象传递到后台
-        dataGrid.datagrid('load', $.serializeObject($('#searchForm')));
+    	treegrid.treegrid('load', $.serializeObject($('#searchForm')));
     }
     function cleanFun() {
         //找到form表单下的所有input标签并清空
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
-        dataGrid.datagrid('load', {});
+        treegrid.treegrid('load', {});
     }
     

@@ -58,12 +58,6 @@ public class Function {
     @Column(name="description")
     private String description;
 
-    /**
-     * 
-     */
-    @Column(name="parent_uri")
-    private Long parentUri;
-
 
     /** 
 	* @return id ：功能主键
@@ -141,19 +135,6 @@ public class Function {
     */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /** 
-	* @return parentUri ：
-	*/
-    public Long getParentUri() {
-        return parentUri;
-    }
-    /** 
-    *@param parentUri 设置 
-    */
-    public void setParentUri(Long parentUri) {
-        this.parentUri = parentUri;
     }
 
 

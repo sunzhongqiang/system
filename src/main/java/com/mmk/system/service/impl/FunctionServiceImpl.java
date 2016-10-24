@@ -1,7 +1,12 @@
 package com.mmk.system.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
@@ -11,7 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.system.dao.FunctionRepository;
 import com.mmk.system.model.Function;
+import com.mmk.system.model.Organization;
 import com.mmk.system.condition.FunctionCondition;
+import com.mmk.system.condition.OrganizationCondition;
 import com.mmk.system.service.FunctionService;
 import com.mmk.system.dao.FunctionDao;
 /**
@@ -60,5 +67,34 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
     public List<Function> findAllBy(String field,Object value){
         log.info("系统功能根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return functionDao.findAllBy(field,value);
+    }
+    
+    @Override
+	public List<Function> tree(){
+		Iterable<Function> functionList = findAll();
+		List<FunctionCondition> temp = new ArrayList<FunctionCondition>();
+		List<Function> result = new ArrayList<Function>();
+		Map<Long,FunctionCondition> helpMap = new HashMap<Long,FunctionCondition>();
+		for (Function function : functionList) {
+			FunctionCondition condition = new FunctionCondition();
+			condition.setId(function.getId());
+			condition.setUri(function.getUri());
+			condition.setName(function.getName());
+			condition.setType(function.getType());
+			condition.setParentId(function.getParentId());
+			condition.setDescription(function.getDescription());
+			helpMap.put(function.getId(), condition);
+			temp.add(condition);
+		}
+		for (FunctionCondition organization : temp) {
+			FunctionCondition parent = helpMap.get(organization.getParentId());
+			if(parent!=null){
+				parent.getChildren().add(organization);
+			}else{
+				result.add(helpMap.get(organization.getId()));
+			}
+		}
+		return result;
+    	
     }
 }

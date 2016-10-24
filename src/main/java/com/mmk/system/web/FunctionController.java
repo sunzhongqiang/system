@@ -25,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.system.service.FunctionService;
 import com.mmk.system.model.Function;
+import com.mmk.system.model.Organization;
 import com.mmk.system.condition.FunctionCondition;
 
 /**
@@ -159,4 +160,15 @@ public class FunctionController extends BaseController {
         return true; 
     }
     
+    /**
+     * 返回组织结构树
+     * @return 组织结构树
+     */
+    @RequestMapping("/function/tree")
+    @ResponseBody
+    public List<Function> tree(){
+        log.info("获取功能树");
+        List<Function> tree = functionService.tree();   
+        return tree;
+    }
 }

@@ -5,6 +5,7 @@ import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.system.model.Function;
+import com.mmk.system.model.Organization;
 import com.mmk.system.condition.FunctionCondition;
 
 /**
@@ -54,4 +55,11 @@ public interface FunctionService extends BaseService<Function, Long> {
      * 
      */
     List<Function> findAllBy(String field,Object value);
+
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+    */
+	List<Function> tree();
 }
