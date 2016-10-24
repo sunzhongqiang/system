@@ -3,34 +3,40 @@
     var organizationTree;
     $(function() {
     
-        dataGrid = $('#dataGrid').datagrid({
+        dataGrid = $('#dataGrid').treegrid({
             url : '/organization/gridData',
             fit : true,
             striped : true,
-            rownumbers : true,
+            rownumbers : false,
             pagination : true,
             singleSelect : true,
             idField : 'id',
+            treeField : 'name',
+            animate: true,  
+            checkbox: true,  
+            cascadeCheck:true,//层叠选中  
+            lines:true,//显示虚线效果  
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
+                   
                     {
-                width : '80',
+                width : '180',
+                title : '机构名称',
+                field : 'name',
+            },
+            {
+                width : '180',
                 title : '组织主键',
                 field : 'id',
             },
                     {
-                width : '80',
-                title : '机构名称',
-                field : 'name',
-            },
-                    {
-                width : '80',
+                width : '180',
                 title : '机构编码',
                 field : 'code',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '父类Id',
                 field : 'parentId',
             },
@@ -48,7 +54,7 @@
                 }
             }] ],
            toolbar :  [{
-	            iconCls: 'icon-add',
+	            iconCls: 'icon-add', 
 	            text:'新增',
 	            handler: function(){addFun();}
             }],
