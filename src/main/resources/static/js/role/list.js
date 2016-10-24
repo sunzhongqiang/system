@@ -15,32 +15,47 @@
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
                     {
-                width : '80',
+                width : '180',
                 title : '角色主键',
                 field : 'id',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '角色编码',
                 field : 'code',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '角色名称',
                 field : 'name',
             },
                     {
-                width : '80',
-                title : '状态：enable启用；disable:禁用',
+                width : '180',
+                title : '状态',
                 field : 'status',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 'disable':
+						return '禁用';
+					case 'enable':
+						return '启用';
+					}
+				}
             },
             {
                 field : 'action',
                 title : '操作',
-                width : 140,
+                width : 240,
                 align : 'center',
                 formatter : function(value, row, index) {
+                	
                     var str = '';
+                    if(row.status == "enable"){
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_lock" >禁用</a>', row.id);
+                	}else{
+                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >启用</a>', row.id);
+                	}
+                    
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
@@ -53,6 +68,8 @@
 	            handler: function(){addFun();}
             }],
             onLoadSuccess : function(data){
+            	$('.btn_lock').linkbutton({text:'禁用',plain:true,iconCls:'icon-lock'});
+            	$('.btn_unlock').linkbutton({text:'启用',plain:true,iconCls:'icon-unlock'});
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');
@@ -133,5 +150,52 @@
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
         dataGrid.datagrid('load', {});
+    }
+    
+    
+    // 禁用
+    function disable(id) {
+    	  if (id == undefined) {//点击右键菜单才会触发这个
+              var rows = dataGrid.datagrid('getSelections');
+              id = rows[0].id;
+          } else {//点击操作里面的删除图标会触发这个
+              dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+          }
+    	  parent.$.messager.confirm('询问', '您是否要禁用此角色？', function(b) {
+              if (b) {
+                  progressLoad();
+                      $.post('/role/disable', {
+                          id : id
+                      }, function(result) {
+                          if (result.success) {
+                              dataGrid.datagrid('reload');
+                          }
+                          progressClose();
+                      }, 'JSON');
+                  }
+          });
+    }
+    
+ // 启用
+    function enable(id) {
+    	  if (id == undefined) {//点击右键菜单才会触发这个
+              var rows = dataGrid.datagrid('getSelections');
+              id = rows[0].id;
+          } else {//点击操作里面的删除图标会触发这个
+              dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+          }
+    	  parent.$.messager.confirm('询问', '您是否要启用此角色？', function(b) {
+              if (b) {
+                  progressLoad();
+                      $.post('/role/enable', {
+                          id : id
+                      }, function(result) {
+                          if (result.success) {
+                              dataGrid.datagrid('reload');
+                          }
+                          progressClose();
+                      }, 'JSON');
+                  }
+          });
     }
     

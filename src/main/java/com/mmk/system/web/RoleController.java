@@ -159,4 +159,31 @@ public class RoleController extends BaseController {
         return true; 
     }
     
+    /**
+     * 禁用角色权限
+     * @param page role
+     * @return 禁用成功
+     */
+    @RequestMapping("/role/disable")
+    public ResultMsg disable(Role role){
+        log.info("系统角色禁用");
+        role = roleService.find(role.getId());
+        role.setStatus("disable");
+        roleService.save(role);
+        return new ResultMsg(true,"成功禁用"); 
+    }
+    /**
+     * 启用角色权限
+     * @param page role
+     * @return 启用成功
+     */
+    @RequestMapping("/role/enable")
+    public ResultMsg enable(Role role){
+        log.info("系统角色启用");
+        role = roleService.find(role.getId());
+        role.setStatus("enable");
+        roleService.save(role);
+        return new ResultMsg(true,"成功禁用"); 
+    }
+    
 }

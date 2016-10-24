@@ -50,10 +50,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>状态：enable启用；disable:禁用：</label></td>
-                        <td>
-                        <input type="text"  name="status"   class="easyui-validatebox" data-options="required:true" th:value="${role.status}"/>
+                        <td class="tdTit"><strong class="red" >*</strong>
+                        <label>状态</label>
+						
                         </td>
+                        <td>
+						<select name="status" class="easyui-combobox"   data-options="width:150,height:29,editable:false,panelHeight:'auto'" >
+						          <option th:selected="${role.status} == 'enable' ? 'selected' "  value="enable">启用</option>
+						          <option  th:selected="${role.status} == 'disable' ? 'selected' "   value="disable" >禁用</option>
+					      </select>
+					</td>
                     </tr>
             </table>
             <input type="hidden" name="id" th:value="${role.id}"/>
