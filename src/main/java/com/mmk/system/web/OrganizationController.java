@@ -21,6 +21,8 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.common.model.Tree;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.system.service.OrganizationService;
@@ -66,6 +68,19 @@ public class OrganizationController extends BaseController {
         Page<Organization> organizationPage = organizationService.list(organizationCondition,pageable.pageable());   
         GridData<Organization> grid = new GridData<Organization>(organizationPage);
         return grid;
+    }
+    
+    
+    /**
+     * 返回组织结构树
+     * @return 组织结构树
+     */
+    @RequestMapping("/organization/tree")
+    @ResponseBody
+    public List<Organization> tree(){
+        log.info("获取组织机构树");
+        List<Organization> tree = organizationService.tree();   
+        return tree;
     }
     
     /**

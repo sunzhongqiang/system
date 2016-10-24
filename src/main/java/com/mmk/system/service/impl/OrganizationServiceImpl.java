@@ -1,11 +1,18 @@
 package com.mmk.system.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,4 +68,30 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization, Long>
         log.info("组织机构根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return organizationDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Organization> tree() {
+		Iterable<Organization> organizationList = findAll();
+		List<OrganizationCondition> temp = new ArrayList<OrganizationCondition>();
+		List<Organization> result = new ArrayList<Organization>();
+		Map<Long,OrganizationCondition> helpMap = new HashMap<Long,OrganizationCondition>();
+		for (Organization organization : organizationList) {
+			OrganizationCondition condition = new OrganizationCondition();
+			condition.setId(organization.getId());
+			condition.setParentId(organization.getParentId());
+			condition.setCode(organization.getCode());
+			condition.setName(organization.getName());
+			helpMap.put(organization.getId(), condition);
+			temp.add(condition);
+		}
+		for (OrganizationCondition organization : temp) {
+			OrganizationCondition parent = helpMap.get(organization.getParentId());
+			if(parent!=null){
+				parent.getChildren().add(organization);
+			}else{
+				result.add(helpMap.get(organization.getId()));
+			}
+		}
+		return result;
+	}
 }
