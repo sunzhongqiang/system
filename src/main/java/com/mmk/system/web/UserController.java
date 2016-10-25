@@ -261,6 +261,28 @@ public class UserController extends BaseController {
 			return new ResultMsg(false, "原密码错误！");
 		}
 	}
+	
+	/**
+	 * 修改密码逻辑
+	 * 
+	 * @param oldPwd
+	 *            旧密码
+	 * @param pwd
+	 *            新密码
+	 * @return 处理结果
+	 */
+	@RequestMapping("/user/changeUserPwd")
+	@ResponseBody
+	public ResultMsg changeUserPwd(User user) {
+		user = userService.find(user.getId());
+		if (user == null) {
+			return new ResultMsg(false, "没有可以修改密码的用户");
+		}
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+		user.setPassword(encoder.encode(user.getPassword()));
+		userService.save(user);
+		return new ResultMsg(true, "修改成功，请重新登录！");
+	}
 
 	/**
 	 * 密码修改页面
@@ -272,6 +294,11 @@ public class UserController extends BaseController {
 		return new ModelAndView("user/changePwdForm");
 	}
 	
+	/**
+	 * 修改密码界面
+	 * @param user 要修改的用户密码
+	 * @return 修改密码界面
+	 */
 	@RequestMapping("/user/editPwdForm")
 	public ModelAndView changePwdForm(User user) {
 		ModelAndView modelAndView = new ModelAndView("user/editPwdForm");
