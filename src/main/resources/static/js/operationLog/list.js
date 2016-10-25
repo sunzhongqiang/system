@@ -6,6 +6,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/operationLog/gridData',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -18,6 +19,7 @@
                 width : '80',
                 title : '日志',
                 field : 'id',
+                align:'center'
             },
                     {
                 width : '80',
@@ -25,7 +27,7 @@
                 field : 'userId',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '用户名',
                 field : 'username',
             },
@@ -45,7 +47,7 @@
                 field : 'roleName',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '访问资源地址',
                 field : 'functionUri',
             },
@@ -61,37 +63,17 @@
             },
                     {
                 width : '80',
-                title : '访问状态，成功还是失败',
+                title : '访问状态',
                 field : 'status',
             },
                     {
                 width : '180',
                 title : '调用IP',
                 field : 'ip',
-            },
-            {
-                field : 'action',
-                title : '操作',
-                width : 140,
-                align : 'center',
-                formatter : function(value, row, index) {
-                    var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
-                    return str;
-                }
-            }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
-            onLoadSuccess : function(data){
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
-            }
+            }] 
+            ],
+          
+           
         });
     });
     

@@ -5,6 +5,7 @@
         treegrid = $('#dataGrid').treegrid({
             url : '/function/tree',
             fit : true,
+            fitColumns: true,
             striped : true,
             rownumbers : false,
             pagination : false,
@@ -12,14 +13,14 @@
             idField : 'id',
             treeField : 'name',
             animate: true,  
-            checkbox: true,  
+            checkbox: false,  
             cascadeCheck:true,//层叠选中  
             lines:true,//显示虚线效果  
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
                           {
-                width : '180',
+                width : '200',
                 title : '资源名称',
                 field : 'name',
             },{

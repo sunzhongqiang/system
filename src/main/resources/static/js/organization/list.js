@@ -5,20 +5,21 @@
         dataGrid = $('#dataGrid').treegrid({
             url : '/organization/tree',
             fit : true,
+            fitColumns: true,
             striped : true,
             rownumbers : false,
             singleSelect : true,
             idField : 'id',
             treeField : 'name',
             animate: true,  
-            checkbox: true,  
+            checkbox: false,  
             cascadeCheck:true,//层叠选中  
             lines:true,//显示虚线效果  
             pageSize : 50,
             columns : [ [ 
                    
                     {
-                width : '180',
+                width : '200',
                 title : '机构名称',
                 field : 'name',
             },
