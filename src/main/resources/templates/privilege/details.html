@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>详情:系统权限表</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
+    </head>
+    
+    <body>
+        <div class="container amn_add">
+            <div class="headtt">
+                <h1>系统权限表详情</h1>            
+            </div>
+            <div class="role_tit"></div>            
+            <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+                <table cellspacing="1" cellpadding="3" class="tbbox" >
+                    <tr>
+                        <td class="tdTit"><label>权限主键：</label></td>
+                        <td th:text="${privilege.id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>角色编码：</label></td>
+                        <td th:text="${privilege.roleCode}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>功能资源地址：</label></td>
+                        <td th:text="${privilege.functionUri}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"></td>
+                        <td class="top60">
+                            <input type="hidden" name="id" th:field="${privilege.id}"/>
+                            <input type="hidden" name="backurl" th:value="${#httpServletRequest.getHeader('Referer')}"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+                            <a href="/privilege/list" class="btn_back">返回</a>                        
+                       </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <script type="text/javascript" src="/js/privilege/details.js"></script>
+    </body>
+</html>
