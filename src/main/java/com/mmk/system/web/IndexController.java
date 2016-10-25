@@ -75,6 +75,16 @@ public class IndexController extends BaseController{
 		Map<String, Object> menuAttr = new HashMap<String, Object>();
 		menuAttr.put("url", "/function/list");
 		resourceMenu.setAttributes(menuAttr);
+		
+		
+		Tree privilege = new Tree();
+		privilege.setId("12");
+		privilege.setText("角色授权管理");
+		privilege.setPid("00");
+		Map<String, Object> privilegeAttr = new HashMap<String, Object>();
+		privilegeAttr.put("url", "/privilege/list");
+		privilege.setAttributes(privilegeAttr);
+
 
 		Tree loginLog = new Tree();
 		loginLog.setId("4");
