@@ -271,5 +271,12 @@ public class UserController extends BaseController {
 	public ModelAndView changePwdForm() {
 		return new ModelAndView("user/changePwdForm");
 	}
+	
+	@RequestMapping("/user/editPwdForm")
+	public ModelAndView changePwdForm(User user) {
+		ModelAndView modelAndView = new ModelAndView("user/editPwdForm");
+		modelAndView.addObject("id", user.getId());
+		return modelAndView;
+	}
 
 }
