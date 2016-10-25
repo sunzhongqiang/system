@@ -37,16 +37,17 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
 
-		User user =  userService.findByUsername(authentication.getName());
+		Object details = authentication.getDetails();
+		
+		String remoteAddress = "";
+		if (details instanceof WebAuthenticationDetails) {
+			WebAuthenticationDetails webDetails = (WebAuthenticationDetails) details;
+			remoteAddress = webDetails.getRemoteAddress();
+		}
+		
+		String username = authentication.getName();
+		User user =  userService.findByUsername(username);
 		if(null!=user){
-			Object details = authentication.getDetails();
-			
-			String remoteAddress = "";
-			if (details instanceof WebAuthenticationDetails) {
-				WebAuthenticationDetails webDetails = (WebAuthenticationDetails) details;
-				remoteAddress = webDetails.getRemoteAddress();
-			}
-			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
 			if (encoder.matches(authentication.getCredentials().toString(), user.getPassword())){
 				Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
@@ -62,9 +63,25 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 				loginLog.setRealname(user.getRealname());
 				loginLog.setUsername(user.getUsername());
 				loginLog.setLoginTime(new Date());
+				loginLog.setStatus("SUCCESS");
 				loginLogService.save(loginLog );
 				return new UsernamePasswordAuthenticationToken(user,authentication.getCredentials(), roles);
+			}else{
+				LoginLog loginLog = new LoginLog();
+				loginLog.setIp(remoteAddress);
+				loginLog.setRealname(user.getRealname());
+				loginLog.setUsername(user.getUsername());
+				loginLog.setLoginTime(new Date());
+				loginLog.setStatus("PASSWORD ERROR");
+				loginLogService.save(loginLog );
 			} 
+		}else{
+			LoginLog loginLog = new LoginLog();
+			loginLog.setIp(remoteAddress);
+			loginLog.setUsername(username);
+			loginLog.setLoginTime(new Date());
+			loginLog.setStatus("USER IS　VALID");
+			loginLogService.save(loginLog );
 		}
 		throw new BadCredentialsException("用户或密码出错");
 	}
