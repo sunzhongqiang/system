@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <script type="text/javascript">
     $(function() {
         $('#editUserPwdForm').form({
-            url : '/adminUser/changePwd',
+            url : '/user/changePwd',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');
@@ -30,8 +27,6 @@
         });
     });
 </script>
-</head>
-<body>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;">
             <form id="editUserPwdForm" method="post" >
@@ -52,5 +47,3 @@
             </form>
     </div>
 </div>
-</body>
-</html>

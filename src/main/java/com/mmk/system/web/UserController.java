@@ -274,13 +274,13 @@ public class UserController extends BaseController {
 	@RequestMapping("/user/changeUserPwd")
 	@ResponseBody
 	public ResultMsg changeUserPwd(User user) {
-		user = userService.find(user.getId());
-		if (user == null) {
+		User userBean = userService.find(user.getId());
+		if (userBean == null) {
 			return new ResultMsg(false, "没有可以修改密码的用户");
 		}
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-		user.setPassword(encoder.encode(user.getPassword()));
-		userService.save(user);
+		userBean.setPassword(encoder.encode(user.getPassword()));
+		userService.save(userBean);
 		return new ResultMsg(true, "修改成功，请重新登录！");
 	}
 

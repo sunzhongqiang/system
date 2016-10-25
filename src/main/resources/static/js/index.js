@@ -97,14 +97,41 @@ function directLogout() {
 }
 
 function editUserPwd() {
-	$('#editUserPwd').dialog({
+	parent.$.modalDialog({
 	    title: '修改密码',
 	    width: 400,
 	    height: 200,
 	    closed: false,
 	    cache: false,
 	    href: EDIT_PASSD_URL,
-	    modal: true
+	    modal: true,
+	    buttons : [ {
+			text : '确定',
+			handler : function() {
+				var f = parent.$.modalDialog.handler.find('#editUserPwdForm');
+				f.submit();
+			}
+		} 
+		]
 	});
 	
 }
+
+
+//切换主题
+changeTheme = function (themeName) {
+    var $easyuiTheme = $('#easyuiTheme');
+    var url = $easyuiTheme.attr('href');
+    var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
+    $easyuiTheme.attr('href', href);
+    var $iframe = $('iframe');
+    if ($iframe.length > 0) {
+        for (var i = 0; i < $iframe.length; i++) {
+            var ifr = $iframe[i];
+            $(ifr).contents().find('#easyuiTheme').attr('href', href);
+        }
+    }
+    setCookie("themeName", themeName, 7)
+    //友情提示
+    topCenter("当前主题：" + themeName, 1000);
+};

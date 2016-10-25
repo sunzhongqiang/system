@@ -55,7 +55,7 @@
                 field : 'functionName',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '访问日期',
                 field : 'operationTime',
             },
@@ -65,7 +65,7 @@
                 field : 'status',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '调用IP',
                 field : 'ip',
             },
