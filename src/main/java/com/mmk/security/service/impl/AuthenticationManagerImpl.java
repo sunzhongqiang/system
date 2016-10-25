@@ -63,7 +63,7 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 				loginLog.setRealname(user.getRealname());
 				loginLog.setUsername(user.getUsername());
 				loginLog.setLoginTime(new Date());
-				loginLog.setStatus("SUCCESS");
+				loginLog.setStatus("成功登录");
 				loginLogService.save(loginLog );
 				return new UsernamePasswordAuthenticationToken(user,authentication.getCredentials(), roles);
 			}else{
@@ -72,7 +72,7 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 				loginLog.setRealname(user.getRealname());
 				loginLog.setUsername(user.getUsername());
 				loginLog.setLoginTime(new Date());
-				loginLog.setStatus("PASSWORD ERROR");
+				loginLog.setStatus("密码错误");
 				loginLogService.save(loginLog );
 			} 
 		}else{
@@ -80,7 +80,7 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 			loginLog.setIp(remoteAddress);
 			loginLog.setUsername(username);
 			loginLog.setLoginTime(new Date());
-			loginLog.setStatus("USER IS　VALID");
+			loginLog.setStatus("非法用户");
 			loginLogService.save(loginLog );
 		}
 		throw new BadCredentialsException("用户或密码出错");
