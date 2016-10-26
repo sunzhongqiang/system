@@ -1,5 +1,6 @@
 package com.mmk.system.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,13 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
+import com.mmk.common.CurrentUser;
 import com.mmk.common.model.Tree;
+import com.mmk.system.model.User;
 
 @CacheConfig(cacheNames="demo1")
 @RestController
@@ -27,8 +32,7 @@ public class IndexController extends BaseController{
 	public ModelAndView index(HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("username", request.getUserPrincipal().getName());
-		modelAndView.addObject("remoteuser", request.getRemoteUser());
+		modelAndView.addObject("username", request.getRemoteUser());
 		return modelAndView;
 	}
 	

@@ -65,7 +65,7 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 				loginLog.setLoginTime(new Date());
 				loginLog.setStatus("成功登录");
 				loginLogService.save(loginLog );
-				return new UsernamePasswordAuthenticationToken(user,authentication.getCredentials(), roles);
+				return new UsernamePasswordAuthenticationToken(user.getRealname(),authentication.getCredentials(), roles);
 			}else{
 				LoginLog loginLog = new LoginLog();
 				loginLog.setIp(remoteAddress);
