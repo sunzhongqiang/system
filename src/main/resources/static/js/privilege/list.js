@@ -1,55 +1,63 @@
 //代码生成工具自动生成，请在此处填写 查询页面使用的js代码
     var dataGrid;
+    var roleId;
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
-            url : '/privilege/gridData',
+            url : '/role/gridData',
             fit : true,
+            fitColumns: true,
             striped : true,
             rownumbers : true,
             pagination : true,
             singleSelect : true,
+            selectOnCheck: true,
+            cascadeCheck:true,//层叠选中  
+            lines:true,//显示虚线效果 
             idField : 'id',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
-            columns : [ [ 
-                    {
-                width : '80',
-                title : '权限主键',
-                field : 'id',
-            },
-                    {
-                width : '80',
-                title : '角色编码',
-                field : 'roleCode',
-            },
-                    {
-                width : '80',
-                title : '功能资源地址',
-                field : 'functionUri',
-            },
-            {
-                field : 'action',
-                title : '操作',
-                width : 140,
-                align : 'center',
-                formatter : function(value, row, index) {
-                    var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
-                    return str;
-                }
-            }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
-            onLoadSuccess : function(data){
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
-            }
+            columns : [ [
+					{
+					    width : '30',
+					    title : '',
+					    field : 'ck',
+					    checkbox: true
+					},
+                         {
+                     width : '180',
+                     title : '角色主键',
+                     field : 'id',
+                 },
+                         {
+                     width : '180',
+                     title : '角色编码',
+                     field : 'code',
+                 },
+                         {
+                     width : '180',
+                     title : '角色名称',
+                     field : 'name',
+                 }] ],
+                 
+                 onSelect: function(index,row) {
+                	 roleId = row.id;
+                	  $.ajax({
+                          url: '/privilege/loadByRoleId',
+                          data:{roleId:row.id},
+                          success: function(result){
+                              progressClose();
+                              setPrivilege(result);
+                              
+                              treegrid.treegrid("reload");
+                             
+                          },
+                          error: function(){
+                              progressClose();
+                              alert("系统错误");
+                          }
+                      });
+              },
+
         });
     });
     
@@ -128,3 +136,156 @@
         dataGrid.datagrid('load', {});
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+  //获取权限列表  
+    
+//    var treegrid;
+//    $(function() {
+//        treegrid = $('#function1').treegrid({
+//            url : '/function/tree',
+//            fit : true,
+//            fitColumns: true,
+//            striped : true,
+//            rownumbers : false,
+//            pagination : false,
+//            singleSelect : true,
+//            selectOnCheck: true,
+//            idField : 'id',
+//            treeField : 'name',
+//            animate: true,  
+//            checkbox: true,  
+//            cascadeCheck:true,//层叠选中  
+//            lines:true,//显示虚线效果  
+//            pageSize : 50,
+//            pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+//            columns : [ [ 
+//                          {
+//                width : '200',
+//                title : '资源名称',
+//                field : 'name',
+//            },{
+//                width : '180',
+//                title : '功能主键',
+//                field : 'id',
+//            },
+//                    {
+//                width : '180',
+//                title : '标识符',
+//                field : 'uri',
+//            },
+//              
+//                    {
+//                width : '180',
+//                title : '资源类型',
+//                field : 'type',
+//            },
+//                    {
+//                width : '180',
+//                title : '父类',
+//                field : 'parentId',
+//            }] ],
+//            onCheckNode: function(row,checked) {
+//            	if(!roleId){
+//            		alert("请指定角色！");
+//            		return false;
+//            	}
+//            	alert();
+//            	 $.ajax({
+//                     url: '/privilege/authorize',
+//                    data:{roleId:roleId,functionId:row.id},
+//                     success: function(result){
+//                         progressClose();
+//                     },
+//                     error: function(){
+//                         progressClose();
+//                         alert("系统错误");
+//                     }
+//                 });
+//            	
+//            }
+//        });
+//    });
+    
+    var treegrid;
+    $(function() {
+        treegrid = $('#function1').tree({
+            url : '/privilege/authorize',
+            fit : true,
+            fitColumns: true,
+            striped : true,
+            rownumbers : false,
+            pagination : false,
+            singleSelect : true,
+            selectOnCheck: true,
+            idField : 'id',
+            treeField : 'name',
+            animate: true,  
+            checkbox: true,  
+            cascadeCheck:true,//层叠选中  
+            lines:true,//显示虚线效果  
+            pageSize : 50,
+            pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+            columns : [ [ 
+                          {
+                width : '200',
+                title : '资源名称',
+                field : 'name',
+            },{
+                width : '180',
+                title : '功能主键',
+                field : 'id',
+            },
+                    {
+                width : '180',
+                title : '标识符',
+                field : 'uri',
+            },
+              
+                    {
+                width : '180',
+                title : '资源类型',
+                field : 'type',
+            },
+                    {
+                width : '180',
+                title : '父类',
+                field : 'parentId',
+            }] ],
+            onCheckNode: function(row,checked) {
+            	if(!roleId){
+            		alert("请指定角色！");
+            		return false;
+            	}
+            	 $.ajax({
+                     url: '/privilege/authorize',
+                    data:{roleId:roleId,functionId:row.id},
+                     success: function(result){
+                         progressClose();
+                     },
+                     error: function(){
+                         progressClose();
+                         alert("系统错误");
+                     }
+                 });
+            	
+            }
+        });
+    });
+    
+    
+    //角色权限赋值  
+    function setPrivilege(privilegeList){
+    	for(var i=0; i < privilegeList.length ; i++ ){
+    		
+    		var node = treegrid.treegrid('find', privilegeList[i].functionId);
+    		treegrid.treegrid('CheckNode', privilegeList[i].functionId);
+    		
+    	}
+    }

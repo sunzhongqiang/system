@@ -31,14 +31,14 @@ public class Privilege {
     /**
      * 角色编码
      */
-    @Column(name="role_code")
-    private String roleCode;
+    @Column(name="role_id")
+    private Long roleId;
 
     /**
      * 功能资源地址
      */
-    @Column(name="function_uri")
-    private String functionUri;
+    @Column(name="function_id")
+    private Long functionId;
 
 
     /** 
@@ -55,29 +55,29 @@ public class Privilege {
     }
 
     /** 
-	* @return roleCode ：角色编码
+	* @return roleId ：角色编码
 	*/
-    public String getRoleCode() {
-        return roleCode;
+    public Long getRoleId() {
+        return roleId;
     }
     /** 
-    *@param roleCode 设置角色编码 
+    *@param roleId 设置角色编码 
     */
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     /** 
-	* @return functionUri ：功能资源地址
+	* @return functionId ：功能资源地址
 	*/
-    public String getFunctionUri() {
-        return functionUri;
+    public Long getFunctionId() {
+        return functionId;
     }
     /** 
     *@param functionUri 设置功能资源地址 
     */
-    public void setFunctionUri(String functionUri) {
-        this.functionUri = functionUri;
+    public void setFunctionId(Long functionId) {
+        this.functionId = functionId;
     }
 
 

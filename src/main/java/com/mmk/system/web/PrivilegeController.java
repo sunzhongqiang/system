@@ -21,6 +21,8 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.common.model.Tree;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.system.service.PrivilegeService;
@@ -159,4 +161,50 @@ public class PrivilegeController extends BaseController {
         return true; 
     }
     
+    
+    /**
+     * 跳转至详细信息页面
+     * @param privilege 参数
+     * @return 用户角色权限
+     */ 
+    @RequestMapping("/privilege/loadByRoleId")
+    @ResponseBody
+    public List<Privilege> loadByRoleId(Long roleId){
+        log.info("用户角色权限详细信息");
+        List<Privilege>  privilegeList = privilegeService.findAllBy("roleId", roleId);
+        return privilegeList;
+    }
+
+    
+    /**
+     * 跳转至详细信息页面
+     * @param privilege 参数
+     * @return 用户角色权限设置
+     */ 
+//    @RequestMapping("/privilege/authorize")
+//    @ResponseBody
+//    public Privilege authorize1(Long roleId,Long functionId){
+//        log.info("用户角色权限设置");
+//        Privilege  privilege = privilegeService.findByIdAndFunctionID(roleId, functionId);
+//        if(privilege==null){
+//        	privilege =new Privilege();
+//        }
+//        privilege.setFunctionId(functionId);
+//        privilege.setRoleId(roleId);   
+//        privilegeService.save(privilege);
+//        return privilege;
+//    }
+    
+    /**
+     * 跳转至详细信息页面
+     * @param privilege 参数
+     * @return 用户角色权限设置
+     */ 
+    @RequestMapping("/privilege/authorize")
+    @ResponseBody
+    public List<Tree> authorize(Long roleId){
+        log.info("用户角色权限设置");
+        List<Tree>  privilege = privilegeService.findFunctionTreeByRoleId(roleId);
+        return privilege;
+    }
 }

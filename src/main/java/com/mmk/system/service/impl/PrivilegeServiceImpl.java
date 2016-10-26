@@ -1,16 +1,25 @@
 package com.mmk.system.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.system.dao.PrivilegeRepository;
+import com.mmk.system.model.Organization;
 import com.mmk.system.model.Privilege;
+import com.mmk.system.condition.OrganizationCondition;
 import com.mmk.system.condition.PrivilegeCondition;
 import com.mmk.system.service.PrivilegeService;
 import com.mmk.system.dao.PrivilegeDao;
@@ -61,4 +70,18 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
         log.info("系统权限表根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return privilegeDao.findAllBy(field,value);
     }
+
+	@Override
+	public Privilege findByIdAndFunctionID(Long roleId, Long functionId) {
+		return privilegeDao.findByIdAndFunctionID(roleId, functionId);
+	}
+
+	@Override
+	public List<Tree> findFunctionTreeByRoleId(Long roleId) {
+		
+		List<Map<String, Object>> rolePrivilege = privilegeDao.findRolePrivilege(roleId);
+		
+		return null;
+	}
+
 }

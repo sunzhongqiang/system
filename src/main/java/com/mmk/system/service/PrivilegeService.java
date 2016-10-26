@@ -1,6 +1,8 @@
 package com.mmk.system.service;
 
 import java.util.List;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,4 +56,22 @@ public interface PrivilegeService extends BaseService<Privilege, Long> {
      * 
      */
     List<Privilege> findAllBy(String field,Object value);
+    
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field Privilege中的某个字段
+     * @param value 字段的值
+     * @return 返回符合条件的所有结果
+     * @author 
+     * 
+     * 
+     */
+    Privilege findByIdAndFunctionID(Long roleId,Long functionId);
+
+    /**
+     * 根据角色id获取角色功能树
+     * @param roleId 角色id
+     * @return 功能树
+     */
+	List<Tree> findFunctionTreeByRoleId(Long roleId);
 }
