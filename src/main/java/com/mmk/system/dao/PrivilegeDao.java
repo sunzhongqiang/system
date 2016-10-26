@@ -81,6 +81,13 @@ public interface PrivilegeDao extends SpringDataQueryDao<Privilege>{
      * @return 用户权限列表
      */
     List<Map<String,Object>> findRolePrivilege(Long roleId);
+    /**
+     * 获取权限
+     * @param roleId
+     * @param privilegeID
+     * @return
+     */
+	Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID);
     
 
 }

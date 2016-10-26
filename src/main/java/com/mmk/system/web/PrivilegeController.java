@@ -181,32 +181,47 @@ public class PrivilegeController extends BaseController {
      * @param privilege 参数
      * @return 用户角色权限设置
      */ 
-//    @RequestMapping("/privilege/authorize")
-//    @ResponseBody
-//    public Privilege authorize1(Long roleId,Long functionId){
+    @RequestMapping("/privilege/authorize")
+    @ResponseBody
+    public void authorize(Long roleId,Long functionId,boolean checked){
 //        log.info("用户角色权限设置");
-//        Privilege  privilege = privilegeService.findByIdAndFunctionID(roleId, functionId);
-//        if(privilege==null){
-//        	privilege =new Privilege();
-//        }
-//        privilege.setFunctionId(functionId);
-//        privilege.setRoleId(roleId);   
-//        privilegeService.save(privilege);
-//        return privilege;
-//    }
+//        String[]  privilegeID = ids.split(",");
+//        for (int i = 0; i< privilegeID.length; i++) {
+//        	Privilege  privilege = privilegeService.findByRoleIdAndPrivilegeID(roleId, privilegeID[i]);
+//        	if(privilege != null){
+//              privilegeService.delete(privilege);   
+//              
+//        	}
+//        	privilegeService.delete(privilege); 
+//		}
+        Privilege  privilege = privilegeService.findByIdAndFunctionID(roleId, functionId);
+        if(checked){
+            if(privilege==null){
+            	privilege =new Privilege();
+            }
+            privilege.setFunctionId(functionId);
+            privilege.setRoleId(roleId);
+            privilegeService.save(privilege); 	
+        }else{
+        	if(privilege != null){
+                privilegeService.delete(privilege);      		
+        	}
+         }
+        return;
+    }
     
     /**
      * 跳转至详细信息页面
      * @param privilege 参数
      * @return 用户角色权限设置
      */ 
-    @RequestMapping("/privilege/authorize")
-    @ResponseBody
-    public List<Tree> authorize(Long roleId){
-        log.info("用户角色权限设置");
-        List<Tree>  privilege = privilegeService.findFunctionTreeByRoleId(roleId);
-        return privilege;
-    }
+//    @RequestMapping("/privilege/authorize")
+//    @ResponseBody
+//    public List<Tree> authorize(Long roleId){
+//        log.info("用户角色权限设置");
+//        List<Tree>  privilege = privilegeService.findFunctionTreeByRoleId(roleId);
+//        return privilege;
+//    }
     
     @RequestMapping("/privilege/authorizeTree")
     @ResponseBody

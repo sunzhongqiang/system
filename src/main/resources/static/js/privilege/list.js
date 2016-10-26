@@ -42,15 +42,37 @@
                  onSelect: function(index,row) {
                 	 roleId = row.id;
                 	 treegrid = $('#function1').tree({
+                		
                  		url : '/privilege/authorizeTree?roleId='+roleId,
-                 		 onCheckNode: function(row,checked) {
+                 		cascadeCheck:false,
+                 		 onCheck: function(row,checked) {
+                 			var parent = treegrid.tree("getParent",row.target);
+                 			if(checked){
+	                 			if(parent){
+	                 				if(!parent.checked){
+	                 					treegrid.tree("check",parent.target);
+	                 				}
+	                 			}
+                 			}else{
+                 				if(row.children){
+                 					
+                 					for(var i=0; i< row.children.length; i++){
+                 						var nodechild =  row.children[i];
+                 						if(nodechild.checked){
+                 							treegrid.tree("uncheck",row.children[i].target);
+                 						}
+                 						
+                 					}
+                 				}
+                 				
+                 			}
                          	if(!roleId){
                          		alert("请指定角色！");
                          		return false;
                          	}
                          	 $.ajax({
                                   url: '/privilege/authorize',
-                                 data:{roleId:roleId,functionId:row.id},
+                                 data:{roleId:roleId,functionId:row.id,checked:checked},
                                   success: function(result){
                                       progressClose();
                                   },
@@ -269,7 +291,7 @@
                 title : '父类',
                 field : 'parentId',
             }] ],
-            onCheckNode: function(row,checked) {
+            onCheck: function(row,checked) {
             	if(!roleId){
             		alert("请指定角色！");
             		return false;
@@ -291,12 +313,3 @@
     }
     
     
-    //角色权限赋值  
-    function setPrivilege(privilegeList){
-    	for(var i=0; i < privilegeList.length ; i++ ){
-    		
-    		var node = treegrid.treegrid('find', privilegeList[i].functionId);
-    		treegrid.treegrid('CheckNode', privilegeList[i].functionId);
-    		
-    	}
-    }

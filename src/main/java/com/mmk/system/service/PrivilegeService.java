@@ -67,6 +67,17 @@ public interface PrivilegeService extends BaseService<Privilege, Long> {
      * 
      */
     Privilege findByIdAndFunctionID(Long roleId,Long functionId);
+    
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field Privilege中的某个字段
+     * @param value 字段的值
+     * @return 返回符合条件的所有结果
+     * @author 
+     * 
+     * 
+     */
+    Privilege findByRoleIdAndPrivilegeID(Long roleId,String privilegeID);
 
     /**
      * 根据角色id获取角色功能树

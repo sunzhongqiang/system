@@ -37,25 +37,7 @@
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
         <form id="modelForm" method="post">
             <table class="grid">
-                    <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>统一资源标识符：</label></td>
-                        <td>
-                        <input type="text"  name="uri"   class="easyui-validatebox" data-options="required:true" th:value="${function.uri}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>资源名称：</label></td>
-                        <td>
-                        <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${function.name}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>资源类型：</label></td>
-                        <td>
-                        <input type="text"  name="type"   class="easyui-validatebox" data-options="required:true" th:value="${function.type}"/>
-                        </td>
-                    </tr>
-                    <tr>
+            		 <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>父类：</label></td>
                         <td>
                         <input class="easyui-combotreegrid" name="parentId"  data-options="
@@ -73,9 +55,34 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>资源类型：</label></td>
+                        <td>
+<!--                         <input type="text"  name="type"   class="easyui-validatebox" data-options="required:true" th:value="${function.type}"/> -->
+                         <select name="type" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                            <option th:selected="${function.type} == 'function' ? 'selected' " value="function" >功能</option>
+                            <option th:selected="${function.type} == 'menu' ? 'selected' "  value="menu">菜单</option>
+                            <option th:selected="${function.type} == 'module' ? 'selected' "  value="module">模块</option>
+                       </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>统一资源标识符：</label></td>
+                        <td>
+                        <input type="text"  name="uri"   class="easyui-validatebox" data-options="required:true" th:value="${function.uri}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>资源名称：</label></td>
+                        <td>
+                        <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${function.name}"/>
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr>
                         <td class="tdTit"><label>描述：</label></td>
                         <td>
-                        <input type="text"  name="description"   class="easyui-validatebox" data-options="required:true" th:value="${function.description}"/>
+                        <input type="text"  name="description"   class="easyui-validatebox" th:value="${function.description}"/>
                         </td>
                     </tr>
             </table>

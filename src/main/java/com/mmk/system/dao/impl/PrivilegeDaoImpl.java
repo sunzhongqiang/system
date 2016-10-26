@@ -122,4 +122,20 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 		return queryFieldsBySql(sb.toString(), params);
 	}
 
+	@Override
+	public Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID) {
+		StringBuffer sb = new StringBuffer("select model from Privilege model  where model.");
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(roleId!=null){
+			sb.append(" and model.roleId = :roleId ");
+			params.put("roleId", roleId);
+		}
+		if(roleId!=null){
+			sb.append(" and model.privilegeID = :privilegeID ");
+			params.put("privilegeID", privilegeID);
+		}
+		List<Privilege> result = queryByJpql(sb.toString(), params);
+		return result.isEmpty() ? null : result.get(0);
+	}
+
 }

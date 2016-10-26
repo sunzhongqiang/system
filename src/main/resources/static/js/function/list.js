@@ -38,11 +38,17 @@
                 width : '180',
                 title : '资源类型',
                 field : 'type',
-            },
-                    {
-                width : '180',
-                title : '父类',
-                field : 'parentId',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 'menu':
+						return '菜单';
+					case 'function':
+						return '功能';
+					case 'module':
+						return '模块';
+					}
+				}
+                
             },
                     {
                 width : '180',

@@ -111,4 +111,9 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 		return tree;
 	}
 
+	@Override
+	public Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID) {
+		return privilegeDao.findByRoleIdAndPrivilegeID(roleId, privilegeID);
+	}
+
 }
