@@ -30,7 +30,7 @@
             },
                     {
                 width : '180',
-                title : '标识符',
+                title : '权限地址',
                 field : 'uri',
             },
               

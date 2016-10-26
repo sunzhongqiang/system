@@ -40,7 +40,7 @@
             		 <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>父类：</label></td>
                         <td>
-                        <input class="easyui-combotreegrid" name="parentId"  data-options="
+                        <input class="easyui-combotreegrid" name="parentId" th:unless="${function.id}" data-options="
 						        width:'200',
 						        panelWidth:200,
 						        url:'/function/tree',
@@ -51,7 +51,7 @@
 						            {field:'uri',title:'地址',width:80},
 
 						        ]]" />
-                        
+                        <input type="hidden"  name="parentId" th:if="${function.id}" th:value="${function.parentId}"/>
                         </td>
                     </tr>
                     <tr>
@@ -66,7 +66,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>统一资源标识符：</label></td>
+                        <td class="tdTit"><strong class="red" >*</strong><label>权限地址：</label></td>
                         <td>
                         <input type="text"  name="uri"   class="easyui-validatebox" data-options="required:true" th:value="${function.uri}"/>
                         </td>
