@@ -108,14 +108,17 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 
 	@Override
 	public List<Map<String, Object>> findRolePrivilege(Long roleId) {
-		StringBuffer sb = new StringBuffer("select privilege.id as privilegeId,func.id as functionId,func.name as functionName from  system_privilege privilege "
-	                    +"LEFT JOIN system_function func  on  func.id  = privilege.function_id  where 1=1");
 		Map<Integer, Object> params = new HashMap<Integer, Object>();
-		if(roleId!=null){
-			sb.append(" and privilege.role_id = ?1 ");
-			params.put(1, roleId);
-		}
-		
+		StringBuffer sb = new StringBuffer(" SELECT distinct func.id AS functionId,func.name AS functionName, func.parent_id AS parentId,pri.id as privilegeId FROM system_function func ");
+	    sb.append(" LEFT JOIN ( ");
+	    sb.append(" SELECT id,function_id,role_id FROM system_privilege privilege  ");
+	    if(roleId!=null){
+	    	sb.append(" WHERE privilege.role_id = ?1 ");
+	    	params.put(1, roleId);
+	    }else{
+	    	sb.append(" where 1<>1 ");
+	    }
+	    sb.append(" ) pri ON func.id = pri.function_id order by functionId  ");
 		return queryFieldsBySql(sb.toString(), params);
 	}
 

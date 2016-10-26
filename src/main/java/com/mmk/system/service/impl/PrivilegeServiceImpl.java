@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -78,10 +79,36 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 
 	@Override
 	public List<Tree> findFunctionTreeByRoleId(Long roleId) {
-		
 		List<Map<String, Object>> rolePrivilege = privilegeDao.findRolePrivilege(roleId);
+		List<Tree> tree = new ArrayList<Tree>();
+		List<Tree> temp = new ArrayList<Tree>();
+		Map<String,Tree> helpMap = new HashMap<String,Tree>();
+		for (Map<String, Object> map : rolePrivilege) {
+			Long functionId = MapUtils.getLong(map, "functionId");
+			Tree treeNode = new Tree();
+			treeNode.setText(MapUtils.getString(map, "functionName"));
+			treeNode.setId(MapUtils.getString(map, "functionId"));
+			treeNode.setChildren(new ArrayList<Tree>());
+			treeNode.setPid(MapUtils.getString(map, "parentId"));
+			boolean checked = map.get("privilegeId")!=null;
+			treeNode.setChecked(checked );
+			
+			temp.add(treeNode);
+			helpMap.put(treeNode.getId(), treeNode);
+		}
 		
-		return null;
+		
+		for (Tree child : temp) {
+			
+			Tree parent = helpMap.get(child.getPid());
+			if(parent == null){
+				tree.add(child);
+			}else{
+				parent.getChildren().add(child);
+			}
+		}
+		
+		return tree;
 	}
 
 }

@@ -41,21 +41,27 @@
                  
                  onSelect: function(index,row) {
                 	 roleId = row.id;
-                	  $.ajax({
-                          url: '/privilege/loadByRoleId',
-                          data:{roleId:row.id},
-                          success: function(result){
-                              progressClose();
-                              setPrivilege(result);
-                              
-                              treegrid.treegrid("reload");
-                             
-                          },
-                          error: function(){
-                              progressClose();
-                              alert("系统错误");
-                          }
-                      });
+                	 treegrid = $('#function1').tree({
+                 		url : '/privilege/authorizeTree?roleId='+roleId,
+                 		 onCheckNode: function(row,checked) {
+                         	if(!roleId){
+                         		alert("请指定角色！");
+                         		return false;
+                         	}
+                         	 $.ajax({
+                                  url: '/privilege/authorize',
+                                 data:{roleId:roleId,functionId:row.id},
+                                  success: function(result){
+                                      progressClose();
+                                  },
+                                  error: function(){
+                                      progressClose();
+                                      alert("系统错误");
+                                  }
+                              });
+                         	
+                         }
+                	 });
               },
 
         });
@@ -215,8 +221,13 @@
     
     var treegrid;
     $(function() {
-        treegrid = $('#function1').tree({
-            url : '/privilege/authorize',
+    	initPrivilege()
+    });
+    
+    
+    function initPrivilege(roleId){
+    	treegrid = $('#function1').tree({
+            url : '/privilege/authorizeTree',
             fit : true,
             fitColumns: true,
             striped : true,
@@ -277,7 +288,7 @@
             	
             }
         });
-    });
+    }
     
     
     //角色权限赋值  

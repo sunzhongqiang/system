@@ -207,4 +207,12 @@ public class PrivilegeController extends BaseController {
         List<Tree>  privilege = privilegeService.findFunctionTreeByRoleId(roleId);
         return privilege;
     }
+    
+    @RequestMapping("/privilege/authorizeTree")
+    @ResponseBody
+    public List<Tree> authorizeTree(Long roleId){
+        log.info("用户角色权限设置");
+        List<Tree>  privilege = privilegeService.findFunctionTreeByRoleId(roleId);
+        return privilege;
+    }
 }
