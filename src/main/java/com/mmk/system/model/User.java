@@ -30,6 +30,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
+    
+    /**
+     * 部门主键
+     */
+    @Column(name="organization_id")
+    private Long organizationId;
 
     /**
      * 用户名
@@ -87,6 +93,19 @@ public class User {
     */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    /** 
+	* @return organizationId ：部门主键
+	*/
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+    /** 
+    *@param organizationId 设置部门主键 
+    */
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
     }
 
     /** 
