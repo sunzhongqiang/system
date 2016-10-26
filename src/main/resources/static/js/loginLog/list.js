@@ -40,6 +40,7 @@
                 width : '180',
                 title : '登录时间',
                 field : 'loginTime',
+                formatter: formatDatebox
             },
                     {
                 width : '180',

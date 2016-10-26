@@ -60,6 +60,7 @@
                 width : '180',
                 title : '访问日期',
                 field : 'operationTime',
+                formatter: formatDatebox
             },
                     {
                 width : '80',
