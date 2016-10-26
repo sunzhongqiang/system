@@ -53,7 +53,7 @@
                         <td class="tdTit"><strong class="red" >*</strong><label>父类Id：</label></td>
                         <td>
                         	
-						<input class="easyui-combotreegrid" name="parentId"  data-options="
+						<input class="easyui-combotreegrid" name="parentId" th:unless="${organization.id}"  data-options="
 						        width:'200',
 						        panelWidth:200,
 						        url:'/organization/tree',
@@ -64,7 +64,7 @@
 						            {field:'code',title:'编码',width:100},
 
 						        ]]" />
-<!--                         	<input type="text"  name="parentId" th:value="${organization.parentId}"/> -->
+                        	<input type="hidden"  name="parentId" th:if="${organization.id}" th:value="${organization.parentId}"/>
                         </td>
                     </tr>
             </table>
