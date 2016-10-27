@@ -21,6 +21,8 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.common.model.Tree;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.system.service.UserRoleService;
@@ -159,4 +161,11 @@ public class UserRoleController extends BaseController {
         return true; 
     }
     
+    @RequestMapping("/userRole/roleList")
+    @ResponseBody
+    public List<Map<String,Object>> roleList(Long userId){
+        log.info("根据用户获取用户角色");
+        List<Map<String,Object>>  userRole = userRoleService.findRoleListByUserId(userId);
+        return userRole;
+    }
 }

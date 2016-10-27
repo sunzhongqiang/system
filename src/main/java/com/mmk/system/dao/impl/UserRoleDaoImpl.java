@@ -16,6 +16,7 @@ import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.mmk.system.model.Privilege;
 import com.mmk.system.model.UserRole;
 import com.mmk.system.dao.UserRoleDao;
 
@@ -112,6 +113,23 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Map<String, Object>> findRoleListByUserId(Long userId) {
+		Map<Integer, Object> params = new HashMap<Integer, Object>();
+		StringBuffer sb = new StringBuffer("SELECT role.id AS roleID,role.name AS roleName, user_role.user_id AS userId, user_role.id AS userRoleID ");
+		sb.append("from system_role  role");
+	    sb.append(" LEFT JOIN ( ");
+	    sb.append(" select role_id,user_id,id from system_user_role  uRole ");
+	    if(userId!=null){
+	    	sb.append(" where uRole.user_id = ?1 ");
+	    	params.put(1, userId);
+	    }else{
+	    	sb.append(" where 1<>1 ");
+	    }
+	    sb.append(" )   user_role ON role.id=  user_role.role_id ");
+	    return queryFieldsBySql(sb.toString(), params);
+	}
     
     
 }

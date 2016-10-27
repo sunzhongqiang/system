@@ -1,8 +1,9 @@
 //代码生成工具自动生成，请在此处填写 查询页面使用的js代码
-    var dataGrid;
+	var userId;
+    var userGrid;
     $(function() {
-        dataGrid = $('#dataGrid').datagrid({
-            url : '/userRole/gridData',
+    	userGrid = $('#userGrid').datagrid({
+            url : '/user/loadByOrgId',
             fit : true,
             striped : true,
             rownumbers : true,
@@ -24,32 +25,19 @@
             },
                     {
                 width : '80',
-                title : '角色主键',
-                field : 'roleId',
-            },
-            {
-                field : 'action',
-                title : '操作',
-                width : 140,
-                align : 'center',
-                formatter : function(value, row, index) {
-                    var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
-                    return str;
-                }
+                title : '用户名称',
+                field : 'name',
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
-            onLoadSuccess : function(data){
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
-            }
+            onSelect: function(index,row) {
+            	userId=row.id;
+            	roleList.datalist('load',{userId:row.id});
+            	
+//            	roleList = $('#roleList').datalist({
+//                    url : '/role/',
+//            	});
+            	
+        	}
+          
         });
     });
     
@@ -127,4 +115,103 @@
         //重新加载数据，无填写数据，向后台传递值则为空
         dataGrid.datagrid('load', {});
     }
+    
+    
+    
+    
+    
+    
+    
+    //组织
+    
+    var organizationTree;
+    $(function() {
+    
+    	organizationTree = $('#organizationTree').tree({
+            url : '/organization/tree',
+            fit : true,
+            fitColumns: true,
+            striped : true,
+            rownumbers : false,
+            pagination : false,
+            singleSelect : true,
+            idField : 'id',
+            treeField : 'name',
+            animate: true,  
+            cascadeCheck:true,//层叠选中  
+            lines:true,//显示虚线效果  
+            pageSize : 50,
+            pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+            columns : [ [ 
+                          {
+                width : '200',
+                title : '资源名称',
+                field : 'name',
+            }] ],
+            onSelect: function(row) {
+            	userGrid.datagrid('load',{orgId:row.id});
+            }
+        });
+    });
+    
+    
+  //角色列表
+    var roleList;
+    var organizationTree;
+    $(function() {
+    	roleList = $('#roleList').datalist({
+            url : '/userRole/roleList',
+            fit : true,
+            striped : true,
+            pagination : false,
+            checkbox: true,
+            singleSelect : false,
+            idField : 'roleID',
+            valueField : 'roleID',
+            pageSize : 50,
+            pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+            columns : [ [
+                         
+                    {
+                width : '180',
+                title : '角色名称',
+                field : 'roleName',
+                formatter:function(value,row,index){
+                	if(row.userId){
+                		roleList.datalist('checkRow',index);
+                	}else{
+                		roleList.datalist('uncheckRow',index);
+                	}
+                	return value;
+                }
+                   
+            }] ],
+            onCheck: function(row,checked) {
+            	if(!roleId){
+            		alert("请指定角色！");
+            		return false;
+            	}
+            	 $.ajax({
+                     url: '',
+                    data:{userId:userId,roleID:row.id,checked:checked},
+                     success: function(result){
+                         progressClose();
+                     },
+                     error: function(){
+                         progressClose();
+                         alert("系统错误");
+                     }
+                 });
+            	
+            }
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
     

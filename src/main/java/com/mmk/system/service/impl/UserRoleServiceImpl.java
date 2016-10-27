@@ -2,6 +2,8 @@ package com.mmk.system.service.impl;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
@@ -89,4 +91,10 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, Long> impleme
         log.info("系统用户角色根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return userRoleDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Map<String,Object>> findRoleListByUserId(Long userId) {
+        log.info("根据用户获取用户角色");
+        return userRoleDao.findRoleListByUserId(userId);
+	}
 }

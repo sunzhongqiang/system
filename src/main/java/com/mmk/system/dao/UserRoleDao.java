@@ -10,6 +10,7 @@ import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.system.condition.UserRoleCondition;
+import com.mmk.system.model.User;
 import com.mmk.system.model.UserRole;
 /**
 * UserRoleDao:系统用户角色 数据持久层接口
@@ -67,7 +68,11 @@ public interface UserRoleDao extends SpringDataQueryDao<UserRole>{
      * 
      */
     List<UserRole> findAllBy(String field,Object value);
-    
-    
-
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param userId
+     * @return 角色
+     */
+	List<Map<String, Object>> findRoleListByUserId(Long userId);
+	
 }

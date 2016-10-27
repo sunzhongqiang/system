@@ -1,6 +1,8 @@
 package com.mmk.system.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -88,4 +90,11 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * 
      */
     List<UserRole> findAllBy(String field,Object value);
+
+    /**
+     * 根据给定的字段和属性值，获取符合条件的所有字段
+     * @param userId
+     * @return userRole
+     */
+    List<Map<String,Object>> findRoleListByUserId(Long userId);
 }
