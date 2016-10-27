@@ -17,7 +17,7 @@
                 result = $.parseJSON(result);
                 if (result.success) {
                     parent.$.messager.alert('提示', result.msg, 'info',function(){
-                        directLogout();
+                    	parent.$.modalDialog.openner_dataGrid.datagrid('reload');
                     });
                     parent.$.modalDialog.handler.dialog('close');
                 } else {
@@ -36,15 +36,14 @@
                     <tr>
                         <th>组织部门</th>
                         <td>
-                        <input id="orgId" class="easyui-combotreegrid" name="organizationId"   data-options="
+                        <input id="orgId" class="easyui-combotree" name="organizationId"   data-options="
                                 width:'200',
                                 panelWidth:200,
-                                url:'/organization/treegrid',
+                                url:'/organization/tree',
                                 idField:'id',
                                 treeField:'name',
                                 columns:[[
                                     {field:'name',title:'部门',width:100},
-                                    {field:'code',title:'编码',width:100}
                                 ]]" />
                           <input class="" name="id" type="hidden" th:value="${id}" />
                         </td>

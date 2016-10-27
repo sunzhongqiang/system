@@ -40,7 +40,12 @@ public class Privilege {
     @Column(name="function_id")
     private Long functionId;
 
-
+    /**
+     * 功能资源地址
+     */
+    @Column(name="function_uri")
+    private String functionUri;
+    
     /** 
 	* @return id ：权限主键
 	*/
@@ -79,6 +84,17 @@ public class Privilege {
     public void setFunctionId(Long functionId) {
         this.functionId = functionId;
     }
+    /** 
+    *@param functionUri 设置功能资源地址 
+    */
+    public void setFunctionUri(String functionUri) {
+        this.functionUri = functionUri;
+    }
 
-
+    /** 
+	* @return functionId ：功能资源地址
+	*/
+    public String getFunctionUri() {
+        return functionUri;
+    }
 }

@@ -48,7 +48,7 @@
      				align : 'center',
      				formatter : function(value, row, index) {
      					var str = '';
-     					str += $.formatString('<a href="javascript:void(0)" onclick="editUserPwd(\'{0}\');" class="btn_org" >修改部门</a>', row.id);
+     					str += $.formatString('<a href="javascript:void(0)" onclick="changeOrg(\'{0}\');" class="btn_org" >修改部门</a>', row.id);
      					return str;
      				}
      			}] ],
@@ -82,7 +82,7 @@
             	})
         	},
         	onLoadSuccess : function(data){
-    			$('.btn_org').linkbutton({text:'修改部门',plain:true,iconCls:'icon-lock'});
+    			$('.btn_org').linkbutton({text:'修改部门',plain:true,iconCls:'icon-company'});
     	 		$(this).datagrid('fixRowHeight');
     	 		
     	 	}
@@ -254,9 +254,24 @@
     
     
     
+    //修改部门
     
-    
-    
+    function changeOrg(id) {
+        parent.$.modalDialog({
+            title : '修改部门',
+            width : 500,
+            height : 300,
+            href : '/user/changeOrgForm?id='+id,
+            buttons : [ {
+                text : '修改',
+                handler : function() {
+                    parent.$.modalDialog.openner_dataGrid = userGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    var f = parent.$.modalDialog.handler.find('#editUserPwdForm');
+                    f.submit();
+                }
+            } ]
+        });
+    }   
     
     
     

@@ -76,7 +76,6 @@
                     parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
-                    $('#dataGrid').treegrid('reload');
                 }
             } ]
         });
@@ -123,7 +122,6 @@
                     parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
-                    $('#dataGrid').treegrid('reload');
                 }
             } 
             ]

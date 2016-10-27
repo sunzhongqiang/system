@@ -25,7 +25,10 @@ import com.mmk.common.model.Tree;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.system.service.FunctionService;
 import com.mmk.system.service.PrivilegeService;
+import com.mmk.system.model.Function;
 import com.mmk.system.model.Privilege;
 import com.mmk.system.condition.PrivilegeCondition;
 
@@ -39,6 +42,9 @@ public class PrivilegeController extends BaseController {
     
     @Resource 
     private PrivilegeService privilegeService;
+    
+    @Resource
+    private FunctionService functionService;
 
     /**
      * 跳转至列表页面
@@ -185,10 +191,13 @@ public class PrivilegeController extends BaseController {
     @ResponseBody
     public void authorize(Long roleId,Long functionId,boolean checked){
         Privilege  privilege = privilegeService.findByIdAndFunctionID(roleId, functionId);
+           
         if(checked){
             if(privilege==null){
             	privilege =new Privilege();
             }
+            Function function =  functionService.find(functionId);
+            privilege.setFunctionUri(function.getUri());
             privilege.setFunctionId(functionId);
             privilege.setRoleId(roleId);
             privilegeService.save(privilege); 	

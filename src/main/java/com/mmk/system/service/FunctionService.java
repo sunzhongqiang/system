@@ -62,4 +62,5 @@ public interface FunctionService extends BaseService<Function, Long> {
      * @author huguangling 胡广玲
     */
 	List<Function> tree();
+
 }

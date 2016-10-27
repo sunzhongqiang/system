@@ -63,7 +63,9 @@
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>用户名：</label></td>
                         <td>
-                        <input type="text"  name="username"  id="username"  class="easyui-validatebox" data-options="required:true" th:value="${user.username}" onblur="isExist()" onfocus ="cleanMsg()"/>
+                        <input type="hidden"  name="username" th:if="${user.id}"  id="username"  class="easyui-validatebox" data-options="required:true" th:value="${user.username}" onblur="isExist()" onfocus ="cleanMsg()"/>
+                        <span th:if="${user.id}" th:text="${user.username}"></span>
+                        <input type="text"  name="username" th:unless="${user.id}"  id="username"  class="easyui-validatebox" data-options="required:true" th:value="${user.username}" onblur="isExist()" onfocus ="cleanMsg()"/>
                         <span id="erroMsg" style="color:red;width:90px;display:inline-block" ></span>                       
                         </td>
                     </tr>
@@ -73,10 +75,10 @@
                         <input type="text"  name="realname"   class="easyui-validatebox" data-options="required:true" th:value="${user.realname}"/>
                         </td>
                     </tr>
-                    <tr>
+                    <tr th:unless="${user.id}">
                         <td class="tdTit"><strong class="red" >*</strong><label>密码：</label></td>
                         <td>
-                        <input type="password"  name="password"   class="easyui-validatebox" data-options="required:true" th:value="${user.password}"/>
+                        <input type="password"  name="password"    class="easyui-validatebox" data-options="required:true" th:value="${user.password}"/>
                         </td>
                     </tr>
                       <tr>
