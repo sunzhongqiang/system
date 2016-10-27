@@ -15,12 +15,6 @@
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
                          {
-     				width : '100',
-     				title : '主键',
-     				field : 'id',
-     				align:'center'
-     			},
-                         {
      				width : '250',
      				title : '用户名',
      				field : 'username',
@@ -54,13 +48,13 @@
      				align : 'center',
      				formatter : function(value, row, index) {
      					var str = '';
-     					str += $.formatString('<a href="javascript:void(0)" onclick="editUserPwd(\'{0}\');" class="btn_mima" >修改密码</a>', row.id);
-     					str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-     					str += '&nbsp;|&nbsp;';
-     					str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+     					str += $.formatString('<a href="javascript:void(0)" onclick="editUserPwd(\'{0}\');" class="btn_org" >修改部门</a>', row.id);
      					return str;
      				}
      			}] ],
+     			
+    			
+     			
             onSelect: function(index,row) {
             	userId=row.id;
             	
@@ -86,14 +80,12 @@
                     	
                     }
             	})
-            	
-            	
-//            	roleList = $('#roleList').datalist({
-//                    url : '/role/',
-//            	});
-            	
-        	}
-          
+        	},
+        	onLoadSuccess : function(data){
+    			$('.btn_org').linkbutton({text:'修改部门',plain:true,iconCls:'icon-lock'});
+    	 		$(this).datagrid('fixRowHeight');
+    	 		
+    	 	}
         });
     });
     
