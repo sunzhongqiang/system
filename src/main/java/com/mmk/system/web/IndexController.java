@@ -65,7 +65,7 @@ public class IndexController extends BaseController{
 		
 		Tree userRole = new Tree();
 		userRole.setId("11");
-		userRole.setText("角色管理");
+		userRole.setText("用户角色管理");
 		userRole.setPid("00");
 		Map<String, Object> userRoleAttr = new HashMap<String, Object>();
 		userRoleAttr.put("url", "/userRole/list");
