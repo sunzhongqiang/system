@@ -75,4 +75,12 @@ public interface UserRoleDao extends SpringDataQueryDao<UserRole>{
      */
 	List<Map<String, Object>> findRoleListByUserId(Long userId);
 	
+	/**
+	 * 根据给定的字段和属性值，获得符合条件的所有结果
+	 * @param userId
+	 * @param roleId
+	 * @return 用户角色
+	 */
+	UserRole findByUserIdAndRoleId(Long userId, Long roleId);
+	
 }

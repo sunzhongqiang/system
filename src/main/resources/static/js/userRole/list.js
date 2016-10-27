@@ -5,6 +5,7 @@
     	userGrid = $('#userGrid').datagrid({
             url : '/user/loadByOrgId',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -13,24 +14,79 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
-                width : '80',
-                title : '主键',
-                field : 'id',
-            },
-                    {
-                width : '80',
-                title : '用户主键',
-                field : 'userId',
-            },
-                    {
-                width : '80',
-                title : '用户名称',
-                field : 'name',
-            }] ],
+                         {
+     				width : '100',
+     				title : '主键',
+     				field : 'id',
+     				align:'center'
+     			},
+                         {
+     				width : '250',
+     				title : '用户名',
+     				field : 'username',
+     				align:'center'
+     			},
+                         {
+     				width : '250',
+     				title : '真实姓名',
+     				field : 'realname',
+     				align:'center'
+     			}
+                  ,
+                  {
+     				width : '120',
+     				title : '状态',
+     				field : 'status',
+     				align:'center',
+     				formatter : function(value, row, index) {
+     					switch (value) {
+     					case 'disable':
+     						return '禁用';
+     					case 'enable':
+     						return '启用';
+     					}
+     				}
+     			},
+     			{
+     				field : 'action',
+     				title : '操作',
+     				width : 140,
+     				align : 'center',
+     				formatter : function(value, row, index) {
+     					var str = '';
+     					str += $.formatString('<a href="javascript:void(0)" onclick="editUserPwd(\'{0}\');" class="btn_mima" >修改密码</a>', row.id);
+     					str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
+     					str += '&nbsp;|&nbsp;';
+     					str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+     					return str;
+     				}
+     			}] ],
             onSelect: function(index,row) {
             	userId=row.id;
-            	roleList.datalist('load',{userId:row.id});
+            	
+            	roleList.tree({
+            		url: '/userRole/userRoleList?userId='+ userId,
+            		
+            		 onCheck: function(row,checked) {
+            			 if(!userId){
+                      		alert("请指定角色！");
+                      		return false;
+                      	}
+                    	 $.ajax({
+                             url: '/userRole/updateUserRole',
+                            data:{userId:userId,roleId:row.id,checked:checked},
+                             success: function(result){
+                                 progressClose();
+                             },
+                             error: function(){
+                                 progressClose();
+                                 alert("系统错误");
+                             }
+                         });
+                    	
+                    }
+            	})
+            	
             	
 //            	roleList = $('#roleList').datalist({
 //                    url : '/role/',
@@ -159,8 +215,8 @@
     var roleList;
     var organizationTree;
     $(function() {
-    	roleList = $('#roleList').datalist({
-            url : '/userRole/roleList',
+    	roleList = $('#roleList').tree({
+            url : '/userRole/userRoleList',
             fit : true,
             striped : true,
             pagination : false,
@@ -187,13 +243,10 @@
                    
             }] ],
             onCheck: function(row,checked) {
-            	if(!roleId){
-            		alert("请指定角色！");
-            		return false;
-            	}
+        
             	 $.ajax({
-                     url: '',
-                    data:{userId:userId,roleID:row.id,checked:checked},
+                     url: '/userRole/userRoleList',
+                    data:{userId:userId,roleId:row.id,checked:checked},
                      success: function(result){
                          progressClose();
                      },

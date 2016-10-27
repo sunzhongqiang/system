@@ -26,6 +26,7 @@ import com.mmk.common.model.Tree;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.system.service.UserRoleService;
+import com.mmk.system.model.Privilege;
 import com.mmk.system.model.UserRole;
 import com.mmk.system.condition.UserRoleCondition;
 
@@ -161,11 +162,29 @@ public class UserRoleController extends BaseController {
         return true; 
     }
     
-    @RequestMapping("/userRole/roleList")
+    @RequestMapping("/userRole/userRoleList")
     @ResponseBody
-    public List<Map<String,Object>> roleList(Long userId){
+    public List<Tree> roleList(Long userId){
         log.info("根据用户获取用户角色");
-        List<Map<String,Object>>  userRole = userRoleService.findRoleListByUserId(userId);
+        List<Tree>  userRole = userRoleService.findRoleListByUserId(userId);
         return userRole;
+    }
+    
+    @RequestMapping("/userRole/updateUserRole")
+    @ResponseBody
+    public void updateUserRole(Long userId, Long roleId,boolean checked){
+        log.info("根据用户角色设置角色权限");
+        UserRole  userRole = userRoleService.findByUserIdAndRoleId(userId, roleId);
+        if(checked){
+        	if(userRole ==null){
+        	      UserRole user_Role = new UserRole();
+        	      user_Role.setRoleId(roleId);
+        	      user_Role.setUserId(userId);
+                  userRoleService.save(user_Role);
+        	}
+        }else if(userRole != null){     	
+            userRoleService.delete(userRole);
+        }
+        return ;
     }
 }

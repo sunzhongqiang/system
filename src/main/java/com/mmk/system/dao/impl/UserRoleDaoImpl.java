@@ -51,11 +51,11 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
     public Page<UserRole> list(UserRoleCondition userRoleCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from UserRole model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(userRoleCondition.getUserId()!=null){
+        if(userRoleCondition.getUserId() !=null ){
             sb.append(" and model.userId = :userId ");
             params.put("userId",userRoleCondition.getUserId());
         }
-        if(userRoleCondition.getRoleId()!=null){
+        if(userRoleCondition.getRoleId()!= null){
             sb.append(" and model.roleId = :roleId ");
             params.put("roleId",userRoleCondition.getRoleId());
         }
@@ -129,6 +129,22 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
 	    }
 	    sb.append(" )   user_role ON role.id=  user_role.role_id ");
 	    return queryFieldsBySql(sb.toString(), params);
+	}
+
+	@Override
+	public UserRole findByUserIdAndRoleId(Long userId, Long roleId) {
+		StringBuffer sb = new StringBuffer("select model from UserRole model  where 1=1  ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(roleId!=null){
+			sb.append(" and model.roleId = :roleId ");
+			params.put("roleId", roleId);
+		}
+		if(roleId!=null){
+			sb.append(" and model.userId = :userId ");
+			params.put("userId", userId);
+		}
+		List<UserRole> result = queryByJpql(sb.toString(), params);
+		return result.isEmpty() ? null : result.get(0);
 	}
     
     
