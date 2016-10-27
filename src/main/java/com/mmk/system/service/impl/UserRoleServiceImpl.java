@@ -16,8 +16,8 @@ import com.mmk.system.service.UserRoleService;
 import com.mmk.system.dao.UserRoleDao;
 /**
 * UserRoleServiceImpl: 系统用户角色 业务服务层实现
-* 2016-10-13 16:53:44
-* @author 孙中强 sunzhongqiang
+* 2016-10-27 08:21:20
+* @author code
 * @version 1.0
 */
 @Service
@@ -66,17 +66,17 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, Long> impleme
     }
     /**
      * 根据字段获取所有符合的记录
-     * @param roleCode 角色编码
+     * @param roleId 角色主键
      * @return 符合条件的所有对象
      */
     @Override
-    public List<UserRole>  findAllByRoleCode(String roleCode){
-        return userRoleRepository.findAllByRoleCode(roleCode);
+    public List<UserRole>  findAllByRoleId(Long roleId){
+        return userRoleRepository.findAllByRoleId(roleId);
     }
     
      @Override
-    public Page<UserRole>  findAllByRoleCode(String roleCode, Pageable pageable){
-        return userRoleRepository.findAllByRoleCode(roleCode,pageable);
+    public Page<UserRole>  findAllByRoleId(Long roleId, Pageable pageable){
+        return userRoleRepository.findAllByRoleId(roleId,pageable);
     }
     @Override 
     public UserRole findBy(String field,Object value){

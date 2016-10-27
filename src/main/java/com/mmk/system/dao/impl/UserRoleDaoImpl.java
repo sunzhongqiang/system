@@ -1,29 +1,31 @@
 /*
  * 
- *  UserRoleDaoImpl 创建于 2016-10-13 16:53:44 版权归作者和作者当前组织所有
+ *  UserRoleDaoImpl 创建于 2016-10-27 08:21:19 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
+import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import com.mmk.system.condition.UserRoleCondition;
-import com.mmk.system.dao.UserRoleDao;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmk.system.model.UserRole;
+import com.mmk.system.dao.UserRoleDao;
+
+import com.mmk.system.condition.UserRoleCondition;
 
 
 
 /**
 * UserRoleDaoImpl: 系统用户角色 数据持久层接口实现
-*@author 孙中强 sunzhongqiang
+*@author code
 *@version 1.0
 *
 */
@@ -41,20 +43,20 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
      * @param userRoleCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
     @Override 
     public Page<UserRole> list(UserRoleCondition userRoleCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from UserRole model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(userRoleCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",userRoleCondition.getId());
-        }
         if(userRoleCondition.getUserId()!=null){
             sb.append(" and model.userId = :userId ");
             params.put("userId",userRoleCondition.getUserId());
+        }
+        if(userRoleCondition.getRoleId()!=null){
+            sb.append(" and model.roleId = :roleId ");
+            params.put("roleId",userRoleCondition.getRoleId());
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -63,13 +65,13 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
     public List<UserRole> list(UserRoleCondition userRoleCondition){
         StringBuffer sb=new StringBuffer("select model from UserRole model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(userRoleCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",userRoleCondition.getId());
-        }
         if(userRoleCondition.getUserId()!=null){
             sb.append(" and model.userId = :userId ");
             params.put("userId",userRoleCondition.getUserId());
+        }
+        if(userRoleCondition.getRoleId()!=null){
+            sb.append(" and model.roleId = :roleId ");
+            params.put("roleId",userRoleCondition.getRoleId());
         }
         return queryByJpql(sb.toString(), params);
     }
@@ -77,15 +79,15 @@ public class UserRoleDaoImpl extends SpringDataQueryDaoImpl<UserRole> implements
     
     @Override 
     public Page< Map<String,Object>> listBySql(UserRoleCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,user_id,role_code from system_user_role  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,user_id,role_id from system_user_role  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getId()!=null){
-            sb.append(" and id = ?1 ");
-            params.put(1,condition.getId());
-        }
         if(condition.getUserId()!=null){
             sb.append(" and user_id = ?2 ");
             params.put(2,condition.getUserId());
+        }
+        if(condition.getRoleId()!=null){
+            sb.append(" and role_id = ?3 ");
+            params.put(3,condition.getRoleId());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

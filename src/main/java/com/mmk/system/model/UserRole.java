@@ -1,6 +1,6 @@
 /*
  * 
- *  UserRole 创建于 2016-10-13 16:53:44 版权归作者和作者当前组织所有
+ *  UserRole 创建于 2016-10-27 08:21:19 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -13,8 +13,8 @@ import javax.persistence.Column;
 
 /**
 * UserRole: 系统用户角色 数据领域模型
-* 2016-10-13 16:53:44
-*@author 孙中强 sunzhongqiang
+* 2016-10-27 08:21:19
+*@author code
 *@version 1.0
 */
 @Entity
@@ -35,10 +35,10 @@ public class UserRole {
     private Long userId;
 
     /**
-     * 角色编码
+     * 角色主键
      */
-    @Column(name="role_code")
-    private String roleCode;
+    @Column(name="role_id")
+    private Long roleId;
 
 
     /** 
@@ -68,16 +68,16 @@ public class UserRole {
     }
 
     /** 
-	* @return roleCode ：角色编码
+	* @return roleId ：角色主键
 	*/
-    public String getRoleCode() {
-        return roleCode;
+    public Long getRoleId() {
+        return roleId;
     }
     /** 
-    *@param roleCode 设置角色编码 
+    *@param roleId 设置角色主键 
     */
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
 

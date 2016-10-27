@@ -9,8 +9,8 @@ import com.mmk.system.condition.UserRoleCondition;
 
 /**
 * UserRoleService: 系统用户角色 业务服务层接口
-*2016-10-13 16:53:44
-*@author 孙中强 sunzhongqiang
+*2016-10-27 08:21:19
+*@author code
 *@version 1.0
 */
 public interface UserRoleService extends BaseService<UserRole, Long> {
@@ -19,7 +19,7 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * @param userRoleCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
     Page<UserRole> list(UserRoleCondition userRoleCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  userRole 查询类
      * @return 查询的结果集
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
     public List<UserRole> list(UserRoleCondition userRole);
@@ -37,7 +37,7 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * 根据字段获取所有符合的记录
      * @param userId 用户主键
      * @return 符合条件的所有对象
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
     List<UserRole> findAllByUserId(Long userId);
@@ -46,33 +46,33 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * @param userId 用户主键
      * @param pageable 分页参数
      * @return 符合条件的所有对象
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
     Page<UserRole> findAllByUserId(Long userId, Pageable pageable);
     /**
      * 根据字段获取所有符合的记录
-     * @param roleCode 角色编码
+     * @param roleId 角色主键
      * @return 符合条件的所有对象
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
-    List<UserRole> findAllByRoleCode(String roleCode);
+    List<UserRole> findAllByRoleId(Long roleId);
     /**
      * 根据字段获取所有符合的记录
-     * @param roleCode 角色编码
+     * @param roleId 角色主键
      * @param pageable 分页参数
      * @return 符合条件的所有对象
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      */
-    Page<UserRole> findAllByRoleCode(String roleCode, Pageable pageable);
+    Page<UserRole> findAllByRoleId(Long roleId, Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field UserRole 中的某个字段
      * @param value 字段的值
      * @return UserRole 返回符合条件的结果，如果没有返回null
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      * 
      */
@@ -83,7 +83,7 @@ public interface UserRoleService extends BaseService<UserRole, Long> {
      * @param field UserRole中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author 孙中强 sunzhongqiang
+     * @author code
      * 
      * 
      */
