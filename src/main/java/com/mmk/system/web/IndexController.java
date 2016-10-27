@@ -120,6 +120,7 @@ public class IndexController extends BaseController{
 		tree.add(organization);
 		tree.add(user);
 		tree.add(role);
+		tree.add(userRole);
 		tree.add(resourceMenu);
 		tree.add(privilege);
 		tree.add(loginLog);
