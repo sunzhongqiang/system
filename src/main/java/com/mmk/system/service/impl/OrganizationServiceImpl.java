@@ -70,7 +70,43 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization, Long>
     }
 
 	@Override
-	public List<Organization> tree() {
+	public List<Tree<Organization>> tree() {
+		
+		Tree<Organization> root = new Tree<Organization>();
+		root.setId("");
+		root.setText("公司部门");
+		root.setChildren(new ArrayList<Tree<Organization>>());
+		
+		Iterable<Organization> organizationList = findAll();
+		List<Tree<Organization>> temp = new ArrayList<Tree<Organization>>();
+		List<Tree<Organization>> result = new ArrayList<Tree<Organization>>();
+		Map<String,Tree<Organization>> helpMap = new HashMap<String,Tree<Organization>>();
+		for (Organization organization : organizationList) {
+			Tree<Organization> node = new Tree<Organization>();
+			node.setId(String.valueOf(organization.getId()));
+			node.setPid(String.valueOf(organization.getParentId()));
+			node.setText(String.valueOf(organization.getName()));
+			node.setChildren(new ArrayList<Tree<Organization>>());
+			
+			temp.add(node);
+			
+			helpMap.put(node.getId(), node);
+		}
+		for (Tree<Organization> node : temp) {
+			Tree<Organization> parent = helpMap.get(node.getPid());
+			if(parent!=null){
+				parent.getChildren().add(node);
+			}else{
+				root.getChildren().add(node);
+			}
+		}
+		
+		result.add(root);
+		return result;
+	}
+
+	@Override
+	public List<Organization> treeGrid() {
 		Iterable<Organization> organizationList = findAll();
 		List<OrganizationCondition> temp = new ArrayList<OrganizationCondition>();
 		List<Organization> result = new ArrayList<Organization>();

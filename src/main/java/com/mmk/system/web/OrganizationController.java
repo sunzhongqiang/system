@@ -72,14 +72,26 @@ public class OrganizationController extends BaseController {
     
     
     /**
-     * 返回组织结构树
+     * 返回组织结构树treeGrid
+     * @return 组织结构树
+     */
+    @RequestMapping("/organization/treeGrid")
+    @ResponseBody
+    public List<Organization> treeGrid(){
+        log.info("获取组织机构树");
+        List<Organization> treeGrid = organizationService.treeGrid();   
+        return treeGrid;
+    }
+    
+    /**
+     * 返回组织结构树treeGrid
      * @return 组织结构树
      */
     @RequestMapping("/organization/tree")
     @ResponseBody
-    public List<Organization> tree(){
+    public List<Tree<Organization>> tree(){
         log.info("获取组织机构树");
-        List<Organization> tree = organizationService.tree();   
+        List<Tree<Organization>> tree = organizationService.tree();   
         return tree;
     }
     
