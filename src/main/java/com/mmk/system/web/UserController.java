@@ -67,6 +67,23 @@ public class UserController extends BaseController {
 		GridData<User> grid = new GridData<User>(userPage);
 		return grid;
 	}
+	
+	/**
+	 * 根据组织机构加载用户
+	 * @param userCondition
+	 * @param pageable
+	 * @return
+	 */
+	@RequestMapping("/user/loadByOrgId")
+	@ResponseBody
+	public GridData<User> loadByOrgId(Long orgId, EasyPageable pageable) {
+		log.info("根据组织结构加载用户");
+		Page<User> userPage = userService.loadByOrgId(orgId,pageable.pageable());
+		GridData<User> grid = new GridData<User>(userPage);
+		return grid;
+	}
+	
+	
 
 	/**
 	 * 编辑页面

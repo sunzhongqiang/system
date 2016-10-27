@@ -62,4 +62,12 @@ public interface UserService extends BaseService<User, Long> {
      * 
      */
     List<User> findAllBy(String field,Object value);
+
+    /**
+     * 根据组织结构加载用户
+     * @param orgId 组织id
+     * @param pageable 分页参数
+     * @return 分页用户
+     */
+	Page<User> loadByOrgId(Long orgId, Pageable pageable);
 }

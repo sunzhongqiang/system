@@ -66,4 +66,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		log.info("系统用户根据用户名："+name+"获取对应的用户");
 		return userRepository.findFirstByUsername(name);
 	}
+
+	@Override
+	public Page<User> loadByOrgId(Long orgId, Pageable pageable) {
+		return userDao.loadByOrgId(orgId,pageable);
+	}
 }

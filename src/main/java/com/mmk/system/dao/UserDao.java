@@ -69,6 +69,13 @@ public interface UserDao extends SpringDataQueryDao<User>{
      * 
      */
     List<User> findAllBy(String field,Object value);
+    /**
+     * 根据用户组织加载用户
+     * @param orgId 组织id
+     * @param pageable 分页参数
+     * @return 用户分页
+     */
+	Page<User> loadByOrgId(Long orgId, Pageable pageable);
     
     
 
