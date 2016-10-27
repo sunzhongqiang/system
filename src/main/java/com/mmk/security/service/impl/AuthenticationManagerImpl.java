@@ -3,6 +3,7 @@ package com.mmk.security.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,13 +13,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 
 import com.mmk.system.model.LoginLog;
 import com.mmk.system.model.User;
+import com.mmk.system.model.UserRole;
 import com.mmk.system.service.LoginLogService;
+import com.mmk.system.service.UserRoleService;
 import com.mmk.system.service.UserService;
 
 @Service
@@ -30,8 +34,8 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 	private UserService userService;
 //	@Resource
 //	private RoleService roleService;
-//	@Resource
-//	private UserRoleService userRoleService;
+	@Resource
+	private UserRoleService userRoleService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication)
@@ -51,12 +55,12 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
 			if (encoder.matches(authentication.getCredentials().toString(), user.getPassword())){
 				Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-				//获取权限，
-//				List<UserRole> userRoles = userRoleService.findAllByUserId(user.getId());
+				//获取用户角色
+				List<UserRole> userRoles = userRoleService.findAllByUserId(user.getId());
 				
-//				for (UserRole userRole : userRoles) {
-//					roles.add(new SimpleGrantedAuthority(userRole.getRole().getRoleKey()));
-//				}
+				for (UserRole userRole : userRoles) {
+					roles.add(new SimpleGrantedAuthority(String.valueOf(userRole.getRoleId())));
+				}
 				
 				LoginLog loginLog = new LoginLog();
 				loginLog.setIp(remoteAddress);

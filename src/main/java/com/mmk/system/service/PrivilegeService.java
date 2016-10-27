@@ -85,4 +85,12 @@ public interface PrivilegeService extends BaseService<Privilege, Long> {
      * @return 功能树
      */
 	List<Tree> findFunctionTreeByRoleId(Long roleId);
+
+	/**
+	 * 检查用户是否拥有权限
+	 * @param authority
+	 * @param requestURI
+	 * @return
+	 */
+	boolean checkRight(String authority, String requestURI);
 }

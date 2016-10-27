@@ -1,35 +1,36 @@
 package com.mmk.system.service.impl;
 
-import javax.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.mmk.common.model.Tree;
 import com.mmk.gene.service.impl.BaseServiceImpl;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import com.mmk.system.dao.PrivilegeRepository;
-import com.mmk.system.model.Organization;
-import com.mmk.system.model.Privilege;
-import com.mmk.system.condition.OrganizationCondition;
 import com.mmk.system.condition.PrivilegeCondition;
-import com.mmk.system.service.PrivilegeService;
 import com.mmk.system.dao.PrivilegeDao;
+import com.mmk.system.dao.PrivilegeRepository;
+import com.mmk.system.model.Privilege;
+import com.mmk.system.service.PrivilegeService;
 /**
 * PrivilegeServiceImpl: 系统权限表 业务服务层实现
 * 2016-10-25 09:35:10
 * @author 
 * @version 1.0
 */
+@CacheConfig(cacheNames="privilege")
 @Service
 public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> implements PrivilegeService {
 
@@ -114,6 +115,18 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 	@Override
 	public Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID) {
 		return privilegeDao.findByRoleIdAndPrivilegeID(roleId, privilegeID);
+	}
+
+	
+	@Cacheable
+	@Override
+	public boolean checkRight(String authority, String requestURI) {
+		log.info("授权检查");
+		Privilege privilege = privilegeDao.findByRoleIdAndUri(authority, requestURI);
+		if(privilege!=null){
+			return true;
+		}
+		return false;
 	}
 
 }

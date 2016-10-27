@@ -16,13 +16,17 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Component;
 
 import com.mmk.system.model.OperationLog;
+import com.mmk.system.model.Privilege;
 import com.mmk.system.service.OperationLogService;
+import com.mmk.system.service.PrivilegeService;
 
 @Component
 public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 	private Log log = LogFactory.getLog(getClass());
 	@Resource
 	private OperationLogService operationService;	
+	@Resource
+	private PrivilegeService privilegeService;	
 
 	@Override
 	public boolean supports(ConfigAttribute attribute) {
@@ -56,7 +60,7 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 	}
 
 	private boolean hasRight(String requestURI, String authority) {
-		return false;
+		return privilegeService.checkRight(authority,requestURI);
 	}
 
 	private void recordLog(String name, Object object) {

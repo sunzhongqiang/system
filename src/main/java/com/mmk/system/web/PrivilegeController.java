@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.servlet.ModelAndView;
@@ -187,6 +188,7 @@ public class PrivilegeController extends BaseController {
      * @param privilege 参数
      * @return 用户角色权限设置
      */ 
+    @Cacheable(cacheNames="privilege")
     @RequestMapping("/privilege/authorize")
     @ResponseBody
     public void authorize(Long roleId,Long functionId,boolean checked){
