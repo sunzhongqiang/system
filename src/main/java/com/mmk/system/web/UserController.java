@@ -341,7 +341,7 @@ public class UserController extends BaseController {
 	 * @param user 要修改的用户
 	 * @return 修改结果
 	 */
-	@RequestMapping("/user/changeOrgForm")
+	@RequestMapping("/user/changeOrganization")
 	public ResultMsg changeOrganization(User user){
 		User bean = userService.get(user.getId());
 		bean.setOrganizationId(user.getOrganizationId());
