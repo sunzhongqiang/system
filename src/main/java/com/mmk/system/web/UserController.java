@@ -322,5 +322,31 @@ public class UserController extends BaseController {
 		modelAndView.addObject("id", user.getId());
 		return modelAndView;
 	}
+	
+	/**
+	 * 修改组织界面
+	 * @param user 要修改的用户
+	 * @return 修改组织界面
+	 */
+	@RequestMapping("/user/changeOrgForm")
+	public ModelAndView changeOrgForm(User user){
+		ModelAndView modelAndView = new ModelAndView("user/changeOrgForm");
+		modelAndView.addObject("id", user.getId());
+		modelAndView.addObject("user",userService.get(user.getId()));
+		return modelAndView;
+	}
+	
+	/**
+	 * 修改组织结构
+	 * @param user 要修改的用户
+	 * @return 修改结果
+	 */
+	@RequestMapping("/user/changeOrgForm")
+	public ResultMsg changeOrganization(User user){
+		User bean = userService.get(user.getId());
+		bean.setOrganizationId(user.getOrganizationId());
+		userService.save(bean);
+		return new ResultMsg(true,"部门修改成功");
+	}
 
 }
