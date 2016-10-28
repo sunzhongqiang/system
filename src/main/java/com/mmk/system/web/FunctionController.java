@@ -58,7 +58,6 @@ public class FunctionController extends BaseController {
      *            分页参数
      * @return 查询所得数据
      */
-    @Cacheable
     @RequestMapping("/function/gridData")
     @ResponseBody
     public GridData<Function> loadList(FunctionCondition functionCondition, EasyPageable pageable){
@@ -165,7 +164,6 @@ public class FunctionController extends BaseController {
      * 返回组织结构树
      * @return 组织结构树
      */
-    @Cacheable
     @RequestMapping("/function/tree")
     @ResponseBody
     public List<Function> tree(){
