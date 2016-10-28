@@ -117,6 +117,24 @@ function editUserPwd() {
 	
 }
 
+function clearcache(){
+	$.ajax({
+		url: '/clearCache',
+		success: function(result){
+			progressClose();
+			if (result.success) {
+				parent.$.messager.alert('提示', result.msg, 'warning');
+			} else {
+				parent.$.messager.alert('提示', result.msg, 'warning');
+			}
+		},
+		error: function(){
+			progressClose();
+			alert("系统错误");
+		}
+	});
+}
+
 
 //切换主题
 changeTheme = function (themeName) {

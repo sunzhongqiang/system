@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.CurrentUser;
+import com.mmk.common.model.ResultMsg;
 import com.mmk.common.model.Tree;
 import com.mmk.system.model.User;
 import com.mmk.system.service.FunctionService;
@@ -146,6 +148,13 @@ public class IndexController extends BaseController{
 //		root.setChildren(tree);
 //		rootTree.add(root);
 //		return rootTree;
+	}
+	
+	@RequestMapping("/clearCache")
+	@ResponseBody
+	@CacheEvict(allEntries=true)
+	public ResultMsg clearAllCache(){
+		return new ResultMsg(true,"缓存清理完毕");
 	}
 	
 	

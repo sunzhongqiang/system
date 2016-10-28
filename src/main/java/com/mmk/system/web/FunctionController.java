@@ -8,6 +8,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +30,7 @@ import com.mmk.system.service.FunctionService;
 *@Description: 系统功能 的web控制层
 *@author huguangling 胡广玲
 */
+@CacheConfig(cacheNames="privilege")
 @RestController
 public class FunctionController extends BaseController {
     
@@ -54,6 +58,7 @@ public class FunctionController extends BaseController {
      *            分页参数
      * @return 查询所得数据
      */
+    @Cacheable
     @RequestMapping("/function/gridData")
     @ResponseBody
     public GridData<Function> loadList(FunctionCondition functionCondition, EasyPageable pageable){
@@ -93,6 +98,7 @@ public class FunctionController extends BaseController {
      * @param function 要保存的数据
      * @return function 保存后的数据
      */
+    @CacheEvict
     @RequestMapping("/function/save")
     @ResponseBody
     public ResultMsg save(Function function){
@@ -125,6 +131,7 @@ public class FunctionController extends BaseController {
      * @param page function
      * @return
      */
+    @CacheEvict
     @RequestMapping("/function/delete")
     public ResultMsg delete(Function function){
         log.info("系统功能删除");
@@ -158,6 +165,7 @@ public class FunctionController extends BaseController {
      * 返回组织结构树
      * @return 组织结构树
      */
+    @Cacheable
     @RequestMapping("/function/tree")
     @ResponseBody
     public List<Function> tree(){
