@@ -48,12 +48,14 @@ $(function() {
 		lines : true,
 		onClick : function(node) {
 			if (node.attributes && node.attributes.url) {
-				var url = '' + node.attributes.url;
-				addTab({
-					url : url,
-					title : node.text,
-					iconCls : node.iconCls
-				});
+				if(node.children.length == 0){
+					var url = '' + node.attributes.url;
+					addTab({
+						url : url,
+						title : node.text,
+						iconCls : node.iconCls
+					});
+				}
 			}
 		}
 	});
