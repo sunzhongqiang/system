@@ -85,6 +85,12 @@
                         <input type="text"  name="description"   class="easyui-validatebox" th:value="${function.description}"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="tdTit"><label>排序：</label></td>
+                        <td>
+                        <input type="number"  name="sort"   class="easyui-validatebox" th:value="${function.sort}"/>
+                        </td>
+                    </tr>
             </table>
             <input type="hidden" name="id" th:value="${function.id}"/>
         </form>

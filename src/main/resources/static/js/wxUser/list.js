@@ -4,6 +4,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/wxUser/gridData',
             fit : true,
+            fitColumns: true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -13,83 +14,69 @@
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
                     {
-                width : '80',
+                width : '100',
                 title : '用户id',
                 field : 'id',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '100',
                 title : '窗口id',
                 field : 'openid',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '200',
                 title : '昵称',
                 field : 'nickname',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '100',
                 title : '真实姓名',
                 field : 'realname',
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '性别',
                 field : 'sex',
+                align: 'center',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case '0':
+						return '男';
+					case '1':
+						return '女';
+					case '2':
+						return '保密';
+					}
+				}
             },
-                    {
-                width : '80',
-                title : '语言',
-                field : 'language',
-            },
-                    {
-                width : '80',
+            		{
+                width : '120',
                 title : '省份',
                 field : 'privince',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '城市',
                 field : 'city',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '国家',
                 field : 'country',
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '头像路径',
                 field : 'headimgurl',
-            },
-                    {
-                width : '80',
-                title : '权限',
-                field : 'privilege',
-            },
-            {
-                field : 'action',
-                title : '操作',
-                width : 140,
-                align : 'center',
-                formatter : function(value, row, index) {
-                    var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
-                    return str;
-                }
+                align: 'center',
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
-            onLoadSuccess : function(data){
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
-            }
         });
     });
     

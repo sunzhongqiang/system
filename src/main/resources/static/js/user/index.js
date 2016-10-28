@@ -20,7 +20,7 @@
 				align:'center'
 			},
                     {
-				width : '250',
+				width : '100',
 				title : '用户名',
 				field : 'username',
 				align:'center'
@@ -47,14 +47,14 @@
 				}
 			},
             {
-				width : '300',
+				width : '200',
 				title : '创建时间',
 				field : 'createTime',
 				align:'center',
 				formatter: formatDatebox
 			},
             {
-				width : '300',
+				width : '200',
 				title : '修改时间',
 				field : 'modifiedTime',
 				align:'center',

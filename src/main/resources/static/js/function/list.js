@@ -55,7 +55,12 @@
                 title : '描述',
                 field : 'description',
             },
-            {
+		            {
+		        width : '180',
+		        title : '排序',
+		        field : 'sort',
+		    },
+		            {
                 field : 'action',
                 title : '操作',
                 width : 140,

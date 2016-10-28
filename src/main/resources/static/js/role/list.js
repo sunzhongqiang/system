@@ -6,6 +6,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/role/gridData',
             fit : true,
+            fitColumns :true,
             striped : true,
             rownumbers : true,
             pagination : true,
