@@ -95,6 +95,9 @@ public interface PrivilegeDao extends SpringDataQueryDao<Privilege>{
 	 * @return
 	 */
 	Privilege findByRoleIdAndUri(String authority, String requestURI);
+	
+	
+	Privilege findByRoleIdAndFunctionId(Long authority, Long id);
     
 
 }

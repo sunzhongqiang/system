@@ -22,7 +22,9 @@ import com.mmk.gene.service.impl.BaseServiceImpl;
 import com.mmk.system.condition.PrivilegeCondition;
 import com.mmk.system.dao.PrivilegeDao;
 import com.mmk.system.dao.PrivilegeRepository;
+import com.mmk.system.model.Function;
 import com.mmk.system.model.Privilege;
+import com.mmk.system.service.FunctionService;
 import com.mmk.system.service.PrivilegeService;
 /**
 * PrivilegeServiceImpl: 系统权限表 业务服务层实现
@@ -37,6 +39,8 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private PrivilegeDao privilegeDao;
+    
+    @Resource private FunctionService functionService;
     
     private PrivilegeRepository privilegeRepository;
     /**
@@ -120,11 +124,17 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 	
 	@Cacheable
 	@Override
-	public boolean checkRight(String authority, String requestURI) {
-		log.info("授权检查");
-		Privilege privilege = privilegeDao.findByRoleIdAndUri(authority, requestURI);
-		if(privilege!=null){
+	public boolean checkRight(Long authority, String requestURI) {
+		log.info("角色："+authority+"  授权检查："+requestURI);
+		Function function = functionService.findBy("uri", requestURI);
+		//如果权限没有被管理起来，就直接可以访问
+		if(function==null){
 			return true;
+		}else{
+			Privilege privilege = privilegeDao.findByRoleIdAndFunctionId(authority, function.getId());
+			if(privilege!=null){
+				return true;
+			}
 		}
 		return false;
 	}

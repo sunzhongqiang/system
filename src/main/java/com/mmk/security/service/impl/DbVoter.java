@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.access.AccessDecisionVoter;
@@ -30,12 +31,12 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 
 	@Override
 	public boolean supports(ConfigAttribute attribute) {
-		return true;
+		return StringUtils.isNumeric(attribute.getAttribute());
 	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return true;
+		return FilterInvocation.class.isAssignableFrom(clazz);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 		log.debug(requestURI);
 		int result = accessVote(requestURI,authorities);
 		//记录日志
-		recordLog(authentication.getName(),object);
+		recordLog(authentication.getName(),object,authorities,result);
 		return result;
 	}
 	
@@ -56,14 +57,19 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 				return ACCESS_GRANTED;
 			}
 		}
-		return ACCESS_ABSTAIN;
+		return ACCESS_GRANTED;
 	}
 
 	private boolean hasRight(String requestURI, String authority) {
-		return privilegeService.checkRight(authority,requestURI);
+		//是角色id的时候才进行数据库处理
+		if(StringUtils.isNumeric(authority)){
+			return privilegeService.checkRight(Long.valueOf(authority),requestURI);
+		}else{
+			return false;
+		}
 	}
 
-	private void recordLog(String name, Object object) {
+	private void recordLog(String name, Object object,Collection<? extends GrantedAuthority> authorities,int result) {
 		if(object instanceof FilterInvocation){
 			FilterInvocation invocation = (FilterInvocation) object;
 			HttpServletRequest httpRequest = invocation.getHttpRequest();
@@ -71,6 +77,15 @@ public class DbVoter implements AccessDecisionVoter<FilterInvocation>{
 			log.setFunctionName("");
 			log.setOperationTime(new Date());
 			log.setUsername(name);
+			log.setRoleCode(authorities.toString());
+			if(result==0){
+				log.setStatus("弃权");
+			}else if(result==1){
+				log.setStatus("通过");
+			}else{
+				log.setStatus("禁止");
+			}
+			
 			log.setFunctionUri(invocation.getRequestUrl());
 			log.setIp(httpRequest.getRemoteHost());
 			log.setRealname(httpRequest.getRemoteUser());

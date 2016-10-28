@@ -92,5 +92,5 @@ public interface PrivilegeService extends BaseService<Privilege, Long> {
 	 * @param requestURI
 	 * @return
 	 */
-	boolean checkRight(String authority, String requestURI);
+	boolean checkRight(Long authority, String requestURI);
 }

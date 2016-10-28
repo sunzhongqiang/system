@@ -14,6 +14,7 @@ import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.AuthenticatedVoter;
 import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,8 +35,13 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	
 	@Resource
 	private AuthenticationManager authenticationManager;
+	
+	//一票通过投票器
 	@Resource
 	private AffirmativeBased  baseACL;
+	
+	@Resource
+	private UnanimousBased unanimousBased;
 	
 	
 	@Autowired
@@ -63,7 +69,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 		            .antMatchers("/resources/**", "/signup", "/about").permitAll()  //匹配允许url  
 	                .anyRequest().authenticated()
 	            .and()
-	            .authorizeRequests().accessDecisionManager(baseACL).anyRequest().authenticated()
+	            .authorizeRequests().accessDecisionManager(unanimousBased)
 	            .and()
 	            .formLogin()
 	            	.loginPage("/login")
@@ -79,11 +85,22 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
 	  @Bean
 	  AffirmativeBased getBase(DbVoter voter){
 		  List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<AccessDecisionVoter<? extends Object>>();
-		  decisionVoters.add(new WebExpressionVoter());
 		  decisionVoters.add(new RoleVoter());
+		  decisionVoters.add(new WebExpressionVoter());
 		  decisionVoters.add(new AuthenticatedVoter());
 		  decisionVoters.add(voter);
 		return new AffirmativeBased(decisionVoters);
+	  }
+	  
+	  
+	  @Bean
+	  UnanimousBased getUnanimousBased(DbVoter voter){
+		  List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<AccessDecisionVoter<? extends Object>>();
+		  decisionVoters.add(new RoleVoter());
+		  decisionVoters.add(new WebExpressionVoter());
+		  decisionVoters.add(new AuthenticatedVoter());
+		  decisionVoters.add(voter);
+		return new UnanimousBased(decisionVoters);
 	  }
 	  
 	 

@@ -131,7 +131,7 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 			params.put("roleId", roleId);
 		}
 		if(roleId!=null){
-			sb.append(" and model.privilegeID = :privilegeID ");
+			sb.append(" and model.functionId = :privilegeID ");
 			params.put("privilegeID", privilegeID);
 		}
 		List<Privilege> result = queryByJpql(sb.toString(), params);
@@ -140,19 +140,35 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 
 	@Override
 	public Privilege findByRoleIdAndUri(String authority, String requestURI) {
-		StringBuffer sb = new StringBuffer("select model from Privilege model  where 1=1 ");
+		StringBuffer sb = new StringBuffer("select model from Privilege model , Function function where function.id = model.functionId ");
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(StringUtils.isNotBlank(authority)){
+		if(StringUtils.isNotBlank(authority)&&StringUtils.isNumeric(authority)){
 			sb.append(" and model.roleId = :authority ");
 			params.put("authority", Long.valueOf(authority));
 		}
 		
 		if(StringUtils.isNotBlank(requestURI)){
-			sb.append(" and model.functionUri = :uri ");
+			sb.append(" and function.uri = :uri ");
 			params.put("uri",requestURI );
 		}
 		List<Privilege> resultList = queryByJpql(sb.toString(), params);
 		return resultList.isEmpty() ? null : resultList.get(0);
+	}
+
+	@Override
+	public Privilege findByRoleIdAndFunctionId(Long authority, Long functionId) {
+		StringBuffer sb = new StringBuffer("select model from Privilege model  where 1=1 ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(authority!=null){
+			sb.append(" and model.roleId = :roleId ");
+			params.put("roleId", authority);
+		}
+		if(functionId!=null){
+			sb.append(" and model.functionId = :functionId ");
+			params.put("functionId", functionId);
+		}
+		List<Privilege> result = queryByJpql(sb.toString(), params);
+		return result.isEmpty() ? null : result.get(0);
 	}
 
 }

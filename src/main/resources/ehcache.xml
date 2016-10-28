@@ -14,7 +14,17 @@
 	memoryStoreEvictionPolicy="LRU" />
 
 	<cache name="demo" 
-	+="false" 
+	eternal="false" 
+	maxElementsInMemory="100"
+	overflowToDisk="false" 
+	diskPersistent="false" 
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="300" 
+	memoryStoreEvictionPolicy="LRU" />
+	
+	
+	<cache name="privilege" 
+	eternal="false" 
 	maxElementsInMemory="100"
 	overflowToDisk="false" 
 	diskPersistent="false" 
