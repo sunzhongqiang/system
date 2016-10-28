@@ -1,11 +1,15 @@
 package com.mmk.system.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.mmk.common.model.Tree;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import com.mmk.system.model.Privilege;
 import com.mmk.system.condition.PrivilegeCondition;
 
@@ -93,4 +97,5 @@ public interface PrivilegeService extends BaseService<Privilege, Long> {
 	 * @return
 	 */
 	boolean checkRight(Long authority, String requestURI);
+
 }

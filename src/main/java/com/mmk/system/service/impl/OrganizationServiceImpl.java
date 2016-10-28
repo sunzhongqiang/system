@@ -70,30 +70,32 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization, Long>
     }
 
 	@Override
-	public List<Tree<Organization>> tree() {
+	public List<Tree> tree() {
 		
-		Tree<Organization> root = new Tree<Organization>();
+		Tree root = new Tree();
 		root.setId("");
 		root.setText("公司部门");
-		root.setChildren(new ArrayList<Tree<Organization>>());
+		root.setChildren(new ArrayList<Tree>());
 		
 		Iterable<Organization> organizationList = findAll();
-		List<Tree<Organization>> temp = new ArrayList<Tree<Organization>>();
-		List<Tree<Organization>> result = new ArrayList<Tree<Organization>>();
-		Map<String,Tree<Organization>> helpMap = new HashMap<String,Tree<Organization>>();
+		List<Tree> temp = new ArrayList<Tree>();
+		List<Tree> result = new ArrayList<Tree>();
+		Map<String,Tree> helpMap = new HashMap<String,Tree>();
 		for (Organization organization : organizationList) {
-			Tree<Organization> node = new Tree<Organization>();
+			Tree node = new Tree();
 			node.setId(String.valueOf(organization.getId()));
 			node.setPid(String.valueOf(organization.getParentId()));
 			node.setText(String.valueOf(organization.getName()));
-			node.setChildren(new ArrayList<Tree<Organization>>());
+			node.setChildren(new ArrayList<Tree>());
 			
 			temp.add(node);
 			
 			helpMap.put(node.getId(), node);
 		}
-		for (Tree<Organization> node : temp) {
-			Tree<Organization> parent = helpMap.get(node.getPid());
+		
+		
+		for (Tree node : temp) {
+			Tree parent = helpMap.get(node.getPid());
 			if(parent!=null){
 				parent.getChildren().add(node);
 			}else{

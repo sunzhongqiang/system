@@ -62,7 +62,8 @@ public interface OrganizationService extends BaseService<Organization, Long> {
      * @param organizationCondition 
      * @return tree数据
      */
-    List<Tree<Organization>> tree();
+    List<Tree> tree();
+    
 
     /**
      * 组织结构树treeGrid

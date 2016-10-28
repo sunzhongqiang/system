@@ -4,11 +4,14 @@
  */
 package com.mmk.system.dao;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import com.mmk.system.condition.PrivilegeCondition;
 import com.mmk.system.model.Privilege;
 /**
@@ -98,6 +101,6 @@ public interface PrivilegeDao extends SpringDataQueryDao<Privilege>{
 	
 	
 	Privilege findByRoleIdAndFunctionId(Long authority, Long id);
-    
+	
 
 }

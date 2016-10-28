@@ -4,29 +4,23 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.system.service.FunctionService;
-import com.mmk.system.model.Function;
-import com.mmk.system.model.Organization;
 import com.mmk.system.condition.FunctionCondition;
+import com.mmk.system.model.Function;
+import com.mmk.system.service.FunctionService;
 
 /**
 *@Title: FunctionController
@@ -168,7 +162,7 @@ public class FunctionController extends BaseController {
     @ResponseBody
     public List<Function> tree(){
         log.info("获取功能树");
-        List<Function> tree = functionService.tree();   
+        List<Function> tree = functionService.gridTree();   
         return tree;
     }
 }

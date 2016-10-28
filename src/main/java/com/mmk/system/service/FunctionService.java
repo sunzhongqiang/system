@@ -1,6 +1,8 @@
 package com.mmk.system.service;
 
 import java.util.List;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,6 +63,13 @@ public interface FunctionService extends BaseService<Function, Long> {
      * @return 返回符合条件的所有结果
      * @author huguangling 胡广玲
     */
-	List<Function> tree();
+	List<Function> gridTree();
+
+	/**
+	 * 根据用户角色ids获取用户菜单tree
+	 * @param roleIdList 用户角色Ids
+	 * @return 菜单树
+	 */
+	List<Tree> findUserMenu(List<Long> roleIdList);
 
 }

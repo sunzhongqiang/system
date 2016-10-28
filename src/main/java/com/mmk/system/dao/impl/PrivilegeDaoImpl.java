@@ -4,13 +4,17 @@
  */
 package com.mmk.system.dao.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Resource;
+import javax.persistence.Query;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import org.apache.commons.logging.Log;

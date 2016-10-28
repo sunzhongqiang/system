@@ -89,9 +89,9 @@ public class OrganizationController extends BaseController {
      */
     @RequestMapping("/organization/tree")
     @ResponseBody
-    public List<Tree<Organization>> tree(){
+    public List<Tree> tree(){
         log.info("获取组织机构树");
-        List<Tree<Organization>> tree = organizationService.tree();   
+        List<Tree> tree = organizationService.tree();   
         return tree;
     }
     

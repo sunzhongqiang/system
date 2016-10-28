@@ -9,8 +9,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.common.model.Tree;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,7 +73,7 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
     }
     
     @Override
-	public List<Function> tree(){
+	public List<Function> gridTree(){
 		Iterable<Function> functionList = findAll();
 		List<FunctionCondition> temp = new ArrayList<FunctionCondition>();
 		List<Function> result = new ArrayList<Function>();
@@ -97,4 +100,38 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
 		return result;
     	
     }
+
+	@Override
+	public List<Tree> findUserMenu(List<Long> roleIdList) {
+		List<Function> functionList = functionDao.findAllByRoleIds(roleIdList);
+		return buildTree(functionList);
+	}
+
+	private List<Tree> buildTree(List<Function> functionList) {
+		List<Tree> result = new ArrayList<Tree>();
+		List<Tree> temp = new ArrayList<Tree>();
+		Map<Long,Tree> helpMap = new HashMap<Long,Tree>();
+		for (Function function : functionList) {
+			Tree node = new Tree();
+			node.setText(function.getName());
+			node.setId(String.valueOf(function.getId()));
+			Map<String,Object> attributes = new HashMap<String,Object>();
+			attributes.put("url", function.getUri());
+			node.setAttributes(attributes);
+			node.setChildren(new ArrayList<Tree>());
+			node.setPid(String.valueOf(function.getParentId()));
+			temp.add(node);
+			helpMap.put(function.getId(), node);
+		}
+		
+		for (Tree node : temp) {
+			Tree parent = helpMap.get(node.getPid());
+			if(parent!=null){
+				parent.getChildren().add(node);
+			}else{
+				result.add(node);
+			}
+		}
+		return result;
+	}
 }

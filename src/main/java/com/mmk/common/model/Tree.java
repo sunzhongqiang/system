@@ -3,7 +3,7 @@ package com.mmk.common.model;
 import java.util.List;
 import java.util.Map;
 
-public class Tree<T>  {
+public class Tree  {
 
 	//树唯一KEY
 	private String id;
@@ -16,7 +16,7 @@ public class Tree<T>  {
 	//额外属性
 	private Map<String,Object> attributes;
 	//树的孩子
-	private List<Tree<T>> children; // 孩子节点
+	private List<Tree> children; // 孩子节点
 	// 样式
 	private String iconCls;
 	// 父节点
@@ -62,11 +62,11 @@ public class Tree<T>  {
 		this.attributes = attributes;
 	}
 
-	public List<Tree<T>> getChildren() {
+	public List<Tree> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<Tree<T>> children) {
+	public void setChildren(List<Tree> children) {
 		this.children = children;
 	}
 

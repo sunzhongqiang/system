@@ -67,6 +67,12 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      * 
      */
     List<Function> findAllBy(String field,Object value);
+    /**
+     * 根据角色ids 获取拥有的功能菜单
+     * @param roleIdList
+     * @return
+     */
+	List<Function> findAllByRoleIds(List<Long> roleIdList);
     
     
 

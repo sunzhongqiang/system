@@ -124,6 +124,19 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Function> findAllByRoleIds(List<Long> roleIdList) {
+		StringBuffer sb = new StringBuffer("select distinct function from Privilege model,Function function where function.id = model.functionId  ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(roleIdList!=null&&!roleIdList.isEmpty()){
+			sb.append(" and model.roleId in :roleIds ");
+			params.put("roleIds", roleIdList);
+		}
+		
+		List result = queryArrayByJpql(sb.toString(),params);
+		return result;
+	}
     
     
 }
