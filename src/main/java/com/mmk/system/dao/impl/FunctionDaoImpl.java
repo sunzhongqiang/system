@@ -127,13 +127,13 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
 
 	@Override
 	public List<Function> findAllByRoleIds(List<Long> roleIdList) {
-		StringBuffer sb = new StringBuffer("select distinct function from Privilege model,Function function where function.id = model.functionId  ");
+		StringBuffer sb = new StringBuffer("select distinct function from Privilege model,Function function where function.id = model.functionId and function.type in ('menu','module','system') ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if(roleIdList!=null&&!roleIdList.isEmpty()){
 			sb.append(" and model.roleId in :roleIds ");
 			params.put("roleIds", roleIdList);
 		}
-		
+		sb.append("order by function.sort,function.id");
 		List result = queryArrayByJpql(sb.toString(),params);
 		return result;
 	}

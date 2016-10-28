@@ -57,6 +57,12 @@ public class Function {
      */
     @Column(name="description")
     private String description;
+    
+    /**
+     * 排序字段
+     */
+    @Column(name="sort")
+    private String sort;
 
 
     /** 
@@ -136,6 +142,12 @@ public class Function {
     public void setDescription(String description) {
         this.description = description;
     }
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
 
 
 }
