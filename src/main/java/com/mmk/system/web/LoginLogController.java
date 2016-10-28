@@ -69,7 +69,7 @@ public class LoginLogController extends BaseController {
      */
     @RequestMapping("/loginLog/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/loginLog/form");
+        ModelAndView modelAndView = new ModelAndView("loginLog/form");
         modelAndView.addObject("loginLog", new LoginLog());
         return modelAndView;
     }
@@ -82,7 +82,7 @@ public class LoginLogController extends BaseController {
     public ModelAndView editPage(LoginLog loginLog){
         log.info("系统登录日志编辑页面");
         loginLog = loginLogService.find(loginLog.getId());
-        ModelAndView modelAndView = new ModelAndView("/loginLog/form");
+        ModelAndView modelAndView = new ModelAndView("loginLog/form");
         modelAndView.addObject("loginLog", loginLog);
         return modelAndView ;
     }

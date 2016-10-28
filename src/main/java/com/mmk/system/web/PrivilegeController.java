@@ -83,7 +83,7 @@ public class PrivilegeController extends BaseController {
      */
     @RequestMapping("/privilege/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/privilege/form");
+        ModelAndView modelAndView = new ModelAndView("privilege/form");
         modelAndView.addObject("privilege", new Privilege());
         return modelAndView;
     }

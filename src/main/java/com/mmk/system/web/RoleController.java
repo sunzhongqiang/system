@@ -74,7 +74,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/role/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/role/form");
+        ModelAndView modelAndView = new ModelAndView("role/form");
         modelAndView.addObject("role", new Role());
         return modelAndView;
     }

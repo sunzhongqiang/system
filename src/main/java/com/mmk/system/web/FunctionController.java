@@ -73,7 +73,7 @@ public class FunctionController extends BaseController {
      */
     @RequestMapping("/function/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/function/form");
+        ModelAndView modelAndView = new ModelAndView("function/form");
         modelAndView.addObject("function", new Function());
         return modelAndView;
     }

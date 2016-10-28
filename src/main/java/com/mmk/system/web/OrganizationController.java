@@ -101,7 +101,7 @@ public class OrganizationController extends BaseController {
      */
     @RequestMapping("/organization/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/organization/form");
+        ModelAndView modelAndView = new ModelAndView("organization/form");
         modelAndView.addObject("organization", new Organization());
         return modelAndView;
     }

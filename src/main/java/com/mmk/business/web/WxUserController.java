@@ -74,7 +74,7 @@ public class WxUserController extends BaseController {
      */
     @RequestMapping("/wxUser/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/wxUser/form");
+        ModelAndView modelAndView = new ModelAndView("wxUser/form");
         modelAndView.addObject("wxUser", new WxUser());
         return modelAndView;
     }

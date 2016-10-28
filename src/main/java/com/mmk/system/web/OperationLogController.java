@@ -47,7 +47,7 @@ public class OperationLogController extends BaseController {
     @RequestMapping("/operationLog/list")
     public ModelAndView list(){
         log.info("系统操作日志列表查询");
-        ModelAndView modelAndView = new ModelAndView("/operationLog/list");
+        ModelAndView modelAndView = new ModelAndView("operationLog/list");
         return  modelAndView;
     }
     
@@ -76,7 +76,7 @@ public class OperationLogController extends BaseController {
      */
     @RequestMapping("/operationLog/add")
     public ModelAndView addPage(){
-        ModelAndView modelAndView = new ModelAndView("/operationLog/form");
+        ModelAndView modelAndView = new ModelAndView("operationLog/form");
         modelAndView.addObject("operationLog", new OperationLog());
         return modelAndView;
     }
@@ -89,7 +89,7 @@ public class OperationLogController extends BaseController {
     public ModelAndView editPage(OperationLog operationLog){
         log.info("系统操作日志编辑页面");
         operationLog = operationLogService.find(operationLog.getId());
-        ModelAndView modelAndView = new ModelAndView("/operationLog/form");
+        ModelAndView modelAndView = new ModelAndView("operationLog/form");
         modelAndView.addObject("operationLog", operationLog);
         return modelAndView ;
     }
