@@ -1,6 +1,6 @@
 /*
  * 
- *  WxUser 创建于 2016-10-28 14:34:36 版权归作者和作者当前组织所有
+ *  WxUser 创建于 2016-10-28 14:50:57 版权归作者和作者当前组织所有
  */
 package com.mmk.business.model;
 
@@ -13,8 +13,8 @@ import javax.persistence.Column;
 
 /**
 * WxUser: 微信用户 数据领域模型
-* 2016-10-28 14:34:36
-*@author 胡广玲
+* 2016-10-28 14:50:57
+*@author 胡广玲 huguangling
 *@version 1.0
 */
 @Entity
@@ -35,13 +35,19 @@ public class WxUser {
     private String openid;
 
     /**
-     * 
+     * 昵称
      */
     @Column(name="nickname")
     private String nickname;
 
     /**
-     * 
+     * 真实姓名
+     */
+    @Column(name="realname")
+    private String realname;
+
+    /**
+     * 性别
      */
     @Column(name="sex")
     private String sex;
@@ -82,12 +88,6 @@ public class WxUser {
     @Column(name="privilege")
     private String privilege;
 
-    /**
-     * 
-     */
-    @Column(name="realname")
-    private String realname;
-
 
     /** 
 	* @return id ：用户id
@@ -116,26 +116,39 @@ public class WxUser {
     }
 
     /** 
-	* @return nickname ：
+	* @return nickname ：昵称
 	*/
     public String getNickname() {
         return nickname;
     }
     /** 
-    *@param nickname 设置 
+    *@param nickname 设置昵称 
     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
     /** 
-	* @return sex ：
+	* @return realname ：真实姓名
+	*/
+    public String getRealname() {
+        return realname;
+    }
+    /** 
+    *@param realname 设置真实姓名 
+    */
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    /** 
+	* @return sex ：性别
 	*/
     public String getSex() {
         return sex;
     }
     /** 
-    *@param sex 设置 
+    *@param sex 设置性别 
     */
     public void setSex(String sex) {
         this.sex = sex;
@@ -217,19 +230,6 @@ public class WxUser {
     */
     public void setPrivilege(String privilege) {
         this.privilege = privilege;
-    }
-
-    /** 
-	* @return realname ：
-	*/
-    public String getRealname() {
-        return realname;
-    }
-    /** 
-    *@param realname 设置 
-    */
-    public void setRealname(String realname) {
-        this.realname = realname;
     }
 
 

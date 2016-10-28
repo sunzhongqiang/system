@@ -44,13 +44,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>：</label></td>
+                        <td class="tdTit"><label>昵称：</label></td>
                         <td>
                         <input type="text"  name="nickname"   class="easyui-validatebox" data-options="required:true" th:value="${wxUser.nickname}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>：</label></td>
+                        <td class="tdTit"><label>真实姓名：</label></td>
+                        <td>
+                        <input type="text"  name="realname"   class="easyui-validatebox" data-options="required:true" th:value="${wxUser.realname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>性别：</label></td>
                         <td>
                         <input type="text"  name="sex"   class="easyui-validatebox" data-options="required:true" th:value="${wxUser.sex}"/>
                         </td>
@@ -89,12 +95,6 @@
                         <td class="tdTit"><label>权限：</label></td>
                         <td>
                         <input type="text"  name="privilege"   class="easyui-validatebox" data-options="required:true" th:value="${wxUser.privilege}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>：</label></td>
-                        <td>
-                        <input type="text"  name="realname"   class="easyui-validatebox" data-options="required:true" th:value="${wxUser.realname}"/>
                         </td>
                     </tr>
             </table>

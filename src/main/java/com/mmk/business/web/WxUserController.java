@@ -30,7 +30,7 @@ import com.mmk.business.condition.WxUserCondition;
 /**
 *@Title: WxUserController
 *@Description: 微信用户 的web控制层
-*@author 胡广玲
+*@author 胡广玲 huguangling
 */
 @RestController
 public class WxUserController extends BaseController {

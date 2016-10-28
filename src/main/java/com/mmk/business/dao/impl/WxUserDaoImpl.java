@@ -1,6 +1,6 @@
 /*
  * 
- *  WxUserDaoImpl 创建于 2016-10-28 14:34:36 版权归作者和作者当前组织所有
+ *  WxUserDaoImpl 创建于 2016-10-28 14:50:57 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao.impl;
 
@@ -25,7 +25,7 @@ import com.mmk.business.condition.WxUserCondition;
 
 /**
 * WxUserDaoImpl: 微信用户 数据持久层接口实现
-*@author 胡广玲
+*@author 胡广玲 huguangling
 *@version 1.0
 *
 */
@@ -43,7 +43,7 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
      * @param wxUserCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author 胡广玲
+     * @author 胡广玲 huguangling
      * 
      */
     @Override 
@@ -54,6 +54,10 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
             sb.append(" and model.nickname like :nickname ");
             params.put("nickname","%"+wxUserCondition.getNickname()+"%");
         }
+        if(StringUtils.isNotBlank(wxUserCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+wxUserCondition.getRealname()+"%");
+        }
         if(StringUtils.isNotBlank(wxUserCondition.getCity())){
             sb.append(" and model.city = :city ");
             params.put("city",wxUserCondition.getCity());
@@ -61,10 +65,6 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
         if(StringUtils.isNotBlank(wxUserCondition.getCountry())){
             sb.append(" and model.country = :country ");
             params.put("country",wxUserCondition.getCountry());
-        }
-        if(StringUtils.isNotBlank(wxUserCondition.getRealname())){
-            sb.append(" and model.realname like :realname ");
-            params.put("realname","%"+wxUserCondition.getRealname()+"%");
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -77,6 +77,10 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
             sb.append(" and model.nickname like :nickname ");
             params.put("nickname","%"+wxUserCondition.getNickname()+"%");
         }
+        if(StringUtils.isNotBlank(wxUserCondition.getRealname())){
+            sb.append(" and model.realname like :realname ");
+            params.put("realname","%"+wxUserCondition.getRealname()+"%");
+        }
         if(StringUtils.isNotBlank(wxUserCondition.getCity())){
             sb.append(" and model.city = :city ");
             params.put("city",wxUserCondition.getCity());
@@ -85,33 +89,29 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
             sb.append(" and model.country = :country ");
             params.put("country",wxUserCondition.getCountry());
         }
-        if(StringUtils.isNotBlank(wxUserCondition.getRealname())){
-            sb.append(" and model.realname like :realname ");
-            params.put("realname","%"+wxUserCondition.getRealname()+"%");
-        }
         return queryByJpql(sb.toString(), params);
     }
     
     
     @Override 
     public Page< Map<String,Object>> listBySql(WxUserCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,openID,nickname,sex,language,privince,city,country,headimgurl,privilege,realname from business_wx_user  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,openID,nickname,realname,sex,language,privince,city,country,headimgurl,privilege from business_wx_user  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         if(StringUtils.isNotBlank(condition.getNickname())){
             sb.append(" and nickname like ?3 ");
             params.put(3,"%"+condition.getNickname()+"%");
         }
+        if(StringUtils.isNotBlank(condition.getRealname())){
+            sb.append(" and realname like ?4 ");
+            params.put(4,"%"+condition.getRealname()+"%");
+        }
         if(StringUtils.isNotBlank(condition.getCity())){
-            sb.append(" and city = ?7 ");
-            params.put(7,condition.getCity());
+            sb.append(" and city = ?8 ");
+            params.put(8,condition.getCity());
         }
         if(StringUtils.isNotBlank(condition.getCountry())){
-            sb.append(" and country = ?8 ");
-            params.put(8,condition.getCountry());
-        }
-        if(StringUtils.isNotBlank(condition.getRealname())){
-            sb.append(" and realname like ?11 ");
-            params.put(11,"%"+condition.getRealname()+"%");
+            sb.append(" and country = ?9 ");
+            params.put(9,condition.getCountry());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

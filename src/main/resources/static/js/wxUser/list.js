@@ -24,12 +24,17 @@
             },
                     {
                 width : '80',
-                title : '',
+                title : '昵称',
                 field : 'nickname',
             },
                     {
                 width : '80',
-                title : '',
+                title : '真实姓名',
+                field : 'realname',
+            },
+                    {
+                width : '80',
+                title : '性别',
                 field : 'sex',
             },
                     {
@@ -61,11 +66,6 @@
                 width : '80',
                 title : '权限',
                 field : 'privilege',
-            },
-                    {
-                width : '80',
-                title : '',
-                field : 'realname',
             },
             {
                 field : 'action',

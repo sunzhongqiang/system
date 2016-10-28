@@ -16,8 +16,8 @@ import com.mmk.business.service.WxUserService;
 import com.mmk.business.dao.WxUserDao;
 /**
 * WxUserServiceImpl: 微信用户 业务服务层实现
-* 2016-10-28 14:34:36
-* @author 胡广玲
+* 2016-10-28 14:50:57
+* @author 胡广玲 huguangling
 * @version 1.0
 */
 @Service

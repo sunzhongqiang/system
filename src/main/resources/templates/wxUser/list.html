@@ -25,9 +25,15 @@
             <table>
                 <tr>
 
-                    <th>：</th>
+                    <th>昵称：</th>
                       <td>
                         <input type="text" name="nickname" th:value="${wxUserCondition} ? ${wxUserCondition.nickname} :''"/>
+                      </td>
+                  
+
+                    <th>真实姓名：</th>
+                      <td>
+                        <input type="text" name="realname" th:value="${wxUserCondition} ? ${wxUserCondition.realname} :''"/>
                       </td>
                   
 
@@ -40,12 +46,6 @@
                     <th>国家：</th>
                       <td>
                         <input type="text" name="country" th:value="${wxUserCondition} ? ${wxUserCondition.country} :''"/>
-                      </td>
-                  
-
-                    <th>：</th>
-                      <td>
-                        <input type="text" name="realname" th:value="${wxUserCondition} ? ${wxUserCondition.realname} :''"/>
                       </td>
                   
                       <td>

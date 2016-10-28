@@ -24,11 +24,15 @@
                         <td th:text="${wxUser.openid}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>：</label></td>
+                        <td class="tdTit"><label>昵称：</label></td>
                         <td th:text="${wxUser.nickname}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>：</label></td>
+                        <td class="tdTit"><label>真实姓名：</label></td>
+                        <td th:text="${wxUser.realname}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>性别：</label></td>
                         <td th:text="${wxUser.sex}"></td>
                     </tr>
                     <tr>
@@ -54,10 +58,6 @@
                     <tr>
                         <td class="tdTit"><label>权限：</label></td>
                         <td th:text="${wxUser.privilege}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>：</label></td>
-                        <td th:text="${wxUser.realname}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"></td>
