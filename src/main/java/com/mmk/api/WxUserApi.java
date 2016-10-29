@@ -23,6 +23,6 @@ public interface WxUserApi {
 	 * @param openid
 	 * @return
 	 */
-	WxUser findUser(String openid);
+	ResultMsg findUser(String openid);
 
 }

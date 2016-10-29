@@ -1,5 +1,8 @@
 package com.mmk.api.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +15,7 @@ import com.mmk.common.model.ResultMsg;
 
 @RestController
 public class WxUserApiImpl implements WxUserApi {
-	
+
 	@Resource
 	private WxUserService wxUserService;
 
@@ -20,32 +23,50 @@ public class WxUserApiImpl implements WxUserApi {
 	@Override
 	public ResultMsg save(WxUser user) {
 		WxUser wxUser = wxUserService.findBy("openid", user.getOpenid());
-		if(wxUser==null){
-			//新增用户逻辑
+		if (wxUser == null) {
+			// 新增用户逻辑
 			wxUserService.save(user);
 			return new ResultMsg(true, "用户新增成功");
-			
+
+		} else {
+			wxUser.setCity(user.getCity());
+			wxUser.setCountry(user.getCountry());
+			wxUser.setHeadimgurl(user.getHeadimgurl());
+			wxUser.setLanguage(user.getLanguage());
+			wxUser.setNickname(user.getNickname());
+			wxUser.setOpenid(user.getNickname());
+			wxUser.setPrivilege(user.getPrivilege());
+			wxUser.setRealname(user.getRealname());
+			wxUser.setSex(user.getSex());
+			wxUserService.save(wxUser);
 		}
-		return new ResultMsg(false,"用户已经存在！");
+		return new ResultMsg(false, "用户已经存在！");
 	}
-	
+
 	@RequestMapping("/api/user/login")
 	@Override
 	public ResultMsg login(WxUser user) {
 		WxUser wxUser = wxUserService.findBy("openid", user.getOpenid());
-		if(wxUser==null){
-			//新增用户逻辑
+		if (wxUser == null) {
+			// 新增用户逻辑
 			wxUserService.save(user);
 			return new ResultMsg(true, "用户新增成功");
-			
+
 		}
-		return new ResultMsg(false,"用户已经存在！");
+		return new ResultMsg(false, "用户已经存在！");
 	}
 
 	@RequestMapping("/api/user/findUser")
 	@Override
-	public WxUser findUser(String openid) {
-		return wxUserService.findBy("openid", openid);
+	public ResultMsg findUser(String openid) {
+		WxUser user = wxUserService.findBy("openid", openid);
+		if (user == null) {
+			return new ResultMsg(false, "用户不存在");
+		} else {
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("user", user);
+			return new ResultMsg(true, "查找成功", result);
+		}
 	}
 
 }
