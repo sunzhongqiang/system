@@ -1,5 +1,8 @@
 package com.mmk.api.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,8 +47,15 @@ public class WxUserApiImpl implements WxUserApi {
 
 	@RequestMapping("/api/user/findUser")
 	@Override
-	public WxUser findUser(String openid) {
-		return wxUserService.findBy("openid", openid);
+	public ResultMsg findUser(String openid) {
+		WxUser user = wxUserService.findBy("openid", openid);
+		if(user==null){
+			return new ResultMsg(false,"用户不存在");
+		}else{
+			Map<String, Object> result = new HashMap<String,Object>();
+			result.put("user", user);
+			return new ResultMsg(true,"查找成功",result );
+		}
 	}
 
 }
