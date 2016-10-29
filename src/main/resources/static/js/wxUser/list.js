@@ -53,6 +53,12 @@
 					}
 				}
             },
+                    {
+                width : '120',
+                title : '国家',
+                field : 'country',
+                align: 'center',
+            },
             		{
                 width : '120',
                 title : '省份',
@@ -63,12 +69,6 @@
                 width : '120',
                 title : '城市',
                 field : 'city',
-                align: 'center',
-            },
-                    {
-                width : '120',
-                title : '国家',
-                field : 'country',
                 align: 'center',
             },
                     {
