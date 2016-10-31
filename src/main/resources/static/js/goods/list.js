@@ -172,21 +172,26 @@
         } else {
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.modalDialog({
-            title : '编辑',
-            width : 500,
-            height : 300,
-            href : '/goods/edit?id=' + id,
-            buttons : [ {
-                text : '编辑',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } 
-            ]
-        });
+        
+        parent.addTab({
+			url : '/goods/edit?id=' + id,
+			title : '修改商品',
+		});
+//        parent.$.modalDialog({
+//            title : '编辑',
+//            width : 500,
+//            height : 300,
+//            href : '/goods/edit?id=' + id,
+//            buttons : [ {
+//                text : '编辑',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } 
+//            ]
+//        });
     }
     
     function searchFun() {
