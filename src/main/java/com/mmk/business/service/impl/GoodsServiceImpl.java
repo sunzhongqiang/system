@@ -15,8 +15,8 @@ import com.mmk.business.condition.GoodsCondition;
 import com.mmk.business.service.GoodsService;
 import com.mmk.business.dao.GoodsDao;
 /**
-* GoodsServiceImpl: 商品管理 业务服务层实现
-* 2016-10-31 09:12:44
+* GoodsServiceImpl: 商品活动 业务服务层实现
+* 2016-10-31 10:48:36
 * @author huguangling 胡广玲
 * @version 1.0
 */
@@ -40,13 +40,13 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
 
     @Override
     public Page<Goods> list(GoodsCondition goodsCondition, Pageable pageable) {
-        log.info("商品管理查询列表");
+        log.info("商品活动查询列表");
         return goodsDao.list(goodsCondition, pageable);
     }
     
     @Override
     public List<Goods> list(GoodsCondition goodsCondition) {
-        log.info("商品管理查询列表无分页");
+        log.info("商品活动查询列表无分页");
         return goodsDao.list(goodsCondition);
     }
 
@@ -84,13 +84,13 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
     }
     @Override 
     public Goods findBy(String field,Object value){
-        log.info("商品管理根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
+        log.info("商品活动根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return goodsDao.findBy(field,value);
     }
     
     @Override 
     public List<Goods> findAllBy(String field,Object value){
-        log.info("商品管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
+        log.info("商品活动根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return goodsDao.findAllBy(field,value);
     }
 }

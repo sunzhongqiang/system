@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>详情:商品管理</title>
+        <title>详情:商品活动</title>
         <link href="/css/style.css" rel="stylesheet" type="text/css" />
         <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
     </head>
@@ -10,7 +10,7 @@
     <body>
         <div class="container amn_add">
             <div class="headtt">
-                <h1>商品管理详情</h1>            
+                <h1>商品活动详情</h1>            
             </div>
             <div class="role_tit"></div>            
             <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
@@ -20,40 +20,20 @@
                         <td th:text="${goods.id}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>分类ID：</label></td>
-                        <td th:text="${goods.catId}"></td>
+                        <td class="tdTit"><label>商品分类：1，一元购；2，拼团：</label></td>
+                        <td th:text="${goods.goodsCat}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品名称：</label></td>
                         <td th:text="${goods.goodsName}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品编码：</label></td>
-                        <td th:text="${goods.goodsSn}"></td>
-                    </tr>
-                    <tr>
                         <td class="tdTit"><label>商品数量：</label></td>
                         <td th:text="${goods.goodsNumber}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品价格：</label></td>
-                        <td th:text="${goods.goodsPrice}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品重量：</label></td>
-                        <td th:text="${goods.goodsWeight}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品条形码：</label></td>
-                        <td th:text="${goods.barCode}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>品牌ID：</label></td>
-                        <td th:text="${goods.brandId}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>品牌名称：</label></td>
-                        <td th:text="${goods.brandName}"></td>
+                        <td class="tdTit"><label>商品原价：</label></td>
+                        <td th:text="${goods.goodsOriginalPrice}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>团购价：</label></td>
@@ -61,35 +41,19 @@
                     </tr>
                     <tr>
                         <td class="tdTit"><label>促销开始时间：</label></td>
-                        <td th:text="${goods.pmtStartDate}"></td>
+                        <td th:text="${goods.promoteStartDate}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>促销结束时间：</label></td>
-                        <td th:text="${goods.pmtEndDate}"></td>
+                        <td th:text="${goods.promoteEndDate}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>促销数量：</label></td>
-                        <td th:text="${goods.pmtNumber}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品摘要：</label></td>
-                        <td th:text="${goods.goodsBrief}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品描述：</label></td>
-                        <td th:text="${goods.goodsDesc}"></td>
+                        <td th:text="${goods.promoteNumber}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>已售数量：</label></td>
                         <td th:text="${goods.saledNumber}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>虚拟售出数量：</label></td>
-                        <td th:text="${goods.virtueSaleNum}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>卖家备注：</label></td>
-                        <td th:text="${goods.sellerNote}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品相册：</label></td>

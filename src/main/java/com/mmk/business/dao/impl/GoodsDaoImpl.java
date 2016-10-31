@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsDaoImpl 创建于 2016-10-31 09:12:44 版权归作者和作者当前组织所有
+ *  GoodsDaoImpl 创建于 2016-10-31 10:48:36 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao.impl;
 
@@ -24,7 +24,7 @@ import com.mmk.business.condition.GoodsCondition;
 
 
 /**
-* GoodsDaoImpl: 商品管理 数据持久层接口实现
+* GoodsDaoImpl: 商品活动 数据持久层接口实现
 *@author huguangling 胡广玲
 *@version 1.0
 *
@@ -63,7 +63,7 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
     
     @Override 
     public Page< Map<String,Object>> listBySql(GoodsCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,cat_id,goods_name,goods_sn,goods_number,goods_price,goods_weight,bar_code,brand_id,brand_name,promote_price,pmt_start_date,pmt_end_date,pmt_number,goods_brief,goods_desc,saled_number,virtue_sale_num,seller_note,goods_thumb,goods_main_img,goods_original_img,is_delete from business_goods  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,goods_cat,goods_name,goods_number,goods_original_price,promote_price,promote_start_date,promote_end_date,promote_number,saled_number,goods_thumb,goods_main_img,goods_original_img,is_delete from business_goods  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

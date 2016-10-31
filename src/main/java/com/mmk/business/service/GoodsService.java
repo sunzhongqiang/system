@@ -8,8 +8,8 @@ import com.mmk.business.model.Goods;
 import com.mmk.business.condition.GoodsCondition;
 
 /**
-* GoodsService: 商品管理 业务服务层接口
-*2016-10-31 09:12:44
+* GoodsService: 商品活动 业务服务层接口
+*2016-10-31 10:48:36
 *@author huguangling 胡广玲
 *@version 1.0
 */

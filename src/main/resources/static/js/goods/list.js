@@ -19,8 +19,8 @@
             },
                     {
                 width : '80',
-                title : '分类ID',
-                field : 'catId',
+                title : '商品分类：1，一元购；2，拼团',
+                field : 'goodsCat',
             },
                     {
                 width : '80',
@@ -29,38 +29,13 @@
             },
                     {
                 width : '80',
-                title : '商品编码',
-                field : 'goodsSn',
-            },
-                    {
-                width : '80',
                 title : '商品数量',
                 field : 'goodsNumber',
             },
                     {
                 width : '80',
-                title : '商品价格',
-                field : 'goodsPrice',
-            },
-                    {
-                width : '80',
-                title : '商品重量',
-                field : 'goodsWeight',
-            },
-                    {
-                width : '80',
-                title : '商品条形码',
-                field : 'barCode',
-            },
-                    {
-                width : '80',
-                title : '品牌ID',
-                field : 'brandId',
-            },
-                    {
-                width : '80',
-                title : '品牌名称',
-                field : 'brandName',
+                title : '商品原价',
+                field : 'goodsOriginalPrice',
             },
                     {
                 width : '80',
@@ -70,42 +45,22 @@
                     {
                 width : '80',
                 title : '促销开始时间',
-                field : 'pmtStartDate',
+                field : 'promoteStartDate',
             },
                     {
                 width : '80',
                 title : '促销结束时间',
-                field : 'pmtEndDate',
+                field : 'promoteEndDate',
             },
                     {
                 width : '80',
                 title : '促销数量',
-                field : 'pmtNumber',
-            },
-                    {
-                width : '80',
-                title : '商品摘要',
-                field : 'goodsBrief',
-            },
-                    {
-                width : '80',
-                title : '商品描述',
-                field : 'goodsDesc',
+                field : 'promoteNumber',
             },
                     {
                 width : '80',
                 title : '已售数量',
                 field : 'saledNumber',
-            },
-                    {
-                width : '80',
-                title : '虚拟售出数量',
-                field : 'virtueSaleNum',
-            },
-                    {
-                width : '80',
-                title : '卖家备注',
-                field : 'sellerNote',
             },
                     {
                 width : '80',
@@ -177,7 +132,7 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除商品管理？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除商品活动？', function(b) {
             if (b) {
                 progressLoad();
                     $.post('/goods/delete', {

@@ -1,6 +1,6 @@
 /*
  * 
- *  商品管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
+ *  商品活动Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
  */
 package com.mmk.business.web;
 
@@ -29,7 +29,7 @@ import com.mmk.business.condition.GoodsCondition;
 
 /**
 *@Title: GoodsController
-*@Description: 商品管理 的web控制层
+*@Description: 商品活动 的web控制层
 *@author huguangling 胡广玲
 */
 @RestController
@@ -44,7 +44,7 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/list")
     public ModelAndView list(){
-        log.info("商品管理列表查询");
+        log.info("商品活动列表查询");
         ModelAndView modelAndView = new ModelAndView("goods/list");
         return  modelAndView;
     }
@@ -62,7 +62,7 @@ public class GoodsController extends BaseController {
     @RequestMapping("/goods/gridData")
     @ResponseBody
     public GridData<Goods> loadList(GoodsCondition goodsCondition, EasyPageable pageable){
-        log.info("获取商品管理列表数据");
+        log.info("获取商品活动列表数据");
         Page<Goods> goodsPage = goodsService.list(goodsCondition,pageable.pageable());   
         GridData<Goods> grid = new GridData<Goods>(goodsPage);
         return grid;
@@ -70,7 +70,7 @@ public class GoodsController extends BaseController {
     
     /**
      * 新增页面
-     * @return 跳转到商品管理新增页面
+     * @return 跳转到商品活动新增页面
      */
     @RequestMapping("/goods/add")
     public ModelAndView addPage(){
@@ -85,7 +85,7 @@ public class GoodsController extends BaseController {
      */ 
     @RequestMapping("/goods/edit")
     public ModelAndView editPage(Goods goods){
-        log.info("商品管理编辑页面");
+        log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
@@ -94,20 +94,20 @@ public class GoodsController extends BaseController {
     
     
     /**
-     * 商品管理数据保存方法
+     * 商品活动数据保存方法
      * @param goods 要保存的数据
      * @return goods 保存后的数据
      */
     @RequestMapping("/goods/save")
     @ResponseBody
     public ResultMsg save(Goods goods){
-        log.info("商品管理保存");
+        log.info("商品活动保存");
         try {
             goodsService.save(goods);
         } catch (Exception e) {
-            return new ResultMsg(false,"商品管理保存失败");
+            return new ResultMsg(false,"商品活动保存失败");
         }
-        return new ResultMsg(true,"商品管理保存成功");
+        return new ResultMsg(true,"商品活动保存成功");
     }
     
    
@@ -120,7 +120,7 @@ public class GoodsController extends BaseController {
     @RequestMapping("/goods/details")
     @ResponseBody
     public Goods details(Goods goods){
-        log.info("商品管理详细信息");
+        log.info("商品活动详细信息");
         goods = goodsService.find(goods.getId());
         return goods;
     }
@@ -132,7 +132,7 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/delete")
     public ResultMsg delete(Goods goods){
-        log.info("商品管理删除");
+        log.info("商品活动删除");
         try {
             goodsService.delete(goods);
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/deleteAll")
     public boolean delete(List<Goods> goodsList){
-        log.info("商品管理批量删除");
+        log.info("商品活动批量删除");
         try {
             goodsService.delete(goodsList);
         } catch (Exception e) {
@@ -167,7 +167,7 @@ public class GoodsController extends BaseController {
     @RequestMapping("/goods/id/exist")
     @ResponseBody
     public boolean existsId(Long id){
-        log.info("检测商品管理是否存在  id");
+        log.info("检测商品活动是否存在  id");
         return goodsService.existsId(id);
     }
 }

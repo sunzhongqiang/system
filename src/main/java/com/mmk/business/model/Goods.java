@@ -1,6 +1,6 @@
 /*
  * 
- *  Goods 创建于 2016-10-31 09:12:44 版权归作者和作者当前组织所有
+ *  Goods 创建于 2016-10-31 10:48:36 版权归作者和作者当前组织所有
  */
 package com.mmk.business.model;
 
@@ -15,8 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
-* Goods: 商品管理 数据领域模型
-* 2016-10-31 09:12:44
+* Goods: 商品活动 数据领域模型
+* 2016-10-31 10:48:36
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -32,10 +32,10 @@ public class Goods {
     private Long id;
 
     /**
-     * 分类ID
+     * 商品分类：1，一元购；2，拼团
      */
-    @Column(name="cat_id")
-    private Long catId;
+    @Column(name="goods_cat")
+    private Long goodsCat;
 
     /**
      * 商品名称
@@ -44,46 +44,16 @@ public class Goods {
     private String goodsName;
 
     /**
-     * 商品编码
-     */
-    @Column(name="goods_sn")
-    private String goodsSn;
-
-    /**
      * 商品数量
      */
     @Column(name="goods_number")
     private Long goodsNumber;
 
     /**
-     * 商品价格
+     * 商品原价
      */
-    @Column(name="goods_price")
-    private Long goodsPrice;
-
-    /**
-     * 商品重量
-     */
-    @Column(name="goods_weight")
-    private Long goodsWeight;
-
-    /**
-     * 商品条形码
-     */
-    @Column(name="bar_code")
-    private String barCode;
-
-    /**
-     * 品牌ID
-     */
-    @Column(name="brand_id")
-    private Long brandId;
-
-    /**
-     * 品牌名称
-     */
-    @Column(name="brand_name")
-    private String brandName;
+    @Column(name="goods_original_price")
+    private Double goodsOriginalPrice;
 
     /**
      * 团购价
@@ -95,51 +65,27 @@ public class Goods {
      * 促销开始时间
      */
     @Temporal(TemporalType.TIMESTAMP)   
-    @Column(name="pmt_start_date")
-    private Date pmtStartDate;
+    @Column(name="promote_start_date")
+    private Date promoteStartDate;
 
     /**
      * 促销结束时间
      */
     @Temporal(TemporalType.TIMESTAMP)   
-    @Column(name="pmt_end_date")
-    private Date pmtEndDate;
+    @Column(name="promote_end_date")
+    private Date promoteEndDate;
 
     /**
      * 促销数量
      */
-    @Column(name="pmt_number")
-    private Long pmtNumber;
-
-    /**
-     * 商品摘要
-     */
-    @Column(name="goods_brief")
-    private String goodsBrief;
-
-    /**
-     * 商品描述
-     */
-    @Column(name="goods_desc")
-    private String goodsDesc;
+    @Column(name="promote_number")
+    private Long promoteNumber;
 
     /**
      * 已售数量
      */
     @Column(name="saled_number")
     private Long saledNumber;
-
-    /**
-     * 虚拟售出数量
-     */
-    @Column(name="virtue_sale_num")
-    private Long virtueSaleNum;
-
-    /**
-     * 卖家备注
-     */
-    @Column(name="seller_note")
-    private String sellerNote;
 
     /**
      * 商品相册
@@ -180,16 +126,16 @@ public class Goods {
     }
 
     /** 
-	* @return catId ：分类ID
+	* @return goodsCat ：商品分类：1，一元购；2，拼团
 	*/
-    public Long getCatId() {
-        return catId;
+    public Long getGoodsCat() {
+        return goodsCat;
     }
     /** 
-    *@param catId 设置分类ID 
+    *@param goodsCat 设置商品分类：1，一元购；2，拼团 
     */
-    public void setCatId(Long catId) {
-        this.catId = catId;
+    public void setGoodsCat(Long goodsCat) {
+        this.goodsCat = goodsCat;
     }
 
     /** 
@@ -206,19 +152,6 @@ public class Goods {
     }
 
     /** 
-	* @return goodsSn ：商品编码
-	*/
-    public String getGoodsSn() {
-        return goodsSn;
-    }
-    /** 
-    *@param goodsSn 设置商品编码 
-    */
-    public void setGoodsSn(String goodsSn) {
-        this.goodsSn = goodsSn;
-    }
-
-    /** 
 	* @return goodsNumber ：商品数量
 	*/
     public Long getGoodsNumber() {
@@ -232,68 +165,16 @@ public class Goods {
     }
 
     /** 
-	* @return goodsPrice ：商品价格
+	* @return goodsOriginalPrice ：商品原价
 	*/
-    public Long getGoodsPrice() {
-        return goodsPrice;
+    public Double getGoodsOriginalPrice() {
+        return goodsOriginalPrice;
     }
     /** 
-    *@param goodsPrice 设置商品价格 
+    *@param goodsOriginalPrice 设置商品原价 
     */
-    public void setGoodsPrice(Long goodsPrice) {
-        this.goodsPrice = goodsPrice;
-    }
-
-    /** 
-	* @return goodsWeight ：商品重量
-	*/
-    public Long getGoodsWeight() {
-        return goodsWeight;
-    }
-    /** 
-    *@param goodsWeight 设置商品重量 
-    */
-    public void setGoodsWeight(Long goodsWeight) {
-        this.goodsWeight = goodsWeight;
-    }
-
-    /** 
-	* @return barCode ：商品条形码
-	*/
-    public String getBarCode() {
-        return barCode;
-    }
-    /** 
-    *@param barCode 设置商品条形码 
-    */
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
-    }
-
-    /** 
-	* @return brandId ：品牌ID
-	*/
-    public Long getBrandId() {
-        return brandId;
-    }
-    /** 
-    *@param brandId 设置品牌ID 
-    */
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    /** 
-	* @return brandName ：品牌名称
-	*/
-    public String getBrandName() {
-        return brandName;
-    }
-    /** 
-    *@param brandName 设置品牌名称 
-    */
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setGoodsOriginalPrice(Double goodsOriginalPrice) {
+        this.goodsOriginalPrice = goodsOriginalPrice;
     }
 
     /** 
@@ -310,68 +191,42 @@ public class Goods {
     }
 
     /** 
-	* @return pmtStartDate ：促销开始时间
+	* @return promoteStartDate ：促销开始时间
 	*/
-    public Date getPmtStartDate() {
-        return pmtStartDate;
+    public Date getPromoteStartDate() {
+        return promoteStartDate;
     }
     /** 
-    *@param pmtStartDate 设置促销开始时间 
+    *@param promoteStartDate 设置促销开始时间 
     */
-    public void setPmtStartDate(Date pmtStartDate) {
-        this.pmtStartDate = pmtStartDate;
+    public void setPromoteStartDate(Date promoteStartDate) {
+        this.promoteStartDate = promoteStartDate;
     }
 
     /** 
-	* @return pmtEndDate ：促销结束时间
+	* @return promoteEndDate ：促销结束时间
 	*/
-    public Date getPmtEndDate() {
-        return pmtEndDate;
+    public Date getPromoteEndDate() {
+        return promoteEndDate;
     }
     /** 
-    *@param pmtEndDate 设置促销结束时间 
+    *@param promoteEndDate 设置促销结束时间 
     */
-    public void setPmtEndDate(Date pmtEndDate) {
-        this.pmtEndDate = pmtEndDate;
+    public void setPromoteEndDate(Date promoteEndDate) {
+        this.promoteEndDate = promoteEndDate;
     }
 
     /** 
-	* @return pmtNumber ：促销数量
+	* @return promoteNumber ：促销数量
 	*/
-    public Long getPmtNumber() {
-        return pmtNumber;
+    public Long getPromoteNumber() {
+        return promoteNumber;
     }
     /** 
-    *@param pmtNumber 设置促销数量 
+    *@param promoteNumber 设置促销数量 
     */
-    public void setPmtNumber(Long pmtNumber) {
-        this.pmtNumber = pmtNumber;
-    }
-
-    /** 
-	* @return goodsBrief ：商品摘要
-	*/
-    public String getGoodsBrief() {
-        return goodsBrief;
-    }
-    /** 
-    *@param goodsBrief 设置商品摘要 
-    */
-    public void setGoodsBrief(String goodsBrief) {
-        this.goodsBrief = goodsBrief;
-    }
-
-    /** 
-	* @return goodsDesc ：商品描述
-	*/
-    public String getGoodsDesc() {
-        return goodsDesc;
-    }
-    /** 
-    *@param goodsDesc 设置商品描述 
-    */
-    public void setGoodsDesc(String goodsDesc) {
-        this.goodsDesc = goodsDesc;
+    public void setPromoteNumber(Long promoteNumber) {
+        this.promoteNumber = promoteNumber;
     }
 
     /** 
@@ -385,32 +240,6 @@ public class Goods {
     */
     public void setSaledNumber(Long saledNumber) {
         this.saledNumber = saledNumber;
-    }
-
-    /** 
-	* @return virtueSaleNum ：虚拟售出数量
-	*/
-    public Long getVirtueSaleNum() {
-        return virtueSaleNum;
-    }
-    /** 
-    *@param virtueSaleNum 设置虚拟售出数量 
-    */
-    public void setVirtueSaleNum(Long virtueSaleNum) {
-        this.virtueSaleNum = virtueSaleNum;
-    }
-
-    /** 
-	* @return sellerNote ：卖家备注
-	*/
-    public String getSellerNote() {
-        return sellerNote;
-    }
-    /** 
-    *@param sellerNote 设置卖家备注 
-    */
-    public void setSellerNote(String sellerNote) {
-        this.sellerNote = sellerNote;
     }
 
     /** 
