@@ -1,6 +1,7 @@
 package com.mmk.api.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -52,13 +53,13 @@ public class GoodsApiImpl implements GoodsApi{
 
 	@RequestMapping("/api/goods/findGoods")
 	@Override
-	public ResultMsg findGoods(String id) {
-		Goods good = goodsServiceImpl.findBy("id", id);
-		if (good == null) {
+	public ResultMsg findGoods() {
+		Iterable<Goods> goods = goodsServiceImpl.findAll();
+		if (goods == null) {
 			return new ResultMsg(false, "该商品不存在");
 		} else {
 			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("good", good);
+			result.put("good", goods);
 			return new ResultMsg(true, "查找成功", result);
 		}
 	}

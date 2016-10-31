@@ -128,7 +128,7 @@ public class WxUserController extends BaseController {
     /**
      * 删除数据操作组方法
      * @param page wxUser
-     * @return
+     * @return 
      */
     @RequestMapping("/wxUser/delete")
     public ResultMsg delete(WxUser wxUser){

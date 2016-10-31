@@ -17,7 +17,7 @@ public interface GoodsApi {
 	 * @param goods 要检索商品的Id
 	 * @return
 	 */
-	ResultMsg findGoods(String id);
+	ResultMsg findGoods();
 	
 
 }
