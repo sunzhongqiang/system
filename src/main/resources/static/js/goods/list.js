@@ -4,6 +4,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/goods/gridData',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -21,6 +22,20 @@
                 width : '80',
                 title : '商品分类：1，一元购；2，拼团',
                 field : 'goodsCat',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '一元购';
+					case 1:
+						return '拼团';
+					}
+				}
+                
+            },
+            		{
+                width : '80',
+                title : '商品主图',
+                field : 'goodsMainImg',
             },
                     {
                 width : '80',
@@ -43,14 +58,16 @@
                 field : 'promotePrice',
             },
                     {
-                width : '80',
+                width : '150',
                 title : '促销开始时间',
                 field : 'promoteStartDate',
+                formatter: formatDatebox,
             },
                     {
-                width : '80',
+                width : '150',
                 title : '促销结束时间',
                 field : 'promoteEndDate',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
@@ -62,21 +79,16 @@
                 title : '已售数量',
                 field : 'saledNumber',
             },
-                    {
-                width : '80',
-                title : '商品相册',
-                field : 'goodsThumb',
-            },
-                    {
-                width : '80',
-                title : '商品主图',
-                field : 'goodsMainImg',
-            },
-                    {
-                width : '80',
-                title : '商品原图',
-                field : 'goodsOriginalImg',
-            },
+//                    {
+//                width : '80',
+//                title : '商品相册',
+//                field : 'goodsThumb',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品原图',
+//                field : 'goodsOriginalImg',
+//            },
                     {
                 width : '80',
                 title : '商品是否下架',
@@ -109,20 +121,25 @@
     });
     
     function addFun() {
-        parent.$.modalDialog({
-            title : '添加',
-            width : 500,
-            height : 300,
-            href : '/goods/add',
-            buttons : [ {
-                text : '添加',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } ]
-        });
+    	
+    	 parent.addTab({
+			url : '/goods/add',
+			title : '添加商品',
+		});
+//        parent.$.modalDialog({
+//            title : '添加',
+//            width : 500,
+//            height : 300,
+//            href : '/goods/add',
+//            buttons : [ {
+//                text : '添加',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } ]
+//        });
     }
     
     function deleteFun(id) {
