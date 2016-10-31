@@ -1,0 +1,115 @@
+.tab_body .tdTit {
+    width: 162px;
+    text-align: right;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #636365;
+}
+.tab_body .tdTit {
+    width: 162px;
+    text-align: right;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #636365;
+}
+#uploader-demo {
+    width: 606px;
+    min-height: 300px;
+    border: 1px solid #cbcbcb;
+    position: relative;
+}
+#mainfile {
+    display: inline-block;
+}
+#mainPicker {
+    padding-bottom: 10px;
+    margin-left: 5px;
+}
+.webuploader-container {
+    position: relative;
+    overflow: hidden;
+}
+#uploader-demo dl {
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+}
+.webuploader-container {
+    position: relative;
+    overflow: hidden;
+}
+.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #8EACCE;
+    padding: 5px 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+    float: right;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+.file-item {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px solid #CBCBCB;
+    position: relative;
+}
+.file-item img {
+    padding: 2px;
+    width: 100px;
+    height: 100px;
+}
+#fileList {
+    margin-top: 20px;
+}
+
+.tabbar_tit {
+    margin-top: 10px;
+    border-bottom: 1px solid #DDD;
+    padding-left: 30px;
+    height: 40px;
+    line-height: 40px;
+}
+.tabbar_tit span.hover1 {
+    border: 1px solid #DDD;
+    border-bottom: none;
+    color: #000;
+    font-weight: bold;
+    margin-top: 1px;
+    background: #FAFAFA;
+    line-height: 39px;
+}
+.tabbar_tit span {
+    display: inline-block;
+    padding: 0px 15px;
+    line-height: 40px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

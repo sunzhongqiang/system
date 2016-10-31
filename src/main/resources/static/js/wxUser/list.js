@@ -45,9 +45,9 @@
                 formatter : function(value, row, index) {
 					switch (value) {
 					case '0':
-						return '男';
-					case '1':
 						return '女';
+					case '1':
+						return '男';
 					case '2':
 						return '保密';
 					}
