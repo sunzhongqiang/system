@@ -1,0 +1,172 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/goods/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>分类ID：</label></td>
+                        <td>
+                        <input type="text"  name="catId"   class="easyui-validatebox" data-options="required:true" th:value="${goods.catId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品名称：</label></td>
+                        <td>
+                        <input type="text"  name="goodsName"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品编码：</label></td>
+                        <td>
+                        <input type="text"  name="goodsSn"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsSn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品数量：</label></td>
+                        <td>
+                        <input type="text"  name="goodsNumber"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsNumber}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td>
+                        <input type="text"  name="goodsPrice"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品重量：</label></td>
+                        <td>
+                        <input type="text"  name="goodsWeight"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsWeight}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品条形码：</label></td>
+                        <td>
+                        <input type="text"  name="barCode"   class="easyui-validatebox" data-options="required:true" th:value="${goods.barCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>品牌ID：</label></td>
+                        <td>
+                        <input type="text"  name="brandId"   class="easyui-validatebox" data-options="required:true" th:value="${goods.brandId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>品牌名称：</label></td>
+                        <td>
+                        <input type="text"  name="brandName"   class="easyui-validatebox" data-options="required:true" th:value="${goods.brandName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>团购价：</label></td>
+                        <td>
+                        <input type="text"  name="promotePrice"   class="easyui-validatebox" data-options="required:true" th:value="${goods.promotePrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销开始时间：</label></td>
+                        <td><input id="" name="pmtStartDate" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${goods.pmtStartDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销结束时间：</label></td>
+                        <td><input id="" name="pmtEndDate" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${goods.pmtEndDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销数量：</label></td>
+                        <td>
+                        <input type="text"  name="pmtNumber"   class="easyui-validatebox" data-options="required:true" th:value="${goods.pmtNumber}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品摘要：</label></td>
+                        <td>
+                        <input type="text"  name="goodsBrief"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsBrief}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品描述：</label></td>
+                        <td>
+                        <input type="text"  name="goodsDesc"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsDesc}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>已售数量：</label></td>
+                        <td>
+                        <input type="text"  name="saledNumber"   class="easyui-validatebox" data-options="required:true" th:value="${goods.saledNumber}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>虚拟售出数量：</label></td>
+                        <td>
+                        <input type="text"  name="virtueSaleNum"   class="easyui-validatebox" data-options="required:true" th:value="${goods.virtueSaleNum}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>卖家备注：</label></td>
+                        <td>
+                        <input type="text"  name="sellerNote"   class="easyui-validatebox" data-options="required:true" th:value="${goods.sellerNote}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品相册：</label></td>
+                        <td>
+                        <input type="text"  name="goodsThumb"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsThumb}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品主图：</label></td>
+                        <td>
+                        <input type="text"  name="goodsMainImg"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsMainImg}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品原图：</label></td>
+                        <td>
+                        <input type="text"  name="goodsOriginalImg"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsOriginalImg}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品是否下架：</label></td>
+                        <td>
+                        <input type="text"  name="isDelete"   class="easyui-validatebox" data-options="required:true" th:value="${goods.isDelete}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${goods.id}"/>
+        </form>
+    </div>
+</div>
