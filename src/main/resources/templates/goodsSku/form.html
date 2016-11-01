@@ -1,0 +1,80 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/goodsSku/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>属性值：</label></td>
+                        <td>
+                        <input type="text"  name="skuValue"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.skuValue}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td>
+                        <input type="text"  name="goodPrice"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>该sku库存：</label></td>
+                        <td>
+                        <input type="text"  name="goodStock"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodStock}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品条形码：</label></td>
+                        <td>
+                        <input type="text"  name="goodCode"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品重量：</label></td>
+                        <td>
+                        <input type="text"  name="goodWeight"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodWeight}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品颜色：</label></td>
+                        <td>
+                        <input type="text"  name="goodColor"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodColor}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${goodsSku.id}"/>
+        </form>
+    </div>
+</div>
