@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- [EasyUI] -->
+<link id="easyuiTheme" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/default/easyui.css" type="text/css" />
+<link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
+<link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+<script src="http://yiqingo.com/js/jquery-1.8.3.min.js" type="text/javascript" xml:space="preserve"></script>
+<script type="text/javascript" src="/webuploader/webuploader.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css" />
+<title>管理后台</title>
+</head>
+<body>
+<div class="container amn_add kw">
+		<div class="tab_body" id="tab_body">
+			<div class="tabbar_tit">
+				<span id="0" class="hover1">发布商品</span>
+				<span id="1" >商品详情</span>
+			</div>
+		<form id="modelForm" method="post" action="/goods/save">
+			<!-- 发布商品-->
+				<table id="table0" cellspacing="1" cellpadding="3" class="tbbox" >
+                   
+                  <tr>
+                        <td class="tdTit"><label>商品分类：</label></td>
+                        <td>
+                        	<select name="goodsCat" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+	                            <option>请选择</option>
+	                            <option th:selected="${goods.goodsCat} == '1' ? 'selected' " value="1" >一元购</option>
+	                            <option th:selected="${goods.goodsCat} == '0' ? 'selected' "  value="0">拼团</option>
+	                       </select>
+<!--                         	<input type="text"  name="goodsCat"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsCat}"/> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品名称：</label></td>
+                        <td>
+                        <input type="text"  name="goodsName"   class="easyui-validatebox mytextbox" data-options="required:true" th:value="${goods.goodsName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品数量：</label></td>
+                        <td>
+                        <input type="text"  name="goodsNumber"   class="easyui-numberbox" data-options="required:true" th:value="${goods.goodsNumber}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品原价：</label></td>
+                        <td>
+                        <input type="text"  name="goodsOriginalPrice"   class="easyui-numberbox" data-options="required:true" th:value="${goods.goodsOriginalPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>团购价：</label></td>
+                        <td>
+                        <input type="text"  name="promotePrice"   class="easyui-numberbox"  th:value="${goods.promotePrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销开始时间：</label></td>
+                        <td>
+                        <input class="easyui-datetimebox" name="promoteStartDate" style="width:180px" th:value="${goods.promoteStartDate}" />
+<!--                         <input id="" name="promoteStartDate" type="text" readonly="readonly" onfocus="WdatePicker();" th:value="${goods.promoteStartDate}"/> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销结束时间：</label></td>
+                        <td>
+                        <input class="easyui-datetimebox" name="promoteEndDate" style="width:180px" th:value="${goods.promoteEndDate}" />
+<!--                         <input id="" class="easyui-datetimebox" name="promoteEndDate" type="text"  readonly="readonly" onfocus="WdatePicker();" th:value="${goods.promoteEndDate}"/> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>促销数量：</label></td>
+                        <td>
+                        <input type="text"  name="promoteNumber"   class="easyui-numberbox"  th:value="${goods.promoteNumber}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>已售数量：</label></td>
+                        <td>
+                        <input type="text"  name="saledNumber"   class="easyui-numberbox"  th:value="${goods.saledNumber}"/>
+                        </td>
+                    </tr>
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><label>商品相册：</label></td> -->
+<!--                         <td> -->
+<!--                         <input type="text"  name="goodsThumb"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsThumb}"/> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><label>商品主图：</label></td> -->
+<!--                         <td> -->
+<!--                         <input type="text"  name="goodsMainImg"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsMainImg}"/> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><label>商品原图：</label></td> -->
+<!--                         <td> -->
+<!--                         <input type="text"  name="goodsOriginalImg"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsOriginalImg}"/> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+                    <tr>
+                        <td class="tdTit"><label>商品是否下架：</label></td>
+                        <td>
+                        <select name="isDelete" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+	                            <option th:selected="${goods.isDelete} == '0' ? 'selected' " value="0" >上架</option>
+	                            <option th:selected="${goods.isDelete} == '1' ? 'selected' "  value="1">下架</option>
+	                       </select>
+<!--                         <input type="text"  name="isDelete"   class="easyui-validatebox" data-options="required:true" th:value="${goods.isDelete}"/> -->
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="tdTit"><label>上传商品图片：</label></td>
+                        <td>
+							 <div id="uploader-demo">
+							    <!--用来存放item-->
+							    <div id="mainfile" class="uploader-list">
+							    	<div id="mainPicker">选择主图</div>
+							    	<input type="hidden" value="ss" name="goodsMainImg"></input>
+							    	<input type="hidden" value="ss" name="goodsOriginalImg"></input>
+							    	<input type="hidden" value="sss" name="goodsThumbimg"></input>
+							    </div>
+							 	<dl>
+									<dt>提示：</dt>
+								    <dd>本地上传图片大小不能超过3M。</dd>
+								    <dd>本类目下您最多可以上传 5 张图片。</dd>
+								</dl>
+							    <div id="filePicker">选择相册</div>
+							    <!--用来存放item-->
+							    <div id="fileList" class="uploader-list"></div>
+							</div>
+                        </td>
+                    </tr>
+                </table>
+				
+				<table id="table1" cellspacing="1" cellpadding="3" class="tbbox" style="display: none;">
+				     <tr>
+				         <td class="tdTit"></td>
+				         <td>
+				             <!-- 加载编辑器的容器 -->
+				            <script id="editor" name="goodsThumb" type="text/plain"></script>
+				            <!-- 配置文件 -->
+				            <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+				            <!-- 编辑器源码文件 -->
+				            <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+				            <!-- 实例化编辑器 -->
+				            <script type="text/javascript">
+				                var ue = UE.getEditor('editor',{initialFrameWidth:1000,initialFrameHeight:500});
+				            </script>
+				         </td>
+			         </tr>
+				</table>
+				<div class="tab_bott">
+			            <input class="btn_sbt" type="submit" value="提交" />
+			            <a href="/goods/list" class="btn_back">返回</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<script>
+    $(document).ready(function(){
+        $(".tabbar_tit span").click(function(){
+            $(this).addClass("hover1").siblings().removeClass('hover1');
+             var tables = document.getElementsByTagName("table");
+             var spans  = document.getElementsByTagName("span");
+             var sid= $(this)[0].id; ;
+            
+             if(sid == 0){
+            	 $("#table0").css("display","table");
+                 $("#table1").css("display","none");
+             }
+             if(sid == 1){
+                 $("#table0").css("display","none");
+                 $("#table1").css("display","block");
+             }
+            
+        })
+    })
+</script>       
+<script type="text/javascript" src="/js/shangchuan.js"></script>
+</body>
+</html>
