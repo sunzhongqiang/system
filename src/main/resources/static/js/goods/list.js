@@ -93,6 +93,14 @@
                 width : '80',
                 title : '商品是否下架',
                 field : 'isDelete',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '上架';
+					case 1:
+						return '下架';
+					}
+				}
             },
             {
                 field : 'action',

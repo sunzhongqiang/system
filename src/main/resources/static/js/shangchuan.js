@@ -6,7 +6,7 @@
      // swf文件路径
      swf: 'Uploader.swf',
      // 文件接收服务端。
-     server: '/goods/upload',
+     server: '/goods/save',
      fileNumLimit :4,
      // 选择文件的按钮。可选。
      // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -67,9 +67,9 @@
 	 var li = $( '#'+file.id );
 	if (response.success) {
 		li.append("<input type='hidden'  name='imgIdArr' value='ADD' />");
-		li.append("<input type='hidden'  name='goodsImgArr' value='"+response.goodsImgArr+"' />");
-		li.append("<input type='hidden'  name='thumbImgArr' value='"+response.thumbImgArr+"' />");
-	    li.append("<input type='hidden'  name='originalImgArr' value='"+response.originalImgArr+"' />");
+		li.append("<input type='hidden'  name='goodsOriginalImg' value='"+response.goodsOriginalImg+"' />");
+		li.append("<input type='hidden'  name='goodsMainImg' value='"+response.goodsMainImg+"' />");
+	    li.append("<input type='hidden'  name='goodsThumb' value='"+response.goodsThumb+"' />");
 	    li.addClass('upload-state-done');
 	}else{
 		li.append("<p>上传失败</p>");
@@ -125,9 +125,9 @@ var delThumb = "";
 		// 如果删除的是主图
 		if ($(this).parent().parent().attr("id") == 'mainfile') {
 			var mainDiv = $('#mainfile');
-			mainDiv.find("[ name = 'goodsImg' ]").attr("value", null);
+			mainDiv.find("[ name = 'goodsOriginalImg' ]").attr("value", null);
+			mainDiv.find("[ name = 'goodsMainImg' ]").attr("value", null);
 			mainDiv.find("[ name = 'goodsThumb' ]").attr("value", null);
-			mainDiv.find("[ name = 'originalImg' ]").attr("value", null);
 		}
 		$(this).parent().remove();
 	  })
@@ -180,13 +180,14 @@ mainUploader.on( 'fileQueued', function( file ) {
 });
 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
 mainUploader.on( 'uploadSuccess', function(file, response) {
+	alert("8");
 	 var size = $(".file-item").size()-1;
 	 var li = $( '#'+file.id );
 	 var mainDiv = $('#mainfile');
 	if (response.success) {
-		mainDiv.find("[ name = 'goodsImg' ]").attr("value", response.goodsImgArr);
-		mainDiv.find("[ name = 'goodsThumb' ]").attr("value", response.thumbImgArr);
-		mainDiv.find("[ name = 'originalImg' ]").attr("value", response.originalImgArr);
+		mainDiv.find("[ name = 'goodsOriginalImg' ]").attr("value", response.goodsOriginalImg);
+		mainDiv.find("[ name = 'goodsMainImg' ]").attr("value", response.goodsMainImg);
+		mainDiv.find("[ name = 'goodsThumb' ]").attr("value", response.goodsThumb);
 	    li.addClass('upload-state-done');
 	} else {
 		li.append("<p>上传失败</p>");
