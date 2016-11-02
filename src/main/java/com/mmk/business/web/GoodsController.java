@@ -103,8 +103,10 @@ public class GoodsController extends BaseController {
     public ModelAndView editPage(Goods goods){
         log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
+        GoodsSku goodsSku = goodsSkuService.find(goods.getId());
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
+        modelAndView.addObject("goodsSku", goodsSku);
         return modelAndView ;
     }
     
@@ -157,6 +159,8 @@ public class GoodsController extends BaseController {
         log.info("商品活动删除");
         try {
             goodsService.delete(goods);
+            GoodsSku goodsSku =  goodsSkuService.find(goods.getId());
+            goodsSkuService.delete(goodsSku);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new ResultMsg(false, "删除失败");
