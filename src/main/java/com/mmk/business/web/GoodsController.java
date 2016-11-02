@@ -91,6 +91,7 @@ public class GoodsController extends BaseController {
     public ModelAndView addPage(){
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", new Goods());
+        modelAndView.addObject("goodsSku", new GoodsSku());
         return modelAndView;
     }
     
@@ -115,14 +116,13 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/save")
     @ResponseBody
-    public ResultMsg save(@Valid Goods goods , BindingResult result ){
+    public ResultMsg save(@Valid Goods goods , BindingResult result ,GoodsSku goodsSku){
         log.info("商品活动保存");
         try {
           goodsService.save(goods);
           Long maxId = goodsService.findMaxId();
           
           // 商品属性的保存
-          GoodsSku goodsSku = new GoodsSku();
           goodsSku.setGoodId(maxId);
           goodsSkuService.save(goodsSku);
           

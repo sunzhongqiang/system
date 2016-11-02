@@ -25,6 +25,7 @@
 			<div class="tabbar_tit">
 				<span id="0" class="hover1">发布商品</span>
 				<span id="1" >商品详情</span>
+				<span id="2" >商品属性</span>
 			</div>
 		<form id="modelForm" method="post" action="/goods/save">
 			<!-- 发布商品-->
@@ -161,6 +162,45 @@
 				         </td>
 			         </tr>
 				</table>
+				
+				<table id="table2" cellspacing="1" cellpadding="3" class="tbbox" style="display: none;">
+				     <tr>
+                        <td class="tdTit"><label>属性值：</label></td>
+                        <td>
+                        <input type="text"  name="skuValue"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.skuValue}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td>
+                        <input type="text"  name="goodPrice"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>该sku库存：</label></td>
+                        <td>
+                        <input type="text"  name="goodStock"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodStock}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品条形码：</label></td>
+                        <td>
+                        <input type="text"  name="goodCode"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品重量：</label></td>
+                        <td>
+                        <input type="text"  name="goodWeight"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodWeight}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品颜色：</label></td>
+                        <td>
+                        <input type="text"  name="goodColor"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodColor}"/>
+                        </td>
+                    </tr>
+				</table>
 				<div class="tab_bott">
 			            <input class="btn_sbt" type="submit" value="提交" />
 			            <a href="/goods/list" class="btn_back">返回</a>
@@ -180,10 +220,17 @@
              if(sid == 0){
             	 $("#table0").css("display","table");
                  $("#table1").css("display","none");
+                 $("#table2").css("display","none");
              }
              if(sid == 1){
                  $("#table0").css("display","none");
                  $("#table1").css("display","block");
+                 $("#table2").css("display","none");
+             }
+             if(sid == 2){
+                 $("#table0").css("display","none");
+                 $("#table1").css("display","none");
+                 $("#table2").css("display","block");
              }
             
         })

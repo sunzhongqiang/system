@@ -20,7 +20,7 @@
             },
                     {
                 width : '80',
-                title : '商品分类：1，一元购；2，拼团',
+                title : '商品分类：',
                 field : 'goodsCat',
                 formatter : function(value, row, index) {
 					switch (value) {
@@ -36,6 +36,8 @@
                 width : '80',
                 title : '商品主图',
                 field : 'goodsMainImg',
+                formatter:function(value,row,index)
+                {return '<img src='+value+'>';}
             },
                     {
                 width : '80',
