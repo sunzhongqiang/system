@@ -106,6 +106,9 @@ public class GoodsController extends BaseController {
         GoodsSku goodsSku = goodsSkuService.find(goods.getId());
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
+        if(goodsSku ==null ){
+        	goodsSku = new GoodsSku();
+        }
         modelAndView.addObject("goodsSku", goodsSku);
         return modelAndView ;
     }
@@ -160,7 +163,9 @@ public class GoodsController extends BaseController {
         try {
             goodsService.delete(goods);
             GoodsSku goodsSku =  goodsSkuService.find(goods.getId());
-            goodsSkuService.delete(goodsSku);
+            if(goodsSku != null ){
+                goodsSkuService.delete(goodsSku);          	
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new ResultMsg(false, "删除失败");
