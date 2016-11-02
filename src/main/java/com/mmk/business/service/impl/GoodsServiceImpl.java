@@ -9,6 +9,8 @@ import org.apache.commons.logging.LogFactory;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
+
 import com.mmk.business.dao.GoodsRepository;
 import com.mmk.business.model.Goods;
 import com.mmk.business.condition.GoodsCondition;
@@ -93,4 +95,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
         log.info("商品活动根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return goodsDao.findAllBy(field,value);
     }
+
+	@Override
+	public Long findMaxId() {
+		log.info("获取最新保存的商品ID");
+		return goodsDao.findMaxId();
+	}
 }

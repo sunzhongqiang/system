@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
@@ -30,7 +33,10 @@ import com.mmk.common.tool.FileClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.business.service.GoodsService;
+import com.mmk.business.service.GoodsSkuService;
 import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsImg;
+import com.mmk.business.model.GoodsSku;
 import com.echin.api.tool.ThumbTool;
 import com.mmk.business.condition.GoodsCondition;
 
@@ -44,6 +50,8 @@ public class GoodsController extends BaseController {
     
     @Resource 
     private GoodsService goodsService;
+    @Resource 
+    private GoodsSkuService goodsSkuService;
 
     /**
      * 跳转至列表页面
@@ -107,10 +115,17 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/save")
     @ResponseBody
-    public ResultMsg save(Goods goods){
+    public ResultMsg save(@Valid Goods goods , BindingResult result ){
         log.info("商品活动保存");
         try {
-            goodsService.save(goods);
+          goodsService.save(goods);
+          Long maxId = goodsService.findMaxId();
+          
+          // 商品属性的保存
+          GoodsSku goodsSku = new GoodsSku();
+          goodsSku.setGoodId(maxId);
+          goodsSkuService.save(goodsSku);
+          
         } catch (Exception e) {
             return new ResultMsg(false,"商品活动保存失败");
         }

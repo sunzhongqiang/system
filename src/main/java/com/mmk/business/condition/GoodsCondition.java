@@ -4,7 +4,10 @@
  */
 package com.mmk.business.condition;
 import java.util.Date;
+import java.util.List;
+
 import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsImg;
 
 /**
 * GoodsCondition ： 商品活动 扩展查询模型
@@ -15,6 +18,15 @@ import com.mmk.business.model.Goods;
 */
 public class GoodsCondition extends Goods{
 
+	private List<GoodsImg> goodsImg;
+
+	public List<GoodsImg> getGoodsImg() {
+		return goodsImg;
+	}
+
+	public void setGoodsImg(List<GoodsImg> goodsImg) {
+		this.goodsImg = goodsImg;
+	}
 
 
 }

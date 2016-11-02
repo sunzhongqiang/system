@@ -88,6 +88,14 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public Long findMaxId() {
+        StringBuffer sb=new StringBuffer("select model from Goods model order by model.id desc");
+        Map<String,Object> params = new HashMap<String,Object>();
+        List<Goods> result = queryByJpql(sb.toString(), params);
+        return result.isEmpty() ? null : result.get(0).getId();
+	}
     
     
 }

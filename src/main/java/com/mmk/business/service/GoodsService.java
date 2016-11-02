@@ -87,4 +87,6 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      */
     List<Goods> findAllBy(String field,Object value);
+
+	Long findMaxId();
 }
