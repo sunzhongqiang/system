@@ -171,7 +171,7 @@ public class GoodsController extends BaseController {
         log.info("商品活动删除");
         try {
             goodsService.delete(goods);
-            GoodsSku goodsSku =  goodsSkuService.find(goods.getId());
+            GoodsSku goodsSku =  goodsSkuService.findByGoodId(goods.getId());
             if(goodsSku != null ){
                 goodsSkuService.delete(goodsSku);          	
             }
