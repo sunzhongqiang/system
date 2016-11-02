@@ -103,10 +103,10 @@ public class GoodsController extends BaseController {
     public ModelAndView editPage(Goods goods){
         log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
-        GoodsSku goodsSku = goodsSkuService.find(goods.getId());
+        GoodsSku goodsSku = goodsSkuService.findByGoodId(goods.getId());
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
-        if(goodsSku ==null ){
+        if(goodsSku == null ){
         	goodsSku = new GoodsSku();
         }
         modelAndView.addObject("goodsSku", goodsSku);
@@ -124,12 +124,21 @@ public class GoodsController extends BaseController {
     public ResultMsg save(@Valid Goods goods , BindingResult result ,GoodsSku goodsSku){
         log.info("商品活动保存");
         try {
-          goodsService.save(goods);
-          Long maxId = goodsService.findMaxId();
-          
-          // 商品属性的保存
-          goodsSku.setGoodId(maxId);
-          goodsSkuService.save(goodsSku);
+        	Goods good  = goodsService.findById(goods.getId());
+        	if(good != null){
+        	    goods.setId(good.getId());
+        	}
+    	    goodsService.save(goods); 
+    	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());
+    	    if(goodSkuList.size() == 0){
+     	        Long maxId = goodsService.findMaxId();         
+    	        // 商品属性的保存
+    	        goodsSku.setGoodId(maxId);  	    	
+    	    }else{
+    	    	goodsSku.setGoodId(good.getId());
+    	    	goodsSku.setId(goodSkuList.get(0).getId());
+    	    }
+	        goodsSkuService.save(goodsSku);
           
         } catch (Exception e) {
             return new ResultMsg(false,"商品活动保存失败");
