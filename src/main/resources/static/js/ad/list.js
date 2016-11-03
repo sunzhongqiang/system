@@ -31,7 +31,7 @@
             },
                     {
                 width : '80',
-                title : '',
+                title : '广告链接',
                 field : 'adLink',
             },
                     {
@@ -39,20 +39,33 @@
                 title : '广告编码',
                 field : 'adCode',
             },
+            		{
+                width : '80',
+                title : '广告图片',
+                field : 'adImg',
+            },
+    		{
+                width : '80',
+                title : '图片地址',
+                field : 'adImgLink',
+            },
                     {
                 width : '80',
                 title : '开始时间',
                 field : 'startTime',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
                 title : '结束时间',
                 field : 'endTime',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
                 title : '点击次数',
                 field : 'clickCount',
+                
             },
                     {
                 width : '80',
@@ -93,7 +106,7 @@
         parent.$.modalDialog({
             title : '添加',
             width : 500,
-            height : 300,
+            height : 450,
             href : '/ad/add?positionId='+positionId,
             buttons : [ {
                 text : '添加',
