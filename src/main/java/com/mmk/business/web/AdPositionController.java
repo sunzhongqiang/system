@@ -24,6 +24,8 @@ import com.mmk.common.model.ResultMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.business.service.AdPositionService;
+import com.mmk.business.service.AdService;
+import com.mmk.business.model.Ad;
 import com.mmk.business.model.AdPosition;
 import com.mmk.business.condition.AdPositionCondition;
 
@@ -37,6 +39,8 @@ public class AdPositionController extends BaseController {
     
     @Resource 
     private AdPositionService adPositionService;
+	@Resource
+	private AdService adService;
 
     /**
      * 跳转至列表页面
@@ -134,6 +138,8 @@ public class AdPositionController extends BaseController {
     public ResultMsg delete(AdPosition adPosition){
         log.info("广告位置删除");
         try {
+    		List<Ad> ads = adService.findAllByPositionId(adPosition.getPositionId());
+    		adService.delete(ads);
             adPositionService.delete(adPosition);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

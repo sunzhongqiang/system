@@ -87,4 +87,11 @@ public interface AdPositionService extends BaseService<AdPosition, Long> {
      * 
      */
     List<AdPosition> findAllBy(String field,Object value);
+
+    /**
+     * 生成的列表查询方法
+     * @param adPositionCondition  查询条件
+     * @return 分页返回查询的结果
+     */
+	List<AdPosition> listAll();
 }

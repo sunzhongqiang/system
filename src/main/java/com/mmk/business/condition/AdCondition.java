@@ -14,7 +14,5 @@ import com.mmk.business.model.Ad;
 *
 */
 public class AdCondition extends Ad{
-
-
-
+	
 }

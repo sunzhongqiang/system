@@ -68,6 +68,13 @@ public interface AdPositionDao extends SpringDataQueryDao<AdPosition>{
      */
     List<AdPosition> findAllBy(String field,Object value);
     
+    /**
+     * 取得查询结果集List
+     * @return 查询的结果集
+     * 
+     */
+	List<AdPosition> listAll();
+    
     
 
 }

@@ -89,5 +89,12 @@ public class AdPositionDaoImpl extends SpringDataQueryDaoImpl<AdPosition> implem
         return queryByJpql(sb.toString(), params);
     }
     
+	@Override
+	public List<AdPosition> listAll() {
+    	StringBuffer sb=new StringBuffer("select model from AdPosition model ORDER BY model.positionId DESC");
+        Map<String,Object> params = new HashMap<String,Object>();
+
+        return queryByJpql(sb.toString(), params);
+	}
     
 }

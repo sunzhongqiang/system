@@ -23,8 +23,11 @@ import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.business.service.AdPositionService;
 import com.mmk.business.service.AdService;
 import com.mmk.business.model.Ad;
+import com.mmk.business.model.AdPosition;
 import com.mmk.business.condition.AdCondition;
 
 /**
@@ -37,15 +40,24 @@ public class AdController extends BaseController {
     
     @Resource 
     private AdService adService;
+	@Resource 
+	private AdPositionService adPositionService;
 
     /**
      * 跳转至列表页面
      * @return 返回页面以及页面模型
      */
     @RequestMapping("/ad/list")
-    public ModelAndView list(){
+    public ModelAndView list(AdCondition adCondition, Pageable pageable){
         log.info("广告列表查询");
+		Page<Ad> adList = adService.list(adCondition,pageable);
+		// 查询广告位置
+		List<AdPosition> adPositions = adPositionService.listAll();
+		
         ModelAndView modelAndView = new ModelAndView("ad/list");
+        modelAndView.addObject("adPositions", adPositions);
+        modelAndView.addObject("page", adList);
+        modelAndView.addObject("adCondition", adCondition);
         return  modelAndView;
     }
     
@@ -73,9 +85,13 @@ public class AdController extends BaseController {
      * @return 跳转到广告新增页面
      */
     @RequestMapping("/ad/add")
-    public ModelAndView addPage(){
+    public ModelAndView addPage(Ad ad){
         ModelAndView modelAndView = new ModelAndView("ad/form");
-        modelAndView.addObject("ad", new Ad());
+		// 广告位置
+		List<AdPosition> adPositions = adPositionService.listAll();
+		modelAndView.addObject("adPosList",adPositions);
+		
+        modelAndView.addObject("ad", ad);
         return modelAndView;
     }
     
@@ -86,9 +102,13 @@ public class AdController extends BaseController {
     @RequestMapping("/ad/edit")
     public ModelAndView editPage(Ad ad){
         log.info("广告编辑页面");
-        ad = adService.find(ad.getAdId());
         ModelAndView modelAndView = new ModelAndView("ad/form");
+        ad = adService.find(ad.getAdId());
         modelAndView.addObject("ad", ad);
+		// 广告位置
+		List<AdPosition> adPositions = adPositionService.listAll();
+		modelAndView.addObject("adPosList",adPositions);
+		
         return modelAndView ;
     }
     

@@ -93,4 +93,9 @@ public class AdPositionServiceImpl extends BaseServiceImpl<AdPosition, Long> imp
         log.info("广告位置根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return adPositionDao.findAllBy(field,value);
     }
+    
+    @Override
+	public List<AdPosition> listAll() {
+		return adPositionDao.listAll();
+	}
 }
