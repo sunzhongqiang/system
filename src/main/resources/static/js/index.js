@@ -20,24 +20,27 @@ $(function() {
 							handler : function() {
 								index_tabs.tabs('select', 0);
 							}
-						}, /*
-							 * { iconCls : 'icon-refresh', handler : function() {
-							 * var index = index_tabs.tabs('getTabIndex',
-							 * index_tabs.tabs('getSelected'));
-							 * index_tabs.tabs('getTab',
-							 * index).panel('open').panel('refresh');
-							 * //index_tabs.tabs('getTab',
-							 * index).panel('refresh'); //alert(index); } },
-							 */
+						}, 
+						
+//							  { iconCls : 'icon-refresh', handler : function() {
+//							  var index = index_tabs.tabs('getTabIndex',
+//							  index_tabs.tabs('getSelected'));
+//							  index_tabs.tabs('getTab',
+//							  index).panel('open').panel('refresh');
+//							  index_tabs.tabs('getTab',
+//							  index).panel('refresh'); //alert(index); 
+//							  } },
+							 
+						{
+							iconCls : 'icon-refresh',
+							handler : function() {
+								refreshTab();
+							}
+						},
 						{
 							iconCls : 'icon-del',
 							handler : function() {
-								var index = index_tabs.tabs('getTabIndex',
-										index_tabs.tabs('getSelected'));
-								var tab = index_tabs.tabs('getTab', index);
-								if (tab.panel('options').closable) {
-									index_tabs.tabs('close', index);
-								}
+								closeTab();
 							}
 						} ]
 			});
@@ -155,3 +158,23 @@ changeTheme = function (themeName) {
     //友情提示
     topCenter("当前主题：" + themeName, 1000);
 };
+
+function closeTab(){
+	var index = index_tabs.tabs('getTabIndex',
+			index_tabs.tabs('getSelected'));
+	var tab = index_tabs.tabs('getTab', index);
+	if (tab.panel('options').closable) {
+		index_tabs.tabs('close', index);
+	}
+}
+
+
+
+function refreshTab(){
+		  var index = index_tabs.tabs('getTabIndex',
+				  index_tabs.tabs('getSelected'));
+		  		  index_tabs.tabs('getTab',
+				  index).panel('open').panel('refresh');
+				  index_tabs.tabs('getTab',
+				  index).panel('refresh'); 
+}

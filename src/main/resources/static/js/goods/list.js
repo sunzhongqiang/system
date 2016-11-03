@@ -120,7 +120,10 @@
            toolbar :  [{
 	            iconCls: 'icon-add',
 	            text:'新增',
-	            handler: function(){addFun();}
+	            handler: function(){
+	            	
+	            	addFun();
+	            	}
             }],
             onLoadSuccess : function(data){
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});

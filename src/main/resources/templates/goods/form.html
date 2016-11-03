@@ -14,7 +14,6 @@
 
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
-<script src="http://yiqingo.com/js/jquery-1.8.3.min.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript" src="/webuploader/webuploader.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css" />
 <title>管理后台</title>
@@ -27,7 +26,7 @@
 				<span id="1" >商品详情</span>
 				<span id="2" >商品属性</span>
 			</div>
-		<form id="modelForm" method="post" action="/goods/save">
+		<form id="modelForm" method="post"  action="">
 			<!-- 发布商品-->
 				<table id="table0" cellspacing="1" cellpadding="3" class="tbbox" >
                    
@@ -204,7 +203,7 @@
 				<div class="tab_bott">
 						<input type="hidden" name="id" th:value="${goods.id}"/>
 						<input type="hidden" name="id" th:value="${goodsSku.id}"/>
-			            <input class="btn_sbt" type="submit" value="提交" />
+			            <input class="btn_sbt" type="submit" value="提交"  />
 			            <a href="/goods/list" class="btn_back">返回</a>
 				</div>
 			</form>
@@ -235,8 +234,45 @@
                  $("#table2").css("display","block");
              }
             
-        })
+        });
+        
+        
+        $("#modelForm").form({
+            url: '/goods/save',
+            onSubmit: function(){   
+            	 return $("#modelForm").form('validate')
+                // return false to prevent submit;   
+            	
+            },   
+            success:function(data){   
+                alert(data)   
+                parent.closeTab();
+            }   
+        });   
+    
     })
+    
+    
+//     function saveGoods(){
+//     	 $.ajax({
+//              cache: true,
+//              type: "POST",
+//              url: '/goods/save',
+//              data:$('#modelForm').serialize(),// 你的formid
+//              async: false,
+//              error: function(request) {
+//                  alert("Connection error");
+//              },
+//              success: function(data) {
+//                  $(".easyui-tabs").tabs('close', index);  
+//                 alert("11");
+//              }
+//          });
+//     }
+  
+    // submit the form   
+    
+    
 </script>       
 <script type="text/javascript" src="/js/shangchuan.js"></script>
 </body>
