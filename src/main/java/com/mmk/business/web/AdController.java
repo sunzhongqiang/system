@@ -48,16 +48,16 @@ public class AdController extends BaseController {
      * @return 返回页面以及页面模型
      */
     @RequestMapping("/ad/list")
-    public ModelAndView list(AdCondition adCondition, Pageable pageable){
+    public ModelAndView list(){
         log.info("广告列表查询");
-		Page<Ad> adList = adService.list(adCondition,pageable);
-		// 查询广告位置
-		List<AdPosition> adPositions = adPositionService.listAll();
+//		Page<Ad> adList = adService.list(adCondition,pageable);
+//		// 查询广告位置
+//		List<AdPosition> adPositions = adPositionService.listAll();
 		
         ModelAndView modelAndView = new ModelAndView("ad/list");
-        modelAndView.addObject("adPositions", adPositions);
-        modelAndView.addObject("page", adList);
-        modelAndView.addObject("adCondition", adCondition);
+//        modelAndView.addObject("adPositions", adPositions);
+//        modelAndView.addObject("page", adList);
+//        modelAndView.addObject("adCondition", adCondition);
         return  modelAndView;
     }
     
@@ -88,8 +88,8 @@ public class AdController extends BaseController {
     public ModelAndView addPage(Ad ad){
         ModelAndView modelAndView = new ModelAndView("ad/form");
 		// 广告位置
-		List<AdPosition> adPositions = adPositionService.listAll();
-		modelAndView.addObject("adPosList",adPositions);
+//		List<AdPosition> adPositions = adPositionService.listAll();
+//		modelAndView.addObject("adPosList",adPositions);
 		
         modelAndView.addObject("ad", ad);
         return modelAndView;
