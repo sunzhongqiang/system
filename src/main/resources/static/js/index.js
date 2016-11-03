@@ -42,6 +42,16 @@ $(function() {
 							handler : function() {
 								closeTab();
 							}
+						},{
+							iconCls : 'icon-refresh',
+							handler : function() {
+								var index = index_tabs.tabs('getTabIndex',
+										index_tabs.tabs('getSelected'));
+								var tab = index_tabs.tabs('getTab', index);
+								if (tab.panel('options').closable) {
+									index_tabs.tabs('getTab',index).panel('refresh');
+								}
+							}
 						} ]
 			});
 
@@ -66,7 +76,7 @@ $(function() {
 });
 
 function addTab(params) {
-	var iframe = '<iframe src="'
+	var iframe = '<iframe 	 src="'
 			+ params.url
 			+ '" frameborder="0" style="border:0;width:100%;height:99.5%;"></iframe>';
 	var t = $('#index_tabs');

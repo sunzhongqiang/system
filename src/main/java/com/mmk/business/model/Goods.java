@@ -42,8 +42,13 @@ public class Goods {
      */
     @Column(name="goods_name")
     private String goodsName;
-
+    
     /**
+	 * 商品描述
+	 */
+	@Column(name="goods_desc")
+	private String goodsDesc; 
+	/**
      * 商品数量
      */
     @Column(name="goods_number")
@@ -293,6 +298,17 @@ public class Goods {
     public void setIsDelete(Long isDelete) {
         this.isDelete = isDelete;
     }
-
+    /**
+	 * 获取商品描述
+	 */
+	public String getGoodsDesc() {
+		return goodsDesc;
+	}
+	/**
+	 * 设置商品描述
+	 */
+	public void setGoodsDesc(String goodsDesc) {
+		this.goodsDesc = goodsDesc;
+	}
 
 }
