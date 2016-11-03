@@ -32,6 +32,8 @@ import com.mmk.common.tool.FileClient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.business.service.GoodsImgService;
 import com.mmk.business.service.GoodsService;
 import com.mmk.business.service.GoodsSkuService;
 import com.mmk.business.model.Goods;
@@ -52,7 +54,8 @@ public class GoodsController extends BaseController {
     private GoodsService goodsService;
     @Resource 
     private GoodsSkuService goodsSkuService;
-
+    @Resource 
+    private GoodsImgService goodsImgService;
     /**
      * 跳转至列表页面
      * @return 返回页面以及页面模型
@@ -121,29 +124,45 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/save")
     @ResponseBody
-    public ResultMsg save(@Valid Goods goods , BindingResult result ,GoodsSku goodsSku){
+    public ModelAndView save(@Valid Goods goods , BindingResult result ,
+    		GoodsSku goodsSku,String[] originalImg,String[] smallThumbImg,String[] bigThumbImg){
         log.info("商品活动保存");
-        try {
-        	Goods good  = goodsService.findById(goods.getId());
-        	if(good != null){
-        	    goods.setId(good.getId());
-        	}
-    	    goodsService.save(goods); 
-    	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());
-    	    if(goodSkuList.size() == 0){
-     	        Long maxId = goodsService.findMaxId();         
-    	        // 商品属性的保存
-    	        goodsSku.setGoodId(maxId);  	    	
-    	    }else{
-    	    	goodsSku.setGoodId(good.getId());
-    	    	goodsSku.setId(goodSkuList.get(0).getId());
-    	    }
-	        goodsSkuService.save(goodsSku);
+        ModelAndView modelAndView = new ModelAndView("goods/form");
+    	Goods good  = goodsService.findById(goods.getId());
+    	if(good != null){
+    	    goods.setId(good.getId());
+    	}
+	    goodsService.save(goods); 
+	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());
+	    
+		List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
+	    Long maxId = goodsService.findMaxId(); 
+	    
+        // 商品属性的保存 
+	    if(goodSkuList.size() != 0){  
+	    	goodsSku.setGoodId(good.getId());
+	    	goodsSku.setId(goodSkuList.get(0).getId());
+	    }
+        goodsSkuService.save(goodsSku);
+	    if(originalImg != null){
+	        // 商品相册的保存
+		    for(int i=0; i<originalImg.length; i++){
+		    	GoodsImg goodImg = new GoodsImg();
+			    if(goodImgList.size() != 0 && goodImgList.size() >= i+1){	
+		    		goodImg = goodImgList.get(i);	    	
+			    }
+		    	goodImg.setGoodId(goods.getId());
+			    goodImg.setOriginalImg(originalImg[i]);
+			    goodImg.setBigThumbImg(bigThumbImg[i]);
+			    goodImg.setSmallThumbImg(smallThumbImg[i]);
+			    goodsImgService.save(goodImg);
+		    }
+	    }
           
-        } catch (Exception e) {
-            return new ResultMsg(false,"商品活动保存失败");
-        }
-        return new ResultMsg(true,"商品活动保存成功");
+        modelAndView.addObject("goodsSku", goodsSku);
+        modelAndView.addObject("goods", goods);
+//        modelAndView.addObject("goodImg", goodImg);
+        return modelAndView ;
     }
     
    

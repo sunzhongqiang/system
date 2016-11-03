@@ -67,10 +67,9 @@
 	 var size = $(".file-item").size()-1;
 	 var li = $( '#'+file.id );
 	if (response.success) {
-		li.append("<input type='hidden'  name='imgIdArr' value='ADD' />");
-		li.append("<input type='hidden'  name='goodsMainImg' value='"+response.goodsImgArr+"' />");
-		li.append("<input type='hidden'  name='goodsOriginalImg' value='"+response.originalImgArr+"' />");
-	    li.append("<input type='hidden'  name='goodsThumbimg' value='"+response.originalImgArr+"' />");
+		li.append("<input type='hidden'  name='originalImg' value='"+response.goodsImgArr+"' />");
+		li.append("<input type='hidden'  name='smallThumbImg' value='"+response.originalImgArr+"' />");
+	    li.append("<input type='hidden'  name='bigThumbImg' value='"+response.originalImgArr+"' />");
 	    li.addClass('upload-state-done');
 	}else{
 		li.append("<p>上传失败</p>");
