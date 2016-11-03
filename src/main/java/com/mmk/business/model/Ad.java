@@ -47,8 +47,14 @@ public class Ad {
      * 广告图片
      */
     @Column(name="ad_img")
-    private String adImg;
+    private String adImg; 
     
+    /**
+     * 广告图片链接
+     */
+    @Column(name="ad_img_link")
+    private String adImgLink;
+   
 	/**
      * 广告链接
      */
@@ -211,5 +217,11 @@ public class Ad {
 	}
 	public void setAdImg(String adImg) {
 		this.adImg = adImg;
+	} 
+	public String getAdImgLink() {
+		return adImgLink;
+	}
+	public void setAdImgLink(String adImgLink) {
+		this.adImgLink = adImgLink;
 	}
 }
