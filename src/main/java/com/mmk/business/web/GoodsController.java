@@ -136,10 +136,8 @@ public class GoodsController extends BaseController {
     	    goods.setId(good.getId());
     	}
 	    goodsService.save(goods); 
-	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());
-	    
+	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());	    
 		List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
-	    Long maxId = goodsService.findMaxId(); 
 	    
         // 商品属性的保存 
 	    if(goodSkuList.size() != 0){  
@@ -196,6 +194,10 @@ public class GoodsController extends BaseController {
             GoodsSku goodsSku =  goodsSkuService.findByGoodId(goods.getId());
             if(goodsSku != null ){
                 goodsSkuService.delete(goodsSku);          	
+            }
+            List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
+            for(GoodsImg goodsImg : goodImgList){
+            	goodsImgService.delete(goodsImg);
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
