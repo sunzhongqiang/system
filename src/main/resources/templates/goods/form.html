@@ -139,7 +139,17 @@
 								</dl>
 							    <div id="filePicker">选择相册</div>
 							    <!--用来存放item-->
-							    <div id="fileList" class="uploader-list"></div>
+							    <div id="fileList" class="uploader-list" >
+							      <div th:each="img:${imgList}" th:remove="tag">
+							    	<div class="file-item upload-state-done">
+							    	<img th:src="${img.originalImg}" />
+							    	<div class="diyCancel"></div>
+								    	<input type="hidden" name="originalImg" th:value="${img.originalImg}" />
+								    	<input type="hidden" name="smallThumbImg" th:value="${img.smallThumbImg}" />
+								    	<input type="hidden" name="bigThumbImg" value="${img.bigThumbImg}" />
+							    	</div>
+							    	</div>
+							    </div>
 							</div>
                         </td>
                     </tr>

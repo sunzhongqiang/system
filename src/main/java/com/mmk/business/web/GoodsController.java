@@ -107,11 +107,14 @@ public class GoodsController extends BaseController {
         log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
         GoodsSku goodsSku = goodsSkuService.findByGoodId(goods.getId());
+        List<GoodsImg> goodsImgList = goodsImgService.findByGoodId(goods.getId());
+        
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
         if(goodsSku == null ){
         	goodsSku = new GoodsSku();
         }
+        modelAndView.addObject("imgList", goodsImgList);
         modelAndView.addObject("goodsSku", goodsSku);
         return modelAndView ;
     }
@@ -144,10 +147,10 @@ public class GoodsController extends BaseController {
 	    	goodsSku.setId(goodSkuList.get(0).getId());
 	    }
         goodsSkuService.save(goodsSku);
+    	GoodsImg goodImg = new GoodsImg();
 	    if(originalImg != null){
 	        // 商品相册的保存
 		    for(int i=0; i<originalImg.length; i++){
-		    	GoodsImg goodImg = new GoodsImg();
 			    if(goodImgList.size() != 0 && goodImgList.size() >= i+1){	
 		    		goodImg = goodImgList.get(i);	    	
 			    }
@@ -161,7 +164,7 @@ public class GoodsController extends BaseController {
           
         modelAndView.addObject("goodsSku", goodsSku);
         modelAndView.addObject("goods", goods);
-//        modelAndView.addObject("goodImg", goodImg);
+        modelAndView.addObject("goodImg", goodImg);
         return modelAndView ;
     }
     
