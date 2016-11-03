@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,8 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.common.tool.FileClient;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -120,9 +123,14 @@ public class AdController extends BaseController {
      */
     @RequestMapping("/ad/save")
     @ResponseBody
-    public ResultMsg save(Ad ad){
+    public ResultMsg save(Ad ad,MultipartFile file){
         log.info("广告保存");
         try {
+           
+            if(!file.isEmpty()&&file.getSize()>0){
+            	String imageUrl = FileClient.getDefault().upload("advertImg", file).getImageUrl();
+            	ad.setAdImg(imageUrl);
+            }
             adService.save(ad);
         } catch (Exception e) {
             return new ResultMsg(false,"广告保存失败");
