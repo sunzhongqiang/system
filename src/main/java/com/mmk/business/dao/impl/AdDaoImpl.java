@@ -50,6 +50,11 @@ public class AdDaoImpl extends SpringDataQueryDaoImpl<Ad> implements AdDao {
     public Page<Ad> list(AdCondition adCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Ad model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(adCondition.getPositionId() != null){
+	        sb.append(" and model.positionId = :positionId ");
+	        params.put("positionId", adCondition.getPositionId());
+        }
+        
         return queryByJpql(sb.toString(), params, pageable);
     }
 
