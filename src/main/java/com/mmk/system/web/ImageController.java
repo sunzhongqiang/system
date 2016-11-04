@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,4 +45,34 @@ public class ImageController {
 		log.debug("文件上传用时："+String.valueOf(System.currentTimeMillis()-start));
 		return result;
 	}
+	
+	 /**
+     * 百度编辑器 专用 图片上传
+     * @param m
+     * @param errors
+     * @param dir
+     * @param pictitle
+     * @param file
+     * @return
+     */
+    @RequestMapping("/ueditor/add")
+    @ResponseBody
+    public Map addForUeditor(String dir,String pictitle,@RequestParam MultipartFile file,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("state", "SUCCESS");
+        if(file.isEmpty()){
+            map.put("state", "未包含上传的图片");
+        }
+        try {
+            String url = FileClient.getDefault().upload("detailimage", file).getImageUrl();
+            map.put("title", "image");
+            map.put("original", file.getOriginalFilename());
+            map.put("url",url);
+        } catch (IOException e) {
+            map.put("state", "文件上传失败");
+            e.printStackTrace();
+        }
+        
+        return map;
+    }
 }
