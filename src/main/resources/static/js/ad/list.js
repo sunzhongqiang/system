@@ -21,9 +21,10 @@
 //                field : 'adId',
 //            },
                     {
-                width : '150',
+                width : '80',
                 title : '位置ID',
                 field : 'positionId',
+                align: 'center',
             },
                     {
                 width : '180',
@@ -31,11 +32,11 @@
                 field : 'adName',
                 align: 'center',
             },
-                    {
-                width : '180',
-                title : '广告链接',
-                field : 'adLink',
-            },
+//                    {
+//                width : '180',
+//                title : '广告链接',
+//                field : 'adLink',
+//            },
 //                    {
 //                width : '80',
 //                title : '广告编码',
@@ -52,18 +53,21 @@
                 width : '80',
                 title : '图片地址',
                 field : 'adImgLink',
+                align: 'center',
             },
                     {
                 width : '150',
                 title : '开始时间',
                 field : 'startTime',
                 formatter: formatDatebox,
+                align: 'center',
             },
                     {
                 width : '150',
                 title : '结束时间',
                 field : 'endTime',
                 formatter: formatDatebox,
+                align: 'center',
             },
 //                    {
 //                width : '80',
@@ -222,13 +226,18 @@
 					    width : '30',
 					    title : '',
 					    field : 'ck',
-					    checkbox: true
+					    checkbox: true,
 					},
-                    {
-                width : '150',
-                title : '广告位描述',
-                field : 'positionDesc',
-            },
+					{
+		        width : '150',
+		        title : '广告位名称',
+		        field : 'positionName',
+		   },
+//                    {
+//                width : '150',
+//                title : '广告位描述',
+//                field : 'positionDesc',
+//            },
             {
                 field : 'action',
                 title : '操作',

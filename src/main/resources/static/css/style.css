@@ -112,12 +112,13 @@
 .my-ad .file-item img {
     padding: 2px;
     width: 100%;
-    height: auto;
+    max-height: 98px;
 }
 .my-ad .file-item {border:none;}
 .myad .datagrid-body tr td {
     height: 100px;
 }
+.myad .datagrid-body tr td .datagrid-cell-c1-adImg{text-align: center;}
 .myad .datagrid-body tr td .datagrid-cell-c1-adImg img{ max-height:98px;}
 
 
