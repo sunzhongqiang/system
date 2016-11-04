@@ -15,31 +15,32 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
+//                    {
+//                width : '80',
+//                title : '广告ID',
+//                field : 'adId',
+//            },
                     {
-                width : '80',
-                title : '广告ID',
-                field : 'adId',
-            },
-                    {
-                width : '80',
+                width : '150',
                 title : '位置ID',
                 field : 'positionId',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '广告名称',
                 field : 'adName',
+                align: 'center',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '广告链接',
                 field : 'adLink',
             },
-                    {
-                width : '80',
-                title : '广告编码',
-                field : 'adCode',
-            },
+//                    {
+//                width : '80',
+//                title : '广告编码',
+//                field : 'adCode',
+//            },
             		{
                 width : '180',
                 title : '广告图片',
@@ -53,28 +54,28 @@
                 field : 'adImgLink',
             },
                     {
-                width : '80',
+                width : '150',
                 title : '开始时间',
                 field : 'startTime',
                 formatter: formatDatebox,
             },
                     {
-                width : '80',
+                width : '150',
                 title : '结束时间',
                 field : 'endTime',
                 formatter: formatDatebox,
             },
-                    {
-                width : '80',
-                title : '点击次数',
-                field : 'clickCount',
-                
-            },
-                    {
-                width : '80',
-                title : '描述',
-                field : 'description',
-            },
+//                    {
+//                width : '80',
+//                title : '点击次数',
+//                field : 'clickCount',
+//                
+//            },
+//                    {
+//                width : '80',
+//                title : '描述',
+//                field : 'description',
+//            },
             {
                 field : 'action',
                 title : '操作',

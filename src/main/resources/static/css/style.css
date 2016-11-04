@@ -115,7 +115,10 @@
     height: auto;
 }
 .my-ad .file-item {border:none;}
-
+.myad .datagrid-body tr td {
+    height: 100px;
+}
+.myad .datagrid-body tr td .datagrid-cell-c1-adImg img{ max-height:98px;}
 
 
 
