@@ -33,7 +33,7 @@
                   <tr>
                         <td class="tdTit"><label>商品分类：</label></td>
                         <td>
-                        	<select name="goodsCat" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        	<select  name="goodsCat" class="easyui-combobox"    required="true"   data-options="width:140,height:29,editable:false,panelHeight:'auto'">
 	                            <option>请选择</option>
 	                            <option th:selected="${goods.goodsCat} == '1' ? 'selected' " value="1" >一元购</option>
 	                            <option th:selected="${goods.goodsCat} == '0' ? 'selected' "  value="0">拼团</option>
@@ -159,7 +159,7 @@
 				         <td class="tdTit"></td>
 				         <td>
 				             <!-- 加载编辑器的容器 -->
-				            <script id="editor" name="goodsThumb" type="text/plain"></script>
+				            <script id="editor" name="goodsDesc" type="text/plain" th:utext="${goods.goodsDesc}"></script>
 				            <!-- 配置文件 -->
 				            <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
 				            <!-- 编辑器源码文件 -->

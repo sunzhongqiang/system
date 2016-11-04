@@ -20,7 +20,7 @@
             },
                     {
                 width : '80',
-                title : '商品分类：',
+                title : '商品分类',
                 field : 'goodsCat',
                 formatter : function(value, row, index) {
 					switch (value) {
