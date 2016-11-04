@@ -3,10 +3,6 @@ package com.mmk.common.tool;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileAttribute;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -257,10 +253,7 @@ public class FileClient {
 	}
 
 	public FileClient upload(String dir, MultipartFile file) throws IOException {
-		Path path = Paths.get("temp");
-		File dest = Files.createTempFile(path, "", ".temp").toFile();
-		file.transferTo(dest);
-		dest.deleteOnExit();
+		File dest = Files.write(Files.createTempFile("copy", "temp"), file.getBytes()).toFile();
 		return upload(dir, file.getOriginalFilename(), dest);
 	}
 
