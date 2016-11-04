@@ -3,6 +3,7 @@ package com.mmk.common.tool;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -253,7 +254,7 @@ public class FileClient {
 	}
 
 	public FileClient upload(String dir, MultipartFile file) throws IOException {
-		File dest = Files.createTempFile("temp", "temp").toFile();
+		File dest = Files.createTempFile("temp", ".temp",Standard).toFile();
 		file.transferTo(dest);
 		return upload(dir, file.getOriginalFilename(), dest);
 	}

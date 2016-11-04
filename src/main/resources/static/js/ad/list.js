@@ -152,7 +152,7 @@
         parent.$.modalDialog({
             title : '编辑',
             width : 500,
-            height : 300,
+            height : 450,
             href : '/ad/edit?adId=' + id,
             buttons : [ {
                 text : '编辑',
