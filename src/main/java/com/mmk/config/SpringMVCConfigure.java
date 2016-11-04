@@ -13,26 +13,23 @@ import com.mmk.common.convert.StringToDate;
 
 @Configuration
 public class SpringMVCConfigure extends WebMvcConfigurerAdapter {
-	
-	
+
 	@Resource
-    private RequestMappingHandlerAdapter handlerAdapter;
+	private RequestMappingHandlerAdapter handlerAdapter;
 
-    /**
-     * 增加字符串转日期的功能
-     */
-    @PostConstruct
-    public void initEditableValidation() {
-        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter
-            .getWebBindingInitializer();
-        if (initializer.getConversionService() != null) {
-            GenericConversionService genericConversionService = (GenericConversionService) initializer
-                .getConversionService();
-            genericConversionService.addConverter(new StringToDate());
-        }
+	/**
+	 * 增加字符串转日期的功能
+	 */
+	@PostConstruct
+	public void initEditableValidation() {
+		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter
+				.getWebBindingInitializer();
+		if (initializer.getConversionService() != null) {
+			GenericConversionService genericConversionService = (GenericConversionService) initializer
+					.getConversionService();
+			genericConversionService.addConverter(new StringToDate());
+		}
 
-    }
-	
-	
+	}
 
 }

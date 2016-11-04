@@ -57,7 +57,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter  {
     public void configure(WebSecurity web) throws Exception {
       web
         .ignoring()
-           .antMatchers("/resources/**","/css/**","/style/**","/js/**","/api/**","/images/**","/Javascript/**","/img/**","/favicon.ico");
+           .antMatchers("/resources/**","/css/**","/ueditor/**","/webuploader/**","/style/**","/js/**","/api/**","/images/**","/Javascript/**","/img/**","/favicon.ico");
     }
 	
 	  protected void configure(HttpSecurity http) throws Exception {
