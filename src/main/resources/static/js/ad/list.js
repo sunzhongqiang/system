@@ -225,7 +225,7 @@
 					    checkbox: true
 					},
                     {
-                width : '200',
+                width : '150',
                 title : '广告位描述',
                 field : 'positionDesc',
             },
