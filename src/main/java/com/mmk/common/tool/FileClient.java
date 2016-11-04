@@ -254,7 +254,7 @@ public class FileClient {
 	}
 
 	public FileClient upload(String dir, MultipartFile file) throws IOException {
-		File dest = Files.createTempFile("temp", ".temp",Standard).toFile();
+		File dest = Files.createTempFile("temp", ".temp").toFile();
 		file.transferTo(dest);
 		return upload(dir, file.getOriginalFilename(), dest);
 	}
