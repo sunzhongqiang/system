@@ -109,7 +109,8 @@
         parent.$.modalDialog({
             title : '添加',
             width : 500,
-            height : 450,
+            height : 520,
+            resizable:true,
             href : '/ad/add?positionId='+positionId,
             buttons : [ {
                 text : '添加',
@@ -155,7 +156,7 @@
         parent.$.modalDialog({
             title : '编辑',
             width : 500,
-            height : 450,
+            height : 520,
             href : '/ad/edit?adId=' + id,
             buttons : [ {
                 text : '编辑',
