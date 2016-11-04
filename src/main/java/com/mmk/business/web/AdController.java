@@ -123,14 +123,11 @@ public class AdController extends BaseController {
      */
     @RequestMapping("/ad/save")
     @ResponseBody
-    public ResultMsg save(Ad ad,MultipartFile file){
+    public ResultMsg save(Ad ad){
         log.info("广告保存");
         try {
            
-            if(!file.isEmpty()&&file.getSize()>0){
-            	String imageUrl = FileClient.getDefault().upload("advertImg", file).getImageUrl();
-            	ad.setAdImg(imageUrl);
-            }
+           
             adService.save(ad);
         } catch (Exception e) {
             return new ResultMsg(false,"广告保存失败");

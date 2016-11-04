@@ -6,6 +6,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/ad/gridData',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -40,9 +41,11 @@
                 field : 'adCode',
             },
             		{
-                width : '80',
+                width : '180',
                 title : '广告图片',
                 field : 'adImg',
+                formatter:function(value,row,index)
+                {return '<img src='+value+'  />';}
             },
     		{
                 width : '80',

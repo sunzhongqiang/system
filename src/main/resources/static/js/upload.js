@@ -63,9 +63,12 @@ var Upload = {
 		 
 		 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
 		uploader.mainUploader.on( 'uploadSuccess', function(file, response) {
+			console.log(response.file);
 		      var li = $( '#'+file.id );
 		      var mainDiv = $(container);
 		     if (response.success) {
+		    	 console.log("[ name = '"+input+"' ]");
+		    	 
 		         mainDiv.find("[ name = '"+input+"' ]").attr("value", response.file);
 		         li.addClass('upload-state-done');
 		     } else {
