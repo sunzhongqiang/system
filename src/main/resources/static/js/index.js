@@ -42,17 +42,7 @@ $(function() {
 							handler : function() {
 								closeTab();
 							}
-						},{
-							iconCls : 'icon-refresh',
-							handler : function() {
-								var index = index_tabs.tabs('getTabIndex',
-										index_tabs.tabs('getSelected'));
-								var tab = index_tabs.tabs('getTab', index);
-								if (tab.panel('options').closable) {
-									index_tabs.tabs('getTab',index).panel('refresh');
-								}
-							}
-						} ]
+						}]
 			});
 
 	layout_west_tree = $('#layout_west_tree').tree({
@@ -180,11 +170,12 @@ function closeTab(){
 
 
 
-function refreshTab(){
-		  var index = index_tabs.tabs('getTabIndex',
-				  index_tabs.tabs('getSelected'));
-		  		  index_tabs.tabs('getTab',
-				  index).panel('open').panel('refresh');
-				  index_tabs.tabs('getTab',
-				  index).panel('refresh'); 
+function refreshTab() {
+	
+	var index = index_tabs.tabs('getTabIndex', index_tabs.tabs('getSelected'));
+	var tab = index_tabs.tabs('getSelected');
+	var options = tab.panel("options");
+	index_tabs.tabs("update",{tab:tab,options:{
+		content:options.content
+	}});
 }

@@ -176,37 +176,37 @@
 				     <tr>
                         <td class="tdTit"><label>属性值：</label></td>
                         <td>
-                        <input type="text"  name="skuValue"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.skuValue}"/>
+                        <input type="text"  name="skuValue"   class="easyui-validatebox"  th:value="${goodsSku.skuValue}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品价格：</label></td>
                         <td>
-                        <input type="text"  name="goodPrice"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodPrice}"/>
+                        <input type="text"  name="goodPrice"   class="easyui-validatebox"  th:value="${goodsSku.goodPrice}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>该sku库存：</label></td>
                         <td>
-                        <input type="text"  name="goodStock"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodStock}"/>
+                        <input type="text"  name="goodStock"   class="easyui-validatebox" th:value="${goodsSku.goodStock}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品条形码：</label></td>
                         <td>
-                        <input type="text"  name="goodCode"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodCode}"/>
+                        <input type="text"  name="goodCode"   class="easyui-validatebox"  th:value="${goodsSku.goodCode}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品重量：</label></td>
                         <td>
-                        <input type="text"  name="goodWeight"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodWeight}"/>
+                        <input type="text"  name="goodWeight"   class="easyui-validatebox"  th:value="${goodsSku.goodWeight}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品颜色：</label></td>
                         <td>
-                        <input type="text"  name="goodColor"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.goodColor}"/>
+                        <input type="text"  name="goodColor"   class="easyui-validatebox"  th:value="${goodsSku.goodColor}"/>
                         </td>
                     </tr>
 				</table>
@@ -255,7 +255,6 @@
             	
             },   
             success:function(data){   
-                alert(data)   
                 parent.closeTab();
             }   
         });   
