@@ -70,10 +70,10 @@ public class Tuan {
     private String goodImg;
 
     /**
-     * 商品描述
+     * 商品名称
      */
-    @Column(name="good_des")
-    private String goodDes;
+    @Column(name="good_name")
+    private String goodName;
 
     /**
      * 商品编码
@@ -198,16 +198,16 @@ public class Tuan {
     }
 
     /** 
-	* @return goodDes ：商品描述
+	* @return goodName ：商品名称
 	*/
-    public String getGoodDes() {
-        return goodDes;
+    public String getGoodName() {
+        return goodName;
     }
     /** 
-    *@param goodDes 设置商品描述 
+    *@param goodName 设置商品名称
     */
-    public void setGoodDes(String goodDes) {
-        this.goodDes = goodDes;
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 
     /** 
