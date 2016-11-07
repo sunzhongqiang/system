@@ -8,8 +8,8 @@ import com.mmk.trade.model.Tuan;
 import com.mmk.trade.condition.TuanCondition;
 
 /**
-* TuanService: 拼团管理 业务服务层接口
-*2016-11-07 10:36:33
+* TuanService: 团管理 业务服务层接口
+*2016-11-07 14:59:09
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -33,39 +33,6 @@ public interface TuanService extends BaseService<Tuan, Long> {
      */
     public List<Tuan> list(TuanCondition tuan);
 
-    /**
-     * 是否存在该
-     * @param orderId 订单ID
-     * @return 如果存在的话返回true ,没有的返回false
-     * @author huguangling 胡广玲
-     * 
-     */
-    boolean existsOrderId(Long orderId);
-    /**
-     * 根据给定的字段返回符合的对象
-     * @param orderId 订单ID
-     * @return 符合条件的唯一对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    Tuan findByOrderId(Long orderId);
-    /**
-     * 根据字段获取所有符合的记录
-     * @param orderId 订单ID
-     * @return 符合条件的所有对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    List<Tuan> findAllByOrderId(Long orderId);
-    /**
-     * 根据字段获取所有符合的记录
-     * @param orderId 订单ID
-     * @param pageable 分页参数
-     * @return 符合条件的所有对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    Page<Tuan> findAllByOrderId(Long orderId, Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field Tuan 中的某个字段

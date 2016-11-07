@@ -1,6 +1,6 @@
 /*
  * 
- *  Tuan 创建于 2016-11-07 10:36:33 版权归作者和作者当前组织所有
+ *  Tuan 创建于 2016-11-07 14:59:09 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.model;
 
@@ -15,8 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
-* Tuan: 拼团管理 数据领域模型
-* 2016-11-07 10:36:33
+* Tuan: 团管理 数据领域模型
+* 2016-11-07 14:59:09
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -32,13 +32,19 @@ public class Tuan {
     private Long id;
 
     /**
-     * 订单ID
+     * 商品ID
      */
-    @Column(name="order_id")
-    private Long orderId;
+    @Column(name="good_id")
+    private Long goodId;
 
     /**
-     * 人数
+     * 团编码
+     */
+    @Column(name="tuan_code")
+    private String tuanCode;
+
+    /**
+     * 成团人数
      */
     @Column(name="people_num")
     private Long peopleNum;
@@ -120,26 +126,39 @@ public class Tuan {
     }
 
     /** 
-	* @return orderId ：订单ID
+	* @return goodId ：商品ID
 	*/
-    public Long getOrderId() {
-        return orderId;
+    public Long getGoodId() {
+        return goodId;
     }
     /** 
-    *@param orderId 设置订单ID 
+    *@param goodId 设置商品ID 
     */
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setGoodId(Long goodId) {
+        this.goodId = goodId;
     }
 
     /** 
-	* @return peopleNum ：人数
+	* @return tuanCode ：团编码
+	*/
+    public String getTuanCode() {
+        return tuanCode;
+    }
+    /** 
+    *@param tuanCode 设置团编码 
+    */
+    public void setTuanCode(String tuanCode) {
+        this.tuanCode = tuanCode;
+    }
+
+    /** 
+	* @return peopleNum ：成团人数
 	*/
     public Long getPeopleNum() {
         return peopleNum;
     }
     /** 
-    *@param peopleNum 设置人数 
+    *@param peopleNum 设置成团人数 
     */
     public void setPeopleNum(Long peopleNum) {
         this.peopleNum = peopleNum;
@@ -204,7 +223,7 @@ public class Tuan {
         return goodName;
     }
     /** 
-    *@param goodName 设置商品名称
+    *@param goodName 设置商品名称 
     */
     public void setGoodName(String goodName) {
         this.goodName = goodName;

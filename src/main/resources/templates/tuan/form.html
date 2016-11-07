@@ -38,13 +38,19 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
-                        <td class="tdTit"><label>订单ID：</label></td>
+                        <td class="tdTit"><label>商品ID：</label></td>
                         <td>
-                        <input type="text"  name="orderId"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.orderId}"/>
+                        <input type="text"  name="goodId"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.goodId}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>人数：</label></td>
+                        <td class="tdTit"><label>团编码：</label></td>
+                        <td>
+                        <input type="text"  name="tuanCode"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.tuanCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>成团人数：</label></td>
                         <td>
                         <input type="text"  name="peopleNum"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.peopleNum}"/>
                         </td>
@@ -70,9 +76,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品描述：</label></td>
+                        <td class="tdTit"><label>商品名称：</label></td>
                         <td>
-                        <input type="text"  name="goodDes"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.goodDes}"/>
+                        <input type="text"  name="goodName"   class="easyui-validatebox" data-options="required:true" th:value="${tuan.goodName}"/>
                         </td>
                     </tr>
                     <tr>

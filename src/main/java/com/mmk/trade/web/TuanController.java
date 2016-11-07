@@ -1,6 +1,6 @@
 /*
  * 
- *  拼团管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
+ *  团管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.web;
 
@@ -29,7 +29,7 @@ import com.mmk.trade.condition.TuanCondition;
 
 /**
 *@Title: TuanController
-*@Description: 拼团管理 的web控制层
+*@Description: 团管理 的web控制层
 *@author huguangling 胡广玲
 */
 @RestController
@@ -44,7 +44,7 @@ public class TuanController extends BaseController {
      */
     @RequestMapping("/tuan/list")
     public ModelAndView list(){
-        log.info("拼团管理列表查询");
+        log.info("团管理列表查询");
         ModelAndView modelAndView = new ModelAndView("tuan/list");
         return  modelAndView;
     }
@@ -62,7 +62,7 @@ public class TuanController extends BaseController {
     @RequestMapping("/tuan/gridData")
     @ResponseBody
     public GridData<Tuan> loadList(TuanCondition tuanCondition, EasyPageable pageable){
-        log.info("获取拼团管理列表数据");
+        log.info("获取团管理列表数据");
         Page<Tuan> tuanPage = tuanService.list(tuanCondition,pageable.pageable());   
         GridData<Tuan> grid = new GridData<Tuan>(tuanPage);
         return grid;
@@ -70,7 +70,7 @@ public class TuanController extends BaseController {
     
     /**
      * 新增页面
-     * @return 跳转到拼团管理新增页面
+     * @return 跳转到团管理新增页面
      */
     @RequestMapping("/tuan/add")
     public ModelAndView addPage(){
@@ -85,7 +85,7 @@ public class TuanController extends BaseController {
      */ 
     @RequestMapping("/tuan/edit")
     public ModelAndView editPage(Tuan tuan){
-        log.info("拼团管理编辑页面");
+        log.info("团管理编辑页面");
         tuan = tuanService.find(tuan.getId());
         ModelAndView modelAndView = new ModelAndView("tuan/form");
         modelAndView.addObject("tuan", tuan);
@@ -94,20 +94,20 @@ public class TuanController extends BaseController {
     
     
     /**
-     * 拼团管理数据保存方法
+     * 团管理数据保存方法
      * @param tuan 要保存的数据
      * @return tuan 保存后的数据
      */
     @RequestMapping("/tuan/save")
     @ResponseBody
     public ResultMsg save(Tuan tuan){
-        log.info("拼团管理保存");
+        log.info("团管理保存");
         try {
             tuanService.save(tuan);
         } catch (Exception e) {
-            return new ResultMsg(false,"拼团管理保存失败");
+            return new ResultMsg(false,"团管理保存失败");
         }
-        return new ResultMsg(true,"拼团管理保存成功");
+        return new ResultMsg(true,"团管理保存成功");
     }
     
    
@@ -120,7 +120,7 @@ public class TuanController extends BaseController {
     @RequestMapping("/tuan/details")
     @ResponseBody
     public Tuan details(Tuan tuan){
-        log.info("拼团管理详细信息");
+        log.info("团管理详细信息");
         tuan = tuanService.find(tuan.getId());
         return tuan;
     }
@@ -132,7 +132,7 @@ public class TuanController extends BaseController {
      */
     @RequestMapping("/tuan/delete")
     public ResultMsg delete(Tuan tuan){
-        log.info("拼团管理删除");
+        log.info("团管理删除");
         try {
             tuanService.delete(tuan);
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class TuanController extends BaseController {
      */
     @RequestMapping("/tuan/deleteAll")
     public boolean delete(List<Tuan> tuanList){
-        log.info("拼团管理批量删除");
+        log.info("团管理批量删除");
         try {
             tuanService.delete(tuanList);
         } catch (Exception e) {
@@ -159,15 +159,4 @@ public class TuanController extends BaseController {
         return true; 
     }
     
-    /**
-     * 跳转至详细信息页面
-     * @param  orderId 检查字段是否存在
-     * @return  true or false
-     */ 
-    @RequestMapping("/tuan/orderId/exist")
-    @ResponseBody
-    public boolean existsOrderId(Long orderId){
-        log.info("检测拼团管理是否存在  orderId");
-        return tuanService.existsOrderId(orderId);
-    }
 }

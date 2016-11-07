@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>详情:拼团管理</title>
+        <title>详情:团管理</title>
         <link href="/css/style.css" rel="stylesheet" type="text/css" />
         <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
     </head>
@@ -10,7 +10,7 @@
     <body>
         <div class="container amn_add">
             <div class="headtt">
-                <h1>拼团管理详情</h1>            
+                <h1>团管理详情</h1>            
             </div>
             <div class="role_tit"></div>            
             <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
@@ -20,11 +20,15 @@
                         <td th:text="${tuan.id}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>订单ID：</label></td>
-                        <td th:text="${tuan.orderId}"></td>
+                        <td class="tdTit"><label>商品ID：</label></td>
+                        <td th:text="${tuan.goodId}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>人数：</label></td>
+                        <td class="tdTit"><label>团编码：</label></td>
+                        <td th:text="${tuan.tuanCode}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>成团人数：</label></td>
                         <td th:text="${tuan.peopleNum}"></td>
                     </tr>
                     <tr>
@@ -44,8 +48,8 @@
                         <td th:text="${tuan.goodImg}"></td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品描述：</label></td>
-                        <td th:text="${tuan.goodDes}"></td>
+                        <td class="tdTit"><label>商品名称：</label></td>
+                        <td th:text="${tuan.goodName}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品编码：</label></td>

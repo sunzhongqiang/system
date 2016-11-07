@@ -40,7 +40,7 @@ public class IndexApi {
 	 * @date 2016年1月27日 下午2:47:43
 	 * @author zq
 	 */
-	@RequestMapping("/home/indexAd")
+	@RequestMapping("/api/home/indexAd")
 	@ResponseBody
 	public ResultMsg indexAd(Long position){
 		Map<String, Object> result = new HashMap<String,Object>();

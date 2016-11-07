@@ -1,14 +1,14 @@
 /*
  * 
- *  TuanCondition 创建于 2016-11-07 10:36:33 版权归作者和作者当前组织所有
+ *  TuanCondition 创建于 2016-11-07 14:59:09 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.condition;
 import java.util.Date;
 import com.mmk.trade.model.Tuan;
 
 /**
-* TuanCondition ： 拼团管理 扩展查询模型
-* 2016-11-07 10:36:33
+* TuanCondition ： 团管理 扩展查询模型
+* 2016-11-07 14:59:09
 *@author huguangling 胡广玲
 *@version 1.0
 *

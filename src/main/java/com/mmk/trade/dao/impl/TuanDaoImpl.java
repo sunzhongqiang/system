@@ -1,6 +1,6 @@
 /*
  * 
- *  TuanDaoImpl 创建于 2016-11-07 10:36:33 版权归作者和作者当前组织所有
+ *  TuanDaoImpl 创建于 2016-11-07 14:59:09 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -24,7 +24,7 @@ import com.mmk.trade.condition.TuanCondition;
 
 
 /**
-* TuanDaoImpl: 拼团管理 数据持久层接口实现
+* TuanDaoImpl: 团管理 数据持久层接口实现
 *@author huguangling 胡广玲
 *@version 1.0
 *
@@ -54,9 +54,13 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getOrderId()!=null){
-            sb.append(" and model.orderId = :orderId ");
-            params.put("orderId",tuanCondition.getOrderId());
+        if(tuanCondition.getGoodId()!=null){
+            sb.append(" and model.goodId = :goodId ");
+            params.put("goodId",tuanCondition.getGoodId());
+        }
+        if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
+            sb.append(" and model.tuanCode like :tuanCode ");
+            params.put("tuanCode","%"+tuanCondition.getTuanCode()+"%");
         }
         if(tuanCondition.getTuanStartDate()!=null){
             sb.append(" and model.tuanStartDate = :tuanStartDate ");
@@ -89,9 +93,13 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getOrderId()!=null){
-            sb.append(" and model.orderId = :orderId ");
-            params.put("orderId",tuanCondition.getOrderId());
+        if(tuanCondition.getGoodId()!=null){
+            sb.append(" and model.goodId = :goodId ");
+            params.put("goodId",tuanCondition.getGoodId());
+        }
+        if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
+            sb.append(" and model.tuanCode like :tuanCode ");
+            params.put("tuanCode","%"+tuanCondition.getTuanCode()+"%");
         }
         if(tuanCondition.getTuanStartDate()!=null){
             sb.append(" and model.tuanStartDate = :tuanStartDate ");
@@ -119,35 +127,39 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
     
     @Override 
     public Page< Map<String,Object>> listBySql(TuanCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,order_id,people_num,tuan_start_date,tuan_end_date,order_sort,good_img,good_des,good_code,good_price,order_code,user_name,tuan_status from trade_tuan  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,good_id,tuan_code,people_num,tuan_start_date,tuan_end_date,order_sort,good_img,good_name,good_code,good_price,order_code,user_name,tuan_status from trade_tuan  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         if(condition.getId()!=null){
             sb.append(" and id = ?1 ");
             params.put(1,condition.getId());
         }
-        if(condition.getOrderId()!=null){
-            sb.append(" and order_id = ?2 ");
-            params.put(2,condition.getOrderId());
+        if(condition.getGoodId()!=null){
+            sb.append(" and good_id = ?2 ");
+            params.put(2,condition.getGoodId());
+        }
+        if(StringUtils.isNotBlank(condition.getTuanCode())){
+            sb.append(" and tuan_code like ?3 ");
+            params.put(3,"%"+condition.getTuanCode()+"%");
         }
         if(condition.getTuanStartDate()!=null){
-            sb.append(" and tuan_start_date = ?4 ");
-            params.put(4,condition.getTuanStartDate());
+            sb.append(" and tuan_start_date = ?5 ");
+            params.put(5,condition.getTuanStartDate());
         }
         if(condition.getTuanEndDate()!=null){
-            sb.append(" and tuan_end_date = ?5 ");
-            params.put(5,condition.getTuanEndDate());
+            sb.append(" and tuan_end_date = ?6 ");
+            params.put(6,condition.getTuanEndDate());
         }
         if(condition.getOrderSort()!=null){
-            sb.append(" and order_sort = ?6 ");
-            params.put(6,condition.getOrderSort());
+            sb.append(" and order_sort = ?7 ");
+            params.put(7,condition.getOrderSort());
         }
         if(StringUtils.isNotBlank(condition.getUserName())){
-            sb.append(" and user_name like ?12 ");
-            params.put(12,"%"+condition.getUserName()+"%");
+            sb.append(" and user_name like ?13 ");
+            params.put(13,"%"+condition.getUserName()+"%");
         }
         if(condition.getTuanStatus()!=null){
-            sb.append(" and tuan_status = ?13 ");
-            params.put(13,condition.getTuanStatus());
+            sb.append(" and tuan_status = ?14 ");
+            params.put(14,condition.getTuanStatus());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

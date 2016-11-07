@@ -19,12 +19,17 @@
             },
                     {
                 width : '80',
-                title : '订单ID',
-                field : 'orderId',
+                title : '商品ID',
+                field : 'goodId',
             },
                     {
                 width : '80',
-                title : '人数',
+                title : '团编码',
+                field : 'tuanCode',
+            },
+                    {
+                width : '80',
+                title : '成团人数',
                 field : 'peopleNum',
             },
                     {
@@ -49,8 +54,8 @@
             },
                     {
                 width : '80',
-                title : '商品描述',
-                field : 'goodDes',
+                title : '商品名称',
+                field : 'goodName',
             },
                     {
                 width : '80',
@@ -127,7 +132,7 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除拼团管理？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除团管理？', function(b) {
             if (b) {
                 progressLoad();
                     $.post('/tuan/delete', {
