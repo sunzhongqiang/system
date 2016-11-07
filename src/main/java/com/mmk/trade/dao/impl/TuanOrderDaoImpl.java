@@ -1,6 +1,6 @@
 /*
  * 
- *  TuanOrderDaoImpl 创建于 2016-11-05 13:27:33 版权归作者和作者当前组织所有
+ *  TuanOrderDaoImpl 创建于 2016-11-07 09:13:21 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -50,6 +50,26 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
     public Page<TuanOrder> list(TuanOrderCondition tuanOrderCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from TuanOrder model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(tuanOrderCondition.getId()!=null){
+            sb.append(" and model.id = :id ");
+            params.put("id",tuanOrderCondition.getId());
+        }
+        if(tuanOrderCondition.getTuanId()!=null){
+            sb.append(" and model.tuanId = :tuanId ");
+            params.put("tuanId",tuanOrderCondition.getTuanId());
+        }
+        if(tuanOrderCondition.getUserId()!=null){
+            sb.append(" and model.userId = :userId ");
+            params.put("userId",tuanOrderCondition.getUserId());
+        }
+        if(tuanOrderCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",tuanOrderCondition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(tuanOrderCondition.getUserRealName())){
+            sb.append(" and model.userRealName like :userRealName ");
+            params.put("userRealName","%"+tuanOrderCondition.getUserRealName()+"%");
+        }
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -57,6 +77,26 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
     public List<TuanOrder> list(TuanOrderCondition tuanOrderCondition){
         StringBuffer sb=new StringBuffer("select model from TuanOrder model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(tuanOrderCondition.getId()!=null){
+            sb.append(" and model.id = :id ");
+            params.put("id",tuanOrderCondition.getId());
+        }
+        if(tuanOrderCondition.getTuanId()!=null){
+            sb.append(" and model.tuanId = :tuanId ");
+            params.put("tuanId",tuanOrderCondition.getTuanId());
+        }
+        if(tuanOrderCondition.getUserId()!=null){
+            sb.append(" and model.userId = :userId ");
+            params.put("userId",tuanOrderCondition.getUserId());
+        }
+        if(tuanOrderCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",tuanOrderCondition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(tuanOrderCondition.getUserRealName())){
+            sb.append(" and model.userRealName like :userRealName ");
+            params.put("userRealName","%"+tuanOrderCondition.getUserRealName()+"%");
+        }
         return queryByJpql(sb.toString(), params);
     }
     
@@ -65,6 +105,26 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
     public Page< Map<String,Object>> listBySql(TuanOrderCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,tuan_id,user_id,goods_id,user_nick_name,user_real_name,user_sex,consignee,country,province,city,district,address,zipcode,tel,mobile,best_time from trade_tuan_order  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
+        if(condition.getId()!=null){
+            sb.append(" and id = ?1 ");
+            params.put(1,condition.getId());
+        }
+        if(condition.getTuanId()!=null){
+            sb.append(" and tuan_id = ?2 ");
+            params.put(2,condition.getTuanId());
+        }
+        if(condition.getUserId()!=null){
+            sb.append(" and user_id = ?3 ");
+            params.put(3,condition.getUserId());
+        }
+        if(condition.getGoodsId()!=null){
+            sb.append(" and goods_id = ?4 ");
+            params.put(4,condition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(condition.getUserRealName())){
+            sb.append(" and user_real_name like ?6 ");
+            params.put(6,"%"+condition.getUserRealName()+"%");
+        }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     

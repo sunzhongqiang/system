@@ -1,6 +1,6 @@
 /*
  * 
- *  TuanDaoImpl 创建于 2016-11-05 13:24:21 版权归作者和作者当前组织所有
+ *  TuanDaoImpl 创建于 2016-11-07 09:12:01 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -50,6 +50,14 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
     public Page<Tuan> list(TuanCondition tuanCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Tuan model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(tuanCondition.getId()!=null){
+            sb.append(" and model.id = :id ");
+            params.put("id",tuanCondition.getId());
+        }
+        if(tuanCondition.getOrderId()!=null){
+            sb.append(" and model.orderId = :orderId ");
+            params.put("orderId",tuanCondition.getOrderId());
+        }
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -57,6 +65,14 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
     public List<Tuan> list(TuanCondition tuanCondition){
         StringBuffer sb=new StringBuffer("select model from Tuan model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(tuanCondition.getId()!=null){
+            sb.append(" and model.id = :id ");
+            params.put("id",tuanCondition.getId());
+        }
+        if(tuanCondition.getOrderId()!=null){
+            sb.append(" and model.orderId = :orderId ");
+            params.put("orderId",tuanCondition.getOrderId());
+        }
         return queryByJpql(sb.toString(), params);
     }
     
@@ -65,6 +81,14 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
     public Page< Map<String,Object>> listBySql(TuanCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,order_id,people_num,tuan_start_date,tuan_end_date,tuan_status from trade_tuan  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
+        if(condition.getId()!=null){
+            sb.append(" and id = ?1 ");
+            params.put(1,condition.getId());
+        }
+        if(condition.getOrderId()!=null){
+            sb.append(" and order_id = ?2 ");
+            params.put(2,condition.getOrderId());
+        }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     
