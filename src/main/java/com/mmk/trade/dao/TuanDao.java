@@ -1,6 +1,6 @@
 /*
  * 
- *  OrderDao 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
+ *  TuanDao 创建于 2016-11-07 10:36:33 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao;
 
@@ -9,64 +9,64 @@ import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.condition.TuanCondition;
+import com.mmk.trade.model.Tuan;
 /**
-* OrderDao:订单管理 数据持久层接口
+* TuanDao:拼团管理 数据持久层接口
 * @author huguangling 胡广玲
 * @version 1.0
 */
-public interface OrderDao extends SpringDataQueryDao<Order>{
+public interface TuanDao extends SpringDataQueryDao<Tuan>{
     
     /**
      * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
-     * @param order 查询类
+     * @param tuan 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
      * @author huguangling 胡广玲
      * 
      * 
      */
-    Page<Order> list(OrderCondition order,Pageable pageable);
+    Page<Tuan> list(TuanCondition tuan,Pageable pageable);
     /**
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
-     * @param order 查询类
+     * @param tuan 查询类
      * @return 符合条件的查询结果集
      * @author huguangling 胡广玲
      * 
      */
-    List<Order> list(OrderCondition order);
+    List<Tuan> list(TuanCondition tuan);
     /**
      * 使用sql查询，并以map和分页的形式进行返回数据结果
-     * @param order Order类
+     * @param tuan Tuan类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
      * @author huguangling 胡广玲
      * 
      * 
      */
-    Page<Map<String,Object>> listBySql(OrderCondition order,Pageable pageable);
+    Page<Map<String,Object>> listBySql(TuanCondition tuan,Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
-     * @param field Order 中的某个字段
+     * @param field Tuan 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的结果，如果没有返回null
      * @author huguangling 胡广玲
      * 
      * 
      */
-    Order findBy(String field,Object value);
+    Tuan findBy(String field,Object value);
     
     /**
      * 根据给定的字段和属性值，获得符合条件的所有结果
-     * @param field Order 中的某个字段
+     * @param field Tuan 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的所有结果
      * @author huguangling 胡广玲
      * 
      * 
      */
-    List<Order> findAllBy(String field,Object value);
+    List<Tuan> findAllBy(String field,Object value);
     
     
 

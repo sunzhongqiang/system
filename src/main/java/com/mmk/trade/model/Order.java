@@ -1,6 +1,6 @@
 /*
  * 
- *  Order 创建于 2016-11-07 10:14:45 版权归作者和作者当前组织所有
+ *  Order 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.model;
 
@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 /**
 * Order: 订单管理 数据领域模型
-* 2016-11-07 10:14:45
+* 2016-11-07 10:37:06
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -30,6 +30,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
+
+    /**
+     * 团ID
+     */
+    @Column(name="tuan_id")
+    private Long tuanId;
 
     /**
      * 用户ID
@@ -129,6 +135,19 @@ public class Order {
     */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /** 
+	* @return tuanId ：团ID
+	*/
+    public Long getTuanId() {
+        return tuanId;
+    }
+    /** 
+    *@param tuanId 设置团ID 
+    */
+    public void setTuanId(Long tuanId) {
+        this.tuanId = tuanId;
     }
 
     /** 

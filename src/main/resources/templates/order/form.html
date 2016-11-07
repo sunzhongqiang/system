@@ -38,6 +38,12 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
+                        <td class="tdTit"><label>团ID：</label></td>
+                        <td>
+                        <input type="text"  name="tuanId"   class="easyui-validatebox" data-options="required:true" th:value="${order.tuanId}"/>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><label>用户ID：</label></td>
                         <td>
                         <input type="text"  name="userId"   class="easyui-validatebox" data-options="required:true" th:value="${order.userId}"/>

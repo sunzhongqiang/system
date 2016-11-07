@@ -2,7 +2,7 @@
     var dataGrid;
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
-            url : '/order/gridData',
+            url : '/tuan/gridData',
             fit : true,
             striped : true,
             rownumbers : true,
@@ -14,43 +14,28 @@
             columns : [ [ 
                     {
                 width : '80',
-                title : '团订单ID',
+                title : '团ID',
                 field : 'id',
             },
                     {
                 width : '80',
-                title : '团ID',
-                field : 'tuanId',
+                title : '订单ID',
+                field : 'orderId',
             },
                     {
                 width : '80',
-                title : '用户ID',
-                field : 'userId',
+                title : '人数',
+                field : 'peopleNum',
             },
                     {
                 width : '80',
-                title : '商品ID',
-                field : 'goodsId',
+                title : '团开始时间',
+                field : 'tuanStartDate',
             },
                     {
                 width : '80',
-                title : '用户名',
-                field : 'userName',
-            },
-                    {
-                width : '80',
-                title : '订单编号',
-                field : 'orderCode',
-            },
-                    {
-                width : '80',
-                title : '下单时间',
-                field : 'orderTime',
-            },
-                    {
-                width : '80',
-                title : '支付时间',
-                field : 'payTime',
+                title : '团结束时间',
+                field : 'tuanEndDate',
             },
                     {
                 width : '80',
@@ -74,23 +59,23 @@
             },
                     {
                 width : '80',
-                title : '商品价格',
+                title : '商品金额',
                 field : 'goodPrice',
             },
                     {
                 width : '80',
-                title : '订单价格',
-                field : 'orderPrice',
+                title : '订单编码',
+                field : 'orderCode',
             },
                     {
                 width : '80',
-                title : '订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭',
-                field : 'orderStatus',
+                title : '用户名',
+                field : 'userName',
             },
                     {
                 width : '80',
-                title : '收获地址',
-                field : 'address',
+                title : '团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败',
+                field : 'tuanStatus',
             },
             {
                 field : 'action',
@@ -123,7 +108,7 @@
             title : '添加',
             width : 500,
             height : 300,
-            href : '/order/add',
+            href : '/tuan/add',
             buttons : [ {
                 text : '添加',
                 handler : function() {
@@ -142,10 +127,10 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除订单管理？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除拼团管理？', function(b) {
             if (b) {
                 progressLoad();
-                    $.post('/order/delete', {
+                    $.post('/tuan/delete', {
                         id : id
                     }, function(result) {
                         if (result.success) {
@@ -169,7 +154,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '/order/edit?id=' + id,
+            href : '/tuan/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {

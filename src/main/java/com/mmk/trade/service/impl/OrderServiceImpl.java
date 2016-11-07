@@ -16,7 +16,7 @@ import com.mmk.trade.service.OrderService;
 import com.mmk.trade.dao.OrderDao;
 /**
 * OrderServiceImpl: 订单管理 业务服务层实现
-* 2016-11-07 10:14:45
+* 2016-11-07 10:37:06
 * @author huguangling 胡广玲
 * @version 1.0
 */
@@ -51,15 +51,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
     }
 
     /**
-     * 是否存在该
-     * @param id 团订单ID
-     * @return 如果存在的话返回true ,没有的返回false
-     */
-    @Override
-    public boolean existsId(Long id){
-        return orderRepository.findFirstById(id)!=null;
-    }
-    /**
      * 根据给定的字段返回符合的对象
      * @param id 团订单ID
      * @return 符合条件的唯一对象
@@ -81,6 +72,29 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      @Override
     public Page<Order>  findAllById(Long id, Pageable pageable){
         return orderRepository.findAllById(id,pageable);
+    }
+    /**
+     * 根据给定的字段返回符合的对象
+     * @param tuanId 团ID
+     * @return 符合条件的唯一对象
+     */
+    @Override
+    public Order findByTuanId(Long tuanId){
+         return orderRepository.findFirstByTuanId(tuanId);
+    }
+    /**
+     * 根据字段获取所有符合的记录
+     * @param tuanId 团ID
+     * @return 符合条件的所有对象
+     */
+    @Override
+    public List<Order>  findAllByTuanId(Long tuanId){
+        return orderRepository.findAllByTuanId(tuanId);
+    }
+    
+     @Override
+    public Page<Order>  findAllByTuanId(Long tuanId, Pageable pageable){
+        return orderRepository.findAllByTuanId(tuanId,pageable);
     }
     @Override 
     public Order findBy(String field,Object value){

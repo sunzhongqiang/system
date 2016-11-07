@@ -159,15 +159,4 @@ public class OrderController extends BaseController {
         return true; 
     }
     
-    /**
-     * 跳转至详细信息页面
-     * @param  id 检查字段是否存在
-     * @return  true or false
-     */ 
-    @RequestMapping("/order/id/exist")
-    @ResponseBody
-    public boolean existsId(Long id){
-        log.info("检测订单管理是否存在  id");
-        return orderService.existsId(id);
-    }
 }

@@ -1,5 +1,5 @@
 /*
- *  OrderRepository 创建于 2016-11-07 10:14:45 版权归作者和作者当前组织所有
+ *  OrderRepository 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao;
 
@@ -11,7 +11,7 @@ import com.mmk.trade.model.Order;
 
 /**
 * OrderRepository: 订单管理 数据资源层
-* 2016-11-07 10:14:45
+* 2016-11-07 10:37:06
 * @author huguangling 胡广玲
 * @version 1.0
 */
@@ -42,5 +42,30 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
      * 
      */
     Page<Order> findAllById(Long id,Pageable pageable);
+    /**
+     *  根据给定的字段：tuanId 团ID返回符合条件的第一个对象
+     * @param tuanId 团ID
+     * @return 符合条件的唯一对象
+     * @author huguangling 胡广玲
+     * 
+     */
+    Order findFirstByTuanId(Long tuanId);
+    /**
+     *  根据给定的字段：tuanId 团ID获取所有符合的记录
+     * @param tuanId 团ID
+     * @return 符合条件的所有对象
+     * @author huguangling 胡广玲
+     * 
+     */
+    List<Order> findAllByTuanId(Long tuanId);
+    /**
+     *  根据给定的字段：tuanId 团ID所有符合的记录
+     * @param tuanId 团ID
+     * @param pageable 分页参数
+     * @return 符合条件的所有对象
+     * @author huguangling 胡广玲
+     * 
+     */
+    Page<Order> findAllByTuanId(Long tuanId,Pageable pageable);
 
 }

@@ -1,6 +1,6 @@
 /*
  * 
- *  OrderDaoImpl 创建于 2016-11-07 10:14:45 版权归作者和作者当前组织所有
+ *  OrderDaoImpl 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -111,31 +111,31 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
     
     @Override 
     public Page< Map<String,Object>> listBySql(OrderCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,user_id,goods_id,user_name,order_code,order_time,pay_time,order_sort,good_img,good_des,good_code,good_price,order_price,order_status,address from trade_order  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,tuan_id,user_id,goods_id,user_name,order_code,order_time,pay_time,order_sort,good_img,good_des,good_code,good_price,order_price,order_status,address from trade_order  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         if(StringUtils.isNotBlank(condition.getUserName())){
-            sb.append(" and user_name like ?4 ");
-            params.put(4,"%"+condition.getUserName()+"%");
+            sb.append(" and user_name like ?5 ");
+            params.put(5,"%"+condition.getUserName()+"%");
         }
         if(StringUtils.isNotBlank(condition.getOrderCode())){
-            sb.append(" and order_code like ?5 ");
-            params.put(5,"%"+condition.getOrderCode()+"%");
+            sb.append(" and order_code like ?6 ");
+            params.put(6,"%"+condition.getOrderCode()+"%");
         }
         if(condition.getOrderTime()!=null){
-            sb.append(" and order_time = ?6 ");
-            params.put(6,condition.getOrderTime());
+            sb.append(" and order_time = ?7 ");
+            params.put(7,condition.getOrderTime());
         }
         if(condition.getPayTime()!=null){
-            sb.append(" and pay_time = ?7 ");
-            params.put(7,condition.getPayTime());
+            sb.append(" and pay_time = ?8 ");
+            params.put(8,condition.getPayTime());
         }
         if(condition.getOrderSort()!=null){
-            sb.append(" and order_sort = ?8 ");
-            params.put(8,condition.getOrderSort());
+            sb.append(" and order_sort = ?9 ");
+            params.put(9,condition.getOrderSort());
         }
         if(condition.getOrderStatus()!=null){
-            sb.append(" and order_status = ?14 ");
-            params.put(14,condition.getOrderStatus());
+            sb.append(" and order_status = ?15 ");
+            params.put(15,condition.getOrderStatus());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
