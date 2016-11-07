@@ -1,0 +1,124 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/order/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>用户ID：</label></td>
+                        <td>
+                        <input type="text"  name="userId"   class="easyui-validatebox" data-options="required:true" th:value="${order.userId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品ID：</label></td>
+                        <td>
+                        <input type="text"  name="goodsId"   class="easyui-validatebox" data-options="required:true" th:value="${order.goodsId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>用户名：</label></td>
+                        <td>
+                        <input type="text"  name="userName"   class="easyui-validatebox" data-options="required:true" th:value="${order.userName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单编号：</label></td>
+                        <td>
+                        <input type="text"  name="orderCode"   class="easyui-validatebox" data-options="required:true" th:value="${order.orderCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>下单时间：</label></td>
+                        <td><input id="" name="orderTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${order.orderTime}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>支付时间：</label></td>
+                        <td><input id="" name="payTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${order.payTime}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单分类：1，一元购；2，拼团：</label></td>
+                        <td>
+                        <input type="text"  name="orderSort"   class="easyui-validatebox" data-options="required:true" th:value="${order.orderSort}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品图片：</label></td>
+                        <td>
+                        <input type="text"  name="goodImg"   class="easyui-validatebox" data-options="required:true" th:value="${order.goodImg}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品描述：</label></td>
+                        <td>
+                        <input type="text"  name="goodDes"   class="easyui-validatebox" data-options="required:true" th:value="${order.goodDes}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品编码：</label></td>
+                        <td>
+                        <input type="text"  name="goodCode"   class="easyui-validatebox" data-options="required:true" th:value="${order.goodCode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td>
+                        <input type="text"  name="goodPrice"   class="easyui-validatebox" data-options="required:true" th:value="${order.goodPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单价格：</label></td>
+                        <td>
+                        <input type="text"  name="orderPrice"   class="easyui-validatebox" data-options="required:true" th:value="${order.orderPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭：</label></td>
+                        <td>
+                        <input type="text"  name="orderStatus"   class="easyui-validatebox" data-options="required:true" th:value="${order.orderStatus}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>收获地址：</label></td>
+                        <td>
+                        <input type="text"  name="address"   class="easyui-validatebox" data-options="required:true" th:value="${order.address}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${order.id}"/>
+        </form>
+    </div>
+</div>
