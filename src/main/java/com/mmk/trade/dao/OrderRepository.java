@@ -43,29 +43,29 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
      */
     Page<Order> findAllById(Long id,Pageable pageable);
     /**
-     *  根据给定的字段：tuanId 团ID返回符合条件的第一个对象
-     * @param tuanId 团ID
+     *  根据给定的字段：tuanCode 团ID返回符合条件的第一个对象
+     * @param tuanCode 团ID
      * @return 符合条件的唯一对象
      * @author huguangling 胡广玲
      * 
      */
-    Order findFirstByTuanId(Long tuanId);
+    Order findFirstBytuanCode(Long tuanCode);
     /**
-     *  根据给定的字段：tuanId 团ID获取所有符合的记录
-     * @param tuanId 团ID
+     *  根据给定的字段：tuanCode 团ID获取所有符合的记录
+     * @param tuanCode 团ID
      * @return 符合条件的所有对象
      * @author huguangling 胡广玲
      * 
      */
-    List<Order> findAllByTuanId(Long tuanId);
+    List<Order> findAllBytuanCode(Long tuanCode);
     /**
-     *  根据给定的字段：tuanId 团ID所有符合的记录
-     * @param tuanId 团ID
+     *  根据给定的字段：tuanCode 团ID所有符合的记录
+     * @param tuanCode 团ID
      * @param pageable 分页参数
      * @return 符合条件的所有对象
      * @author huguangling 胡广玲
      * 
      */
-    Page<Order> findAllByTuanId(Long tuanId,Pageable pageable);
+    Page<Order> findAllBytuanCode(Long tuanCode,Pageable pageable);
 
 }
