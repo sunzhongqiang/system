@@ -18,6 +18,8 @@ public interface GoodsApi {
 	 * @return
 	 */
 	ResultMsg findGoods();
+
+	ResultMsg findGoodsInfo(Long id);
 	
 
 }

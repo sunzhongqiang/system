@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- [EasyUI] -->
+<link id="easyuiTheme" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/gray/easyui.css" type="text/css" />
+<link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
+<link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+
+<title>订单管理</title>
+<script type="text/javascript" src="/js/extJs.js"></script>
+<script type="text/javascript" src="/js/order/list.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+        <form id="searchForm">
+            <table>
+                <tr>
+
+                    <th>用户名：</th>
+                      <td>
+                        <input type="text" name="userName" th:value="${orderCondition} ? ${orderCondition.userName} :''"/>
+                      </td>
+                  
+
+                    <th>订单编号：</th>
+                      <td>
+                        <input type="text" name="orderCode" th:value="${orderCondition} ? ${orderCondition.orderCode} :''"/>
+                      </td>
+                  
+
+                    <th>下单时间：</th>
+                      <td>
+                        <input type="text" name="orderTime" th:value="${orderCondition} ? ${orderCondition.orderTime} :''"/>
+                      </td>
+                  
+
+                    <th>支付时间：</th>
+                      <td>
+                        <input type="text" name="payTime" th:value="${orderCondition} ? ${orderCondition.payTime} :''"/>
+                      </td>
+                  
+
+                    <th>订单分类：1，一元购；2，拼团：</th>
+                      <td>
+                        <input type="text" name="orderSort" th:value="${orderCondition} ? ${orderCondition.orderSort} :''"/>
+                      </td>
+                  
+
+                    <th>订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭：</th>
+                      <td>
+                        <input type="text" name="orderStatus" th:value="${orderCondition} ? ${orderCondition.orderStatus} :''"/>
+                      </td>
+                  
+                      <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a>
+                      </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div data-options="region:'center',border:true,title:'订单管理'" >
+        <table id="dataGrid" data-options="fit:true,border:false"></table>
+    </div>
+</body>
+</html>

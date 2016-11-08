@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.api.GoodsApi;
 import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.WxUser;
 import com.mmk.business.service.WxUserService;
+import com.mmk.business.service.impl.GoodsImgServiceImpl;
 import com.mmk.business.service.impl.GoodsServiceImpl;
 import com.mmk.common.model.ResultMsg;
 
@@ -21,6 +23,9 @@ public class GoodsApiImpl implements GoodsApi{
 	
 	@Resource
 	private GoodsServiceImpl goodsServiceImpl;
+	
+	@Resource
+	private GoodsImgServiceImpl goodsImgService;
 	
 	
 	@RequestMapping("/api/goods/save")
@@ -63,5 +68,17 @@ public class GoodsApiImpl implements GoodsApi{
 			return new ResultMsg(true, "查找成功", result);
 		}
 	}
+	
+	@RequestMapping("/api/goods/findGoodsInfo")
+	@Override
+	public ResultMsg findGoodsInfo(Long id) {
+		Goods goods = goodsServiceImpl.findById(id);
+		List<GoodsImg> goodsImageList = goodsImgService.findByGoodId(id);
+		Map<String, Object> result = new HashMap<String, Object>() ;
+		result.put("goods", goods);
+		result.put("goodsImgs", goodsImageList);
+		return new ResultMsg(true, "查找成功", result );
+	}
+
 
 }

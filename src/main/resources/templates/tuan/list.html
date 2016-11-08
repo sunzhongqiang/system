@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- [EasyUI] -->
+<link id="easyuiTheme" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/gray/easyui.css" type="text/css" />
+<link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
+<link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+
+<title>团管理</title>
+<script type="text/javascript" src="/js/extJs.js"></script>
+<script type="text/javascript" src="/js/tuan/list.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+        <form id="searchForm">
+            <table>
+                <tr>
+
+                    <th>团ID：</th>
+                      <td>
+                        <input type="text" name="id" th:value="${tuanCondition} ? ${tuanCondition.id} :''"/>
+                      </td>
+                  
+
+                    <th>商品ID：</th>
+                      <td>
+                        <input type="text" name="goodId" th:value="${tuanCondition} ? ${tuanCondition.goodId} :''"/>
+                      </td>
+                  
+
+                    <th>团编码：</th>
+                      <td>
+                        <input type="text" name="tuanCode" th:value="${tuanCondition} ? ${tuanCondition.tuanCode} :''"/>
+                      </td>
+                  
+
+                    <th>团开始时间：</th>
+                      <td>
+                        <input type="text" name="tuanStartDate" th:value="${tuanCondition} ? ${tuanCondition.tuanStartDate} :''"/>
+                      </td>
+                  
+
+                    <th>团结束时间：</th>
+                      <td>
+                        <input type="text" name="tuanEndDate" th:value="${tuanCondition} ? ${tuanCondition.tuanEndDate} :''"/>
+                      </td>
+                  
+
+                    <th>订单分类：1，一元购；2，拼团：</th>
+                      <td>
+                        <input type="text" name="orderSort" th:value="${tuanCondition} ? ${tuanCondition.orderSort} :''"/>
+                      </td>
+                  
+
+                    <th>用户名：</th>
+                      <td>
+                        <input type="text" name="userName" th:value="${tuanCondition} ? ${tuanCondition.userName} :''"/>
+                      </td>
+                  
+
+                    <th>团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败：</th>
+                      <td>
+                        <input type="text" name="tuanStatus" th:value="${tuanCondition} ? ${tuanCondition.tuanStatus} :''"/>
+                      </td>
+                  
+                      <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a>
+                      </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div data-options="region:'center',border:true,title:'团管理'" >
+        <table id="dataGrid" data-options="fit:true,border:false"></table>
+    </div>
+</body>
+</html>
