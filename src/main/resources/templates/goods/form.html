@@ -35,8 +35,8 @@
                         <td>
                         	<select  name="goodsCat" class="easyui-combobox"    required="true"   data-options="width:140,height:29,editable:false,panelHeight:'auto'">
 	                            <option>请选择</option>
-	                            <option th:selected="${goods.goodsCat} == '1' ? 'selected' " value="1" >一元购</option>
-	                            <option th:selected="${goods.goodsCat} == '0' ? 'selected' "  value="0">拼团</option>
+	                            <option th:selected="${goods.goodsCat} == '0' ? 'selected' " value="0" >一元购</option>
+	                            <option th:selected="${goods.goodsCat} == '1' ? 'selected' "  value="1">拼团</option>
 	                       </select>
 <!--                         	<input type="text"  name="goodsCat"   class="easyui-validatebox" data-options="required:true" th:value="${goods.goodsCat}"/> -->
                         </td>
@@ -214,7 +214,7 @@
 						<input type="hidden" name="id" th:value="${goods.id}"/>
 						<input type="hidden" name="id" th:value="${goodsSku.id}"/>
 			            <input class="btn_sbt" type="submit" value="提交"  />
-			            <a href="/goods/list" class="btn_back">返回</a>
+			            <a onclick="javascript:parent.closeTab();" class="btn_back">返回</a>
 				</div>
 			</form>
 		</div>

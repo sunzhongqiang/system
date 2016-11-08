@@ -99,7 +99,7 @@
 
 #table0 .mytextbox,#table2 .mytextbox{height: 24px;line-height: 24px;border-radius: 5px 5px 5px 5px;border: 1px solid #95B8E7;}
 
-.mygoods .datagrid-btable tr td{ height:100px;}
+.mygoods .datagrid-btable tr td{ height:50px;}
 .mygoods .datagrid-btable tr td img{ width:80%; margin:0 auto;}
 .tab_body form{ margin-top:20px;}
 

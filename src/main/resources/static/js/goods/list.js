@@ -17,11 +17,13 @@
                 width : '80',
                 title : '商品ID',
                 field : 'id',
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '商品分类',
                 field : 'goodsCat',
+                align: 'center',
                 formatter : function(value, row, index) {
 					switch (value) {
 					case 0:
@@ -32,55 +34,60 @@
 				}
                 
             },
-            		{
-                width : '80',
-                title : '商品主图',
-                field : 'goodsMainImg',
-                formatter:function(value,row,index)
-                {return '<img src='+value+'>';}
-            },
+//            		{
+//                width : '80',
+//                title : '商品主图',
+//                field : 'goodsMainImg',
+//                formatter:function(value,row,index)
+//                {return '<img src='+value+'>';}
+//            },
                     {
-                width : '80',
+                width : '200',
                 title : '商品名称',
-                field : 'goodsName',
+                field : 'goodName',
             },
                     {
                 width : '80',
                 title : '商品数量',
                 field : 'goodsNumber',
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '商品原价',
                 field : 'goodsOriginalPrice',
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '团购价',
                 field : 'promotePrice',
+                align: 'center',
             },
                     {
                 width : '150',
                 title : '促销开始时间',
                 field : 'promoteStartDate',
                 formatter: formatDatebox,
+                align: 'center',
             },
                     {
                 width : '150',
                 title : '促销结束时间',
                 field : 'promoteEndDate',
                 formatter: formatDatebox,
+                align: 'center',
             },
                     {
                 width : '80',
                 title : '促销数量',
                 field : 'promoteNumber',
             },
-                    {
-                width : '80',
-                title : '已售数量',
-                field : 'saledNumber',
-            },
+//                    {
+//                width : '80',
+//                title : '已售数量',
+//                field : 'saledNumber',
+//            },
 //                    {
 //                width : '80',
 //                title : '商品相册',
@@ -95,6 +102,7 @@
                 width : '80',
                 title : '商品是否下架',
                 field : 'isDelete',
+                align: 'center',
                 formatter : function(value, row, index) {
 					switch (value) {
 					case 0:
