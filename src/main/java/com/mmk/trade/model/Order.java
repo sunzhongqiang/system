@@ -122,9 +122,14 @@ public class Order {
      */
     @Column(name="address")
     private String address;
+    
+    /**
+     * 是否中奖：1，是；2，否
+     */
+    @Column(name="lucky_order")
+    private Long luckyOrder;
 
-
-    /** 
+	/** 
 	* @return id ：团订单ID
 	*/
     public Long getId() {
@@ -332,5 +337,11 @@ public class Order {
         this.address = address;
     }
 
+    public Long getLuckyOrder() {
+		return luckyOrder;
+	}
+	public void setLuckyOrder(Long luckyOrder) {
+		this.luckyOrder = luckyOrder;
+	}
 
 }
