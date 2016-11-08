@@ -22,14 +22,11 @@ public class SpringMVCConfigure extends WebMvcConfigurerAdapter {
 	 */
 	@PostConstruct
 	public void initEditableValidation() {
-		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter
-				.getWebBindingInitializer();
+		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
 		if (initializer.getConversionService() != null) {
-			GenericConversionService genericConversionService = (GenericConversionService) initializer
-					.getConversionService();
+			GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
 			genericConversionService.addConverter(new StringToDate());
 		}
-
 	}
 
 }
