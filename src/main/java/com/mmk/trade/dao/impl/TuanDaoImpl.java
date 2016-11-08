@@ -184,6 +184,17 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public Tuan findById(Long id) {
+        StringBuffer sb=new StringBuffer("select model from Tuan model  where where 1=1  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+
+		sb.append(" and model.id = :id ");
+		params.put("id", id);
+        List<Tuan> tuanList = queryByJpql(sb.toString(), params);
+        return tuanList.isEmpty() ? null : tuanList.get(0);
+	}
     
     
 }

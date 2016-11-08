@@ -49,7 +49,7 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
      * @author huguangling 胡广玲
      * 
      */
-    Order findFirstBytuanCode(Long tuanCode);
+    Order findFirstByTuanCode(String tuanCode);
     /**
      *  根据给定的字段：tuanCode 团ID获取所有符合的记录
      * @param tuanCode 团ID
@@ -57,7 +57,7 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
      * @author huguangling 胡广玲
      * 
      */
-    List<Order> findAllBytuanCode(Long tuanCode);
+    List<Order> findAllByTuanCode(String tuanCode);
     /**
      *  根据给定的字段：tuanCode 团ID所有符合的记录
      * @param tuanCode 团ID
@@ -66,6 +66,6 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
      * @author huguangling 胡广玲
      * 
      */
-    Page<Order> findAllBytuanCode(Long tuanCode,Pageable pageable);
+    Page<Order> findAllByTuanCode(String tuanCode,Pageable pageable);
 
 }

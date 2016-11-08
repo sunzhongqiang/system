@@ -79,8 +79,8 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的唯一对象
      */
     @Override
-    public Order findBytuanCode(Long tuanCode){
-         return orderRepository.findFirstBytuanCode(tuanCode);
+    public Order findByTuanCode(String tuanCode){
+         return orderRepository.findFirstByTuanCode(tuanCode);
     }
     /**
      * 根据字段获取所有符合的记录
@@ -88,13 +88,13 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的所有对象
      */
     @Override
-    public List<Order>  findAllBytuanCode(Long tuanCode){
-        return orderRepository.findAllBytuanCode(tuanCode);
+    public List<Order>  findAllByTuanCode(String tuanCode){
+        return orderRepository.findAllByTuanCode(tuanCode);
     }
     
      @Override
-    public Page<Order>  findAllBytuanCode(Long tuanCode, Pageable pageable){
-        return orderRepository.findAllBytuanCode(tuanCode,pageable);
+    public Page<Order>  findAllByTuanCode(String tuanCode, Pageable pageable){
+        return orderRepository.findAllByTuanCode(tuanCode,pageable);
     }
     @Override 
     public Order findBy(String field,Object value){

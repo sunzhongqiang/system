@@ -65,7 +65,7 @@ public interface OrderService extends BaseService<Order, Long> {
      * @author huguangling 胡广玲
      * 
      */
-    Order findBytuanCode(Long tuanCode);
+    Order findByTuanCode(String tuanCode);
     /**
      * 根据字段获取所有符合的记录
      * @param tuanCode 团ID
@@ -73,7 +73,7 @@ public interface OrderService extends BaseService<Order, Long> {
      * @author huguangling 胡广玲
      * 
      */
-    List<Order> findAllBytuanCode(Long tuanCode);
+    List<Order> findAllByTuanCode(String tuanCode);
     /**
      * 根据字段获取所有符合的记录
      * @param tuanCode 团ID
@@ -82,7 +82,7 @@ public interface OrderService extends BaseService<Order, Long> {
      * @author huguangling 胡广玲
      * 
      */
-    Page<Order> findAllBytuanCode(Long tuanCode, Pageable pageable);
+    Page<Order> findAllByTuanCode(String tuanCode, Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field Order 中的某个字段
