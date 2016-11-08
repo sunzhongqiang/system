@@ -187,7 +187,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
 
 	@Override
 	public Tuan findById(Long id) {
-        StringBuffer sb=new StringBuffer("select model from Tuan model  where where 1=1  ");
+        StringBuffer sb=new StringBuffer("select model from Tuan model where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
 
 		sb.append(" and model.id = :id ");
