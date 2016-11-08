@@ -23,18 +23,55 @@
 			},
                     {
                 width : '80',
-                title : '团ID',
+                title : '团编码',
                 field : 'tuanCode',
             },
-                    {
+            {
                 width : '80',
-                title : '订单分类：1，一元购；2，拼团',
-                field : 'orderSort',
+                title : '成团人数',
+                field : 'peopleNum',
+            },
+                    {
+                width : '120',
+                title : '团开始时间',
+                field : 'tuanStartDate',
+            },
+                    {
+                width : '120',
+                title : '团结束时间',
+                field : 'tuanEndDate',
             },
                     {
                 width : '80',
-                title : '团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败',
+                title : '订单分类',
+                field : 'orderSort',
+                align : 'center',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '一元购';
+					case 1:
+						return '拼团';
+						
+					}
+				}
+            },
+                    {
+                width : '80',
+                title : '团状态',
                 field : 'tuanStatus',
+                align : 'center',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 1:
+						return '待成团';
+					case 2:
+						return '已成团';
+					case 3:
+						return '拼团失败';
+						
+					}
+				}
             }] ],
             onSelect: function(index,row) {
             	console.log(row);
@@ -61,10 +98,29 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
+//                    {
+//                width : '80',
+//                title : '团ID',
+//                field : 'id',
+//            },
+//            		{
+//                width : '80',
+//                title : '团编码',
+//                field : 'tuanCode',
+//            },
+            		{
                 width : '80',
-                title : '团ID',
-                field : 'id',
+                title : '订单分类',
+                field : 'orderSort',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '一元购';
+					case 1:
+						return '拼团';
+						
+					}
+				}
             },
                     {
                 width : '80',
@@ -73,44 +129,19 @@
             },
                     {
                 width : '80',
-                title : '团编码',
-                field : 'tuanCode',
-            },
-                    {
-                width : '80',
-                title : '成团人数',
-                field : 'peopleNum',
-            },
-                    {
-                width : '80',
-                title : '团开始时间',
-                field : 'tuanStartDate',
-            },
-                    {
-                width : '80',
-                title : '团结束时间',
-                field : 'tuanEndDate',
-            },
-                    {
-                width : '80',
-                title : '订单分类：1，一元购；2，拼团',
-                field : 'orderSort',
-            },
-                    {
-                width : '80',
                 title : '商品图片',
                 field : 'goodImg',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '商品名称',
                 field : 'goodName',
             },
-                    {
-                width : '80',
-                title : '商品编码',
-                field : 'goodCode',
-            },
+//                    {
+//                width : '80',
+//                title : '商品编码',
+//                field : 'goodCode',
+//            },
                     {
                 width : '80',
                 title : '商品金额',
@@ -126,11 +157,12 @@
                 title : '用户名',
                 field : 'userName',
             },
-                    {
-                width : '80',
-                title : '团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败',
-                field : 'tuanStatus',
-            }] ],
+//                    {
+//                width : '80',
+//                title : '团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败',
+//                field : 'tuanStatus',
+//            }
+            ] ],
         });
     });
     

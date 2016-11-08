@@ -75,26 +75,26 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
     }
     /**
      * 根据给定的字段返回符合的对象
-     * @param tuanId 团ID
+     * @param tuanCode 团ID
      * @return 符合条件的唯一对象
      */
     @Override
-    public Order findByTuanId(Long tuanId){
-         return orderRepository.findFirstByTuanId(tuanId);
+    public Order findBytuanCode(Long tuanCode){
+         return orderRepository.findFirstBytuanCode(tuanCode);
     }
     /**
      * 根据字段获取所有符合的记录
-     * @param tuanId 团ID
+     * @param tuanCode 团ID
      * @return 符合条件的所有对象
      */
     @Override
-    public List<Order>  findAllByTuanId(Long tuanId){
-        return orderRepository.findAllByTuanId(tuanId);
+    public List<Order>  findAllBytuanCode(Long tuanCode){
+        return orderRepository.findAllBytuanCode(tuanCode);
     }
     
      @Override
-    public Page<Order>  findAllByTuanId(Long tuanId, Pageable pageable){
-        return orderRepository.findAllByTuanId(tuanId,pageable);
+    public Page<Order>  findAllBytuanCode(Long tuanCode, Pageable pageable){
+        return orderRepository.findAllBytuanCode(tuanCode,pageable);
     }
     @Override 
     public Order findBy(String field,Object value){

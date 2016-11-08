@@ -58,6 +58,10 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
             sb.append(" and model.orderCode like :orderCode ");
             params.put("orderCode","%"+orderCondition.getOrderCode()+"%");
         }
+        if(StringUtils.isNotBlank(orderCondition.getTuanCode())){
+            sb.append(" and model.tuanCode like :tuanCode ");
+            params.put("tuanCode","%"+orderCondition.getTuanCode()+"%");
+        }
         if(orderCondition.getOrderTime()!=null){
             sb.append(" and model.orderTime = :orderTime ");
             params.put("orderTime",orderCondition.getOrderTime());

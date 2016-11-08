@@ -32,10 +32,10 @@ public class Order {
     private Long id;
 
     /**
-     * 团ID
+     * 团编码
      */
-    @Column(name="tuan_id")
-    private Long tuanId;
+    @Column(name="tuan_code")
+    private String tuanCode;
 
     /**
      * 用户ID
@@ -138,16 +138,16 @@ public class Order {
     }
 
     /** 
-	* @return tuanId ：团ID
+	* @return tuanId ：团编码
 	*/
-    public Long getTuanId() {
-        return tuanId;
+    public String getTuanCode() {
+        return tuanCode;
     }
     /** 
-    *@param tuanId 设置团ID 
+    *@param tuanCode 设置团编码 
     */
-    public void setTuanId(Long tuanId) {
-        this.tuanId = tuanId;
+    public void setTuanCode(String tuanCode) {
+        this.tuanCode = tuanCode;
     }
 
     /** 
