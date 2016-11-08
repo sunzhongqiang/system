@@ -54,4 +54,16 @@ public interface TuanService extends BaseService<Tuan, Long> {
      * 
      */
     List<Tuan> findAllBy(String field,Object value);
+
+    
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field Tuan中的某个字段
+     * @param value 字段的值
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+    Tuan findById(Long id);
 }

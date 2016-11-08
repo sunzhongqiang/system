@@ -61,4 +61,10 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
         log.info("团管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return tuanDao.findAllBy(field,value);
     }
+
+	@Override
+	public Tuan findById(Long id) {
+        log.info("根据团ID查询指定的团");
+        return tuanDao.findById(id);
+	}
 }
