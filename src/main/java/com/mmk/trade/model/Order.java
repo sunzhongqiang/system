@@ -128,6 +128,12 @@ public class Order {
      */
     @Column(name="lucky_order")
     private Long luckyOrder;
+    
+    /**
+     * 是否团长：1，是；2，否
+     */
+    @Column(name="colonel")
+    private Long colonel;
 
 	/** 
 	* @return id ：团订单ID
@@ -344,4 +350,10 @@ public class Order {
 		this.luckyOrder = luckyOrder;
 	}
 
+	public Long getColonel() {
+		return colonel;
+	}
+	public void setColonel(Long colonel) {
+		this.colonel = colonel;
+	}
 }
