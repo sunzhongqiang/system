@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mmk.business.constants.TuanConstant;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
 import com.mmk.trade.model.Tuan;
@@ -25,10 +26,6 @@ public class TuanApi {
 	@Resource
 	private OrderServiceImpl orderService;
 	
-	private String staus_0 = new String("0");
-	private String staus_1 = new String("1");
-	private String staus_2 = new String("2");
-	private String staus_3 = new String("3");
 	
 	/**
 	 * 广告位商品
@@ -48,20 +45,20 @@ public class TuanApi {
 
 		// 成团状态设置
 		if(new Date().after(tuan.getTuanEndDate())){
-				tuan.setTuanStatus(Long.valueOf(staus_3));
+				tuan.setTuanStatus(TuanConstant.TUAN_STATUS_FAIL);
 		}else if(orderList != null && !orderList.isEmpty() && tuan.getPeopleNum() == orderList.size()){
-				tuan.setTuanStatus(Long.valueOf(staus_2));
+				tuan.setTuanStatus(TuanConstant.TUAN_STATUS_DONE);
 		}else {
-			tuan.setTuanStatus(Long.valueOf(staus_1));
+			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
 		}
 		
 		// 设置团编码
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		
 		// 设置抽中幸运者
-		if(staus_0.equals(tuan.getOrderSort()) && staus_2.equals(tuan.getTuanStatus())){
+		if(TuanConstant.ONE_YUAN_TUAN.equals(tuan.getOrderSort()) && TuanConstant.TUAN_STATUS_DONE.equals(tuan.getTuanStatus())){
 			Order order = orderList.get(random.nextInt(orderList.size() - 1));
-			order.setLuckyOrder(Long.valueOf(staus_1));
+			order.setLuckyOrder(TuanConstant.IS_LUCKER);
 			orderService.save(order);
 		}
 		result.put("tuan", tuan);
