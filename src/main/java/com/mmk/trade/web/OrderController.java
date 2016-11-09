@@ -4,6 +4,7 @@
  */
 package com.mmk.trade.web;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,7 @@ public class OrderController extends BaseController {
     @ResponseBody
     public GridData<Order> loadList(OrderCondition orderCondition, EasyPageable pageable){
         log.info("获取订单管理列表数据");
-        Page<Order> orderPage = orderService.list(orderCondition,pageable.pageable());   
+        Page<Order> orderPage = orderService.list(orderCondition,pageable.pageable());
         GridData<Order> grid = new GridData<Order>(orderPage);
         return grid;
     }
