@@ -12,26 +12,26 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
-                width : '80',
-                title : '团订单ID',
-                field : 'id',
-            },
-                    {
-                width : '80',
-                title : '团ID',
-                field : 'tuanId',
-            },
-                    {
-                width : '80',
-                title : '用户ID',
-                field : 'userId',
-            },
-                    {
-                width : '80',
-                title : '商品ID',
-                field : 'goodsId',
-            },
+//                    {
+//                width : '80',
+//                title : '团订单ID',
+//                field : 'id',
+//            },
+//                    {
+//                width : '80',
+//                title : '团ID',
+//                field : 'tuanId',
+//            },
+//                    {
+//                width : '80',
+//                title : '用户ID',
+//                field : 'userId',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品ID',
+//                field : 'goodsId',
+//            },
                     {
                 width : '80',
                 title : '用户名',
@@ -105,11 +105,11 @@
                     return str;
                 }
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
+//           toolbar :  [{
+//	            iconCls: 'icon-add',
+//	            text:'新增',
+//	            handler: function(){addFun();}
+//            }],
             onLoadSuccess : function(data){
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
@@ -118,70 +118,70 @@
         });
     });
     
-    function addFun() {
-        parent.$.modalDialog({
-            title : '添加',
-            width : 500,
-            height : 300,
-            href : '/order/add',
-            buttons : [ {
-                text : '添加',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } ]
-        });
-    }
+//    function addFun() {
+//        parent.$.modalDialog({
+//            title : '添加',
+//            width : 500,
+//            height : 300,
+//            href : '/order/add',
+//            buttons : [ {
+//                text : '添加',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } ]
+//        });
+//    }
     
-    function deleteFun(id) {
-        if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.messager.confirm('询问', '您是否要删除订单管理？', function(b) {
-            if (b) {
-                progressLoad();
-                    $.post('/order/delete', {
-                        id : id
-                    }, function(result) {
-                        if (result.success) {
-                            parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
-                        }
-                        progressClose();
-                    }, 'JSON');
-                }
-        });
-    }
+//    function deleteFun(id) {
+//        if (id == undefined) {//点击右键菜单才会触发这个
+//            var rows = dataGrid.datagrid('getSelections');
+//            id = rows[0].id;
+//        } else {//点击操作里面的删除图标会触发这个
+//            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+//        }
+//        parent.$.messager.confirm('询问', '您是否要删除订单管理？', function(b) {
+//            if (b) {
+//                progressLoad();
+//                    $.post('/order/delete', {
+//                        id : id
+//                    }, function(result) {
+//                        if (result.success) {
+//                            parent.$.messager.alert('提示', result.msg, 'info');
+//                            dataGrid.datagrid('reload');
+//                        }
+//                        progressClose();
+//                    }, 'JSON');
+//                }
+//        });
+//    }
     
-    function editFun(id) {
-        if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.modalDialog({
-            title : '编辑',
-            width : 500,
-            height : 300,
-            href : '/order/edit?id=' + id,
-            buttons : [ {
-                text : '编辑',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } 
-            ]
-        });
-    }
-    
+//    function editFun(id) {
+//        if (id == undefined) {
+//            var rows = dataGrid.datagrid('getSelections');
+//            id = rows[0].id;
+//        } else {
+//            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+//        }
+//        parent.$.modalDialog({
+//            title : '编辑',
+//            width : 500,
+//            height : 300,
+//            href : '/order/edit?id=' + id,
+//            buttons : [ {
+//                text : '编辑',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } 
+//            ]
+//        });
+//    }
+//    
     function searchFun() {
         ////将searchForm表单内的元素序列为对象传递到后台
         dataGrid.datagrid('load', $.serializeObject($('#searchForm')));

@@ -20,44 +20,58 @@
 <script type="text/javascript" src="/js/order/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="overflow: hidden;background-color: #fff;padding:10px;">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>用户名：</th>
                       <td>
-                        <input type="text" name="userName" th:value="${orderCondition} ? ${orderCondition.userName} :''"/>
+                        <input class="easyui-textbox" type="text" name="userName" th:value="${orderCondition} ? ${orderCondition.userName} :''"/>
                       </td>
                   
 
                     <th>订单编号：</th>
                       <td>
-                        <input type="text" name="orderCode" th:value="${orderCondition} ? ${orderCondition.orderCode} :''"/>
+                        <input class="easyui-textbox"  type="text" name="orderCode" th:value="${orderCondition} ? ${orderCondition.orderCode} :''"/>
                       </td>
                   
 
                     <th>下单时间：</th>
                       <td>
-                        <input type="text" name="orderTime" th:value="${orderCondition} ? ${orderCondition.orderTime} :''"/>
+                        <input class="easyui-datebox"  type="text" name="orderTime" th:value="${orderCondition} ? ${orderCondition.orderTime} :''"/>
                       </td>
                   
 
                     <th>支付时间：</th>
                       <td>
-                        <input type="text" name="payTime" th:value="${orderCondition} ? ${orderCondition.payTime} :''"/>
+                        <input class="easyui-datebox"  type="text" name="payTime" th:value="${orderCondition} ? ${orderCondition.payTime} :''"/>
                       </td>
                   
 
-                    <th>订单分类：1，一元购；2，拼团：</th>
+                    <th>订单分类</th>
                       <td>
-                        <input type="text" name="orderSort" th:value="${orderCondition} ? ${orderCondition.orderSort} :''"/>
+<!--                         <input type="text" name="orderSort" th:value="${orderCondition} ? ${orderCondition.orderSort} :''"/> -->
+                      	<select name="orderSort" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">请选择</option>
+			              <option  value="0">一元购</option>
+			              <option  value="1" >拼团</option>
+		               </select>
                       </td>
                   
 
-                    <th>订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭：</th>
+                    <th>订单状态</th>
                       <td>
-                        <input type="text" name="orderStatus" th:value="${orderCondition} ? ${orderCondition.orderStatus} :''"/>
+<!--                         <input type="text" name="orderStatus" th:value="${orderCondition} ? ${orderCondition.orderStatus} :''"/> -->
+                      	<select name="orderStatus" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">全部</option>
+			              <option  value="1">待付款</option>
+			              <option  value="2" >拼团中</option>
+			              <option  value="3" >待发货</option>
+			              <option  value="4" >待收货</option>
+			              <option  value="5" >已成功</option>
+			              <option  value="6" >已关闭</option>
+		               </select>
                       </td>
                   
                       <td>
