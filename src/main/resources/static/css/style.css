@@ -130,3 +130,121 @@
 .tuan .datagrid-body tr td .datagrid-cell-c2-goodImg img{ max-height:98px;}
 
 
+li{list-style: none;}
+.ddgl .datagrid-btable{ width:100%;}
+.ddgl .datagrid-row-selected{ background: #fff; color:#000000;}
+.ddgl .datagrid-row-over,.ddgl .datagrid-header td.datagrid-header-over {
+  background: #fff;
+  color: #000000;
+  cursor: default;
+}
+.order_detail{width: 97%;
+margin: 30px auto;
+border: 1px #ccdee4 solid;
+border-right: none;display: block;
+overflow: hidden;}
+.order-sn {
+    display: block;
+    overflow: hidden;
+    background: #e5f1f5;
+    padding: 12px 15px 0px 15px;
+    border-right: 1px #ccdee4 solid;
+    border-bottom: 1px #ccdee4 solid;
+   	margin:0;
+}
+.order_detail .orders_info td {
+    padding: 5px;
+}
+.order-sn li {
+    float: left;
+    padding-right: 50px;
+}
+.order-sn li span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #656668;
+}
+.order-sn li p {
+    display: inline-block;
+    font-weight: bold;
+    color: #656668;
+}
+.orders td {
+    text-align: center;
+    border-right: 1px #ccdee4 solid;
+    border-bottom: 1px #ccdee4 solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.is_00 {
+    display: inline-block;
+    padding: 2px 5px;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.is_02 {
+    color: #e05ec9;
+    border: 1px solid #e05ec9;
+}
+.goods-form img {
+    width: 70px;
+    height: 70px;
+}
+.goods-all {
+    float: right;
+    text-align: left;
+    padding-right: 5%;
+    padding-top: 15px;
+    width: 55%;
+    overflow: hidden;
+}
+.goods-name {
+    font-size: 14px;
+    color: #4190d3;
+}
+.goods-brand {
+    padding-top: 5px;
+}
+.orders_info td {
+    border-right: 1px #ccdee4 solid;
+}
+.order_address {
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    resize: none;
+    background: #FAFAFA;
+    border: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.btn_send1 {
+    background: #5b85af;
+    color: #fff;
+    border: 1px #5b85af solid;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 7px 10px;
+}
+.red {
+    color: #fc0707;font-weight: bold;font-size:16px;
+}
+.green {
+    color: #53a138;font-weight: bold;font-size:16px;
+}
+.bold {
+    font-weight: bold;font-size:16px;
+}
+
+
+
+
+
+
+
+
+
+

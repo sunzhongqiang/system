@@ -14,6 +14,9 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 /**
 * Order: 订单管理 数据领域模型
 * 2016-11-07 10:37:06
@@ -64,6 +67,7 @@ public class Order {
     /**
      * 下单时间
      */
+    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
     @Column(name="order_time")
     private Date orderTime;
@@ -71,6 +75,7 @@ public class Order {
     /**
      * 支付时间
      */
+    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
     @Column(name="pay_time")
     private Date payTime;

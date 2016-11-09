@@ -8,6 +8,7 @@ public class TuanConstant {
 	
 	///团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败
 	
+	public static final Long TUAN_STATUS_ALL = 0L;
 	public static final Long TUAN_STATUS_WAIT = 1L;
 	public static final Long TUAN_STATUS_DONE = 2L;
 	public static final Long TUAN_STATUS_FAIL = 3L;
