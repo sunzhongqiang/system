@@ -1,6 +1,6 @@
 /*
  * 
- *  Order 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
+ *  TuanOrder 创建于 2016-11-10 10:55:27 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.model;
 
@@ -14,13 +14,10 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
 /**
-* Order: 订单管理 数据领域模型
-* 2016-11-07 10:37:06
-*@author huguangling 胡广玲
+* TuanOrder: 分瑞蚨祥 数据领域模型
+* 2016-11-10 10:55:27
+*@author codegenerator
 *@version 1.0
 */
 @Entity
@@ -35,16 +32,16 @@ public class Order {
     private Long id;
 
     /**
-     * 团编码
-     */
-    @Column(name="tuan_code")
-    private String tuanCode;
-
-    /**
      * 用户ID
      */
     @Column(name="user_id")
     private Long userId;
+
+    /**
+     * 团编码
+     */
+    @Column(name="tuan_code")
+    private String tuanCode;
 
     /**
      * 商品ID
@@ -91,7 +88,7 @@ public class Order {
     private String goodImg;
 
     /**
-     * 商品描述
+     * 商品名称
      */
     @Column(name="good_name")
     private String goodName;
@@ -115,7 +112,7 @@ public class Order {
     private Double orderPrice;
 
     /**
-     * 订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭
+     * 订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭
      */
     @Column(name="order_status")
     private Long orderStatus;
@@ -125,25 +122,46 @@ public class Order {
      */
     @Column(name="address")
     private String address;
-    
+
     /**
      * 是否中奖：1，是；2，否
      */
     @Column(name="lucky_order")
     private Long luckyOrder;
-    
+
     /**
-     * 是否团长：1，是；2，否
+     * 团长
      */
     @Column(name="colonel")
     private Long colonel;
-    
+
     /**
      * 物流单号
      */
-    @Column(name="shipping_code")
-    private String shippingCode;
-	/** 
+    @Column(name="invoice_no")
+    private String invoiceNo;
+
+    /**
+     * 物流公司名称
+     */
+    @Column(name="shipping_name")
+    private String shippingName;
+
+    /**
+     * 物流公司ID
+     */
+    @Column(name="shipping_id")
+    private Long shippingId;
+
+    /**
+     * 发货时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)   
+    @Column(name="shipping_time")
+    private Date shippingTime;
+
+
+    /** 
 	* @return id ：团订单ID
 	*/
     public Long getId() {
@@ -157,19 +175,6 @@ public class Order {
     }
 
     /** 
-	* @return tuanId ：团编码
-	*/
-    public String getTuanCode() {
-        return tuanCode;
-    }
-    /** 
-    *@param tuanCode 设置团编码 
-    */
-    public void setTuanCode(String tuanCode) {
-        this.tuanCode = tuanCode;
-    }
-
-    /** 
 	* @return userId ：用户ID
 	*/
     public Long getUserId() {
@@ -180,6 +185,19 @@ public class Order {
     */
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    /** 
+	* @return tuanCode ：团编码
+	*/
+    public String getTuanCode() {
+        return tuanCode;
+    }
+    /** 
+    *@param tuanCode 设置团编码 
+    */
+    public void setTuanCode(String tuanCode) {
+        this.tuanCode = tuanCode;
     }
 
     /** 
@@ -274,13 +292,13 @@ public class Order {
     }
 
     /** 
-	* @return goodName ：商品名称 
+	* @return goodName ：商品名称
 	*/
     public String getGoodName() {
         return goodName;
     }
     /** 
-    *@param goodName 设置商品描名称
+    *@param goodName 设置商品名称 
     */
     public void setGoodName(String goodName) {
         this.goodName = goodName;
@@ -326,13 +344,13 @@ public class Order {
     }
 
     /** 
-	* @return orderStatus ：订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭
+	* @return orderStatus ：订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭
 	*/
     public Long getOrderStatus() {
         return orderStatus;
     }
     /** 
-    *@param orderStatus 设置订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭 
+    *@param orderStatus 设置订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭 
     */
     public void setOrderStatus(Long orderStatus) {
         this.orderStatus = orderStatus;
@@ -351,24 +369,83 @@ public class Order {
         this.address = address;
     }
 
+    /** 
+	* @return luckyOrder ：是否中奖：1，是；2，否
+	*/
     public Long getLuckyOrder() {
-		return luckyOrder;
-	}
-	public void setLuckyOrder(Long luckyOrder) {
-		this.luckyOrder = luckyOrder;
-	}
+        return luckyOrder;
+    }
+    /** 
+    *@param luckyOrder 设置是否中奖：1，是；2，否 
+    */
+    public void setLuckyOrder(Long luckyOrder) {
+        this.luckyOrder = luckyOrder;
+    }
 
-	public Long getColonel() {
-		return colonel;
-	}
-	public void setColonel(Long colonel) {
-		this.colonel = colonel;
-	}
+    /** 
+	* @return colonel ：团长
+	*/
+    public Long getColonel() {
+        return colonel;
+    }
+    /** 
+    *@param colonel 设置团长 
+    */
+    public void setColonel(Long colonel) {
+        this.colonel = colonel;
+    }
 
-	public String getShippingCode() {
-		return shippingCode;
-	}
-	public void setShippingCode(String shippingCode) {
-		this.shippingCode = shippingCode;
-	}
+    /** 
+	* @return invoiceNo ：物流单号
+	*/
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+    /** 
+    *@param invoiceNo 设置物流单号 
+    */
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+
+    /** 
+	* @return shippingName ：物流公司名称
+	*/
+    public String getShippingName() {
+        return shippingName;
+    }
+    /** 
+    *@param shippingName 设置物流公司名称 
+    */
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
+
+    /** 
+	* @return shippingId ：物流公司ID
+	*/
+    public Long getShippingId() {
+        return shippingId;
+    }
+    /** 
+    *@param shippingId 设置物流公司ID 
+    */
+    public void setShippingId(Long shippingId) {
+        this.shippingId = shippingId;
+    }
+
+    /** 
+	* @return shippingTime ：发货时间
+	*/
+    public Date getShippingTime() {
+        return shippingTime;
+    }
+    /** 
+    *@param shippingTime 设置发货时间 
+    */
+    public void setShippingTime(Date shippingTime) {
+        this.shippingTime = shippingTime;
+    }
+
+
 }
