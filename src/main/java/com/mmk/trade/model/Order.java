@@ -70,6 +70,7 @@ public class Order {
     @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
     @Column(name="order_time")
+    @DateTimeFormat(iso=ISO.DATE)
     private Date orderTime;
 
     /**
@@ -77,6 +78,7 @@ public class Order {
      */
     @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
+    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Column(name="pay_time")
     private Date payTime;
 
