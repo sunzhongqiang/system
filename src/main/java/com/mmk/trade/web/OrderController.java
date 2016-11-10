@@ -85,23 +85,18 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/order/addShipping")
     @ResponseBody
-    public ModelAndView addShipping(Long id,Long shippingId, String invoiceNo){
+    public ResultMsg addShipping(Long id,Long shippingId, String invoiceNo){
         log.info("更改物流状态");
         Order order =  orderService.findById(id);
-        if(order == null){
-        	order = new Order();
-        }
 
-        ModelAndView modelAndView = new ModelAndView("order/list");
         Shipping shipping = shippingService.findById(shippingId);
         order.setInvoiceNo(invoiceNo);
         order.setShippingName(shipping.getShippingName());
-        order.setOrderStatus(4l);
+        order.setOrderStatus(3l);
         order.setShippingTime(new Date());
         order.setShippingId(shippingId);
         orderService.save(order);
-        modelAndView.addObject("order", order);
-        return modelAndView;
+        return new ResultMsg(true,"物流信息添加成功"); 
     }
     
     /**
