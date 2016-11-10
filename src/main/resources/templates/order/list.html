@@ -86,5 +86,27 @@
     <div class="ddgl" data-options="region:'center',border:true,title:'订单管理'" >
         <table id="dataGrid" data-options="fit:true,border:false"></table>
     </div>
+    
+    
+    		<div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:400px;height:200px;padding:10px;">
+					<form id="ff" method="post">
+				    	<table cellpadding="5">
+				    		<tr>
+				    			<td>物流公司:</td>
+				    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+				    		</tr>
+				    		<tr>
+				    			<td>物流单号:</td>
+				    			<td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
+				    		</tr>
+				    		
+				    		
+				    	</table>
+				    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">发货</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
+	    </div>
+			</div>
 </body>
 </html>

@@ -192,7 +192,7 @@
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%"><span class="bold">'+rowData.orderPrice+'</span>元</td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.orderStatus == 1){
-                	cc.push('<p class="red">待发货</p><a  class="btn_send1" >发货</a>');
+                	cc.push('<p class="red">待发货</p><a  class="btn_send1" onclick="addFun(\'90\')">发货1</a>');
             	}
                 if(rowData.orderStatus == 2){
                 	cc.push('<p class="green">已发货</p><a class="btn_send1" >2222</a>');
@@ -231,22 +231,22 @@
     
     
     
-//    function addFun() {
-//        parent.$.modalDialog({
-//            title : '添加',
-//            width : 500,
-//            height : 300,
-//            href : '/order/add',
-//            buttons : [ {
-//                text : '添加',
-//                handler : function() {
-//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-//                    var f = parent.$.modalDialog.handler.find('#modelForm');
-//                    f.submit();
-//                }
-//            } ]
-//        });
-//    }
+    function addFun(id) {
+        parent.$.modalDialog({
+            title : '添加',
+            width : 400,
+            height : 250,
+            href : '/order/add2',
+            buttons : [ {
+                text : '添加',
+                handler : function() {
+                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    var f = parent.$.modalDialog.handler.find('#modelForm');
+                    f.submit();
+                }
+            } ]
+        });
+    }
     
 //    function deleteFun(id) {
 //        if (id == undefined) {//点击右键菜单才会触发这个
