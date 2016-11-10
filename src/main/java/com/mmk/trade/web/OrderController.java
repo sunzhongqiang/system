@@ -103,6 +103,18 @@ public class OrderController extends BaseController {
         return modelAndView;
     }
     
+    
+    /**
+     * 发货
+     * @return 发货
+     */
+    @RequestMapping("/order/add2")
+    public ModelAndView addPage2(){
+        ModelAndView modelAndView = new ModelAndView("order/form2");
+        modelAndView.addObject("order", new Order());
+        return modelAndView;
+    }
+    
     /**
      * 跳转到编辑页面
      * @param order  跳转到编辑页面
