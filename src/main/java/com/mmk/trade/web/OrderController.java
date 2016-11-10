@@ -25,7 +25,9 @@ import com.mmk.common.model.ResultMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.trade.service.OrderService;
+import com.mmk.trade.service.ShippingService;
 import com.mmk.trade.model.Order;
+import com.mmk.trade.model.Shipping;
 import com.mmk.trade.condition.OrderCondition;
 
 /**
@@ -38,6 +40,8 @@ public class OrderController extends BaseController {
     
     @Resource 
     private OrderService orderService;
+    @Resource 
+    private ShippingService shippingService;
 
     /**
      * 跳转至列表页面
@@ -67,6 +71,25 @@ public class OrderController extends BaseController {
         Page<Order> orderPage = orderService.list(orderCondition,pageable.pageable());
         GridData<Order> grid = new GridData<Order>(orderPage);
         return grid;
+    }
+    
+    /**
+     * 加载表格数据 用户
+     * 
+     * @param orderCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/order/addShipping")
+    @ResponseBody
+    public void addShipping(Long id,String shippingCode){
+        log.info("更改物流状态");
+        Order order =  orderService.findById(id);
+        order.setShippingCode(shippingCode);
+        orderService.save(order);
+        return;
     }
     
     /**

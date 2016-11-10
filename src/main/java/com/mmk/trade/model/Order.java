@@ -137,7 +137,12 @@ public class Order {
      */
     @Column(name="colonel")
     private Long colonel;
-
+    
+    /**
+     * 物流单号
+     */
+    @Column(name="shipping_code")
+    private String shippingCode;
 	/** 
 	* @return id ：团订单ID
 	*/
@@ -358,5 +363,12 @@ public class Order {
 	}
 	public void setColonel(Long colonel) {
 		this.colonel = colonel;
+	}
+
+	public String getShippingCode() {
+		return shippingCode;
+	}
+	public void setShippingCode(String shippingCode) {
+		this.shippingCode = shippingCode;
 	}
 }
