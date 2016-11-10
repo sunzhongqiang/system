@@ -1,6 +1,6 @@
 /*
  * 
- *  Shipping 创建于 2016-11-10 08:56:06 版权归作者和作者当前组织所有
+ *  Shipping 创建于 2016-11-10 09:13:33 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.model;
 
@@ -15,8 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
-* Shipping: 物流公司 数据领域模型
-* 2016-11-10 08:56:06
+* Shipping: 物流管理 数据领域模型
+* 2016-11-10 09:13:33
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -32,28 +32,10 @@ public class Shipping {
     private Long id;
 
     /**
-     * 配送方式编码
-     */
-    @Column(name="shipping_code")
-    private String shippingCode;
-
-    /**
      * 配送方式名称
      */
     @Column(name="shipping_name")
     private String shippingName;
-
-    /**
-     * 描述
-     */
-    @Column(name="shipping_desc")
-    private String shippingDesc;
-
-    /**
-     * 是否支持货到付款:1，是；2，否
-     */
-    @Column(name="support_cod")
-    private Long supportCod;
 
     /**
      * 是否可用:1，是；2，否
@@ -83,19 +65,6 @@ public class Shipping {
     }
 
     /** 
-	* @return shippingCode ：配送方式编码
-	*/
-    public String getShippingCode() {
-        return shippingCode;
-    }
-    /** 
-    *@param shippingCode 设置配送方式编码 
-    */
-    public void setShippingCode(String shippingCode) {
-        this.shippingCode = shippingCode;
-    }
-
-    /** 
 	* @return shippingName ：配送方式名称
 	*/
     public String getShippingName() {
@@ -106,32 +75,6 @@ public class Shipping {
     */
     public void setShippingName(String shippingName) {
         this.shippingName = shippingName;
-    }
-
-    /** 
-	* @return shippingDesc ：描述
-	*/
-    public String getShippingDesc() {
-        return shippingDesc;
-    }
-    /** 
-    *@param shippingDesc 设置描述 
-    */
-    public void setShippingDesc(String shippingDesc) {
-        this.shippingDesc = shippingDesc;
-    }
-
-    /** 
-	* @return supportCod ：是否支持货到付款:1，是；2，否
-	*/
-    public Long getSupportCod() {
-        return supportCod;
-    }
-    /** 
-    *@param supportCod 设置是否支持货到付款:1，是；2，否 
-    */
-    public void setSupportCod(Long supportCod) {
-        this.supportCod = supportCod;
     }
 
     /** 

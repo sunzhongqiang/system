@@ -1,6 +1,6 @@
 /*
  * 
- *  ShippingDao 创建于 2016-11-10 08:56:06 版权归作者和作者当前组织所有
+ *  ShippingDao 创建于 2016-11-10 09:13:33 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao;
 
@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import com.mmk.trade.condition.ShippingCondition;
 import com.mmk.trade.model.Shipping;
 /**
-* ShippingDao:物流公司 数据持久层接口
+* ShippingDao:物流管理 数据持久层接口
 * @author huguangling 胡广玲
 * @version 1.0
 */

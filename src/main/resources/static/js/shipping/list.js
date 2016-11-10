@@ -19,23 +19,8 @@
             },
                     {
                 width : '80',
-                title : '配送方式编码',
-                field : 'shippingCode',
-            },
-                    {
-                width : '80',
                 title : '配送方式名称',
                 field : 'shippingName',
-            },
-                    {
-                width : '80',
-                title : '描述',
-                field : 'shippingDesc',
-            },
-                    {
-                width : '80',
-                title : '是否支持货到付款:1，是；2，否',
-                field : 'supportCod',
             },
                     {
                 width : '80',
@@ -97,7 +82,7 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除物流公司？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除物流管理？', function(b) {
             if (b) {
                 progressLoad();
                     $.post('/shipping/delete', {

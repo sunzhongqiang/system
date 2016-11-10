@@ -67,18 +67,14 @@ public class Order {
     /**
      * 下单时间
      */
-    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
     @Column(name="order_time")
-    @DateTimeFormat(iso=ISO.DATE)
     private Date orderTime;
 
     /**
      * 支付时间
      */
-    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)   
-    @DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
     @Column(name="pay_time")
     private Date payTime;
 

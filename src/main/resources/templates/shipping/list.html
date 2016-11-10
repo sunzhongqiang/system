@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
-<title>物流公司</title>
+<title>物流管理</title>
 <script type="text/javascript" src="/js/extJs.js"></script>
 <script type="text/javascript" src="/js/shipping/list.js"></script>
 </head>
@@ -25,21 +25,9 @@
             <table>
                 <tr>
 
-                    <th>配送方式编码：</th>
-                      <td>
-                        <input type="text" name="shippingCode" th:value="${shippingCondition} ? ${shippingCondition.shippingCode} :''"/>
-                      </td>
-                  
-
                     <th>配送方式名称：</th>
                       <td>
                         <input type="text" name="shippingName" th:value="${shippingCondition} ? ${shippingCondition.shippingName} :''"/>
-                      </td>
-                  
-
-                    <th>是否支持货到付款:1，是；2，否：</th>
-                      <td>
-                        <input type="text" name="supportCod" th:value="${shippingCondition} ? ${shippingCondition.supportCod} :''"/>
                       </td>
                   
 
@@ -56,7 +44,7 @@
             </table>
         </form>
     </div>
-    <div data-options="region:'center',border:true,title:'物流公司'" >
+    <div data-options="region:'center',border:true,title:'物流管理'" >
         <table id="dataGrid" data-options="fit:true,border:false"></table>
     </div>
 </body>

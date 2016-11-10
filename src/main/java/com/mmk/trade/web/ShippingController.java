@@ -1,6 +1,6 @@
 /*
  * 
- *  物流公司Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
+ *  物流管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.web;
 
@@ -29,7 +29,7 @@ import com.mmk.trade.condition.ShippingCondition;
 
 /**
 *@Title: ShippingController
-*@Description: 物流公司 的web控制层
+*@Description: 物流管理 的web控制层
 *@author huguangling 胡广玲
 */
 @RestController
@@ -44,7 +44,7 @@ public class ShippingController extends BaseController {
      */
     @RequestMapping("/shipping/list")
     public ModelAndView list(){
-        log.info("物流公司列表查询");
+        log.info("物流管理列表查询");
         ModelAndView modelAndView = new ModelAndView("shipping/list");
         return  modelAndView;
     }
@@ -62,7 +62,7 @@ public class ShippingController extends BaseController {
     @RequestMapping("/shipping/gridData")
     @ResponseBody
     public GridData<Shipping> loadList(ShippingCondition shippingCondition, EasyPageable pageable){
-        log.info("获取物流公司列表数据");
+        log.info("获取物流管理列表数据");
         Page<Shipping> shippingPage = shippingService.list(shippingCondition,pageable.pageable());   
         GridData<Shipping> grid = new GridData<Shipping>(shippingPage);
         return grid;
@@ -70,7 +70,7 @@ public class ShippingController extends BaseController {
     
     /**
      * 新增页面
-     * @return 跳转到物流公司新增页面
+     * @return 跳转到物流管理新增页面
      */
     @RequestMapping("/shipping/add")
     public ModelAndView addPage(){
@@ -85,7 +85,7 @@ public class ShippingController extends BaseController {
      */ 
     @RequestMapping("/shipping/edit")
     public ModelAndView editPage(Shipping shipping){
-        log.info("物流公司编辑页面");
+        log.info("物流管理编辑页面");
         shipping = shippingService.find(shipping.getId());
         ModelAndView modelAndView = new ModelAndView("shipping/form");
         modelAndView.addObject("shipping", shipping);
@@ -94,20 +94,20 @@ public class ShippingController extends BaseController {
     
     
     /**
-     * 物流公司数据保存方法
+     * 物流管理数据保存方法
      * @param shipping 要保存的数据
      * @return shipping 保存后的数据
      */
     @RequestMapping("/shipping/save")
     @ResponseBody
     public ResultMsg save(Shipping shipping){
-        log.info("物流公司保存");
+        log.info("物流管理保存");
         try {
             shippingService.save(shipping);
         } catch (Exception e) {
-            return new ResultMsg(false,"物流公司保存失败");
+            return new ResultMsg(false,"物流管理保存失败");
         }
-        return new ResultMsg(true,"物流公司保存成功");
+        return new ResultMsg(true,"物流管理保存成功");
     }
     
    
@@ -120,7 +120,7 @@ public class ShippingController extends BaseController {
     @RequestMapping("/shipping/details")
     @ResponseBody
     public Shipping details(Shipping shipping){
-        log.info("物流公司详细信息");
+        log.info("物流管理详细信息");
         shipping = shippingService.find(shipping.getId());
         return shipping;
     }
@@ -132,7 +132,7 @@ public class ShippingController extends BaseController {
      */
     @RequestMapping("/shipping/delete")
     public ResultMsg delete(Shipping shipping){
-        log.info("物流公司删除");
+        log.info("物流管理删除");
         try {
             shippingService.delete(shipping);
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class ShippingController extends BaseController {
      */
     @RequestMapping("/shipping/deleteAll")
     public boolean delete(List<Shipping> shippingList){
-        log.info("物流公司批量删除");
+        log.info("物流管理批量删除");
         try {
             shippingService.delete(shippingList);
         } catch (Exception e) {

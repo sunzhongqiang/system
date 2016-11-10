@@ -1,6 +1,6 @@
 /*
  * 
- *  ShippingDaoImpl 创建于 2016-11-10 08:56:06 版权归作者和作者当前组织所有
+ *  ShippingDaoImpl 创建于 2016-11-10 09:13:33 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -24,7 +24,7 @@ import com.mmk.trade.condition.ShippingCondition;
 
 
 /**
-* ShippingDaoImpl: 物流公司 数据持久层接口实现
+* ShippingDaoImpl: 物流管理 数据持久层接口实现
 *@author huguangling 胡广玲
 *@version 1.0
 *
@@ -50,17 +50,9 @@ public class ShippingDaoImpl extends SpringDataQueryDaoImpl<Shipping> implements
     public Page<Shipping> list(ShippingCondition shippingCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Shipping model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(StringUtils.isNotBlank(shippingCondition.getShippingCode())){
-            sb.append(" and model.shippingCode like :shippingCode ");
-            params.put("shippingCode","%"+shippingCondition.getShippingCode()+"%");
-        }
         if(StringUtils.isNotBlank(shippingCondition.getShippingName())){
             sb.append(" and model.shippingName like :shippingName ");
             params.put("shippingName","%"+shippingCondition.getShippingName()+"%");
-        }
-        if(shippingCondition.getSupportCod()!=null){
-            sb.append(" and model.supportCod = :supportCod ");
-            params.put("supportCod",shippingCondition.getSupportCod());
         }
         if(shippingCondition.getEnabled()!=null){
             sb.append(" and model.enabled = :enabled ");
@@ -73,17 +65,9 @@ public class ShippingDaoImpl extends SpringDataQueryDaoImpl<Shipping> implements
     public List<Shipping> list(ShippingCondition shippingCondition){
         StringBuffer sb=new StringBuffer("select model from Shipping model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(StringUtils.isNotBlank(shippingCondition.getShippingCode())){
-            sb.append(" and model.shippingCode like :shippingCode ");
-            params.put("shippingCode","%"+shippingCondition.getShippingCode()+"%");
-        }
         if(StringUtils.isNotBlank(shippingCondition.getShippingName())){
             sb.append(" and model.shippingName like :shippingName ");
             params.put("shippingName","%"+shippingCondition.getShippingName()+"%");
-        }
-        if(shippingCondition.getSupportCod()!=null){
-            sb.append(" and model.supportCod = :supportCod ");
-            params.put("supportCod",shippingCondition.getSupportCod());
         }
         if(shippingCondition.getEnabled()!=null){
             sb.append(" and model.enabled = :enabled ");
@@ -95,23 +79,15 @@ public class ShippingDaoImpl extends SpringDataQueryDaoImpl<Shipping> implements
     
     @Override 
     public Page< Map<String,Object>> listBySql(ShippingCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,shipping_code,shipping_name,shipping_desc,support_cod,enabled,last_update_time from trade_shipping  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,shipping_name,enabled,last_update_time from trade_shipping  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(StringUtils.isNotBlank(condition.getShippingCode())){
-            sb.append(" and shipping_code like ?2 ");
-            params.put(2,"%"+condition.getShippingCode()+"%");
-        }
         if(StringUtils.isNotBlank(condition.getShippingName())){
-            sb.append(" and shipping_name like ?3 ");
-            params.put(3,"%"+condition.getShippingName()+"%");
-        }
-        if(condition.getSupportCod()!=null){
-            sb.append(" and support_cod = ?5 ");
-            params.put(5,condition.getSupportCod());
+            sb.append(" and shipping_name like ?2 ");
+            params.put(2,"%"+condition.getShippingName()+"%");
         }
         if(condition.getEnabled()!=null){
-            sb.append(" and enabled = ?6 ");
-            params.put(6,condition.getEnabled());
+            sb.append(" and enabled = ?3 ");
+            params.put(3,condition.getEnabled());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

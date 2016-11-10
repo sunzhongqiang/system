@@ -15,8 +15,8 @@ import com.mmk.trade.condition.ShippingCondition;
 import com.mmk.trade.service.ShippingService;
 import com.mmk.trade.dao.ShippingDao;
 /**
-* ShippingServiceImpl: 物流公司 业务服务层实现
-* 2016-11-10 08:56:06
+* ShippingServiceImpl: 物流管理 业务服务层实现
+* 2016-11-10 09:13:33
 * @author huguangling 胡广玲
 * @version 1.0
 */
@@ -40,13 +40,13 @@ public class ShippingServiceImpl extends BaseServiceImpl<Shipping, Long> impleme
 
     @Override
     public Page<Shipping> list(ShippingCondition shippingCondition, Pageable pageable) {
-        log.info("物流公司查询列表");
+        log.info("物流管理查询列表");
         return shippingDao.list(shippingCondition, pageable);
     }
     
     @Override
     public List<Shipping> list(ShippingCondition shippingCondition) {
-        log.info("物流公司查询列表无分页");
+        log.info("物流管理查询列表无分页");
         return shippingDao.list(shippingCondition);
     }
 
@@ -75,13 +75,13 @@ public class ShippingServiceImpl extends BaseServiceImpl<Shipping, Long> impleme
     }
     @Override 
     public Shipping findBy(String field,Object value){
-        log.info("物流公司根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
+        log.info("物流管理根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return shippingDao.findBy(field,value);
     }
     
     @Override 
     public List<Shipping> findAllBy(String field,Object value){
-        log.info("物流公司根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
+        log.info("物流管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return shippingDao.findAllBy(field,value);
     }
 }

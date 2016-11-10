@@ -8,8 +8,8 @@ import com.mmk.trade.model.Shipping;
 import com.mmk.trade.condition.ShippingCondition;
 
 /**
-* ShippingService: 物流公司 业务服务层接口
-*2016-11-10 08:56:06
+* ShippingService: 物流管理 业务服务层接口
+*2016-11-10 09:13:33
 *@author huguangling 胡广玲
 *@version 1.0
 */
