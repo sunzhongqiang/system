@@ -4,34 +4,36 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/order/gridData',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
             singleSelect : true,
             idField : 'id',
+            view : cardview,
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
-                width : '80',
-                title : '团订单ID',
-                field : 'id',
-            },
-                    {
-                width : '80',
-                title : '团ID',
-                field : 'tuanId',
-            },
-                    {
-                width : '80',
-                title : '用户ID',
-                field : 'userId',
-            },
-                    {
-                width : '80',
-                title : '商品ID',
-                field : 'goodsId',
-            },
+//                    {
+//                width : '80',
+//                title : '团订单ID',
+//                field : 'id',
+//            },
+//                    {
+//                width : '80',
+//                title : '团ID',
+//                field : 'tuanId',
+//            },
+//                    {
+//                width : '80',
+//                title : '用户ID',
+//                field : 'userId',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品ID',
+//                field : 'goodsId',
+//            },
                     {
                 width : '80',
                 title : '用户名',
@@ -43,19 +45,30 @@
                 field : 'orderCode',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '下单时间',
                 field : 'orderTime',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
                 title : '支付时间',
                 field : 'payTime',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
-                title : '订单分类：1，一元购；2，拼团',
+                title : '订单分类',
                 field : 'orderSort',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '一元购';
+					case 1:
+						return '拼团';
+						
+					}
+				}
             },
                     {
                 width : '80',
@@ -84,8 +97,25 @@
             },
                     {
                 width : '80',
-                title : '订单状态：0，全部；1，待付款；2，拼团中；3，代发货；4，待收货；5，已成功；6，已关闭',
+                title : '订单状态',
                 field : 'orderStatus',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 1:
+						return '待付款';
+					case 2:
+						return '拼团中';
+					case 3:
+						return '代发货';
+					case 4:
+						return '待收货';
+					case 5:
+						return '已成功';
+					case 6:
+						return '已关闭';
+						
+					}
+				}
             },
                     {
                 width : '80',
@@ -99,17 +129,33 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
+                    if(row.orderStatus == 1){
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_lock" >发货</a>', row.id);
+                	}
+                    if(row.orderStatus == 2){
+                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >2222</a>', row.id);
+                	}
+                    if(row.orderStatus == 3){
+                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >3333</a>', row.id);
+                	}
+                    if(row.orderStatus == 4){
+                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >4444</a>', row.id);
+                	}
+                    if(row.orderStatus == 5){
+                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >5555</a>', row.id);
+                	}
+                    
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
                     return str;
                 }
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
+//           toolbar :  [{
+//	            iconCls: 'icon-add',
+//	            text:'新增',
+//	            handler: function(){addFun();}
+//            }],
             onLoadSuccess : function(data){
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
@@ -118,70 +164,137 @@
         });
     });
     
-    function addFun() {
-        parent.$.modalDialog({
-            title : '添加',
-            width : 500,
-            height : 300,
-            href : '/order/add',
-            buttons : [ {
-                text : '添加',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } ]
-        });
-    }
     
-    function deleteFun(id) {
-        if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+    
+    
+    var cardview = $.extend({}, $.fn.datagrid.defaults.view, {
+        renderRow: function (target, fields, frozen, rowIndex, rowData) {
+        	
+            var cc = [];
+            cc.push('<td colspan=' + fields.length + ' style="padding:10px 5px;border:0;">');
+            if (!frozen) {
+                cc.push('<div class="order_detail">');
+                cc.push('<ul class="order-sn">');	
+                cc.push('<li class="us_name"><span>用户名：</span><p>'+rowData.userName+'</p></li>');
+                cc.push('<li><span>订单编号：</span><p>'+rowData.orderCode+'</p></li>')
+                cc.push('<li><span>下单时间：</span><p>'+rowData.orderTime+'</p></li>');
+                cc.push('<li><span>支付时间：</span><p>'+rowData.payTime+'</p></li>');
+                cc.push('</ul>');
+                cc.push('<table width="100%" cellspacing="0" cellpadding="5" border="0" bgcolor=""><tbody>');
+                cc.push('<tr class="orders">');
+                cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
+                cc.push('<span class="is_02 is_00">'+rowData.orderSort+'</span>');
+                cc.push('<a"><img name="goodImg" src="'+rowData.goodImg+'"></a>');
+                cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
+                cc.push('</div></td>');
+                
+                cc.push('<td class="order-one"  width="10%"><span class="bold">sadasdsa</span></td>');
+                cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%"><span class="bold">'+rowData.orderPrice+'</span>元</td>');
+                cc.push(' <td rowspan="1" colspan="1" width="13%">');
+                if(rowData.orderStatus == 1){
+                	cc.push('<p class="red">待发货</p><a  class="btn_send1" >发货</a>');
+            	}
+                if(rowData.orderStatus == 2){
+                	cc.push('<p class="green">已发货</p><a class="btn_send1" >2222</a>');
+            	}
+                if(rowData.orderStatus == 3){
+                	cc.push('<p class="bold">订单已关闭</p><a class="btn_send1" >3333</a>');
+            	}
+                if(rowData.orderStatus == 4){
+                	cc.push('<a  class="btn_unlock" >4444</a>');
+            	}
+                if(rowData.orderStatus == 5){
+                	cc.push('<a class="btn_unlock" >5555</a>');
+            	}
+
+                cc.push('</td>');
+                cc.push('</div></td></tr>');
+                
+                cc.push('<tr class="orders_info"><td colspan="8" rowspan="1">');
+                cc.push('<span class="order_address">收货地址：'+rowData.address+'</span></td></tr>');
+
+                        
+                    
+                
+                
+                cc.push('</tbody></table>');
+                
+                cc.push('</div>');
+                
+                
+            }
+            cc.push('</td>');
+            return cc.join('');
         }
-        parent.$.messager.confirm('询问', '您是否要删除订单管理？', function(b) {
-            if (b) {
-                progressLoad();
-                    $.post('/order/delete', {
-                        id : id
-                    }, function(result) {
-                        if (result.success) {
-                            parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
-                        }
-                        progressClose();
-                    }, 'JSON');
-                }
-        });
-    }
+    });
     
-    function editFun(id) {
-        if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.modalDialog({
-            title : '编辑',
-            width : 500,
-            height : 300,
-            href : '/order/edit?id=' + id,
-            buttons : [ {
-                text : '编辑',
-                handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
-                }
-            } 
-            ]
-        });
-    }
     
+    
+    
+//    function addFun() {
+//        parent.$.modalDialog({
+//            title : '添加',
+//            width : 500,
+//            height : 300,
+//            href : '/order/add',
+//            buttons : [ {
+//                text : '添加',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } ]
+//        });
+//    }
+    
+//    function deleteFun(id) {
+//        if (id == undefined) {//点击右键菜单才会触发这个
+//            var rows = dataGrid.datagrid('getSelections');
+//            id = rows[0].id;
+//        } else {//点击操作里面的删除图标会触发这个
+//            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+//        }
+//        parent.$.messager.confirm('询问', '您是否要删除订单管理？', function(b) {
+//            if (b) {
+//                progressLoad();
+//                    $.post('/order/delete', {
+//                        id : id
+//                    }, function(result) {
+//                        if (result.success) {
+//                            parent.$.messager.alert('提示', result.msg, 'info');
+//                            dataGrid.datagrid('reload');
+//                        }
+//                        progressClose();
+//                    }, 'JSON');
+//                }
+//        });
+//    }
+    
+//    function editFun(id) {
+//        if (id == undefined) {
+//            var rows = dataGrid.datagrid('getSelections');
+//            id = rows[0].id;
+//        } else {
+//            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+//        }
+//        parent.$.modalDialog({
+//            title : '编辑',
+//            width : 500,
+//            height : 300,
+//            href : '/order/edit?id=' + id,
+//            buttons : [ {
+//                text : '编辑',
+//                handler : function() {
+//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+//                    var f = parent.$.modalDialog.handler.find('#modelForm');
+//                    f.submit();
+//                }
+//            } 
+//            ]
+//        });
+//    }
+//    
     function searchFun() {
         ////将searchForm表单内的元素序列为对象传递到后台
         dataGrid.datagrid('load', $.serializeObject($('#searchForm')));

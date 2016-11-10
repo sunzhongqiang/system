@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
+import com.mmk.business.constants.TuanConstant;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -105,7 +107,7 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
             sb.append(" and model.orderSort = :orderSort ");
             params.put("orderSort",orderCondition.getOrderSort());
         }
-        if(orderCondition.getOrderStatus()!=null){
+        if(orderCondition.getOrderStatus()!=null || !TuanConstant.TUAN_STATUS_ALL.equals(orderCondition.getOrderStatus())){
             sb.append(" and model.orderStatus = :orderStatus ");
             params.put("orderStatus",orderCondition.getOrderStatus());
         }

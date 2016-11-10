@@ -14,6 +14,9 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 /**
 * Order: 订单管理 数据领域模型
 * 2016-11-07 10:37:06
@@ -134,7 +137,12 @@ public class Order {
      */
     @Column(name="colonel")
     private Long colonel;
-
+    
+    /**
+     * 物流单号
+     */
+    @Column(name="shipping_code")
+    private String shippingCode;
 	/** 
 	* @return id ：团订单ID
 	*/
@@ -355,5 +363,12 @@ public class Order {
 	}
 	public void setColonel(Long colonel) {
 		this.colonel = colonel;
+	}
+
+	public String getShippingCode() {
+		return shippingCode;
+	}
+	public void setShippingCode(String shippingCode) {
+		this.shippingCode = shippingCode;
 	}
 }
