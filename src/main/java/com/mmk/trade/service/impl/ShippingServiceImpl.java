@@ -84,4 +84,10 @@ public class ShippingServiceImpl extends BaseServiceImpl<Shipping, Long> impleme
         log.info("物流管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return shippingDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Shipping> find() {
+        log.info("查询可以使用的所有快递公司");
+        return shippingDao.find();
+	}
 }

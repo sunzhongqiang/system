@@ -81,7 +81,7 @@ public class ShippingController extends BaseController {
     @ResponseBody
     public Iterable<Shipping>  shippingList(){
         log.info("获取物流管理列表数据"); 
-        return shippingService.findAll();
+        return shippingService.find();
     }
     /**
      * 新增页面

@@ -112,6 +112,13 @@ public class ShippingDaoImpl extends SpringDataQueryDaoImpl<Shipping> implements
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Shipping> find() {
+        StringBuffer sb=new StringBuffer("select model from Shipping model  where model.enabled = 1");
+        Map<String,Object> params = new HashMap<String,Object>();
+        return queryByJpql(sb.toString(), params);
+	}
     
     
 }
