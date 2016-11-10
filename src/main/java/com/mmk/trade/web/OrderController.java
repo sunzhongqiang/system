@@ -23,6 +23,9 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.system.model.User;
+import com.mmk.system.service.UserService;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.trade.service.OrderService;
@@ -43,6 +46,8 @@ public class OrderController extends BaseController {
     private OrderService orderService;
     @Resource 
     private ShippingService shippingService;
+    @Resource 
+    private UserService userService;
 
     /**
      * 跳转至列表页面
@@ -108,15 +113,14 @@ public class OrderController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("order/form");
         modelAndView.addObject("order", new Order());
         return modelAndView;
-    }
-    
+    } 
   
     /**
      *  发货
      * @param order   发货
      */ 
     @RequestMapping("/order/shippingpage")
-    public ModelAndView shippingpage(Long id){
+    public ModelAndView shippingPage(Long id){
         log.info("发货页面");
         Order order = orderService.findById(id);
         ModelAndView modelAndView = new ModelAndView("order/shipping");
@@ -127,6 +131,21 @@ public class OrderController extends BaseController {
         modelAndView.addObject("id", id);
         return modelAndView ;
     }  
+    
+    /**
+     *  发货
+     * @param order   发货
+     */ 
+    @RequestMapping("/order/orderDetail")
+    public ModelAndView orderDetail(Long id){
+        log.info("发货页面");
+        ModelAndView modelAndView = new ModelAndView("order/orderDetail");
+        Order order = orderService.findById(id);
+        User user = userService.find(order.getUserId());
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("user", user);
+        return modelAndView ;
+    } 
     
     /**
      * 跳转到编辑页面
