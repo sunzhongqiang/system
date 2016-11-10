@@ -196,23 +196,21 @@
                 cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
                 cc.push('</div></td>');
                 
-                cc.push('<td class="order-one"  width="10%"><span class="bold">sadasdsa</span></td>');
-                cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%"><span class="bold">'+rowData.orderPrice+'</span>元</td>');
+                cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodPrice+'元</span></td>');
+                cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.orderPrice+'元</span>');
+                cc.push('<p><a class="blue" href="">查看详情&gt;&gt;</a> </p></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.orderStatus == 1){
-                	cc.push('<p class="red">待发货</p><a  class="btn_send1" onclick="addFun(\''+rowData.id+'\')">发货1</a>');
-            	}
+                	cc.push('<p class="red bold">待成团</p>');
+                }
                 if(rowData.orderStatus == 2){
-                	cc.push('<p class="green">已发货</p>');
+                	cc.push('<p class="red bold">待发货</p><a  class="btn_send1" onclick="addFun(\''+rowData.id+'\')">发货</a>');
             	}
                 if(rowData.orderStatus == 3){
-                	cc.push('<p class="bold">订单已关闭</p><a class="btn_send1" >3333</a>');
+                	cc.push('<p class="green bold">已发货</p>');
             	}
                 if(rowData.orderStatus == 4){
-                	cc.push('<a  class="btn_unlock" >4444</a>');
-            	}
-                if(rowData.orderStatus == 5){
-                	cc.push('<a class="btn_unlock" >5555</a>');
+                	cc.push('<a class="green" >已成功</a>');
             	}
 
                 cc.push('</td>');
@@ -241,12 +239,12 @@
     
     function addFun(id) {
         parent.$.modalDialog({
-            title : '添加',
+            title : '商品发货',
             width : 400,
             height : 250,
             href : '/order/shippingpage?id='+id,
             buttons : [ {
-                text : '添加',
+                text : '确认发货',
                 handler : function() {
                     parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
@@ -314,3 +312,21 @@
         dataGrid.datagrid('load', {});
     }
     
+    
+    
+    
+    
+    
+    function orderDetail(id) {
+        if (id == undefined) {
+            var rows = dataGrid.datagrid('getSelections');
+            id = rows[0].id;
+        } else {
+            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        }
+        
+        parent.addTab({
+			url : '/order/orderDetail?id=' + id,
+			title : '修改商品',
+		});
+    }

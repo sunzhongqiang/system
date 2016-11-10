@@ -238,7 +238,9 @@ overflow: hidden;}
 .bold {
     font-weight: bold;font-size:16px;
 }
-
+.blue {
+    color: #4190d3; text-decoration: none;
+}
 
 
 
