@@ -13,7 +13,7 @@
                 return isValid;
             }
             $.ajax({
-                url: '/shipping/gridData',
+                url: '/order/addShipping',
                 data: $form.serialize(),
                 success: function(result){
                     progressClose();
@@ -40,10 +40,10 @@
                     <tr>
                         <td class="tdTit"><label>物流名称：</label></td>
                         <td>
-							<input class="easyui-combobox" name=""   data-options="
+							<input class="easyui-combobox" name="shippingId"   data-options="
 						        width:'200',
 						        panelWidth:200,
-						        url:'/shipping/gridData',
+						        url:'/shipping/shippingList',
 						        valueField: 'id',
 						        textField: 'shippingName'
 						        " />	
@@ -52,11 +52,11 @@
                     <tr>
                         <td class="tdTit"><label>物流单号：</label></td>
                         <td>
-                        <input type="text"  name="enabled" class="easyui-validatebox" data-options="required:true" />
+                        <input type="text"  name="invoiceNo" class="easyui-validatebox" data-options="required:true" />
                         </td>
                     </tr>
             </table>
-            <input type="hidden" name="id"/>
+            <input type="hidden" name="id" th:value="${id}" />
         </form>
     </div>
 </div>

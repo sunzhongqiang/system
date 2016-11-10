@@ -164,7 +164,15 @@
         });
     });
     
-    
+  
+    function formatType(type){
+    	switch(type){
+		    case   0:
+		    	return '一元购';
+	    	case   1:
+	    		return '拼团';
+    	}
+    }
     
     
     var cardview = $.extend({}, $.fn.datagrid.defaults.view, {
@@ -177,13 +185,13 @@
                 cc.push('<ul class="order-sn">');	
                 cc.push('<li class="us_name"><span>用户名：</span><p>'+rowData.userName+'</p></li>');
                 cc.push('<li><span>订单编号：</span><p>'+rowData.orderCode+'</p></li>')
-                cc.push('<li><span>下单时间：</span><p>'+rowData.orderTime+'</p></li>');
-                cc.push('<li><span>支付时间：</span><p>'+rowData.payTime+'</p></li>');
+                cc.push('<li><span>下单时间：</span><p>'+dateFormat(rowData.orderTime,'yyyy-MM-dd hh:mm:ss')+'</p></li>');
+                cc.push('<li><span>支付时间：</span><p>'+dateFormat(rowData.payTime,'yyyy-MM-dd hh:mm:ss')+'</p></li>');
                 cc.push('</ul>');
                 cc.push('<table width="100%" cellspacing="0" cellpadding="5" border="0" bgcolor=""><tbody>');
                 cc.push('<tr class="orders">');
                 cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
-                cc.push('<span class="is_02 is_00">'+rowData.orderSort+'</span>');
+                cc.push('<span class="is_02 is_00">'+formatType(rowData.orderSort)+'</span>');
                 cc.push('<a"><img name="goodImg" src="'+rowData.goodImg+'"></a>');
                 cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
                 cc.push('</div></td>');
@@ -192,10 +200,10 @@
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%"><span class="bold">'+rowData.orderPrice+'</span>元</td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.orderStatus == 1){
-                	cc.push('<p class="red">待发货</p><a  class="btn_send1" onclick="addFun(\'90\')">发货1</a>');
+                	cc.push('<p class="red">待发货</p><a  class="btn_send1" onclick="addFun(\''+rowData.id+'\')">发货1</a>');
             	}
                 if(rowData.orderStatus == 2){
-                	cc.push('<p class="green">已发货</p><a class="btn_send1" >2222</a>');
+                	cc.push('<p class="green">已发货</p>');
             	}
                 if(rowData.orderStatus == 3){
                 	cc.push('<p class="bold">订单已关闭</p><a class="btn_send1" >3333</a>');
@@ -236,7 +244,7 @@
             title : '添加',
             width : 400,
             height : 250,
-            href : '/order/add2',
+            href : '/order/shippingpage?id='+id,
             buttons : [ {
                 text : '添加',
                 handler : function() {

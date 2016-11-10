@@ -1,6 +1,8 @@
+
+
 /*
  * 
- *  TuanOrder 创建于 2016-11-10 10:55:27 版权归作者和作者当前组织所有
+ *  TuanOrder 创建于 2016-11-10 11:42:15 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.model;
 
@@ -15,9 +17,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
-* TuanOrder: 分瑞蚨祥 数据领域模型
-* 2016-11-10 10:55:27
-*@author codegenerator
+* TuanOrder: 广告 数据领域模型
+* 2016-11-10 11:42:15
+*@author huguangling 胡广玲
 *@version 1.0
 */
 @Entity
@@ -449,3 +451,4 @@ public class Order {
 
 
 }
+

@@ -4,5 +4,9 @@
  * @param formate 格式
  */
 function dateFormat(datetime,formate){
-	return new Date(datetime).format(formate);
+	if(datetime){
+		return new Date(datetime).format(formate);
+	}else{
+		return '';
+	}
 }

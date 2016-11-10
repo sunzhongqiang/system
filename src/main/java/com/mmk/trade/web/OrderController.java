@@ -5,6 +5,7 @@
 package com.mmk.trade.web;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,13 +85,23 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/order/addShipping")
     @ResponseBody
-    public void addShipping(Long id,String shippingCode){
+    public ModelAndView addShipping(Long id,Long shippingId, String invoiceNo){
         log.info("更改物流状态");
         Order order =  orderService.findById(id);
-        order.setShippingCode(shippingCode);
+        if(order == null){
+        	order = new Order();
+        }
+
+        ModelAndView modelAndView = new ModelAndView("order/list");
+        Shipping shipping = shippingService.findById(shippingId);
+        order.setInvoiceNo(invoiceNo);
+        order.setShippingName(shipping.getShippingName());
         order.setOrderStatus(4l);
+        order.setShippingTime(new Date());
+        order.setShippingId(shippingId);
         orderService.save(order);
-        return;
+        modelAndView.addObject("order", order);
+        return modelAndView;
     }
     
     /**
@@ -104,17 +115,23 @@ public class OrderController extends BaseController {
         return modelAndView;
     }
     
-    
+  
     /**
-     * 发货
-     * @return 发货
-     */
-    @RequestMapping("/order/add2")
-    public ModelAndView addPage2(){
-        ModelAndView modelAndView = new ModelAndView("order/form2");
-        modelAndView.addObject("order", new Order());
-        return modelAndView;
-    }
+     *  发货
+     * @param order   发货
+     */ 
+    @RequestMapping("/order/shippingpage")
+    public ModelAndView shippingpage(Long id){
+        log.info("发货页面");
+        Order order = orderService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("order/shipping");
+        if(order == null){
+        	order = new Order();
+        }
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("id", id);
+        return modelAndView ;
+    }  
     
     /**
      * 跳转到编辑页面
