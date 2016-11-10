@@ -92,7 +92,7 @@
             fitColumns : true,
             striped : true,
             rownumbers : true,
-            pagination : true,
+            pagination : false,
             singleSelect : true,
             idField : 'id',
             pageSize : 50,
@@ -131,6 +131,8 @@
                 width : '80',
                 title : '商品图片',
                 field : 'goodImg',
+                formatter:function(value,row,index)
+                {return '<img src='+value+'  />';}
             },
                     {
                 width : '120',
@@ -171,12 +173,12 @@
     
     function searchFun() {
         ////将searchForm表单内的元素序列为对象传递到后台
-        dataGrid.datagrid('load', $.serializeObject($('#searchForm')));
+    	taunGrid.datagrid('load', $.serializeObject($('#searchForm')));
     }
     function cleanFun() {
         //找到form表单下的所有input标签并清空
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
-        dataGrid.datagrid('load', {});
+        taunGrid.datagrid('load', {});
     }
     
