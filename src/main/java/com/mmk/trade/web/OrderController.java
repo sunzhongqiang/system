@@ -88,6 +88,7 @@ public class OrderController extends BaseController {
         log.info("更改物流状态");
         Order order =  orderService.findById(id);
         order.setShippingCode(shippingCode);
+        order.setOrderStatus(4l);
         orderService.save(order);
         return;
     }

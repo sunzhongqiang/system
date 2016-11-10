@@ -69,6 +69,21 @@ public class ShippingController extends BaseController {
     }
     
     /**
+     * 加载表格数据 用户
+     * 
+     * @param shippingCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/shipping/shippingList")
+    @ResponseBody
+    public Iterable<Shipping>  shippingList(){
+        log.info("获取物流管理列表数据"); 
+        return shippingService.findAll();
+    }
+    /**
      * 新增页面
      * @return 跳转到物流管理新增页面
      */
