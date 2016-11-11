@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.arjuna.ats.internal.jdbc.drivers.modifiers.extensions;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
@@ -83,6 +84,30 @@ public class ShippingController extends BaseController {
         log.info("获取物流管理列表数据"); 
         return shippingService.find();
     }
+    
+    /**
+     * 加载表格数据 用户
+     * 
+     * @param shippingCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/shipping/enable")
+    @ResponseBody
+    public void  enable(Long id){
+        log.info("物流公司的是否启动设置"); 
+        Shipping shipping = shippingService.findById(id);
+        if(shipping.getEnabled().equals(1)){
+        	shipping.setEnabled(2l);
+        }else{
+        	shipping.setEnabled(1l);
+        }
+        shippingService.save(shipping);
+        return;
+    }
+    
     /**
      * 新增页面
      * @return 跳转到物流管理新增页面
