@@ -74,7 +74,7 @@
         parent.$.modalDialog({
             title : '添加',
             width : 500,
-            height : 300,
+            height : 600,
             href : '/comment/add',
             buttons : [ {
                 text : '添加',
