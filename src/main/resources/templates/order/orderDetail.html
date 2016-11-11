@@ -21,91 +21,194 @@
 <script type="text/javascript" src="/js/formater.js"></script>
 <script type="text/javascript" src="/js/order/list.js"></script>
 </head>
-<body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="overflow: hidden;background-color: #fff;padding:10px;">
-        <form id="searchForm">
-            <table>
-                <tr>
+<body>
+   
+   <div class="container kuai">
+		<div class="tit list_detail">
+			<h1>订单详情</h1>
+		</div>
+		<div class="main">
+			<ul class="order_dt">
+				<li class="us_name"><span>用户名：</span>
+					<p class="bold" th:text="${order.userName}"></p></li>
+				<li><span>联系方式：</span>
+					<p th:text="${order.orderPhone}">15266691228</p></li>
+				<li><span>订单编号：</span>
+					<p th:text="${order.orderCode}"></p></li>
+				<li><span>下单时间：</span>
+					<p th:text="${order.orderTime}"></p>
+				</li>
+				<li><span>支付时间：</span>
+					<p  th:text="${order.payTime}"></p>
+				</li>
+			</ul>
 
-                    <th>用户名：</th>
-                      <td>
-                        <input class="easyui-textbox" type="text" name="userName" th:value="${orderCondition} ? ${orderCondition.userName} :''"/>
-                      </td>
-                  
+			<table class="child_det" width="100%" cellspacing="0" cellpadding="3" border="0">
+				<tbody><tr class="child_det_th">
+					<th rowspan="1" colspan="1" width="30%">商品名称</th>
+					<th rowspan="1" colspan="1" width="10%">单价（元）</th>
+					<th rowspan="1" colspan="1" width="10%">购买数量</th>
+					<th rowspan="1" colspan="1" width="10%">状态</th>
+					<th rowspan="1" colspan="1" width="10%">运单号</th>
+					
+				</tr>
+				<tr>
+					<td colspan="8" class="top20" rowspan="1">
+						<!-- 子单列表 start -->
 
-                    <th>订单编号：</th>
-                      <td>
-                        <input class="easyui-textbox"  type="text" name="orderCode" th:value="${orderCondition} ? ${orderCondition.orderCode} :''"/>
-                      </td>
-                  
+						 <!-- 子单列表 end --> <!-- 未推送的商品  -->
+						<p>&nbsp;</p>
+						<div class="order_detail">
+							<table class="orders_detail" width="100%" cellspacing="0" cellpadding="3" border="0">
+								<tbody>
+									<tr class="orders">
+										<td colspan="3" rowspan="1" width="30%">
+											<div class="goods-form">
+												
+					                        	
+					                        	
+												<a class="left_10" target="view_window" shape="rect" href="http://www.yiqingo.com/goods.php?id=12">
+					                                <img th:src="${order.goodImg}" />
+					                            </a>
+												<div class="w65">
+													<span class="blue" th:text="${order.goodName}"></span><br/>
+<!-- 													<label>商品品牌：</label> <span class="bold">Abbott雅培</span> -->
+												</div>
+											</div>
+										</td>
+										<td class="order-one" rowspan="1" colspan="1" width="10%"><span class="bold" th:text="${order.goodPrice}"></span>元</td>
+										<td class="order-one" rowspan="1" colspan="1" width="10%"><span class="bold">1</span></td>
+										
+										<td class="order-one" rowspan="1" colspan="1" width="10%">
+											<span th:if="${order.orderStatus==1}"><p class="red bold">待成团</p></span>
+											<span th:if="${order.orderStatus==2}"><p class="red bold">待发货</p><a  class="btn_send1" th:onclick="'addFun('+${order.id}+')'">发货</a></span>
+											<span th:if="${order.orderStatus==3}"><p class="green bold">已发货</p></span>
+											<span th:if="${order.orderStatus==4}"><a class="green" >已成功</a></span>
+											<span ></span>
+										</td>
+										<!-- 子订单状态1-已推送0-推送失败2-口岸放行3-已发货 -->
+										<!-- 状态 -->
+										<td rowspan="1" colspan="1" width="10%">
+											
+											
+										</td>
+										
+									</tr>
+								</tbody>
+							</table>
 
-                    <th>下单时间：</th>
-                      <td>
-                        <input class="easyui-datebox"  type="text" name="orderTime" th:value="${orderCondition} ? ${orderCondition.orderTime} :''"/>
-                      </td>
-                  
+						</div>
+					</td>
+				</tr>
 
-                    <th>支付时间：</th>
-                      <td>
-                        <input class="easyui-datebox"  type="text" name="payTime" th:value="${orderCondition} ? ${orderCondition.payTime} :''"/>
-                      </td>
-                  
-
-                    <th>订单分类</th>
-                      <td>
-<!--                         <input type="text" name="orderSort" th:value="${orderCondition} ? ${orderCondition.orderSort} :''"/> -->
-                      	<select name="orderSort" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
-			              <option  value="">请选择</option>
-			              <option  value="0">一元购</option>
-			              <option  value="1" >拼团</option>
-		               </select>
-                      </td>
-                  
-
-                    <th>订单状态</th>
-                      <td>
-<!--                         <input type="text" name="orderStatus" th:value="${orderCondition} ? ${orderCondition.orderStatus} :''"/> -->
-                      	<select name="orderStatus" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
-			              <option  value="">全部</option>
-			              <option  value="1">待成团</option>
-			              <option  value="2" >待发货</option>
-			              <option  value="3" >已发货</option>
-			              <option  value="4" >已成功</option>
-		               </select>
-                      </td>
-                  
-                      <td>
-                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
-                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a>
-                      </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div class="ddgl" data-options="region:'center',border:true,title:'订单管理'" >
-        <table id="dataGrid" data-options="fit:true,border:false"></table>
-    </div>
+			</tbody></table>
+		</div>
+		<div style="text-align: right; padding-right: 30px;">
+			<span class="red bold">订单总价：￥</span> 
+			<span class="red bold">41.0</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			（<span class="red bold">含客户支付的运费：￥</span>
+			 <span class="red bold">6.0</span>）
+		</div>
+	</div>
     
     
-    		<div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:400px;height:200px;padding:10px;">
-					<form id="ff" method="post">
-				    	<table cellpadding="5">
-				    		<tr>
-				    			<td>物流公司:</td>
-				    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
-				    		</tr>
-				    		<tr>
-				    			<td>物流单号:</td>
-				    			<td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
-				    		</tr>
-				    		
-				    		
-				    	</table>
-				    </form>
-	    <div style="text-align:center;padding:5px">
-	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">发货</a>
-	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
-	    </div>
-			</div>
+    
+    
+    
+    <!-- 售后记录 -->
+    
+    <div class="container kuai">
+		<div class="tit list_detail">
+			<h1>售后记录</h1>
+		</div>
+		<div class="main">
+			<table class="child_det" width="100%" cellspacing="0" cellpadding="3" border="0">
+				<tbody><tr class="child_det_th">
+					<th rowspan="1" colspan="1" width="27%">商品名称</th>
+					<th rowspan="1" colspan="1" width="20%">申请退款时间</th>
+					<th rowspan="1" colspan="1" width="10%">申请退款金额</th>
+					<th rowspan="1" colspan="1" width="10%">实际退款金额</th>
+					<th rowspan="1" colspan="1" width="10%">退款类型</th>
+					<th rowspan="1" colspan="1" width="10%">退款原因</th>
+					<th rowspan="1" colspan="1" width="13%">当前状态</th>
+				</tr>
+				<tr class="order-one">
+					<!-- <td colspan="6" th:each="orderChild:${orderChilds}"> -->
+					<td colspan="7" class="no_pad" rowspan="1">
+						<table class="order_cen" style=" border-collapse: collapse">
+							
+						</table>
+					</td>
+				</tr>
+
+
+
+			</tbody></table>
+		</div>
+	</div>
+    	
+    	
+    	
+   <!-- 配送信息 -->	
+   
+   
+   <div class="container kuai">
+		<div class="tit wl_lsit">
+			<h1>配送信息</h1>
+		</div>
+		<div class="main">
+			<ul class="order_dt3">
+			
+				
+				<li><span>收货人：</span><p th:text="${order.userName}">张三</p></li>
+    		 	<li><span>联系方式：</span>
+    		 		<p th:text="${order.orderPhone}">13072936125</p>
+    		 	</li>
+				<li><span>收货地址：</span>
+					<p th:text="${order.address}"></p>
+				</li>
+			</ul>
+			<ul class="order_dt3">
+			
+				
+				<li><span>物流公司：</span><p th:text="${order.shippingName}">德邦物流</p></li>
+    		 	<li><span>运单号：</span><p th:text="${order.invoiceNo}">123213213</p></li>
+			</ul>
+			
+		</div>
+	</div>
+	
+	
+	<!-- 操作日志 -->
+	
+	<div class="container kuai">
+		<div class="tit operation_list">
+			<h1>操作日志</h1>
+		</div>
+		<div class="main">
+			<table class="order_log" width="100%" cellspacing="0" cellpadding="3" border="0">
+				<tbody><tr>
+					<th rowspan="1" colspan="1" width="20%">操作者</th>
+					<th rowspan="1" colspan="1" width="20%">操作时间</th>
+					<th rowspan="1" colspan="1" width="10%">订单状态</th>
+					<th rowspan="1" colspan="1" width="10%">付款状态</th>
+					<th rowspan="1" colspan="1" width="20%">发货状态</th>
+					<th rowspan="1" colspan="1" width="20%">备注</th>
+
+				</tr>
+				<tr>
+					<td rowspan="1" colspan="1">admin</td>
+					<td rowspan="1" colspan="1">2016-11-10 11:50:57</td>
+					<td rowspan="1" colspan="1">
+						   <span>已发货</span></td>
+					<td rowspan="1" colspan="1">
+						<span>已付款</span></td>
+					<td rowspan="1" colspan="1"> <span>已发货</span>  </td>
+					<td rowspan="1" colspan="1">改为发货</td>
+				</tr>
+
+			</tbody></table>
+		</div>
+	</div>
 </body>
 </html>

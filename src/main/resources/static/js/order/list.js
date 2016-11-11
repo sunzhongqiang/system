@@ -198,7 +198,7 @@
                 
                 cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodPrice+'元</span></td>');
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.orderPrice+'元</span>');
-                cc.push('<p><a class="blue" href="">查看详情&gt;&gt;</a> </p></td>');
+                cc.push('<p><a class="blue" onclick="orderDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.orderStatus == 1){
                 	cc.push('<p class="red bold">待成团</p>');
@@ -316,7 +316,7 @@
     
     
     
-    
+  //查看商品详情  
     function orderDetail(id) {
         if (id == undefined) {
             var rows = dataGrid.datagrid('getSelections');
@@ -327,6 +327,6 @@
         
         parent.addTab({
 			url : '/order/orderDetail?id=' + id,
-			title : '修改商品',
+			title : '订单详情',
 		});
     }

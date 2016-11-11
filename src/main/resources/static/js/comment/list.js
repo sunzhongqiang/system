@@ -4,6 +4,7 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/comment/gridData',
             fit : true,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -23,22 +24,23 @@
                 field : 'goodId',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '用户名',
                 field : 'userName',
             },
                     {
-                width : '80',
+                width : '400',
                 title : '评论内容',
                 field : 'content',
             },
                     {
-                width : '80',
+                width : '150',
                 title : '评论时间',
                 field : 'contentTime',
+                formatter: formatDatebox,
             },
                     {
-                width : '80',
+                width : '300',
                 title : '评价回复',
                 field : 'reply',
             },
