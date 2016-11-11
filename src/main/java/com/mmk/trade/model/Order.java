@@ -58,6 +58,11 @@ public class Order {
     private String userName;
 
     /**
+     * 订单手机号
+     */
+    @Column(name="order_phone")
+    private String orderPhone;
+	/**
      * 订单编号
      */
     @Column(name="order_code")
@@ -449,6 +454,12 @@ public class Order {
         this.shippingTime = shippingTime;
     }
 
+    public String getOrderPhone() {
+		return orderPhone;
+	}
+	public void setOrderPhone(String orderPhone) {
+		this.orderPhone = orderPhone;
+	}
 
 }
 
