@@ -4,19 +4,14 @@
  */
 package com.mmk.trade.web;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
@@ -26,8 +21,6 @@ import com.mmk.common.model.ResultMsg;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import com.mmk.trade.service.OrderService;
 import com.mmk.trade.service.ShippingService;
 import com.mmk.trade.model.Order;
@@ -64,10 +57,8 @@ public class OrderController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param orderCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param orderCondition 用户查询参数        
+     * @param pageable 分页参数        
      * @return 查询所得数据
      */
     @RequestMapping("/order/gridData")
@@ -82,10 +73,9 @@ public class OrderController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param orderCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param id 订单ID          
+     * @param shippingId 物流ID
+     * @param invoiceNo 物流单号          
      * @return 查询所得数据
      */
     @RequestMapping("/order/addShipping")
@@ -116,8 +106,8 @@ public class OrderController extends BaseController {
     } 
   
     /**
-     *  发货
-     * @param order   发货
+     * 发货
+     * @param id 订单ID
      */ 
     @RequestMapping("/order/shippingpage")
     public ModelAndView shippingPage(Long id){
@@ -133,12 +123,12 @@ public class OrderController extends BaseController {
     }  
     
     /**
-     *  发货
-     * @param order   发货
+     * 查看订单详情页面
+     * @param id 订单ID
      */ 
     @RequestMapping("/order/orderDetail")
     public ModelAndView orderDetail(Long id){
-        log.info("发货页面");
+        log.info("查看订单详情页面");
         ModelAndView modelAndView = new ModelAndView("order/orderDetail");
         Order order = orderService.findById(id);
         User user = userService.find(order.getUserId());
