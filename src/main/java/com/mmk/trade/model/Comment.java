@@ -68,8 +68,19 @@ public class Comment {
     @Column(name="reply")
     private String reply;
 
+    /**
+     * 商品图片
+     */
+    @Column(name="good_img")
+    private String goodImg;
 
-    /** 
+    public String getGoodImg() {
+		return goodImg;
+	}
+	public void setGoodImg(String goodImg) {
+		this.goodImg = goodImg;
+	}
+	/** 
 	* @return id ：评价ID
 	*/
     public Long getId() {
