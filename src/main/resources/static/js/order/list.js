@@ -13,7 +13,7 @@
             view : cardview,
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
-            columns : [ [ 
+//            columns : [ [ 
 //                    {
 //                width : '80',
 //                title : '团订单ID',
@@ -34,133 +34,134 @@
 //                title : '商品ID',
 //                field : 'goodsId',
 //            },
-                    {
-                width : '80',
-                title : '用户名',
-                field : 'userName',
-            },
-                    {
-                width : '80',
-                title : '订单编号',
-                field : 'orderCode',
-            },
-                    {
-                width : '120',
-                title : '下单时间',
-                field : 'orderTime',
-                formatter: formatDatebox,
-            },
-                    {
-                width : '80',
-                title : '支付时间',
-                field : 'payTime',
-                formatter: formatDatebox,
-            },
-                    {
-                width : '80',
-                title : '订单分类',
-                field : 'orderSort',
-                formatter : function(value, row, index) {
-					switch (value) {
-					case 0:
-						return '一元购';
-					case 1:
-						return '拼团';
-						
-					}
-				}
-            },
-                    {
-                width : '80',
-                title : '商品图片',
-                field : 'goodImg',
-            },
-                    {
-                width : '80',
-                title : '商品描述',
-                field : 'goodDes',
-            },
-                    {
-                width : '80',
-                title : '商品编码',
-                field : 'goodCode',
-            },
-                    {
-                width : '80',
-                title : '商品价格',
-                field : 'goodPrice',
-            },
-                    {
-                width : '80',
-                title : '订单价格',
-                field : 'orderPrice',
-            },
-                    {
-                width : '80',
-                title : '订单状态',
-                field : 'orderStatus',
-                formatter : function(value, row, index) {
-					switch (value) {
-					case 1:
-						return '待付款';
-					case 2:
-						return '拼团中';
-					case 3:
-						return '代发货';
-					case 4:
-						return '待收货';
-					case 5:
-						return '已成功';
-					case 6:
-						return '已关闭';
-						
-					}
-				}
-            },
-                    {
-                width : '80',
-                title : '收获地址',
-                field : 'address',
-            },
-            {
-                field : 'action',
-                title : '操作',
-                width : 140,
-                align : 'center',
-                formatter : function(value, row, index) {
-                    var str = '';
-                    if(row.orderStatus == 1){
-                    	str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_lock" >发货</a>', row.id);
-                	}
-                    if(row.orderStatus == 2){
-                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >2222</a>', row.id);
-                	}
-                    if(row.orderStatus == 3){
-                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >3333</a>', row.id);
-                	}
-                    if(row.orderStatus == 4){
-                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >4444</a>', row.id);
-                	}
-                    if(row.orderStatus == 5){
-                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >5555</a>', row.id);
-                	}
-                    
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
-                    return str;
-                }
-            }] ],
+//                    {
+//                width : '80',
+//                title : '用户名',
+//                field : 'userName',
+//            },
+//                    {
+//                width : '80',
+//                title : '订单编号',
+//                field : 'orderCode',
+//            },
+//                    {
+//                width : '120',
+//                title : '下单时间',
+//                field : 'orderTime',
+//                formatter: formatDatebox,
+//            },
+//                    {
+//                width : '80',
+//                title : '支付时间',
+//                field : 'payTime',
+//                formatter: formatDatebox,
+//            },
+//                    {
+//                width : '80',
+//                title : '订单分类',
+//                field : 'orderSort',
+//                formatter : function(value, row, index) {
+//					switch (value) {
+//					case 0:
+//						return '一元购';
+//					case 1:
+//						return '拼团';
+//						
+//					}
+//				}
+//            },
+//                    {
+//                width : '80',
+//                title : '商品图片',
+//                field : 'goodImg',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品描述',
+//                field : 'goodDes',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品编码',
+//                field : 'goodCode',
+//            },
+//                    {
+//                width : '80',
+//                title : '商品价格',
+//                field : 'goodPrice',
+//            },
+//                    {
+//                width : '80',
+//                title : '订单价格',
+//                field : 'orderPrice',
+//            },
+//                    {
+//                width : '80',
+//                title : '订单状态',
+//                field : 'orderStatus',
+//                formatter : function(value, row, index) {
+//					switch (value) {
+//					case 1:
+//						return '待付款';
+//					case 2:
+//						return '拼团中';
+//					case 3:
+//						return '代发货';
+//					case 4:
+//						return '待收货';
+//					case 5:
+//						return '已成功';
+//					case 6:
+//						return '已关闭';
+//						
+//					}
+//				}
+//            },
+//                    {
+//                width : '80',
+//                title : '收获地址',
+//                field : 'address',
+//            },
+//            {
+//                field : 'action',
+//                title : '操作',
+//                width : 140,
+//                align : 'center',
+//                formatter : function(value, row, index) {
+//                    var str = '';
+//                    if(row.orderStatus == 1){
+//                    	str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_lock" >发货</a>', row.id);
+//                	}
+//                    if(row.orderStatus == 2){
+//                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >2222</a>', row.id);
+//                	}
+//                    if(row.orderStatus == 3){
+//                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >3333</a>', row.id);
+//                	}
+//                    if(row.orderStatus == 4){
+//                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >4444</a>', row.id);
+//                	}
+//                    if(row.orderStatus == 5){
+//                		str += $.formatString('<a href="javascript:void(0)" onclick="enable(\'{0}\');" class="btn_unlock" >5555</a>', row.id);
+//                	}
+//                    
+//                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
+//                    str += '&nbsp;|&nbsp;';
+//                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+//                    return str;
+//                }
+//            }
+//        ] ],
 //           toolbar :  [{
 //	            iconCls: 'icon-add',
 //	            text:'新增',
 //	            handler: function(){addFun();}
 //            }],
-            onLoadSuccess : function(data){
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
-                $(this).datagrid('fixRowHeight');
-            }
+//            onLoadSuccess : function(data){
+//                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
+//                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
+//                $(this).datagrid('fixRowHeight');
+//            }
         });
     });
     

@@ -44,7 +44,7 @@
                     {
                 width : '200',
                 title : '商品名称',
-                field : 'goodName',
+                field : 'goodsName',
             },
                     {
                 width : '80',
