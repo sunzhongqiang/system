@@ -120,7 +120,7 @@
         parent.$.modalDialog({
             title : '编辑',
             width : 500,
-            height : 300,
+            height : 600,
             href : '/comment/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
