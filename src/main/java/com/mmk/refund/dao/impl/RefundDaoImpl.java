@@ -160,6 +160,18 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public Refund findByOrderID(Long id) {
+		StringBuffer sb=new StringBuffer("select model from Refund model  where 1=1  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(id != null){
+            sb.append(" and model.tid = :tid ");
+            params.put("tid",id);
+        }
+        List<Refund> result = queryByJpql(sb.toString(), params);
+        return result.isEmpty() ? null : result.get(0);
+	}
     
     
 }
