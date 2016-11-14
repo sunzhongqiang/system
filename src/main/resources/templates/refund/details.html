@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>详情:退款表</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
+    </head>
+    
+    <body>
+        <div class="container amn_add">
+            <div class="headtt">
+                <h1>退款表详情</h1>            
+            </div>
+            <div class="role_tit"></div>            
+            <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+                <table cellspacing="1" cellpadding="3" class="tbbox" >
+                    <tr>
+                        <td class="tdTit"><label>ID：</label></td>
+                        <td th:text="${refund.id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单主键：</label></td>
+                        <td th:text="${refund.tid}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单编号：</label></td>
+                        <td th:text="${refund.orderSn}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款时的订单状态：</label></td>
+                        <td th:text="${refund.orderStatus}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单总金额：</label></td>
+                        <td th:text="${refund.totalFee}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品编号：</label></td>
+                        <td th:text="${refund.goodsId}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td th:text="${refund.goodsPrice}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品数量：</label></td>
+                        <td th:text="${refund.goodsNum}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>货物状态：</label></td>
+                        <td th:text="${refund.goodsStatus}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>用户id：</label></td>
+                        <td th:text="${refund.userId}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>用户名：</label></td>
+                        <td th:text="${refund.username}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款编号：</label></td>
+                        <td th:text="${refund.refundNo}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款账户信息：</label></td>
+                        <td th:text="${refund.refundMsg}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>申请时间：</label></td>
+                        <td th:text="${refund.refundCreateTime}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款完成时间：</label></td>
+                        <td th:text="${refund.refundCompleteTime}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款状态：</label></td>
+                        <td th:text="${refund.refundStatus}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款退货类型0-退款1-退货：</label></td>
+                        <td th:text="${refund.hasGoodsReturn}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款金额：</label></td>
+                        <td th:text="${refund.applyRefundFee}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>剩余金额：</label></td>
+                        <td th:text="${refund.payment}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款原因：</label></td>
+                        <td th:text="${refund.reason}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款说明：</label></td>
+                        <td th:text="${refund.description}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退货地址：</label></td>
+                        <td th:text="${refund.refundAddress}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>实际退款金额：</label></td>
+                        <td th:text="${refund.realRefundFee}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>拒绝原因：</label></td>
+                        <td th:text="${refund.refuseReason}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>拒绝备注：</label></td>
+                        <td th:text="${refund.refuseDesc}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证1：</label></td>
+                        <td th:text="${refund.photo1}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证2：</label></td>
+                        <td th:text="${refund.photo2}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证3：</label></td>
+                        <td th:text="${refund.photo3}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证4：</label></td>
+                        <td th:text="${refund.photo4}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证5：</label></td>
+                        <td th:text="${refund.photo5}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>物流单号：</label></td>
+                        <td th:text="${refund.sid}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>物流公司名称：</label></td>
+                        <td th:text="${refund.companyName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"></td>
+                        <td class="top60">
+                            <input type="hidden" name="id" th:field="${refund.id}"/>
+                            <input type="hidden" name="backurl" th:value="${#httpServletRequest.getHeader('Referer')}"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+                            <a href="/refund/list" class="btn_back">返回</a>                        
+                       </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <script type="text/javascript" src="/js/refund/details.js"></script>
+    </body>
+</html>

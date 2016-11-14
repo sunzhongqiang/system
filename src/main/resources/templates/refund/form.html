@@ -1,0 +1,226 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/refund/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>订单主键：</label></td>
+                        <td>
+                        <input type="text"  name="tid"   class="easyui-validatebox" data-options="required:true" th:value="${refund.tid}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单编号：</label></td>
+                        <td>
+                        <input type="text"  name="orderSn"   class="easyui-validatebox" data-options="required:true" th:value="${refund.orderSn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款时的订单状态：</label></td>
+                        <td>
+                        <input type="text"  name="orderStatus"   class="easyui-validatebox" data-options="required:true" th:value="${refund.orderStatus}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>订单总金额：</label></td>
+                        <td>
+                        <input type="text"  name="totalFee"   class="easyui-validatebox" data-options="required:true" th:value="${refund.totalFee}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品编号：</label></td>
+                        <td>
+                        <input type="text"  name="goodsId"   class="easyui-validatebox" data-options="required:true" th:value="${refund.goodsId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td>
+                        <input type="text"  name="goodsPrice"   class="easyui-validatebox" data-options="required:true" th:value="${refund.goodsPrice}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>商品数量：</label></td>
+                        <td>
+                        <input type="text"  name="goodsNum"   class="easyui-validatebox" data-options="required:true" th:value="${refund.goodsNum}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>货物状态：</label></td>
+                        <td>
+                        <input type="text"  name="goodsStatus"   class="easyui-validatebox" data-options="required:true" th:value="${refund.goodsStatus}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>用户id：</label></td>
+                        <td>
+                        <input type="text"  name="userId"   class="easyui-validatebox" data-options="required:true" th:value="${refund.userId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>用户名：</label></td>
+                        <td>
+                        <input type="text"  name="username"   class="easyui-validatebox" data-options="required:true" th:value="${refund.username}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款编号：</label></td>
+                        <td>
+                        <input type="text"  name="refundNo"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refundNo}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款账户信息：</label></td>
+                        <td>
+                        <input type="text"  name="refundMsg"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refundMsg}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>申请时间：</label></td>
+                        <td><input id="" name="refundCreateTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${refund.refundCreateTime}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款完成时间：</label></td>
+                        <td><input id="" name="refundCompleteTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${refund.refundCompleteTime}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款状态：</label></td>
+                        <td>
+                        <input type="text"  name="refundStatus"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refundStatus}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款退货类型0-退款1-退货：</label></td>
+                        <td>
+                        <input type="text"  name="hasGoodsReturn"   class="easyui-validatebox" data-options="required:true" th:value="${refund.hasGoodsReturn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款金额：</label></td>
+                        <td>
+                        <input type="text"  name="applyRefundFee"   class="easyui-validatebox" data-options="required:true" th:value="${refund.applyRefundFee}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>剩余金额：</label></td>
+                        <td>
+                        <input type="text"  name="payment"   class="easyui-validatebox" data-options="required:true" th:value="${refund.payment}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款原因：</label></td>
+                        <td>
+                        <input type="text"  name="reason"   class="easyui-validatebox" data-options="required:true" th:value="${refund.reason}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退款说明：</label></td>
+                        <td>
+                        <input type="text"  name="description"   class="easyui-validatebox" data-options="required:true" th:value="${refund.description}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>退货地址：</label></td>
+                        <td>
+                        <input type="text"  name="refundAddress"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refundAddress}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>实际退款金额：</label></td>
+                        <td>
+                        <input type="text"  name="realRefundFee"   class="easyui-validatebox" data-options="required:true" th:value="${refund.realRefundFee}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>拒绝原因：</label></td>
+                        <td>
+                        <input type="text"  name="refuseReason"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refuseReason}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>拒绝备注：</label></td>
+                        <td>
+                        <input type="text"  name="refuseDesc"   class="easyui-validatebox" data-options="required:true" th:value="${refund.refuseDesc}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证1：</label></td>
+                        <td>
+                        <input type="text"  name="photo1"   class="easyui-validatebox" data-options="required:true" th:value="${refund.photo1}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证2：</label></td>
+                        <td>
+                        <input type="text"  name="photo2"   class="easyui-validatebox" data-options="required:true" th:value="${refund.photo2}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证3：</label></td>
+                        <td>
+                        <input type="text"  name="photo3"   class="easyui-validatebox" data-options="required:true" th:value="${refund.photo3}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证4：</label></td>
+                        <td>
+                        <input type="text"  name="photo4"   class="easyui-validatebox" data-options="required:true" th:value="${refund.photo4}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>凭证5：</label></td>
+                        <td>
+                        <input type="text"  name="photo5"   class="easyui-validatebox" data-options="required:true" th:value="${refund.photo5}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>物流单号：</label></td>
+                        <td>
+                        <input type="text"  name="sid"   class="easyui-validatebox" data-options="required:true" th:value="${refund.sid}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>物流公司名称：</label></td>
+                        <td>
+                        <input type="text"  name="companyName"   class="easyui-validatebox" data-options="required:true" th:value="${refund.companyName}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${refund.id}"/>
+        </form>
+    </div>
+</div>
