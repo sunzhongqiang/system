@@ -20,20 +20,20 @@
 <script type="text/javascript" src="/js/shipping/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>配送方式名称：</th>
                       <td>
-                        <input type="text" name="shippingName" th:value="${shippingCondition} ? ${shippingCondition.shippingName} :''"/>
+                        <input type="text" class="easyui-textbox" name="shippingName" th:value="${shippingCondition} ? ${shippingCondition.shippingName} :''"/>
                       </td>
                   
 
                     <th>是否可用:1，是；2，否：</th>
                       <td>
-                        <input type="text" name="enabled" th:value="${shippingCondition} ? ${shippingCondition.enabled} :''"/>
+                        <input type="text" class="easyui-textbox" name="enabled" th:value="${shippingCondition} ? ${shippingCondition.enabled} :''"/>
                       </td>
                   
                       <td>

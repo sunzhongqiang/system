@@ -20,17 +20,17 @@
 <script type="text/javascript" src="/js/loginLog/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
                     <th>用户名：</th>
                       <td>
-                        <input type="text" name="username" th:value="${loginLogCondition} ? ${loginLogCondition.username} :''"/>
+                        <input type="text" class="easyui-textbox" name="username" th:value="${loginLogCondition} ? ${loginLogCondition.username} :''"/>
                       </td>
                     <th>真实姓名：</th>
                       <td>
-                        <input type="text" name="realname" th:value="${loginLogCondition} ? ${loginLogCondition.realname} :''"/>
+                        <input type="text" class="easyui-textbox" name="realname" th:value="${loginLogCondition} ? ${loginLogCondition.realname} :''"/>
                       </td>
                     <th>登录时间：</th>
                       <td>

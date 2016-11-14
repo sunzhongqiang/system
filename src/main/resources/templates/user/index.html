@@ -20,17 +20,17 @@
 <script type="text/javascript" src="/js/user/index.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px;overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
                       <th>用户名：</th>
                       <td>
-                      <input type="text" name="username" th:value="${adminUserCondition} ? ${adminUserCondition.username} :''"/>
+                      <input type="text" class="easyui-textbox" name="username" th:value="${adminUserCondition} ? ${adminUserCondition.username} :''"/>
                       </td>
                       <th>真实姓名：</th>
                       <td>
-                      <input type="text" name="realname" th:value="${adminUserCondition} ? ${adminUserCondition.realname} :''"/>
+                      <input type="text" class="easyui-textbox" name="realname" th:value="${adminUserCondition} ? ${adminUserCondition.realname} :''"/>
                       </td>
                 <td>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>

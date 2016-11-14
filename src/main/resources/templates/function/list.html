@@ -20,26 +20,26 @@
 <script type="text/javascript" src="/js/function/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>统一资源标识符：</th>
                       <td>
-                        <input type="text" name="uri" th:value="${functionCondition} ? ${functionCondition.uri} :''"/>
+                        <input type="text" class="easyui-textbox" name="uri" th:value="${functionCondition} ? ${functionCondition.uri} :''"/>
                       </td>
                   
 
                     <th>资源名称：</th>
                       <td>
-                        <input type="text" name="name" th:value="${functionCondition} ? ${functionCondition.name} :''"/>
+                        <input type="text" class="easyui-textbox" name="name" th:value="${functionCondition} ? ${functionCondition.name} :''"/>
                       </td>
                   
 
                     <th>资源类型：</th>
                       <td>
-                        <input type="text" name="type" th:value="${functionCondition} ? ${functionCondition.type} :''"/>
+                        <input type="text" class="easyui-textbox" name="type" th:value="${functionCondition} ? ${functionCondition.type} :''"/>
                       </td>
                   
                       <td>
