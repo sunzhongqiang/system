@@ -170,7 +170,13 @@ function closeTab(){
 
 
 
-function refreshTab() {
+function refreshTab(title) {
+	var t = $('#index_tabs');
+	if(title){
+		if(t.tabs('exists', opts.title)){
+			t.tabs('select', opts.title);
+		}
+	}
 	
 	var index = index_tabs.tabs('getTabIndex', index_tabs.tabs('getSelected'));
 	var tab = index_tabs.tabs('getSelected');
