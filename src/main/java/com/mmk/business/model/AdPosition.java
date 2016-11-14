@@ -29,6 +29,12 @@ public class AdPosition {
     private Long positionId;
 
     /**
+     * 广告位编码
+     */
+    @Column(name="position_code")
+    private String positionCode;
+    
+	/**
      * 广告位名称
      */
     @Column(name="position_name")
@@ -118,5 +124,11 @@ public class AdPosition {
         this.positionDesc = positionDesc;
     }
 
+    public String getPositionCode() {
+		return positionCode;
+	}
+	public void setPositionCode(String positionCode) {
+		this.positionCode = positionCode;
+	}
 
 }
