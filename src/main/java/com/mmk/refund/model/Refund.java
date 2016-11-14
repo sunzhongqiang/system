@@ -88,8 +88,8 @@ public class Refund {
     /**
      * 用户名
      */
-    @Column(name="username")
-    private String username;
+    @Column(name="user_name")
+    private String userName;
 
     /**
      * 退款编号
@@ -351,16 +351,16 @@ public class Refund {
     }
 
     /** 
-	* @return username ：用户名
+	* @return userName ：用户名
 	*/
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
     /** 
     *@param username 设置用户名 
     */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
     /** 

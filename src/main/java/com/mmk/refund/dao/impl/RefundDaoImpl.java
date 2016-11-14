@@ -54,9 +54,9 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and model.goodsId = :goodsId ");
             params.put("goodsId",refundCondition.getGoodsId());
         }
-        if(StringUtils.isNotBlank(refundCondition.getUsername())){
-            sb.append(" and model.username like :username ");
-            params.put("username","%"+refundCondition.getUsername()+"%");
+        if(StringUtils.isNotBlank(refundCondition.getUserName())){
+            sb.append(" and model.userName like :userName ");
+            params.put("userName","%"+refundCondition.getUserName()+"%");
         }
         if(StringUtils.isNotBlank(refundCondition.getRefundNo())){
             sb.append(" and model.refundNo like :refundNo ");
@@ -85,9 +85,9 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and model.goodsId = :goodsId ");
             params.put("goodsId",refundCondition.getGoodsId());
         }
-        if(StringUtils.isNotBlank(refundCondition.getUsername())){
-            sb.append(" and model.username like :username ");
-            params.put("username","%"+refundCondition.getUsername()+"%");
+        if(StringUtils.isNotBlank(refundCondition.getUserName())){
+            sb.append(" and model.userName like :userName ");
+            params.put("userName","%"+refundCondition.getUserName()+"%");
         }
         if(StringUtils.isNotBlank(refundCondition.getRefundNo())){
             sb.append(" and model.refundNo like :refundNo ");
@@ -117,9 +117,9 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and goods_id = ?6 ");
             params.put(6,condition.getGoodsId());
         }
-        if(StringUtils.isNotBlank(condition.getUsername())){
-            sb.append(" and username like ?11 ");
-            params.put(11,"%"+condition.getUsername()+"%");
+        if(StringUtils.isNotBlank(condition.getUserName())){
+            sb.append(" and userName like ?11 ");
+            params.put(11,"%"+condition.getUserName()+"%");
         }
         if(StringUtils.isNotBlank(condition.getRefundNo())){
             sb.append(" and refund_no like ?12 ");
