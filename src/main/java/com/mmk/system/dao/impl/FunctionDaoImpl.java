@@ -62,7 +62,7 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
             sb.append(" and model.type = :type ");
             params.put("type",functionCondition.getType());
         }
-        sb.append(" order by sequence ");
+        sb.append(" order by sort ");
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -82,7 +82,7 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
             sb.append(" and model.type = :type ");
             params.put("type",functionCondition.getType());
         }
-        sb.append(" order by sequence ");
+        sb.append(" order by sort ");
         return queryByJpql(sb.toString(), params);
     }
     
@@ -135,7 +135,7 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
 			sb.append(" and model.roleId in :roleIds ");
 			params.put("roleIds", roleIdList);
 		}
-		sb.append("order by function.sequence,function.id");
+		sb.append("order by function.sort,function.id");
 		List result = queryArrayByJpql(sb.toString(),params);
 		return result;
 	}
