@@ -1,6 +1,6 @@
 /*
  * 
- *  RefundDaoImpl 创建于 2016-11-14 13:07:10 版权归作者和作者当前组织所有
+ *  RefundDaoImpl 创建于 2016-11-14 13:17:40 版权归作者和作者当前组织所有
  */
 package com.mmk.refund.dao.impl;
 
@@ -50,6 +50,30 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
     public Page<Refund> list(RefundCondition refundCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Refund model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(refundCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",refundCondition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(refundCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+refundCondition.getUsername()+"%");
+        }
+        if(StringUtils.isNotBlank(refundCondition.getRefundNo())){
+            sb.append(" and model.refundNo like :refundNo ");
+            params.put("refundNo","%"+refundCondition.getRefundNo()+"%");
+        }
+        if(refundCondition.getRefundCreateTime()!=null){
+            sb.append(" and model.refundCreateTime = :refundCreateTime ");
+            params.put("refundCreateTime",refundCondition.getRefundCreateTime());
+        }
+        if(StringUtils.isNotBlank(refundCondition.getRefundStatus())){
+            sb.append(" and model.refundStatus like :refundStatus ");
+            params.put("refundStatus","%"+refundCondition.getRefundStatus()+"%");
+        }
+        if(StringUtils.isNotBlank(refundCondition.getHasGoodsReturn())){
+            sb.append(" and model.hasGoodsReturn like :hasGoodsReturn ");
+            params.put("hasGoodsReturn","%"+refundCondition.getHasGoodsReturn()+"%");
+        }
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -57,6 +81,30 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
     public List<Refund> list(RefundCondition refundCondition){
         StringBuffer sb=new StringBuffer("select model from Refund model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(refundCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",refundCondition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(refundCondition.getUsername())){
+            sb.append(" and model.username like :username ");
+            params.put("username","%"+refundCondition.getUsername()+"%");
+        }
+        if(StringUtils.isNotBlank(refundCondition.getRefundNo())){
+            sb.append(" and model.refundNo like :refundNo ");
+            params.put("refundNo","%"+refundCondition.getRefundNo()+"%");
+        }
+        if(refundCondition.getRefundCreateTime()!=null){
+            sb.append(" and model.refundCreateTime = :refundCreateTime ");
+            params.put("refundCreateTime",refundCondition.getRefundCreateTime());
+        }
+        if(StringUtils.isNotBlank(refundCondition.getRefundStatus())){
+            sb.append(" and model.refundStatus like :refundStatus ");
+            params.put("refundStatus","%"+refundCondition.getRefundStatus()+"%");
+        }
+        if(StringUtils.isNotBlank(refundCondition.getHasGoodsReturn())){
+            sb.append(" and model.hasGoodsReturn like :hasGoodsReturn ");
+            params.put("hasGoodsReturn","%"+refundCondition.getHasGoodsReturn()+"%");
+        }
         return queryByJpql(sb.toString(), params);
     }
     
@@ -65,6 +113,30 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
     public Page< Map<String,Object>> listBySql(RefundCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,tid,order_sn,order_status,total_fee,goods_id,goods_price,goods_num,goods_status,user_id,username,refund_no,refund_msg,refund_create_time,refund_complete_time,refund_status,has_goods_return,apply_refund_fee,payment,reason,description,refund_address,real_refund_fee,refuse_reason,refuse_desc,photo1,photo2,photo3,photo4,photo5,sid,company_name from trade_refund  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
+        if(condition.getGoodsId()!=null){
+            sb.append(" and goods_id = ?6 ");
+            params.put(6,condition.getGoodsId());
+        }
+        if(StringUtils.isNotBlank(condition.getUsername())){
+            sb.append(" and username like ?11 ");
+            params.put(11,"%"+condition.getUsername()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getRefundNo())){
+            sb.append(" and refund_no like ?12 ");
+            params.put(12,"%"+condition.getRefundNo()+"%");
+        }
+        if(condition.getRefundCreateTime()!=null){
+            sb.append(" and refund_create_time = ?14 ");
+            params.put(14,condition.getRefundCreateTime());
+        }
+        if(StringUtils.isNotBlank(condition.getRefundStatus())){
+            sb.append(" and refund_status like ?16 ");
+            params.put(16,"%"+condition.getRefundStatus()+"%");
+        }
+        if(StringUtils.isNotBlank(condition.getHasGoodsReturn())){
+            sb.append(" and has_goods_return like ?17 ");
+            params.put(17,"%"+condition.getHasGoodsReturn()+"%");
+        }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     
