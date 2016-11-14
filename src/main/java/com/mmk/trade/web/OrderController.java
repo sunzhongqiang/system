@@ -18,6 +18,7 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.refund.service.RefundService;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
 
@@ -41,6 +42,8 @@ public class OrderController extends BaseController {
     private ShippingService shippingService;
     @Resource 
     private UserService userService;
+    @Resource 
+    private RefundService refundService;
 
     /**
      * 跳转至列表页面
@@ -136,6 +139,24 @@ public class OrderController extends BaseController {
         modelAndView.addObject("user", user);
         return modelAndView ;
     } 
+    
+    /**
+     * 查看退款详情页面
+     * @param id 订单ID
+     */ 
+    @RequestMapping("/order/refundDetail")
+    public ModelAndView refundDetail(Long id){
+        log.info("查看订单详情页面");
+        ModelAndView modelAndView = new ModelAndView("order/refundDetail");
+        Order order = orderService.findById(id);
+        User user = userService.find(order.getUserId());
+        refundService.findByOrderID(id);
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("user", user);
+        
+        return modelAndView ;
+    } 
+    
     
     /**
      * 跳转到编辑页面

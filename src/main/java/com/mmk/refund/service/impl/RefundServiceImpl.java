@@ -61,4 +61,10 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
         log.info("退款表根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return refundDao.findAllBy(field,value);
     }
+
+	@Override
+	public Refund findByOrderID(Long id) {
+        log.info("根据订单ID查找对应的退款详情");
+        return refundDao.findByOrderID(id);
+	}
 }
