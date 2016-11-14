@@ -19,6 +19,11 @@ public interface GoodsApi {
 	 */
 	ResultMsg findGoods();
 
+	/**
+	 * 商品详情
+	 * @param id
+	 * @return
+	 */
 	ResultMsg findGoodsInfo(Long id);
 	
 
