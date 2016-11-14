@@ -62,7 +62,7 @@ public class Function {
      * 排序字段
      */
     @Column(name="sort")
-    private String sort;
+    private Integer sort;
 
 
     /** 
@@ -142,10 +142,10 @@ public class Function {
     public void setDescription(String description) {
         this.description = description;
     }
-	public String getSort() {
+	public Integer getSort() {
 		return sort;
 	}
-	public void setSort(String sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 

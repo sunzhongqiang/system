@@ -74,7 +74,8 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
     
     @Override
 	public List<Function> gridTree(){
-		Iterable<Function> functionList = findAll();
+		FunctionCondition functionCondition = new FunctionCondition();
+		Iterable<Function> functionList = list(functionCondition );
 		List<FunctionCondition> temp = new ArrayList<FunctionCondition>();
 		List<Function> result = new ArrayList<Function>();
 		Map<Long,FunctionCondition> helpMap = new HashMap<Long,FunctionCondition>();
@@ -86,6 +87,7 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
 			condition.setType(function.getType());
 			condition.setParentId(function.getParentId());
 			condition.setDescription(function.getDescription());
+			condition.setSort(function.getSort());
 			helpMap.put(function.getId(), condition);
 			temp.add(condition);
 		}
