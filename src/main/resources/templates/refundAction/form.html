@@ -1,0 +1,72 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/refundAction/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>退款ID：</label></td>
+                        <td>
+                        <input type="text"  name="refundId"   class="easyui-validatebox" data-options="required:true" th:value="${refundAction.refundId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>操作状态：</label></td>
+                        <td>
+                        <input type="text"  name="refundStatus"   class="easyui-validatebox" data-options="required:true" th:value="${refundAction.refundStatus}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>操作人：</label></td>
+                        <td>
+                        <input type="text"  name="username"   class="easyui-validatebox" data-options="required:true" th:value="${refundAction.username}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>操作时间：</label></td>
+                        <td><input id="" name="createTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${refundAction.createTime}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>备注：</label></td>
+                        <td>
+                        <input type="text"  name="remark"   class="easyui-validatebox" data-options="required:true" th:value="${refundAction.remark}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${refundAction.id}"/>
+        </form>
+    </div>
+</div>

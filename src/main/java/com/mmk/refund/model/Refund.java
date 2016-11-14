@@ -1,6 +1,6 @@
 /*
  * 
- *  Refund 创建于 2016-11-14 13:07:09 版权归作者和作者当前组织所有
+ *  Refund 创建于 2016-11-14 13:17:40 版权归作者和作者当前组织所有
  */
 package com.mmk.refund.model;
 
@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 /**
 * Refund: 退款表 数据领域模型
-* 2016-11-14 13:07:09
+* 2016-11-14 13:17:40
 *@author huguangling 胡广玲
 *@version 1.0
 */
