@@ -20,32 +20,32 @@
 <script type="text/javascript" src="/js/wxUser/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 40px;  padding:5px;overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>昵称：</th>
                       <td>
-                        <input type="text" name="nickname" th:value="${wxUserCondition} ? ${wxUserCondition.nickname} :''"/>
+                        <input type="text" class="easyui-textbox" name="nickname" th:value="${wxUserCondition} ? ${wxUserCondition.nickname} :''"/>
                       </td>
                   
 
                     <th>真实姓名：</th>
                       <td>
-                        <input type="text" name="realname" th:value="${wxUserCondition} ? ${wxUserCondition.realname} :''"/>
+                        <input type="text" class="easyui-textbox" name="realname" th:value="${wxUserCondition} ? ${wxUserCondition.realname} :''"/>
                       </td>
                   
 
                     <th>城市：</th>
                       <td>
-                        <input type="text" name="city" th:value="${wxUserCondition} ? ${wxUserCondition.city} :''"/>
+                        <input type="text" class="easyui-textbox" name="city" th:value="${wxUserCondition} ? ${wxUserCondition.city} :''"/>
                       </td>
                   
 
                     <th>国家：</th>
                       <td>
-                        <input type="text" name="country" th:value="${wxUserCondition} ? ${wxUserCondition.country} :''"/>
+                        <input type="text" class="easyui-textbox" name="country" th:value="${wxUserCondition} ? ${wxUserCondition.country} :''"/>
                       </td>
                   
                       <td>

@@ -20,17 +20,17 @@
 <script type="text/javascript" src="/js/role/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 40px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
                     <th>角色编码：</th>
                       <td>
-                        <input type="text" name="code" th:value="${roleCondition} ? ${roleCondition.code} :''"/>
+                        <input type="text" class="easyui-textbox" name="code" th:value="${roleCondition} ? ${roleCondition.code} :''"/>
                       </td>
                     <th>角色名称：</th>
                       <td>
-                        <input type="text" name="name" th:value="${roleCondition} ? ${roleCondition.name} :''"/>
+                        <input type="text" class="easyui-textbox" name="name" th:value="${roleCondition} ? ${roleCondition.name} :''"/>
                       </td>
                     <th>状态</th>
                       <td>

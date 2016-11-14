@@ -20,25 +20,25 @@
 <script type="text/javascript" src="/js/operationLog/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
                     <th>用户名：</th>
                       <td>
-                        <input type="text" name="username" th:value="${operationLogCondition} ? ${operationLogCondition.username} :''"/>
+                        <input type="text" class="easyui-textbox" name="username" th:value="${operationLogCondition} ? ${operationLogCondition.username} :''"/>
                       </td>
                     <th>用户真实名称：</th>
                       <td>
-                        <input type="text" name="realname" th:value="${operationLogCondition} ? ${operationLogCondition.realname} :''"/>
+                        <input type="text" class="easyui-textbox" name="realname" th:value="${operationLogCondition} ? ${operationLogCondition.realname} :''"/>
                       </td>
                     <th>访问资源地址：</th>
                       <td>
-                        <input type="text" name="functionUri" th:value="${operationLogCondition} ? ${operationLogCondition.functionUri} :''"/>
+                        <input type="text" class="easyui-textbox" name="functionUri" th:value="${operationLogCondition} ? ${operationLogCondition.functionUri} :''"/>
                       </td>
                     <th>资源名称：</th>
                       <td>
-                        <input type="text" name="functionName" th:value="${operationLogCondition} ? ${operationLogCondition.functionName} :''"/>
+                        <input type="text" class="easyui-textbox" name="functionName" th:value="${operationLogCondition} ? ${operationLogCondition.functionName} :''"/>
                       </td>
                       <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>

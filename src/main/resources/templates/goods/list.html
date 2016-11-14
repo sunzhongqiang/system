@@ -21,25 +21,25 @@
 <script type="text/javascript" src="/js/goods/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
             	<tr>
 					<th>商品ID：</th>
 					<td>
-					<input type="text" name="id" th:value="${goodsCondition} ? ${goodsCondition.id} :''"/>
+					<input type="text" class="easyui-textbox" name="id" th:value="${goodsCondition} ? ${goodsCondition.id} :''"/>
 					</td>
 					<th>商品名称：</th>
 					<td>
-					<input type="text" name="goodsName" th:value="${goodsCondition} ? ${goodsCondition.goodsName} :''"/>
+					<input type="text" class="easyui-textbox" name="goodsName" th:value="${goodsCondition} ? ${goodsCondition.goodsName} :''"/>
 					</td>
 					<th>促销开始时间：</th>
 					<td>
-					<input type="text" name="promoteStartDate" th:value="${goodsCondition} ? ${goodsCondition.promoteStartDate} :''"/>
+					<input type="text" class="easyui-textbox" name="promoteStartDate" th:value="${goodsCondition} ? ${goodsCondition.promoteStartDate} :''"/>
 					</td>
 					<th>促销结束时间：</th>
 					<td>
-					<input type="text" name="promoteEndDate" th:value="${goodsCondition} ? ${goodsCondition.promoteEndDate} :''"/>
+					<input type="text" class="easyui-textbox" name="promoteEndDate" th:value="${goodsCondition} ? ${goodsCondition.promoteEndDate} :''"/>
 					</td>
                       <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
