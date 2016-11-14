@@ -93,4 +93,9 @@ public class AdServiceImpl extends BaseServiceImpl<Ad, Long> implements AdServic
         log.info("广告根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return adDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Ad> findAllByPositionCode(String code) {
+		return adDao.findAllByPositionCode(code);
+	}
 }

@@ -77,7 +77,7 @@ public class GoodsApiImpl implements GoodsApi{
 		Map<String, Object> result = new HashMap<String, Object>() ;
 		result.put("goods", goods);
 		result.put("goodsImgs", goodsImageList);
-		return new ResultMsg(true, "查找成功", result );
+		return new ResultMsg(true, "查找成功", result);
 	}
 
 

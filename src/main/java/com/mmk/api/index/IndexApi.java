@@ -1,6 +1,5 @@
 package com.mmk.api.index;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.Ad;
-import com.mmk.business.model.Goods;
 import com.mmk.business.service.AdPositionService;
 import com.mmk.business.service.AdService;
 import com.mmk.business.service.GoodsService;
 import com.mmk.common.model.ResultData;
-import com.mmk.common.model.ResultMsg;
 
 @RestController
 public class IndexApi {
@@ -48,7 +45,7 @@ public class IndexApi {
 		
 		//查询【手机首页广告】
 		List<Ad> adList = adService.findAllByPositionId(position);
-		ResultData resultData = new ResultData(true, "查找成功", result);
+		ResultData resultData = new ResultData(true, "首页广告", result);
 		resultData.addData("adList", adList);
 		return resultData;
 	}	

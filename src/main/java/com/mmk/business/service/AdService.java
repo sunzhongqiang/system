@@ -87,4 +87,11 @@ public interface AdService extends BaseService<Ad, Long> {
      * 
      */
     List<Ad> findAllBy(String field,Object value);
+    
+    /**
+     * 根据广告位置获取广告位下的所有广告
+     * @param code
+     * @return
+     */
+    List<Ad> findAllByPositionCode(String code);
 }

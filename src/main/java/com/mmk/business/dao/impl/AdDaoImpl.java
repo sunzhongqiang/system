@@ -93,6 +93,17 @@ public class AdDaoImpl extends SpringDataQueryDaoImpl<Ad> implements AdDao {
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Ad> findAllByPositionCode(String code) {
+		StringBuffer sb=new StringBuffer("select model from Ad  model ,AdPosition postion where model.positionId = postion.positionId  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(StringUtils.isNotBlank(code)){
+        	sb.append(" and postion.positionCode = :code ");
+        	params.put("code", code);
+        }
+        return queryByJpql(sb.toString(), params);
+	}
     
     
 }

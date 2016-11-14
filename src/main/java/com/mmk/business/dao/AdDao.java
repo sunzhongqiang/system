@@ -67,6 +67,12 @@ public interface AdDao extends SpringDataQueryDao<Ad>{
      * 
      */
     List<Ad> findAllBy(String field,Object value);
+    /**
+     * 根据广告位置获取位置下的所有广告
+     * @param code 广告编码
+     * @return 广告位下的位置
+     */
+	List<Ad> findAllByPositionCode(String code);
     
     
 
