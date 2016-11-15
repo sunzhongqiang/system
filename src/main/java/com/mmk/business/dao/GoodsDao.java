@@ -4,6 +4,7 @@
  */
 package com.mmk.business.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
@@ -78,5 +79,14 @@ public interface GoodsDao extends SpringDataQueryDao<Goods>{
     List<List<Object>> findGoodsGrid(Long positionId);
     
     
+    /**
+     * 根据时间获取商品信息
+     * @param begin
+     * @param end
+     * @param cat
+     * @param pageable
+     * @return
+     */
+    Page<Goods> findAllGoodsBy(Date begin, Date end, long cat, Pageable pageable);
 
 }

@@ -97,13 +97,10 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      */
     List<List<Object>> goodsGrid(Long positionId);
-<<<<<<< HEAD
 
 	/**
 	 * 获取即将开团的商品
 	 * @return
 	 */
 	Page<Goods> findBeginStart(Pageable pageable);
-=======
->>>>>>> branch 'master' of https://github.com/sunzhongqiang/system.git
 }
