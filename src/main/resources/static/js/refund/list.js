@@ -323,8 +323,8 @@
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.refundStatus == 1){
                 	cc.push('<p class="red bold">待处理</p><p class="order_close blue bold">');
-                	cc.push('<a class="btn_send1" shape="rect" >同意</a>');
-                	cc.push('<a class="btn_send1" shape="rect">拒绝</a></p>');
+                	cc.push('<a class="btn_send1" shape="rect" onclick="refundAgree(\''+rowData.id+'\')">同意</a>');
+                	cc.push('<a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
                 }
                 if(rowData.refundStatus == 2){
                 	cc.push('<p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >直接确认收货</a></p>');
@@ -388,3 +388,26 @@
 			title : '退款退货详情'
 		});
     }
+    
+    
+    
+    //拒绝退款理由
+    function refundReason(id) {
+        parent.$.modalDialog({
+            title : '商品发货',
+            width : 400,
+            height : 250,
+            href : '/order/refundReason?id='+id,
+            buttons : [ {
+                text : '确认发货',
+                handler : function() {
+                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    var f = parent.$.modalDialog.handler.find('#modelForm');
+                    f.submit();
+                }
+            } ]
+        });
+    }
+    
+    
+    
