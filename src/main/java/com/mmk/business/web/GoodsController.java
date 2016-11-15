@@ -282,7 +282,7 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/goodsList")
     @ResponseBody
-    public List<Goods> goodsGrid(Long positionId){
+    public List<List<Object>> goodsGrid(Long positionId){
         log.info("获取商品 位置 关系表列表数据");
         return goodsService.goodsGrid(positionId);   
         

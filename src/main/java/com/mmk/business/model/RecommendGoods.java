@@ -46,8 +46,13 @@ public class RecommendGoods {
     @Column(name="sort")
     private Long sort;
 
-
-    /** 
+    /**
+     * 该商品在该位置的排序位置
+     */
+    @Column(name="orderby")
+    private Long orderby;
+    
+	/** 
 	* @return id ：主键
 	*/
     public Long getId() {
@@ -98,6 +103,11 @@ public class RecommendGoods {
     public void setSort(Long sort) {
         this.sort = sort;
     }
-
+    public Long getOrderby() {
+		return orderby;
+	}
+	public void setOrderby(Long orderby) {
+		this.orderby = orderby;
+	}
 
 }

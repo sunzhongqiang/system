@@ -280,6 +280,13 @@
                 title : '该商原价',
                 field : 'goodsOriginalPrice',
             },
+
+		            {
+		        width : '80',
+		        title : '排序',
+		        field : 'orderby',
+		      
+		    },
             {
                 field : 'action',
                 title : '操作',

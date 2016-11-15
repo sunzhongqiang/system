@@ -75,7 +75,7 @@ public interface GoodsDao extends SpringDataQueryDao<Goods>{
      * 
      * 
      */
-	List<Goods> findGoodsGrid(Long positionId);
+    List<List<Object>> findGoodsGrid(Long positionId);
     
     
 

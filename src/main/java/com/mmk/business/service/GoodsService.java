@@ -96,5 +96,5 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      * 
      */
-	List<Goods> goodsGrid(Long positionId);
+    List<List<Object>> goodsGrid(Long positionId);
 }
