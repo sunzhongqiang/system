@@ -96,7 +96,7 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      * 
      */
-    List<List<Object>> goodsGrid(Long positionId);
+    List<Object[]> goodsGrid(Long positionId);
 
 	/**
 	 * 获取即将开团的商品

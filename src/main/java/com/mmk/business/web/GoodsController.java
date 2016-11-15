@@ -7,6 +7,7 @@ package com.mmk.business.web;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +40,10 @@ import com.mmk.business.service.GoodsSkuService;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.GoodsSku;
+import com.mmk.business.model.RecommendGoods;
 import com.echin.api.tool.ThumbTool;
 import com.mmk.business.condition.GoodsCondition;
+import com.mmk.business.condition.RecommendGoodsCondition;
 
 /**
 *@Title: GoodsController
@@ -282,9 +285,18 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/goodsList")
     @ResponseBody
-    public List<List<Object>> goodsGrid(Long positionId){
+    public List<Map<String, Object>> goodsGrid(Long positionId){
         log.info("获取商品 位置 关系表列表数据");
-        return goodsService.goodsGrid(positionId);   
+        List<Object[]> goodsGrid = goodsService.goodsGrid(positionId);
+    	List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        for (Object[] array : goodsGrid) {
+			Map<String, Object> element = new HashMap<String,Object>();
+			element.put("goods", array[0]);
+			element.put("recommend", array[1]);
+			result.add(element );
+		}
+	
+		return result;   
         
     }
 }

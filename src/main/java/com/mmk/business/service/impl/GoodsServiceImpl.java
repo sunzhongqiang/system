@@ -101,10 +101,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
     }
 
 	@Override
-	public List<List<Object>> goodsGrid(Long positionId) {
+	public List<Object[]> goodsGrid(Long positionId) {
         log.info("返回对应位置下的所有商品");
         if(positionId == null){
-        	return new ArrayList<>();
+        	return new ArrayList();
         }
         return goodsDao.findGoodsGrid(positionId);
 	}
