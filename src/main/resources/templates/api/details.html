@@ -20,6 +20,10 @@
                         <td th:text="${api.id}"></td>
                     </tr>
                     <tr>
+                        <td class="tdTit"><label>API组：</label></td>
+                        <td th:text="${api.apiGroup}"></td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><label>API名称：</label></td>
                         <td th:text="${api.name}"></td>
                     </tr>
@@ -37,7 +41,7 @@
                     </tr>
                     <tr>
                         <td class="tdTit"><label>返回值：</label></td>
-                        <td th:text="${api.returnvalues}"></td>
+                        <td th:text="${api.returnValues}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"></td>

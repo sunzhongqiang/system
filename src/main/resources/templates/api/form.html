@@ -38,6 +38,18 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>API组：</label></td>
+                        <td>
+                        <select id="cc" class="easyui-combobox" name="apiGroup" style="width: 100px;">
+						    <option th:if="${api.apiGroup}=='用户API' ? 'selected' : ''">用户API</option>
+						    <option th:if="${api.apiGroup}=='商品API'  ? 'selected' : ''">商品API</option>
+						    <option th:if="${api.apiGroup}=='交易API'  ? 'selected' : ''">交易API</option>
+						    <option th:if="${api.apiGroup}=='付款API'  ? 'selected' : ''">付款API</option>
+						    <option th:if="${api.apiGroup}=='广告API'  ? 'selected' : ''">广告API</option>
+						</select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><label>API名称：</label></td>
                         <td>
                         <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${api.name}"/>
@@ -64,7 +76,7 @@
                     <tr>
                         <td class="tdTit"><label>返回值：</label></td>
                         <td>
-                        <input type="text"  name="returnvalues"   class="easyui-validatebox" data-options="required:true" th:value="${api.returnvalues}"/>
+                        <input type="text"  name="returnValues"   class="easyui-validatebox" data-options="required:true" th:value="${api.returnValues}"/>
                         </td>
                     </tr>
             </table>

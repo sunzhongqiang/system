@@ -25,6 +25,18 @@
             <table>
                 <tr>
 
+                    <th>API组：</th>
+                      <td>
+                        <select id="cc" class="easyui-combobox" name="apiGroup" style="width: 100px;">
+                            <option>用户API</option>
+                            <option>商品API</option>
+                            <option>交易API</option>
+                            <option>支付API</option>
+                            <option>广告API</option>
+                        </select>
+                      </td>
+                  
+
                     <th>API名称：</th>
                       <td>
                         <input type="text" name="name" th:value="${apiCondition} ? ${apiCondition.name} :''"/>
@@ -34,12 +46,6 @@
                     <th>地址：</th>
                       <td>
                         <input type="text" name="uri" th:value="${apiCondition} ? ${apiCondition.uri} :''"/>
-                      </td>
-                  
-
-                    <th>返回值：</th>
-                      <td>
-                        <input type="text" name="returnvalues" th:value="${apiCondition} ? ${apiCondition.returnvalues} :''"/>
                       </td>
                   
                       <td>

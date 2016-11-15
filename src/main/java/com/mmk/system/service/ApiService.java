@@ -9,8 +9,8 @@ import com.mmk.system.condition.ApiCondition;
 
 /**
 * ApiService: 系统API 业务服务层接口
-*2016-11-14 10:22:13
-*@author 孙中强 sunzhongqiang
+*2016-11-15 10:01:04
+*@author 
 *@version 1.0
 */
 public interface ApiService extends BaseService<Api, Long> {
@@ -19,7 +19,7 @@ public interface ApiService extends BaseService<Api, Long> {
      * @param apiCondition  查询条件
      * @param pageable 分页参数
      * @return 分页返回查询的结果
-     * @author 孙中强 sunzhongqiang
+     * @author 
      * 
      */
     Page<Api> list(ApiCondition apiCondition, Pageable pageable);
@@ -28,7 +28,7 @@ public interface ApiService extends BaseService<Api, Long> {
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param  api 查询类
      * @return 查询的结果集
-     * @author 孙中强 sunzhongqiang
+     * @author 
      * 
      */
     public List<Api> list(ApiCondition api);
@@ -38,7 +38,7 @@ public interface ApiService extends BaseService<Api, Long> {
      * @param field Api 中的某个字段
      * @param value 字段的值
      * @return Api 返回符合条件的结果，如果没有返回null
-     * @author 孙中强 sunzhongqiang
+     * @author 
      * 
      * 
      */
@@ -49,7 +49,7 @@ public interface ApiService extends BaseService<Api, Long> {
      * @param field Api中的某个字段
      * @param value 字段的值
      * @return 返回符合条件的所有结果
-     * @author 孙中强 sunzhongqiang
+     * @author 
      * 
      * 
      */

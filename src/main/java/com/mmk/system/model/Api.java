@@ -1,6 +1,6 @@
 /*
  * 
- *  Api 创建于 2016-11-14 10:22:13 版权归作者和作者当前组织所有
+ *  Api 创建于 2016-11-15 10:01:04 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -13,8 +13,8 @@ import javax.persistence.Column;
 
 /**
 * Api: 系统API 数据领域模型
-* 2016-11-14 10:22:13
-*@author 孙中强 sunzhongqiang
+* 2016-11-15 10:01:04
+*@author 
 *@version 1.0
 */
 @Entity
@@ -27,6 +27,12 @@ public class Api {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
+
+    /**
+     * API组
+     */
+    @Column(name="api_group")
+    private String apiGroup;
 
     /**
      * API名称
@@ -55,8 +61,8 @@ public class Api {
     /**
      * 返回值
      */
-    @Column(name="returnValues")
-    private String returnvalues;
+    @Column(name="return_values")
+    private String returnValues;
 
 
     /** 
@@ -70,6 +76,19 @@ public class Api {
     */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /** 
+	* @return apiGroup ：API组
+	*/
+    public String getApiGroup() {
+        return apiGroup;
+    }
+    /** 
+    *@param apiGroup 设置API组 
+    */
+    public void setApiGroup(String apiGroup) {
+        this.apiGroup = apiGroup;
     }
 
     /** 
@@ -125,16 +144,16 @@ public class Api {
     }
 
     /** 
-	* @return returnvalues ：返回值
+	* @return returnValues ：返回值
 	*/
-    public String getReturnvalues() {
-        return returnvalues;
+    public String getReturnValues() {
+        return returnValues;
     }
     /** 
-    *@param returnvalues 设置返回值 
+    *@param returnValues 设置返回值 
     */
-    public void setReturnvalues(String returnvalues) {
-        this.returnvalues = returnvalues;
+    public void setReturnValues(String returnValues) {
+        this.returnValues = returnValues;
     }
 
 

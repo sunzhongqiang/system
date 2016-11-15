@@ -3,12 +3,13 @@
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
             url : '/api/gridData',
-            fit : true,
+            fitColumns:true,
             striped : true,
             rownumbers : true,
             pagination : true,
             singleSelect : true,
             idField : 'id',
+            groupField:'apiGroup',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
@@ -19,28 +20,33 @@
             },
                     {
                 width : '80',
+                title : 'API组',
+                field : 'apiGroup',
+            },
+                    {
+                width : '180',
                 title : 'API名称',
                 field : 'name',
             },
                     {
-                width : '80',
+                width : '280',
                 title : '接口说明',
                 field : 'description',
             },
                     {
-                width : '80',
+                width : '280',
                 title : '地址',
                 field : 'uri',
             },
                     {
-                width : '80',
+                width : '280',
                 title : '参数',
                 field : 'params',
             },
                     {
-                width : '80',
+                width : '280',
                 title : '返回值',
-                field : 'returnvalues',
+                field : 'returnValues',
             },
             {
                 field : 'action',

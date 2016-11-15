@@ -30,7 +30,7 @@ import com.mmk.system.condition.ApiCondition;
 /**
 *@Title: ApiController
 *@Description: 系统API 的web控制层
-*@author 孙中强 sunzhongqiang
+*@author 
 */
 @RestController
 public class ApiController extends BaseController {

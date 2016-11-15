@@ -1,6 +1,6 @@
 /*
  * 
- *  ApiDaoImpl 创建于 2016-11-14 10:22:13 版权归作者和作者当前组织所有
+ *  ApiDaoImpl 创建于 2016-11-15 10:01:04 版权归作者和作者当前组织所有
  */
 package com.mmk.system.dao.impl;
 
@@ -25,7 +25,7 @@ import com.mmk.system.condition.ApiCondition;
 
 /**
 * ApiDaoImpl: 系统API 数据持久层接口实现
-*@author 孙中强 sunzhongqiang
+*@author 
 *@version 1.0
 *
 */
@@ -43,13 +43,17 @@ public class ApiDaoImpl extends SpringDataQueryDaoImpl<Api> implements ApiDao {
      * @param apiCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author 孙中强 sunzhongqiang
+     * @author 
      * 
      */
     @Override 
     public Page<Api> list(ApiCondition apiCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Api model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(StringUtils.isNotBlank(apiCondition.getApiGroup())){
+            sb.append(" and model.apiGroup = :apiGroup ");
+            params.put("apiGroup",apiCondition.getApiGroup());
+        }
         if(StringUtils.isNotBlank(apiCondition.getName())){
             sb.append(" and model.name like :name ");
             params.put("name","%"+apiCondition.getName()+"%");
@@ -57,10 +61,6 @@ public class ApiDaoImpl extends SpringDataQueryDaoImpl<Api> implements ApiDao {
         if(StringUtils.isNotBlank(apiCondition.getUri())){
             sb.append(" and model.uri like :uri ");
             params.put("uri","%"+apiCondition.getUri()+"%");
-        }
-        if(StringUtils.isNotBlank(apiCondition.getReturnvalues())){
-            sb.append(" and model.returnvalues like :returnvalues ");
-            params.put("returnvalues","%"+apiCondition.getReturnvalues()+"%");
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -69,6 +69,10 @@ public class ApiDaoImpl extends SpringDataQueryDaoImpl<Api> implements ApiDao {
     public List<Api> list(ApiCondition apiCondition){
         StringBuffer sb=new StringBuffer("select model from Api model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        if(StringUtils.isNotBlank(apiCondition.getApiGroup())){
+            sb.append(" and model.apiGroup = :apiGroup ");
+            params.put("apiGroup",apiCondition.getApiGroup());
+        }
         if(StringUtils.isNotBlank(apiCondition.getName())){
             sb.append(" and model.name like :name ");
             params.put("name","%"+apiCondition.getName()+"%");
@@ -77,29 +81,25 @@ public class ApiDaoImpl extends SpringDataQueryDaoImpl<Api> implements ApiDao {
             sb.append(" and model.uri like :uri ");
             params.put("uri","%"+apiCondition.getUri()+"%");
         }
-        if(StringUtils.isNotBlank(apiCondition.getReturnvalues())){
-            sb.append(" and model.returnvalues like :returnvalues ");
-            params.put("returnvalues","%"+apiCondition.getReturnvalues()+"%");
-        }
         return queryByJpql(sb.toString(), params);
     }
     
     
     @Override 
     public Page< Map<String,Object>> listBySql(ApiCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,name,description,uri,params,returnValues from system_api  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,api_group,name,description,uri,params,return_values from system_api  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
+        if(StringUtils.isNotBlank(condition.getApiGroup())){
+            sb.append(" and api_group = ?2 ");
+            params.put(2,condition.getApiGroup());
+        }
         if(StringUtils.isNotBlank(condition.getName())){
-            sb.append(" and name like ?2 ");
-            params.put(2,"%"+condition.getName()+"%");
+            sb.append(" and name like ?3 ");
+            params.put(3,"%"+condition.getName()+"%");
         }
         if(StringUtils.isNotBlank(condition.getUri())){
-            sb.append(" and uri like ?4 ");
-            params.put(4,"%"+condition.getUri()+"%");
-        }
-        if(StringUtils.isNotBlank(condition.getReturnvalues())){
-            sb.append(" and returnValues like ?6 ");
-            params.put(6,"%"+condition.getReturnvalues()+"%");
+            sb.append(" and uri like ?5 ");
+            params.put(5,"%"+condition.getUri()+"%");
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
