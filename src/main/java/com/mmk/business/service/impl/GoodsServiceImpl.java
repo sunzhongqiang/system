@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
+
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -99,11 +101,17 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
     }
 
 	@Override
-	public List<Goods> goodsGrid(Long positionId) {
+	public List<List<Object>> goodsGrid(Long positionId) {
         log.info("返回对应位置下的所有商品");
         if(positionId == null){
-        	return new ArrayList<Goods>();
+        	return new ArrayList<>();
         }
         return goodsDao.findGoodsGrid(positionId);
+	}
+
+	public Page<Goods> findBeginStart(Pageable pageable) {
+		DateTime now = DateTime.now();
+		DateTime yesterday = now.minusDays(1);
+		return goodsDao.findAllGoodsBy(yesterday.toDate(),now.toDate(),1l,pageable);
 	}
 }

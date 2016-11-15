@@ -4,6 +4,7 @@
  */
 package com.mmk.business.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,13 +91,19 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
     }
 
 	@Override
-	public List<Goods> findGoodsGrid(Long positionId) {
-        StringBuffer sb=new StringBuffer("select model from Goods model,RecommendGoods recommendGoods where recommendGoods.goodId = model.id ");
+	public List<List<Object>> findGoodsGrid(Long positionId) {
+        StringBuffer sb=new StringBuffer("select model,recommendGoods from Goods model,RecommendGoods recommendGoods where recommendGoods.goodId = model.id ");
         Map<String,Object> params = new HashMap<String,Object>();
         sb.append(" and recommendGoods.positionId = :positionId ");
         params.put("positionId", positionId);
+        sb.append(" order by recommendGoods.orderby desc ");
         
-        return queryByJpql(sb.toString(), params);
+        return queryArrayByJpql(sb.toString(), params);
         
+	}
+
+	@Override
+	public Page<Goods> findAllGoodsBy(Date begin, Date end, long cat, Pageable pageable) {
+		return null;
 	}
 }

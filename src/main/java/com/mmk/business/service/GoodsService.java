@@ -96,5 +96,11 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      * 
      */
-	List<Goods> goodsGrid(Long positionId);
+    List<List<Object>> goodsGrid(Long positionId);
+
+	/**
+	 * 获取即将开团的商品
+	 * @return
+	 */
+	Page<Goods> findBeginStart(Pageable pageable);
 }

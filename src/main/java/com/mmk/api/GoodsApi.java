@@ -1,7 +1,10 @@
 package com.mmk.api;
 
+
+import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.model.Goods;
-import com.mmk.business.model.WxUser;
+import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 
 public interface GoodsApi {
@@ -25,6 +28,13 @@ public interface GoodsApi {
 	 * @return
 	 */
 	ResultMsg findGoodsInfo(Long id);
+
+	/**
+	 * 即将开团的商品
+	 * @param pageable
+	 * @return
+	 */
+	ResultData toBegin(Pageable pageable);
 	
 
 }
