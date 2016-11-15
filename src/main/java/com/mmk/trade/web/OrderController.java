@@ -42,8 +42,6 @@ public class OrderController extends BaseController {
     private ShippingService shippingService;
     @Resource 
     private UserService userService;
-    @Resource 
-    private RefundService refundService;
 
     /**
      * 跳转至列表页面
@@ -140,23 +138,7 @@ public class OrderController extends BaseController {
         return modelAndView ;
     } 
     
-    /**
-     * 查看退款详情页面
-     * @param id 订单ID
-     */ 
-    @RequestMapping("/order/refundDetail")
-    public ModelAndView refundDetail(Long id){
-        log.info("查看订单详情页面");
-        ModelAndView modelAndView = new ModelAndView("order/refundDetail");
-        Order order = orderService.findById(id);
-        User user = userService.find(order.getUserId());
-        refundService.findByOrderID(id);
-        modelAndView.addObject("order", order);
-        modelAndView.addObject("user", user);
-        
-        return modelAndView ;
-    } 
-    
+
     
     /**
      * 跳转到编辑页面

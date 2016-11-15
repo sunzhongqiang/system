@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+
+<!-- [jQuery] -->
+<script src="http://g.yiqingo.com/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- [EasyUI] -->
+<link id="easyuiTheme" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/gray/easyui.css" type="text/css" />
+<link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
+<link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+
+<title>订单管理</title>
+<script type="text/javascript" src="/js/extJs.js"></script>
+<script type="text/javascript" src="/js/formater.js"></script>
+<script type="text/javascript" src="/js/order/list.js"></script>
+</head>
+<body>
+   
+   <div class="container kuai">
+		<div class="tit list_detail">
+			<h1>订单详情</h1>
+		</div>
+		<div class="main">
+			<ul class="order_dt">
+				<li class="us_name"><span>用户名：</span>
+					<p class="bold" th:text="${refund.userName}"></p></li>
+				<li><span>退款编号：</span>
+					<p th:text="${refund.refundNo}">15266691228</p></li>
+				<li><span>申请退款时间：</span>
+					<p th:text="${refund.refundCreateTime}"></p></li>
+				<li><span>订单编号：</span>
+					<p th:text="${refund.orderSn}"></p>
+				</li>
+				<li><span>地址：</span>
+					<p  th:text="${order.address}"></p>
+				</li>
+			</ul>
+
+
+
+		<table class="order_det" width="100%" cellspacing="0" cellpadding="3" border="0">
+         	<tbody><tr>
+                <th rowspan="1" colspan="1" width="30%">宝贝</th>
+                <th rowspan="1" colspan="1" width="10%">单价（元）</th>
+                <th rowspan="1" colspan="1" width="10%">商品数量</th>
+                <th rowspan="1" colspan="1" width="8%">申请退款金额</th>
+                <th rowspan="1" colspan="1" width="8%">实际应退款金额</th>
+                <th rowspan="1" colspan="1" width="20%">退款原因</th>
+                <th rowspan="1" colspan="1" width="16%">退款状态</th>
+         
+            </tr>
+            
+            <tr>
+            	<td rowspan="1" colspan="1">
+                	<div class="goods-form">
+                                <a shape="rect" >
+	                                <img name="goodImg" th:src="${order.goodImg}" />
+	                            </a>
+                                <div class="goods-all">
+                                     <p class="goods-name" th:text="${order.goodName}"></p>
+                                </div>
+                            </div>
+                </td>
+                
+                <td rowspan="1" colspan="1">
+                	<span th:text="${order.goodPrice}">99.00</span>
+                </td>
+                <td rowspan="1" colspan="1">
+                	<span>1</span>
+                </td>
+                 <td rowspan="1" colspan="1">
+                    <span th:text="${refund.applyRefundFee}">99.00</span>
+                </td>
+                <td rowspan="1" colspan="1">
+                    <span class="order_stand red bold" th:text="${refund.realRefundFee}">99.00</span>
+                </td>
+                 <td rowspan="1" colspan="1">
+                    <span th:text="${refund.reason}"></span>
+                </td>
+                <td rowspan="1" colspan="1" width="15%">
+                        <div>
+                        	 <span th:if="${refund.refundStatus=='1'}"><p class="red bold">待处理</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >同意</a><a class="btn_send1" shape="rect">拒绝</a></p></span>
+                        	 <span th:if="${refund.refundStatus=='2'}"><p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >直接确认收货</a></p></span>
+                        	 <span th:if="${refund.refundStatus=='3'}"><p class="green bold">待确认收货</p></span>
+                        	 <span th:if="${refund.refundStatus=='4'}"><p class="red" >待退款</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >退款成功</a><a class="btn_send1" shape="rect">退款失败</a></p></span>
+                        	 <span th:if="${refund.refundStatus=='5'}"><a class="red" >已拒绝</a></span>
+                        	 <span th:if="${refund.refundStatus=='6'}"><a class="red" >已关闭</a></span>
+                        	 <span th:if="${refund.refundStatus=='7'}"><a class="green" >已成功</a></span>
+                        	 <span th:if="${refund.refundStatus=='8'}"><p class="red" >退款失败</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >再次退款</a></p></span>
+                        </div>
+                  </td>
+            </tr>
+         </tbody>
+         </table>
+		</div>
+		
+	</div>
+    
+    
+	
+	
+	<!-- 操作日志 -->
+	
+	<div class="container kuai">
+		<div class="tit operation_list">
+			<h1>操作日志</h1>
+		</div>
+		<div class="main">
+			<table class="order_log" width="100%" cellspacing="0" cellpadding="3" border="0">
+				<tbody><tr>
+					<th rowspan="1" colspan="1" width="20%">操作者</th>
+					<th rowspan="1" colspan="1" width="20%">操作时间</th>
+					<th rowspan="1" colspan="1" width="10%">订单状态</th>
+					<th rowspan="1" colspan="1" width="10%">付款状态</th>
+					<th rowspan="1" colspan="1" width="20%">发货状态</th>
+					<th rowspan="1" colspan="1" width="20%">备注</th>
+
+				</tr>
+				<tr>
+					<td rowspan="1" colspan="1">admin</td>
+					<td rowspan="1" colspan="1">2016-11-10 11:50:57</td>
+					<td rowspan="1" colspan="1">
+						   <span>已发货</span></td>
+					<td rowspan="1" colspan="1">
+						<span>已付款</span></td>
+					<td rowspan="1" colspan="1"> <span>已发货</span>  </td>
+					<td rowspan="1" colspan="1">改为发货</td>
+				</tr>
+
+			</tbody></table>
+		</div>
+	</div>
+</body>
+</html>

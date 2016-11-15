@@ -21,6 +21,10 @@ import com.mmk.common.model.ResultMsg;
 import com.mmk.refund.condition.RefundCondition;
 import com.mmk.refund.model.Refund;
 import com.mmk.refund.service.RefundService;
+import com.mmk.system.model.User;
+import com.mmk.system.service.UserService;
+import com.mmk.trade.model.Order;
+import com.mmk.trade.service.OrderService;
 
 /**
 *@Title: RefundController
@@ -32,6 +36,10 @@ public class RefundController extends BaseController {
     
     @Resource 
     private RefundService refundService;
+    @Resource 
+    private OrderService orderService;
+    @Resource 
+    private UserService userService;
 
     /**
      * 跳转至列表页面
@@ -62,6 +70,24 @@ public class RefundController extends BaseController {
         GridData<Refund> grid = new GridData<Refund>(refundPage);
         return grid;
     }
+    
+    /**
+     * 查看退款详情页面
+     * @param id 订单ID
+     */ 
+    @RequestMapping("/refund/refundDetail")
+    public ModelAndView refundDetail(Long id){
+        log.info("查看订单详情页面");
+        ModelAndView modelAndView = new ModelAndView("/refund/refundDetail");
+        Order order = orderService.findById(id);
+        User user = userService.find(order.getUserId());
+        Refund refund = refundService.findByOrderID(id);
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("refund", refund);
+        modelAndView.addObject("user", user);
+        
+        return modelAndView ;
+    } 
     
     /**
      * 新增页面
