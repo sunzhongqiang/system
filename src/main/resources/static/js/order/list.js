@@ -193,7 +193,7 @@
                 cc.push('<tr class="orders">');
                 cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
                 cc.push('<span class="is_02 is_00">'+formatType(rowData.orderSort)+'</span>');
-                cc.push('<a"><img name="goodImg" src="'+rowData.goodImg+'"></a>');
+                cc.push('<a><img name="goodImg" src="'+rowData.goodImg+'"></a>');
                 cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
                 cc.push('</div></td>');
                 

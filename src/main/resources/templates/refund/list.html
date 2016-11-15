@@ -12,52 +12,70 @@
 <link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
 <link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
 <title>退款表</title>
 <script type="text/javascript" src="/js/extJs.js"></script>
+<script type="text/javascript" src="/js/formater.js"></script>
 <script type="text/javascript" src="/js/refund/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>商品编号：</th>
                       <td>
-                        <input type="text" name="goodsId" th:value="${refundCondition} ? ${refundCondition.goodsId} :''"/>
+                        <input type="text" class="easyui-textbox" name="goodsId" th:value="${refundCondition} ? ${refundCondition.goodsId} :''"/>
                       </td>
                   
 
                     <th>用户名：</th>
                       <td>
-                        <input type="text" name="username" th:value="${refundCondition} ? ${refundCondition.username} :''"/>
+                        <input type="text" class="easyui-textbox" name="username" th:value="${refundCondition} ? ${refundCondition.username} :''"/>
                       </td>
                   
 
                     <th>退款编号：</th>
                       <td>
-                        <input type="text" name="refundNo" th:value="${refundCondition} ? ${refundCondition.refundNo} :''"/>
+                        <input type="text" class="easyui-textbox" name="refundNo" th:value="${refundCondition} ? ${refundCondition.refundNo} :''"/>
                       </td>
                   
 
                     <th>申请时间：</th>
                       <td>
-                        <input type="text" name="refundCreateTime" th:value="${refundCondition} ? ${refundCondition.refundCreateTime} :''"/>
+                        <input type="text" class="easyui-datebox" name="refundCreateTime" th:value="${refundCondition} ? ${refundCondition.refundCreateTime} :''"/>
                       </td>
                   
 
                     <th>退款状态：</th>
                       <td>
-                        <input type="text" name="refundStatus" th:value="${refundCondition} ? ${refundCondition.refundStatus} :''"/>
+<!--                         <input type="text" class="easyui-textbox" name="refundStatus" th:value="${refundCondition} ? ${refundCondition.refundStatus} :''"/> -->
+                      	<select name="refundStatus" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">请选择</option>
+			              <option  value="1">待处理</option>
+			              <option  value="2" >等待买家退货</option>
+			              <option  value="3" >待确认收货</option>
+			              <option  value="4" >待退款</option>
+			              <option  value="5" >已拒绝</option>
+			              <option  value="6" >已关闭</option>
+			              <option  value="7" >已成功</option>
+			              <option  value="8" >退款失败</option>
+		               </select>
                       </td>
                   
 
-                    <th>退款退货类型0-退款1-退货：</th>
+                    <th>退款退货类型：</th>
                       <td>
-                        <input type="text" name="hasGoodsReturn" th:value="${refundCondition} ? ${refundCondition.hasGoodsReturn} :''"/>
+<!--                         <input type="text" class="easyui-textbox" name="hasGoodsReturn" th:value="${refundCondition} ? ${refundCondition.hasGoodsReturn} :''"/> -->
+                      	<select name="hasGoodsReturn" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">请选择</option>
+			              <option  value="0">仅退款</option>
+			              <option  value="1" >退款退货</option>
+		               </select>
                       </td>
                   
                       <td>
@@ -68,7 +86,7 @@
             </table>
         </form>
     </div>
-    <div data-options="region:'center',border:true,title:'退款表'" >
+    <div class="ddgl" data-options="region:'center',border:true" >
         <table id="dataGrid" data-options="fit:true,border:false"></table>
     </div>
 </body>

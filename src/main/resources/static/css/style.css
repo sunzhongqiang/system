@@ -149,7 +149,7 @@ overflow: hidden;}
     display: block;
     overflow: hidden;
     background: #e5f1f5;
-    padding: 12px 15px 0px 15px;
+    padding: 12px 15px 12px 15px;
     border-right: 1px #ccdee4 solid;
     border-bottom: 1px #ccdee4 solid;
    	margin:0;
@@ -329,7 +329,8 @@ overflow: hidden;}
     padding-right: 5%;
     text-align: left;
 }
-.goods-form{ float:left;}
+.goods-form{ }
+.goods-form a,.goods-form span{ float: left; margin-left:20px;}
 .goods-form img {
     width: 70px;
     height: 70px;
@@ -369,7 +370,24 @@ overflow: hidden;}
 .order_log th,.order_log td {
     padding: 5px;
 }
-
+.order_close a {margin-left:5px; cursor: pointer;}
+.order_det {
+    border: 1px solid #ccdee4;
+    border-right: none;
+    text-align: center;
+}
+.order_det td { padding:10px 0;}
+.order_det th, .order_det td {
+    border-right: 1px solid #ccdee4;
+}
+.order_det th {
+    background: #e5f1f5;
+    line-height: 40px;
+    border-bottom: 1px solid #ccdee4;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(204, 222, 228);
+}
 /*∆¿º€π‹¿Ì*/
 .pingj #uploader-demo {width: 400px;}
 
