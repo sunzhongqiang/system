@@ -41,11 +41,16 @@
                         <td class="tdTit"><strong class="red" >*</strong><label>API组：</label></td>
                         <td>
                         <select id="cc" class="easyui-combobox" name="apiGroup" style="width: 100px;">
-						    <option th:if="${api.apiGroup}=='用户API' ? 'selected' : ''">用户API</option>
-						    <option th:if="${api.apiGroup}=='商品API'  ? 'selected' : ''">商品API</option>
-						    <option th:if="${api.apiGroup}=='交易API'  ? 'selected' : ''">交易API</option>
-						    <option th:if="${api.apiGroup}=='付款API'  ? 'selected' : ''">付款API</option>
-						    <option th:if="${api.apiGroup}=='广告API'  ? 'selected' : ''">广告API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '用户API'">用户API</option>
+						    <option th:unless="${api.apiGroup} eq '用户API'">用户API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '商品API'">商品API</option>
+						    <option th:unless="${api.apiGroup} eq '商品API'">商品API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '交易API'">交易API</option>
+						    <option th:unless="${api.apiGroup} eq '交易API'">交易API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '付款API'">付款API</option>
+						    <option th:unless="${api.apiGroup} eq '付款API'">付款API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '付款API'">广告API</option>
+						    <option th:unless="${api.apiGroup} eq '付款API'">广告API</option>
 						</select>
                         </td>
                     </tr>
