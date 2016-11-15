@@ -4,6 +4,8 @@ import java.util.List;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.condition.RecommendGoodsCondition;
 
@@ -62,4 +64,16 @@ public interface RecommendGoodsService extends BaseService<RecommendGoods, Long>
      * 
      */
     List<RecommendGoods> findAllBy(String field,Object value);
+
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param positionId RecommendGoods中的某个字段
+     * @param goodId 字段的值
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+    RecommendGoods findByPositionId(Long positionId, Long goodId);
+
 }

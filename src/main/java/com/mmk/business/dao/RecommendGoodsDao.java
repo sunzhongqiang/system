@@ -10,6 +10,7 @@ import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.RecommendGoodsCondition;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.RecommendGoods;
 /**
 * RecommendGoodsDao:商品 位置 关系表 数据持久层接口
@@ -68,6 +69,16 @@ public interface RecommendGoodsDao extends SpringDataQueryDao<RecommendGoods>{
      */
     List<RecommendGoods> findAllBy(String field,Object value);
     
-    
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param positionId RecommendGoods 中的某个字段
+     * @param goodId 字段对应的值
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+	RecommendGoods findByPositionId(Long positionId, Long goodId);
+
 
 }

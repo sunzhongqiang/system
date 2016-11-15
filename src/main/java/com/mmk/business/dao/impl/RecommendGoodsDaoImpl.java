@@ -16,6 +16,7 @@ import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.dao.RecommendGoodsDao;
 
@@ -112,6 +113,24 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public RecommendGoods findByPositionId(Long positionId, Long goodId) {
+        StringBuffer sb=new StringBuffer("select model from RecommendGoods model  where 1 = 1");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(positionId != null){
+            sb.append(" and positionId = :positionId ");
+            params.put("positionId", positionId);
+        }
+        if(goodId != null){
+            sb.append(" and goodId = :goodId ");
+            params.put("goodId", goodId);
+        }
+        List<RecommendGoods> result = queryByJpql(sb.toString(), params,0l,1l);
+        return result.isEmpty() ? null : result.get(0);
+    
+	}
+
     
     
 }

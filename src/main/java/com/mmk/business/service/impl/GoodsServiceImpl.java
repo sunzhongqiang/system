@@ -1,6 +1,8 @@
 package com.mmk.business.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,8 +99,11 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
     }
 
 	@Override
-	public Long findMaxId() {
-		log.info("获取最新保存的商品ID");
-		return goodsDao.findMaxId();
+	public List<Goods> goodsGrid(Long positionId) {
+        log.info("返回对应位置下的所有商品");
+        if(positionId == null){
+        	return new ArrayList<Goods>();
+        }
+        return goodsDao.findGoodsGrid(positionId);
 	}
 }

@@ -119,7 +119,7 @@ public class RoleDaoImpl extends SpringDataQueryDaoImpl<Role> implements RoleDao
     public List<Role> findAllBy(String field,Object value){
         StringBuffer sb=new StringBuffer("select model from Role model  where model.");
         sb.append(field);
-       sb.append(" = :value ");
+        sb.append(" = :value ");
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("value",value);
         return queryByJpql(sb.toString(), params);

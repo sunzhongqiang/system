@@ -270,4 +270,21 @@ public class GoodsController extends BaseController {
        }
        return result ;
     }
+    
+    /**
+     * 加载表格数据 用户
+     * 
+     * @param recommendGoodsCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/goods/goodsList")
+    @ResponseBody
+    public List<Goods> goodsGrid(Long positionId){
+        log.info("获取商品 位置 关系表列表数据");
+        return goodsService.goodsGrid(positionId);   
+        
+    }
 }

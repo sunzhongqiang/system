@@ -24,6 +24,7 @@ import com.mmk.common.model.ResultMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.business.service.RecommendGoodsService;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.condition.RecommendGoodsCondition;
 
@@ -68,6 +69,8 @@ public class RecommendGoodsController extends BaseController {
         return grid;
     }
     
+
+    
     /**
      * 新增页面
      * @return 跳转到商品 位置 关系表新增页面
@@ -91,7 +94,51 @@ public class RecommendGoodsController extends BaseController {
         modelAndView.addObject("recommendGoods", recommendGoods);
         return modelAndView ;
     }
+  
+    /**
+     * 商品 位置 关系表数据保存方法
+     * @param recommendGoods 要保存的数据
+     * @return recommendGoods 保存后的数据
+     */
+    @RequestMapping("/recommendGoods/addRecomm")
+    @ResponseBody
+    public ResultMsg addRecomm(Long positionId,Long goodId){
+        log.info("推荐商品 ");
+        try {
+        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodId);
+        	if(recommendGoods == null){
+        		recommendGoods = new RecommendGoods();
+        		recommendGoods.setGoodId(goodId);
+        		recommendGoods.setPositionId(positionId);
+            	recommendGoodsService.save(recommendGoods);
+        	}else{
+        		return new ResultMsg(false,"商品 重复推荐");
+        	}
+        	
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品推荐失败");
+        }
+        return new ResultMsg(true,"商品推荐成功");
+    }
     
+    /**
+     * 商品 位置 关系表数据保存方法
+     * @param recommendGoods 要保存的数据
+     * @return recommendGoods 保存后的数据
+     */
+    @RequestMapping("/recommendGoods/cancleRecomm")
+    @ResponseBody
+    public ResultMsg cancleRecomm(Long positionId,Long goodId){
+        log.info("取消推荐商品 ");
+        try {
+        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodId);
+        	recommendGoodsService.delete(recommendGoods);
+        	
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品取消推荐失败");
+        }
+        return new ResultMsg(true,"商品取消推荐成功");
+    }
     
     /**
      * 商品 位置 关系表数据保存方法

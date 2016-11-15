@@ -10,6 +10,7 @@ import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.dao.RecommendGoodsRepository;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.condition.RecommendGoodsCondition;
 import com.mmk.business.service.RecommendGoodsService;
@@ -70,4 +71,11 @@ public class RecommendGoodsServiceImpl extends BaseServiceImpl<RecommendGoods, L
         log.info("商品 位置 关系表根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return recommendGoodsDao.findAllBy(field,value);
     }
+
+	@Override
+	public RecommendGoods findByPositionId(Long positionId, Long goodId) {
+        log.info("推荐商品 ");
+        return recommendGoodsDao.findByPositionId(positionId,goodId);
+	}
+
 }

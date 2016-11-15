@@ -311,7 +311,6 @@
                 cc.push('<table width="100%" cellspacing="0" cellpadding="5" border="0" bgcolor=""><tbody>');
                 cc.push('<tr class="orders">');
                 cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
-                cc.push('<span class="is_02 is_00">'+"暂无"+'</span>');
                 cc.push('<a><img name="goodImg" src="'+rowData.photo1+'"></a>');
                 cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
                 cc.push('</div></td>');
@@ -409,5 +408,30 @@
         });
     }
     
-    
+  //同意退款、退款退货
+    function SetRealFee(id,url){
+    	
+    		refundId = id;
+    		op_url = url;
+ 
+
+    		$("#real_refund_fee").val(real_refund_fee);
+    		//添加确认实际退货数量
+    		var goods_num = $("#goodsNum"+id).text();
+    		
+    		if(goods_num==null || goods_num==""){
+    			if($("#ogGoodsPrice"+id).val()==real_refund_fee){
+    				goods_num = $("#goodsNumber"+id).val()*basic_num;
+    			}else{
+    				goods_num = 0;
+    			}
+    		}
+    		$("#goods_num").val(goods_num);		
+    		$("#refundTip").text("（数量规格："+basic_num+"）");
+    		$("#refund_basic_num").val(basic_num);	
+    			
+    		//显示弹出框
+    		$(".zhezhao").show();
+    		$("#remark_realfee").show();
+    }
     

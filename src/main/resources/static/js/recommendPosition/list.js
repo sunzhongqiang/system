@@ -1,7 +1,7 @@
 //代码生成工具自动生成，请在此处填写 查询页面使用的js代码
-    var dataGrid;
+    var positionGrid;
     $(function() {
-        dataGrid = $('#dataGrid').datagrid({
+    	positionGrid = $('#positionGrid').datagrid({
             url : '/recommendPosition/gridData',
             fit : true,
             striped : true,
@@ -62,7 +62,7 @@
             buttons : [ {
                 text : '添加',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = positionGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }
@@ -72,10 +72,10 @@
     
     function deleteFun(id) {
         if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = positionGrid.datagrid('getSelections');
             id = rows[0].id;
         } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	positionGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.messager.confirm('询问', '您是否要删除位置表？', function(b) {
             if (b) {
@@ -85,7 +85,7 @@
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
+                            positionGrid.datagrid('reload');
                         }
                         progressClose();
                     }, 'JSON');
@@ -95,10 +95,10 @@
     
     function editFun(id) {
         if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = positionGrid.datagrid('getSelections');
             id = rows[0].id;
         } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	positionGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.modalDialog({
             title : '编辑',
@@ -108,7 +108,7 @@
             buttons : [ {
                 text : '编辑',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = positionGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }
@@ -119,12 +119,12 @@
     
     function searchFun() {
         ////将searchForm表单内的元素序列为对象传递到后台
-        dataGrid.datagrid('load', $.serializeObject($('#searchForm')));
+    	positionGrid.datagrid('load', $.serializeObject($('#searchForm')));
     }
     function cleanFun() {
         //找到form表单下的所有input标签并清空
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
-        dataGrid.datagrid('load', {});
+        positionGrid.datagrid('load', {});
     }
     

@@ -87,6 +87,14 @@ public interface GoodsService extends BaseService<Goods, Long> {
      * 
      */
     List<Goods> findAllBy(String field,Object value);
-
-	Long findMaxId();
+	
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field RecommendGoods中的某个字段
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+	List<Goods> goodsGrid(Long positionId);
 }

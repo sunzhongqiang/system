@@ -90,12 +90,13 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
     }
 
 	@Override
-	public Long findMaxId() {
-        StringBuffer sb=new StringBuffer("select model from Goods model order by model.id desc");
+	public List<Goods> findGoodsGrid(Long positionId) {
+        StringBuffer sb=new StringBuffer("select model from Goods model,RecommendGoods recommendGoods where recommendGoods.goodId = model.id ");
         Map<String,Object> params = new HashMap<String,Object>();
-        List<Goods> result = queryByJpql(sb.toString(), params);
-        return result.isEmpty() ? null : result.get(0).getId();
+        sb.append(" and recommendGoods.positionId = :positionId ");
+        params.put("positionId", positionId);
+        
+        return queryByJpql(sb.toString(), params);
+        
 	}
-    
-    
 }
