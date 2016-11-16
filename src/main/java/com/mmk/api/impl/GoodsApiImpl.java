@@ -89,6 +89,14 @@ public class GoodsApiImpl implements GoodsApi{
 		resultData.addData("goodsList", goodsList);
 		return resultData;
 	}
+
+
+	@Override
+	public ResultData findRecommend(String code, Pageable pageable) {
+		goodsServiceImpl.findRecommend(code,pageable);
+		ResultData result = new ResultData();
+		return result ;
+	}
 	
 	
 	

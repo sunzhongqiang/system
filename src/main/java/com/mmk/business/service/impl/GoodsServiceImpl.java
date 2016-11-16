@@ -19,6 +19,7 @@ import com.mmk.business.dao.GoodsRepository;
 import com.mmk.business.model.Goods;
 import com.mmk.business.condition.GoodsCondition;
 import com.mmk.business.service.GoodsService;
+import com.mmk.common.model.ResultData;
 import com.mmk.business.dao.GoodsDao;
 /**
 * GoodsServiceImpl: 商品活动 业务服务层实现
@@ -113,5 +114,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
 		DateTime now = DateTime.now();
 		DateTime yesterday = now.minusDays(1);
 		return goodsDao.findAllGoodsBy(yesterday.toDate(),now.toDate(),1l,pageable);
+	}
+
+	@Override
+	public Page<Goods> findRecommend(String code, Pageable pageable) {
+		return goodsDao.findRecommend(code,pageable);
 	}
 }

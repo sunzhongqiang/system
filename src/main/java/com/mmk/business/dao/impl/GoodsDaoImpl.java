@@ -112,4 +112,15 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
         
         return queryByJpql(sb.toString(), params, pageable);
 	}
+
+	@Override
+	public Page<Goods> findRecommend(String code, Pageable pageable) {
+		 StringBuffer sb=new StringBuffer("select model from Goods model,RecommendGoods recommendGoods,RecommendPosition position where recommendGoods.goodId = model.id and position.id = recommendGoods.positionId ");
+	        Map<String,Object> params = new HashMap<String,Object>();
+	        sb.append(" and position.code = :code ");
+	        params.put("code", code);
+	        sb.append(" order by recommendGoods.orderby asc ");
+	        
+	        return queryByJpql(sb.toString(), params, pageable);
+	}
 }

@@ -5,6 +5,7 @@ import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.model.Goods;
+import com.mmk.common.model.ResultData;
 import com.mmk.business.condition.GoodsCondition;
 
 /**
@@ -103,4 +104,12 @@ public interface GoodsService extends BaseService<Goods, Long> {
 	 * @return
 	 */
 	Page<Goods> findBeginStart(Pageable pageable);
+
+	/***
+	 * 获取推荐位下的商品
+	 * @param code
+	 * @param pageable
+	 * @return
+	 */
+	Page<Goods> findRecommend(String code, Pageable pageable);
 }

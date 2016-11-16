@@ -36,5 +36,13 @@ public interface GoodsApi {
 	 */
 	ResultData toBegin(Pageable pageable);
 	
+	
+	/**
+	 * 推荐的商品
+	 * @param pageable
+	 * @return
+	 */
+	ResultData findRecommend(String code,Pageable pageable);
+	
 
 }

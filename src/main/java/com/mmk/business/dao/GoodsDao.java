@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.GoodsCondition;
 import com.mmk.business.model.Goods;
+import com.mmk.common.model.ResultData;
 /**
 * GoodsDao:商品活动 数据持久层接口
 * @author huguangling 胡广玲
@@ -88,5 +89,13 @@ public interface GoodsDao extends SpringDataQueryDao<Goods>{
      * @return
      */
     Page<Goods> findAllGoodsBy(Date begin, Date end, long cat, Pageable pageable);
+    
+    /**
+     * 根据编码获取推荐的商品
+     * @param code 推荐位置编码
+     * @param pageable 分页
+     * @return 返回商品分页
+     */
+	Page<Goods> findRecommend(String code, Pageable pageable);
 
 }
