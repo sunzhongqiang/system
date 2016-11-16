@@ -1,4 +1,4 @@
-package com.mmk.api.index;
+package com.mmk.api.ad;
 
 import java.util.List;
 
