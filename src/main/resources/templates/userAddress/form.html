@@ -1,0 +1,146 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/userAddress/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>地址名称：</label></td>
+                        <td>
+                        <input type="text"  name="addressName"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.addressName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>会员id：</label></td>
+                        <td>
+                        <input type="text"  name="userId"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.userId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>openid：</label></td>
+                        <td>
+                        <input type="text"  name="openid"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.openid}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>收货人姓名：</label></td>
+                        <td>
+                        <input type="text"  name="consignee"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.consignee}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>email：</label></td>
+                        <td>
+                        <input type="text"  name="email"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.email}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>国家：</label></td>
+                        <td>
+                        <input type="text"  name="country"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.country}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>国家名称：</label></td>
+                        <td>
+                        <input type="text"  name="countyName"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.countyName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>省：</label></td>
+                        <td>
+                        <input type="text"  name="province"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.province}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>省名称：</label></td>
+                        <td>
+                        <input type="text"  name="provinceName"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.provinceName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>市：</label></td>
+                        <td>
+                        <input type="text"  name="city"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.city}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>城市名称：</label></td>
+                        <td>
+                        <input type="text"  name="cityName"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.cityName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>区、县：</label></td>
+                        <td>
+                        <input type="text"  name="district"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.district}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>区县名称：</label></td>
+                        <td>
+                        <input type="text"  name="districtName"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.districtName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>地址：</label></td>
+                        <td>
+                        <input type="text"  name="address"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.address}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>邮编：</label></td>
+                        <td>
+                        <input type="text"  name="zipcode"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.zipcode}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>电话：</label></td>
+                        <td>
+                        <input type="text"  name="tel"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.tel}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>手机：</label></td>
+                        <td>
+                        <input type="text"  name="mobile"   class="easyui-validatebox" data-options="required:true" th:value="${userAddress.mobile}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${userAddress.id}"/>
+        </form>
+    </div>
+</div>
