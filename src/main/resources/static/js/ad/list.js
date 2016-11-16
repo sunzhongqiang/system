@@ -50,7 +50,7 @@
                 {return '<img src='+value+'  />';}
             },
     		{
-                width : '80',
+                width : '300',
                 title : '图片地址',
                 field : 'adImgLink',
                 align: 'center',
@@ -229,7 +229,7 @@
 					    checkbox: true,
 					},
 					{
-		        width : '150',
+		        width : '200',
 		        title : '广告位名称',
 		        field : 'positionName',
 		   },

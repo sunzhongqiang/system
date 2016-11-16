@@ -9,36 +9,31 @@
             pagination : true,
             singleSelect : true,
             idField : 'id',
-            pageSize : 50,
+            pageSize : 100,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
-                width : '80',
-                title : '主键',
-                field : 'regionId',
-            },
                     {
                 width : '80',
                 title : '所属区域id',
                 field : 'parentId',
             },
                     {
-                width : '80',
+                width : '120',
                 title : '区域名称',
                 field : 'regionName',
             },
+//                    {
+//                width : '80',
+//                title : '是否显示1-显示',
+//                field : 'isDisplay',
+//            },
                     {
-                width : '80',
-                title : '是否显示1-显示',
-                field : 'isDisplay',
-            },
-                    {
-                width : '80',
-                title : '所属大区：华东、华北等，存汉字，总共就这些个区域',
+                width : '120',
+                title : '所属大区',
                 field : 'belongsBigregion',
             },
                     {
-                width : '80',
+                width : '150',
                 title : '区域全地址',
                 field : 'fullRegionName',
             },

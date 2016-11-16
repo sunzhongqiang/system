@@ -90,16 +90,16 @@ public class ShippingController extends BaseController {
      */
     @RequestMapping("/shipping/enable")
     @ResponseBody
-    public void  enable(Long id){
+    public ResultMsg  enable(Long id){
         log.info("物流公司的是否启动设置"); 
         Shipping shipping = shippingService.findById(id);
-        if(shipping.getEnabled().equals(1)){
+        if(shipping.getEnabled().equals(1l)){
         	shipping.setEnabled(2l);
         }else{
         	shipping.setEnabled(1l);
         }
         shippingService.save(shipping);
-        return;
+        return new ResultMsg(true,"物流公司权限修改成功");
     }
     
     /**

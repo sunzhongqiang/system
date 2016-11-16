@@ -32,14 +32,16 @@
                 field : 'peopleNum',
             },
                     {
-                width : '120',
+                width : '150',
                 title : '团开始时间',
                 field : 'tuanStartDate',
+                formatter: formatDatebox,
             },
                     {
-                width : '120',
+                width : '150',
                 title : '团结束时间',
                 field : 'tuanEndDate',
+                formatter: formatDatebox,
             },
                     {
                 width : '80',
@@ -120,22 +122,23 @@
 						return '拼团';
 						
 					}
-				}
+				},
+				align: 'center',
             },
                     {
                 width : '80',
                 title : '商品ID',
-                field : 'goodId',
+                field : 'goodsId',
             },
                     {
-                width : '80',
+                width : '100',
                 title : '商品图片',
                 field : 'goodImg',
                 formatter:function(value,row,index)
                 {return '<img src='+value+'  />';}
             },
                     {
-                width : '120',
+                width : '300',
                 title : '商品名称',
                 field : 'goodName',
             },
@@ -150,7 +153,7 @@
                 field : 'goodPrice',
             },
                     {
-                width : '80',
+                width : '180',
                 title : '订单编码',
                 field : 'orderCode',
             },

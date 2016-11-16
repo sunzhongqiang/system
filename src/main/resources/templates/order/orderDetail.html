@@ -89,7 +89,7 @@
 										<!-- 子订单状态1-已推送0-推送失败2-口岸放行3-已发货 -->
 										<!-- 状态 -->
 										<td rowspan="1" colspan="1" width="10%">
-											
+											<span th:text="${order.invoiceNo}"></span>
 											
 										</td>
 										
@@ -103,12 +103,7 @@
 
 			</tbody></table>
 		</div>
-		<div style="text-align: right; padding-right: 30px;">
-			<span class="red bold">订单总价：￥</span> 
-			<span class="red bold">41.0</span>&nbsp;&nbsp;&nbsp;&nbsp;
-			（<span class="red bold">含客户支付的运费：￥</span>
-			 <span class="red bold">6.0</span>）
-		</div>
+		
 	</div>
     
     
@@ -171,8 +166,8 @@
 			<ul class="order_dt3">
 			
 				
-				<li><span>物流公司：</span><p th:text="${order.shippingName}">德邦物流</p></li>
-    		 	<li><span>运单号：</span><p th:text="${order.invoiceNo}">123213213</p></li>
+				<li><span>物流公司：</span><p th:text="${order.shippingName}"></p></li>
+    		 	<li><span>运单号：</span><p th:text="${order.invoiceNo}"></p></li>
 			</ul>
 			
 		</div>
