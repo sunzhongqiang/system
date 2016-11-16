@@ -40,9 +40,9 @@ public class AddressApi {
 	 */
 	@RequestMapping("/api/address/findByOpenid")
 	@ResponseBody
-	public ResultData findUserAddress(String openid,Long addressid){
+	public ResultData findUserAddress(String openid,Long addressId){
 		
-		UserAddress userAddress = addressService.find(addressid);
+		UserAddress userAddress = addressService.find(addressId);
 		
 		if(userAddress==null){
 			ResultData result = new ResultData(false,"没有找到用户地址");
@@ -79,8 +79,32 @@ public class AddressApi {
 			ResultData result = new ResultData(false,"用户地址保存失败");
 			return result ;
 		}
+	}
+	
+	/**
+	 * 用户地址详情
+	 * @param openid 用户openid
+	 * @param addressid 地址id
+	 * @return 用户的地址信息
+	 */
+	@RequestMapping("/api/address/delete")
+	@ResponseBody
+	public ResultData delete(String openid,Long addressId){
 		
+		UserAddress userAddress = addressService.find(addressId);
 		
+		if(userAddress==null){
+			ResultData result = new ResultData(false,"没有找到用户地址");
+			return result;
+		}
 		
+		if(!openid.equals(userAddress.getOpenid())){
+			ResultData result = new ResultData(false,"非用户地址信息");
+			return result;
+		}
+		
+		addressService.delete(userAddress);
+		ResultData result = new ResultData(true,"用户信息删除成功！");
+		return result ;
 	}
 }
