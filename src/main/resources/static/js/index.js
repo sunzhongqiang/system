@@ -78,8 +78,12 @@ function addTab(params,refresh) {
 		border : false,
 		fit : true
 	};
-	if (t.tabs('exists', opts.title)&& !refresh) {
-		t.tabs('select', opts.title);
+	if (t.tabs('exists', opts.title)) {
+		if(refresh){
+			t.tabs('select', opts.title);
+		}else{
+			t.tabs('select', opts.title);
+		}
 	} else {
 		t.tabs('add', opts);
 	}
