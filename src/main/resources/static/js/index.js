@@ -80,7 +80,11 @@ function addTab(params,refresh) {
 	};
 	if (t.tabs('exists', opts.title)) {
 		if(refresh){
-			t.tabs('select', opts.title);
+			var tab = t.tabs("getTab",title)
+			var options = tab.panel("options");
+			t.tabs("update",{tab:tab,options:{
+				content:options.content
+			}});
 		}else{
 			t.tabs('select', opts.title);
 		}
