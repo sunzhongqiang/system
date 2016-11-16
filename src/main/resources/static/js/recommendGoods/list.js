@@ -269,22 +269,35 @@
                 width : '80',
                 title : '商品id',
                 field : 'id',
+                formatter : function(value, row, index) {
+                    return row.goods.id;
+                }
             },
                     {
                 width : '80',
                 title : '商品名称',
                 field : 'goodsName',
+                formatter : function(value, row, index) {
+                    return row.goods.goodsName;
+                }
             },
                     {
                 width : '80',
                 title : '该商原价',
                 field : 'goodsOriginalPrice',
+                formatter : function(value, row, index) {
+                    return row.goods.goodsOriginalPrice;
+                }
             },
 
 		            {
 		        width : '80',
 		        title : '排序',
 		        field : 'orderby',
+		        editor:'numberbox',
+		        formatter : function(value, row, index) {
+                    return row.recommend.orderby;
+                }
 		      
 		    },
             {
@@ -293,10 +306,13 @@
                 width : 140,
                 align : 'center',
                 formatter : function(value, row, index) {
+                	console.log(row);
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.id);
-//                    str += '&nbsp;|&nbsp;';
-//                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >编辑排序</a>', row.recommend.id);
+                    str += '&nbsp;|&nbsp;';
+                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.id);
+//                  
+//                   
                     return str;
                 }
             }] ],
@@ -306,12 +322,54 @@
 //	            handler: function(){addFun();}
 //            }],
             onLoadSuccess : function(data){
+            	$('.btn_delete').linkbutton({text:'编辑排序',plain:true,iconCls:'icon-edit'});
                 $('.btn_edit').linkbutton({text:'取消推荐',plain:true,iconCls:'icon-edit'});
-//                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
+               
                 $(this).datagrid('fixRowHeight');
             }
+            
+//            onClickCell: function(index,field,value){
+//            	console.log(index);
+//            	console.log(field);
+//            	console.log(value);
+//                $(this).datagrid('beginEdit', index);
+//                var ed = $(this).datagrid('getEditor', {index:index,field:field});
+//                $(ed.target).focus();
+//              },
         });
     });
+    
+    
+    
+ //编辑排序
+    function editOrder(id) {
+        if (id == undefined) {
+            var rows = dataGrid.datagrid('getSelections');
+            id = rows[0].id;
+        } else {
+            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        }
+        parent.$.modalDialog({
+            title : '编辑',
+            width : 500,
+            height : 300,
+            href : '/refund/editOrder?id=' + id,
+            buttons : [ {
+                text : '编辑',
+                handler : function() {
+                    parent.$.modalDialog.openner_dataGrid = tuiGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    var f = parent.$.modalDialog.handler.find('#modelForm');
+                    f.submit();
+                }
+            } 
+            ]
+        });
+    }
+    
+    
+    
+    
+    
     
 //取消推荐
     
