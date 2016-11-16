@@ -13,7 +13,7 @@
                 return isValid;
             }
             $.ajax({
-                url: '/recommendGoods/save',
+                url: '/recommendGoods/saveOrder',
                 data: $form.serialize(),
                 success: function(result){
                     progressClose();
@@ -40,7 +40,7 @@
                     <tr>
                         <td class="tdTit"><label>排序编号：</label></td>
                         <td>
-                        <input type="text"  name="orderby"   class="easyui-numberbox" data-options="min:1,max:90,required:true" th:value="${recommendGoods.sort}"/>
+                        <input type="text"  name="orderby"   class="easyui-numberbox" data-options="min:1,max:90,required:true" th:value="${recommendGoods.orderby}"/>
                         </td>
                     </tr>
             </table>

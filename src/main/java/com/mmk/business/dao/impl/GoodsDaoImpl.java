@@ -94,7 +94,7 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
         Map<String,Object> params = new HashMap<String,Object>();
         sb.append(" and recommendGoods.positionId = :positionId ");
         params.put("positionId", positionId);
-        sb.append(" order by recommendGoods.orderby desc ");
+        sb.append(" order by recommendGoods.orderby asc ");
         
         return queryArrayByJpql(sb.toString(), params);
         

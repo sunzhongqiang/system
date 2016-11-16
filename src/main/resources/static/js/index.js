@@ -159,12 +159,21 @@ changeTheme = function (themeName) {
     topCenter("当前主题：" + themeName, 1000);
 };
 
-function closeTab(){
-	var index = index_tabs.tabs('getTabIndex',
-			index_tabs.tabs('getSelected'));
-	var tab = index_tabs.tabs('getTab', index);
+function closeTab(title){
+	var t = $('#index_tabs');
+	var index = t.tabs('getTabIndex',t.tabs('getSelected'));
+	if(title){
+		if(t.tabs('exists', title)){
+			index = t.tabs('getTabIndex',t.tabs("getTab",title));
+		}
+	}else{
+		index = t.tabs('getTabIndex',t.tabs('getSelected'));
+	}
+
+	console.log(title);
+	var tab = t.tabs('getTab', index);
 	if (tab.panel('options').closable) {
-		index_tabs.tabs('close', index);
+		t.tabs('close', index);
 	}
 }
 
@@ -173,15 +182,14 @@ function closeTab(){
 function refreshTab(title) {
 	var t = $('#index_tabs');
 	if(title){
-		if(t.tabs('exists', opts.title)){
-			t.tabs('select', opts.title);
+		if(t.tabs('exists', title)){
+			t.tabs('select', title);
 		}
 	}
-	
-	var index = index_tabs.tabs('getTabIndex', index_tabs.tabs('getSelected'));
-	var tab = index_tabs.tabs('getSelected');
+	var index = t.tabs('getTabIndex', t.tabs('getSelected'));
+	var tab = t.tabs('getSelected');
 	var options = tab.panel("options");
-	index_tabs.tabs("update",{tab:tab,options:{
+	t.tabs("update",{tab:tab,options:{
 		content:options.content
 	}});
 }

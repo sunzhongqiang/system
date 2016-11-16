@@ -274,7 +274,7 @@
                 }
             },
                     {
-                width : '80',
+                width : '180',
                 title : '商品名称',
                 field : 'goodsName',
                 formatter : function(value, row, index) {
@@ -303,7 +303,7 @@
             {
                 field : 'action',
                 title : '操作',
-                width : 140,
+                width : 200,
                 align : 'center',
                 formatter : function(value, row, index) {
                 	console.log(row);
@@ -344,10 +344,10 @@
  //编辑排序
     function editOrder(id) {
         if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = tuiList.datagrid('getSelections');
             id = rows[0].id;
         } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	tuiList.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.modalDialog({
             title : '编辑排序',
@@ -357,7 +357,7 @@
             buttons : [ {
                 text : '编辑',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = tuiGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = tuiList;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }

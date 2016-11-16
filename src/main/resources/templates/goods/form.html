@@ -251,11 +251,14 @@
             url: '/goods/save',
             onSubmit: function(){   
             	 return $("#modelForm").form('validate')
+            	 
                 // return false to prevent submit;   
             	
             },   
-            success:function(data){   
-                parent.closeTab();
+            success:function(data){
+            	//parent.closeTab("修改商品");
+                parent.refreshTab("商品列表");
+                
             }   
         });   
     

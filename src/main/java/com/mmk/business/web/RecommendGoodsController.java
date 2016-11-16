@@ -159,7 +159,21 @@ public class RecommendGoodsController extends BaseController {
         return new ResultMsg(true,"商品 位置 关系表保存成功");
     }
     
-   
+    /**
+     * 商品 排序保存方法
+     * @param recommendGoods 要保存的数据
+     * @return recommendGoods 保存后的数据
+     */
+    @RequestMapping("/recommendGoods/saveOrder")
+    @ResponseBody
+    public ResultMsg saveOrder(Long id, Long orderby){
+        log.info("推荐商品排序保存");
+        RecommendGoods recomm =  recommendGoodsService.findById(id);
+        recomm.setOrderby(orderby);
+        recommendGoodsService.save(recomm);
+        return new ResultMsg(true,"推荐商品的排序保存成功");
+    }
+    
     
     /**
      * 跳转至详细信息页面
