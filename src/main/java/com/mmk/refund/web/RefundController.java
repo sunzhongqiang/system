@@ -116,18 +116,7 @@ public class RefundController extends BaseController {
         return modelAndView ;
     }
     
-    /**
-     * 跳转到编辑页面
-     * @param refund  跳转到编辑页面
-     */ 
-    @RequestMapping("/refund/editOrder")
-    public ModelAndView editOrder(Long id){
-        log.info("商品排序修改");
-        Refund  refund = refundService.find(id);
-        ModelAndView modelAndView = new ModelAndView("refund/form");
-        modelAndView.addObject("refund", refund);
-        return modelAndView ;
-    }
+
     
     /**
      * 退款表数据保存方法

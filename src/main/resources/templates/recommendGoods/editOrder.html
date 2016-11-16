@@ -13,7 +13,7 @@
                 return isValid;
             }
             $.ajax({
-                url: '',
+                url: '/recommendGoods/save',
                 data: $form.serialize(),
                 success: function(result){
                     progressClose();
@@ -37,18 +37,6 @@
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
         <form id="modelForm" method="post">
             <table class="grid">
-<!--                     <tr> -->
-<!--                         <td class="tdTit"><strong class="red" >*</strong><label>商品id：</label></td> -->
-<!--                         <td> -->
-<!--                         <input type="text"  name="goodId"   class="easyui-validatebox" data-options="required:true" th:value="${recommendGoods.goodId}"/> -->
-<!--                         </td> -->
-<!--                     </tr> -->
-<!--                     <tr> -->
-<!--                         <td class="tdTit"><strong class="red" >*</strong><label>位置id：</label></td> -->
-<!--                         <td> -->
-<!--                         <input type="text"  name="positionId"   class="easyui-validatebox" data-options="required:true" th:value="${recommendGoods.positionId}"/> -->
-<!--                         </td> -->
-<!--                     </tr> -->
                     <tr>
                         <td class="tdTit"><label>排序编号：</label></td>
                         <td>

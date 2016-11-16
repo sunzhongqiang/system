@@ -21,6 +21,8 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
+import com.mmk.refund.model.Refund;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.business.service.RecommendGoodsService;
@@ -204,6 +206,19 @@ public class RecommendGoodsController extends BaseController {
             return false;
         }
         return true; 
+    }
+    
+    /**
+     * 跳转到编辑页面
+     * @param refund  跳转到编辑页面
+     */ 
+    @RequestMapping("/recommendGoods/editOrder")
+    public ModelAndView editOrder(Long id){
+        log.info("商品排序修改");
+        RecommendGoods  recommendGoods = recommendGoodsService.find(id);
+        ModelAndView modelAndView = new ModelAndView("recommendGoods/editOrder");
+        modelAndView.addObject("recommendGoods", recommendGoods);
+        return modelAndView ;
     }
     
 }

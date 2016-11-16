@@ -350,10 +350,10 @@
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.modalDialog({
-            title : '编辑',
+            title : '编辑排序',
             width : 500,
             height : 300,
-            href : '/refund/editOrder?id=' + id,
+            href : '/recommendGoods/editOrder?id=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {
