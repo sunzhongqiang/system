@@ -8,19 +8,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.model.Goods;
-import com.mmk.business.dao.GoodsDao;
 
 import com.mmk.business.condition.GoodsCondition;
+import com.mmk.business.dao.GoodsDao;
+import com.mmk.business.model.Goods;
+import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 
 
 
@@ -104,6 +102,14 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 
 	@Override
 	public Page<Goods> findAllGoodsBy(Date begin, Date end, long cat, Pageable pageable) {
-		return null;
+		StringBuffer sb = new StringBuffer("select model from Goods model  where model.goodsCat = :cat  ");
+		sb.append(" and model.promoteStartDate between :start and :end ");
+		
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("cat", cat);
+        params.put("start", begin);
+        params.put("end", end);
+        
+        return queryByJpql(sb.toString(), params, pageable);
 	}
 }
