@@ -84,4 +84,9 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
         log.info("会员地址根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return userAddressDao.findAllBy(field,value);
     }
+    
+    @Override
+    public Page<UserAddress>  findAllByOpenid(String openid, Pageable pageable){
+        return userAddressRepository.findAllByOpenid(openid,pageable);
+    }
 }

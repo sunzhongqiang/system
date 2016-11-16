@@ -79,4 +79,14 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
      * 
      */
     List<UserAddress> findAllBy(String field,Object value);
+    
+    /**
+     * 根据字段获取所有符合的记录
+     * @param openid openid
+     * @param pageable 分页参数
+     * @return 符合条件的所有对象
+     * @author sunzhongqiang 孙中强
+     * 
+     */
+    Page<UserAddress> findAllByOpenid(String openid, Pageable pageable);
 }

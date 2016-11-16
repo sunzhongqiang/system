@@ -42,5 +42,14 @@ public interface UserAddressRepository extends JpaRepository<UserAddress, Long>{
      * 
      */
     Page<UserAddress> findAllByUserId(Long userId,Pageable pageable);
+    
+    /**
+     * 根据用户openid获取用户地址
+     * @param openid
+     * @param pageable
+     * @return 符合条件的所有对象
+     * @author 孙中强 sunzhongqiang
+     */
+	Page<UserAddress> findAllByOpenid(String openid, Pageable pageable);
 
 }
