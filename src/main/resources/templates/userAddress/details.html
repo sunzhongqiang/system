@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>详情:会员地址</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
+    </head>
+    
+    <body>
+        <div class="container amn_add">
+            <div class="headtt">
+                <h1>会员地址详情</h1>            
+            </div>
+            <div class="role_tit"></div>            
+            <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+                <table cellspacing="1" cellpadding="3" class="tbbox" >
+                    <tr>
+                        <td class="tdTit"><label>地址id：</label></td>
+                        <td th:text="${userAddress.id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>地址名称：</label></td>
+                        <td th:text="${userAddress.addressName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>会员id：</label></td>
+                        <td th:text="${userAddress.userId}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>openid：</label></td>
+                        <td th:text="${userAddress.openid}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>收货人姓名：</label></td>
+                        <td th:text="${userAddress.consignee}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>email：</label></td>
+                        <td th:text="${userAddress.email}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>国家：</label></td>
+                        <td th:text="${userAddress.country}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>国家名称：</label></td>
+                        <td th:text="${userAddress.countyName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>省：</label></td>
+                        <td th:text="${userAddress.province}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>省名称：</label></td>
+                        <td th:text="${userAddress.provinceName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>市：</label></td>
+                        <td th:text="${userAddress.city}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>城市名称：</label></td>
+                        <td th:text="${userAddress.cityName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>区、县：</label></td>
+                        <td th:text="${userAddress.district}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>区县名称：</label></td>
+                        <td th:text="${userAddress.districtName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>地址：</label></td>
+                        <td th:text="${userAddress.address}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>邮编：</label></td>
+                        <td th:text="${userAddress.zipcode}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>电话：</label></td>
+                        <td th:text="${userAddress.tel}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>手机：</label></td>
+                        <td th:text="${userAddress.mobile}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"></td>
+                        <td class="top60">
+                            <input type="hidden" name="id" th:field="${userAddress.id}"/>
+                            <input type="hidden" name="backurl" th:value="${#httpServletRequest.getHeader('Referer')}"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+                            <a href="/userAddress/list" class="btn_back">返回</a>                        
+                       </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <script type="text/javascript" src="/js/userAddress/details.js"></script>
+    </body>
+</html>
