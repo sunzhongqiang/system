@@ -65,7 +65,7 @@ $(function() {
 
 });
 
-function addTab(params) {
+function addTab(params,refresh) {
 	var iframe = '<iframe 	 src="'
 			+ params.url
 			+ '" frameborder="0" style="border:0;width:100%;height:99.5%;"></iframe>';
@@ -78,7 +78,7 @@ function addTab(params) {
 		border : false,
 		fit : true
 	};
-	if (t.tabs('exists', opts.title)) {
+	if (t.tabs('exists', opts.title)&& !refresh) {
 		t.tabs('select', opts.title);
 	} else {
 		t.tabs('add', opts);

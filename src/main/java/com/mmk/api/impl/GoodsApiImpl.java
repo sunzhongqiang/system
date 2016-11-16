@@ -91,6 +91,7 @@ public class GoodsApiImpl implements GoodsApi{
 	}
 
 
+	@RequestMapping("/api/goods/recommend")
 	@Override
 	public ResultData findRecommend(String code, Pageable pageable) {
 		goodsServiceImpl.findRecommend(code,pageable);
