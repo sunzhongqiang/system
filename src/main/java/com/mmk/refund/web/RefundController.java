@@ -93,7 +93,7 @@ public class RefundController extends BaseController {
     
     /**
      * 拒绝退款退货的理由
-     * @param id 订单ID
+     * @param id 退款退货ID
      */ 
     @RequestMapping("/refund/saveReason")
     public ResultMsg saveReason(Long id, String refuseReason){
@@ -103,6 +103,23 @@ public class RefundController extends BaseController {
         refund.setRefundStatus("5");
         refundService.save(refund);
         return  new ResultMsg(true,"拒绝退款退货成功");
+    } 
+    
+    /**
+     * 同意退款退货
+     * @param id 退款退货ID
+     */ 
+    @RequestMapping("/refund/refuseAgree")
+    public ResultMsg refuseAgree(Long id){
+        log.info("同意退款退货");
+        Refund refund = refundService.find(id);
+        if("0".equals(refund.getHasGoodsReturn())){
+            refund.setRefundStatus("4");     	
+        } else {
+            refund.setRefundStatus("2");
+        }
+        refundService.save(refund);
+        return  new ResultMsg(true,"同意退款退货成功");
     } 
     
     /**
