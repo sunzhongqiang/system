@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 
 /**
@@ -32,7 +34,7 @@ public interface GoodsGroupRepository extends JpaRepository<GoodsGroup, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    List<GoodsGroup> findAllByGoodsId(Long goodsId);
+    List<GoodsGroup> findAllByGoods(Goods goods);
     /**
      *  根据给定的字段：goodsId 商品主键所有符合的记录
      * @param goodsId 商品主键
@@ -41,6 +43,6 @@ public interface GoodsGroupRepository extends JpaRepository<GoodsGroup, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    Page<GoodsGroup> findAllByGoodsId(Long goodsId,Pageable pageable);
+    Page<GoodsGroup> findAllByGoods(Goods goods,Pageable pageable);
 
 }
