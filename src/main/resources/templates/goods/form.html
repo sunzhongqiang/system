@@ -257,7 +257,11 @@
             },   
             success:function(data){
             	//parent.closeTab("修改商品");
+            	
                 parent.refreshTab("商品列表");
+				setTimeout(function(){
+					parent.closeTab("修改商品");
+            	},100);
                 
             }   
         });   

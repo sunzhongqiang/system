@@ -142,11 +142,10 @@
     });
     
     function addFun() {
-    	
     	 parent.addTab({
 			url : '/goods/add',
 			title : '添加商品',
-		});
+		},true);
 //        parent.$.modalDialog({
 //            title : '添加',
 //            width : 500,
@@ -197,7 +196,7 @@
         parent.addTab({
 			url : '/goods/edit?id=' + id,
 			title : '修改商品',
-		});
+		},true);
 //        parent.$.modalDialog({
 //            title : '编辑',
 //            width : 500,
