@@ -112,6 +112,7 @@ public class RecommendGoodsController extends BaseController {
         		recommendGoods = new RecommendGoods();
         		recommendGoods.setGoodId(goodId);
         		recommendGoods.setPositionId(positionId);
+            	recommendGoods.setSort(50L);
             	recommendGoodsService.save(recommendGoods);
         	}else{
         		return new ResultMsg(false,"商品 重复推荐");
