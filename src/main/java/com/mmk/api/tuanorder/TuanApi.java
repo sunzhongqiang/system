@@ -96,5 +96,21 @@ public class TuanApi {
 		ResultData result = new ResultData(false,"正在实现");
 		return result ;
 	}
+	
+	@RequestMapping("/api/tuan/build")
+	@ResponseBody
+	public ResultData build(WxUser user,Goods goods){
+		
+		Tuan tuan = new Tuan();
+		tuan.setGoodId(goods.getId());
+		tuan.setGoodName(goods.getGoodsName());
+		tuan.setGoodImg(goods.getGoodsMainImg());
+		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
+		tuan.setOrderSort(goods.getGoodsCat());
+//		tuan.setPeopleNum(goods.get);
+		ResultData result = new ResultData(false,"正在实现");
+		return result ;
+	}
 
 }
