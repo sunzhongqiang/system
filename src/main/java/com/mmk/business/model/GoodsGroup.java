@@ -65,6 +65,13 @@ public class GoodsGroup {
     @Temporal(TemporalType.TIMESTAMP)   
     @Column(name="end_time")
     private Date endTime;
+    
+    /**
+     * 持续时间：天
+     */
+    @Column(name="duration")
+    private Long duration;
+
 
 
     /** 
@@ -145,5 +152,19 @@ public class GoodsGroup {
         this.endTime = endTime;
     }
 
+	/**
+	 * @return duration ：持续时间：天
+	 */
+	public Long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration
+	 *            设置持续时间：天
+	 */
+	public void setDuration(Long duration) {
+		this.duration = duration;
+	}
 
 }

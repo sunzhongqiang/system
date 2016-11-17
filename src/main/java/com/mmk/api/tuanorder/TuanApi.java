@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.constants.TuanConstant;
 import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.WxUser;
+import com.mmk.business.service.GoodsService;
+import com.mmk.business.service.impl.GoodsGroupServiceImpl;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
@@ -30,6 +33,10 @@ public class TuanApi {
 	private TuanServiceImpl tuanService;
 	@Resource
 	private OrderServiceImpl orderService;
+	@Resource
+	private GoodsGroupServiceImpl groupService;
+	@Resource
+	private GoodsService goodsService;
 	
 	
 	/**
@@ -99,8 +106,9 @@ public class TuanApi {
 	
 	@RequestMapping("/api/tuan/build")
 	@ResponseBody
-	public ResultData build(WxUser user,Goods goods){
-		
+	public ResultData build(WxUser user,Long groupId){
+		GoodsGroup group = groupService.find(groupId);
+		Goods goods = group.getGoods();
 		Tuan tuan = new Tuan();
 		tuan.setGoodId(goods.getId());
 		tuan.setGoodName(goods.getGoodsName());
@@ -108,7 +116,8 @@ public class TuanApi {
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
 		tuan.setOrderSort(goods.getGoodsCat());
-//		tuan.setPeopleNum(goods.get);
+		tuan.setPeopleNum(group.getNum());
+		tuan.setTuanStartDate(new Date());
 		ResultData result = new ResultData(false,"正在实现");
 		return result ;
 	}
