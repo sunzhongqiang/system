@@ -10,6 +10,7 @@ import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.GoodsGroupCondition;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 /**
 * GoodsGroupDao:商品拼团管理 数据持久层接口
@@ -67,6 +68,13 @@ public interface GoodsGroupDao extends SpringDataQueryDao<GoodsGroup>{
      * 
      */
     List<GoodsGroup> findAllBy(String field,Object value);
+    
+    /**
+     * 更加
+     * @param goods
+     * @return
+     */
+	List<GoodsGroup> findAllByGoodsId(Long goodsId);
     
     
 

@@ -124,6 +124,14 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<GoodsGroup> findAllByGoodsId(Long goodsId) {
+		 StringBuffer sb=new StringBuffer("select model from GoodsGroup model left join fetch model.goods  where model.goods.id = :goodsId ");
+	        Map<String,Object> params = new HashMap<String,Object>();
+	        params.put("goodsId",goodsId);
+	        return queryByJpql(sb.toString(), params);
+	}
     
     
 }

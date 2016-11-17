@@ -24,6 +24,8 @@ import com.mmk.common.model.ResultMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.business.service.GoodsGroupService;
+import com.mmk.business.service.GoodsService;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.condition.GoodsGroupCondition;
 
@@ -37,6 +39,8 @@ public class GoodsGroupController extends BaseController {
     
     @Resource 
     private GoodsGroupService goodsGroupService;
+    @Resource 
+    private GoodsService goodsService;
 
     /**
      * 跳转至列表页面
@@ -69,13 +73,35 @@ public class GoodsGroupController extends BaseController {
     }
     
     /**
+     * 加载表格数据 用户
+     * 
+     * @param goodsGroupCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/goodsGroup/loadByGoods")
+    @ResponseBody
+    public List<GoodsGroup> loadByGoods(Long goodsId){
+    	log.info("获取商品拼团管理列表数据");
+        List<GoodsGroup> goodsGroupPage = goodsGroupService.findAllByGoodsId(goodsId);   
+        return goodsGroupPage;
+    }
+    
+    /**
      * 新增页面
      * @return 跳转到商品拼团管理新增页面
      */
     @RequestMapping("/goodsGroup/add")
-    public ModelAndView addPage(){
+    public ModelAndView addPage(Long goodsId){
         ModelAndView modelAndView = new ModelAndView("goodsGroup/form");
-        modelAndView.addObject("goodsGroup", new GoodsGroup());
+        GoodsGroup goodsGroup = new GoodsGroup();
+        Goods goods = goodsService.find(goodsId);
+		goodsGroup.setGoods(goods );
+        
+		modelAndView.addObject("goodsGroup", goodsGroup);
+        
         return modelAndView;
     }
     

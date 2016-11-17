@@ -1,6 +1,8 @@
 package com.mmk.business.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +72,11 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
      */
     @Override
     public List<GoodsGroup>  findAllByGoodsId(Long goodsId){
-        Goods goods = goodsService.get(goodsId);
-		return goodsGroupRepository.findAllByGoods(goods );
+        if(goodsId!=null){
+    		return goodsGroupDao.findAllByGoodsId(goodsId);
+        }else{
+        	return new ArrayList<GoodsGroup>();
+        }
     }
     
      @Override

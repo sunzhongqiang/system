@@ -38,13 +38,28 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>商品主键：</label></td>
+                        <td class="tdTit"><strong class="red" >*</strong><label>商品信息：</label></td>
                         <td>
-                        <input type="text"  name="goodsId"   class="easyui-validatebox" data-options="required:true" th:value="${goodsGroup.goodsId}"/>
+                        <input type="hidden"  name="goods.id"   class="easyui-validatebox" data-options="required:true" th:value="${goodsGroup.goods.id}"/>
+                        <span th:text="${goodsGroup.goods.goodsName}"></span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>拼团数量：</label></td>
+                     <td class="tdTit">商品类型</td>
+                     <td th:switch="${goodsGroup.goods.goodsCat}">
+                        <span th:case="0">一元团</span>
+                        <span th:case="1">拼团</span>
+                     </td>
+                    </tr>
+                      <tr>
+                     <td class="tdTit">商品价格</td>
+                     <td >
+				                        商品价格：<span th:text="${goodsGroup.goods.goodsOriginalPrice}"></span>
+				                        团购价：<span th:text="${goodsGroup.goods.promotePrice}">拼团</span>
+                     </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>成团人数设置：</label></td>
                         <td>
                         <input type="text"  name="num"   class="easyui-validatebox" data-options="required:true" th:value="${goodsGroup.num}"/>
                         </td>
@@ -56,12 +71,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>成团时间：</label></td>
+                        <td>
+                        <input type="text"  name="duration"   class="easyui-validatebox" data-options="required:true" th:value="${goodsGroup.duration}"/> 天
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>拼团开始时间：</label></td>
-                        <td><input id="" name="startTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${goodsGroup.startTime}"/></td>
+                        <td><input  name="startTime" type="text" placeholder="点击选择时间" class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.startTime}"/></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>拼团结束时间：</label></td>
-                        <td><input id="" name="endTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${goodsGroup.endTime}"/></td>
+                        <td><input  name="endTime" type="text" placeholder="点击选择时间"  class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.endTime}"/></td>
                     </tr>
             </table>
             <input type="hidden" name="id" th:value="${goodsGroup.id}"/>

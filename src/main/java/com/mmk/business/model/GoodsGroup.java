@@ -5,6 +5,7 @@
 package com.mmk.business.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class GoodsGroup {
     /**
      * 商品主键
      */
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="goods_id")
     private Goods goods;
 
@@ -96,7 +97,7 @@ public class GoodsGroup {
     /** 
     *@param goodsId 设置商品主键 
     */
-    public void setGoodsId(Goods goods) {
+    public void setGoods(Goods goods) {
         this.goods = goods;
     }
 
