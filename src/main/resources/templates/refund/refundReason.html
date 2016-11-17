@@ -13,7 +13,7 @@
                 return isValid;
             }
             $.ajax({
-                url: '/order/addShipping',
+                url: '/refund/saveReason',
                 data: $form.serialize(),
                 success: function(result){
                     progressClose();
@@ -37,22 +37,10 @@
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
         <form id="modelForm" method="post">
             <table class="grid">
-<!--                     <tr> -->
-<!--                         <td class="tdTit"><label>物流名称：</label></td> -->
-<!--                         <td> -->
-<!-- 							<input class="easyui-combobox" name="shippingId"   data-options=" -->
-<!-- 						        width:'200', -->
-<!-- 						        panelWidth:200, -->
-<!-- 						        url:'', -->
-<!-- 						        valueField: 'id', -->
-<!-- 						        textField: 'shippingName' -->
-<!-- 						        " />	 -->
-<!--                         </td> -->
-<!--                     </tr> -->
                     <tr>
-                        <td class="tdTit"><label>物流单号：</label></td>
+                        <td class="tdTit"><label>拒绝原因：</label></td>
                         <td>
-                        <input type="text"  name="invoiceNo" class="easyui-validatebox" data-options="required:true" />
+                        <input type="text"  name="refuseReason" data-options="multiline:true" class="easyui-textbox" style="width:200px; height:100px;" th:value="${refund.refuseReason}" />
                         </td>
                     </tr>
             </table>

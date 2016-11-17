@@ -333,8 +333,8 @@
             	}
                 if(rowData.refundStatus == 4){
                 	cc.push('<p class="red" >待退款</p><p class="order_close blue bold">');
-                	cc.push('<a class="btn_send1" shape="rect" >退款成功</a>');
-                	cc.push('<a class="btn_send1" shape="rect">退款失败</a></p>');
+                	cc.push('<a class="btn_send1" shape="rect" onclick="Agree(\''+rowData.id+'\')">确认退款</a>');
+                	
             	}
                 if(rowData.refundStatus == 5){
                 	cc.push('<a class="red" >已拒绝</a>');
@@ -408,30 +408,24 @@
         });
     }
     
-  //同意退款、退款退货
-    function SetRealFee(id,url){
-    	
-    		refundId = id;
-    		op_url = url;
- 
-
-    		$("#real_refund_fee").val(real_refund_fee);
-    		//添加确认实际退货数量
-    		var goods_num = $("#goodsNum"+id).text();
-    		
-    		if(goods_num==null || goods_num==""){
-    			if($("#ogGoodsPrice"+id).val()==real_refund_fee){
-    				goods_num = $("#goodsNumber"+id).val()*basic_num;
-    			}else{
-    				goods_num = 0;
-    			}
-    		}
-    		$("#goods_num").val(goods_num);		
-    		$("#refundTip").text("（数量规格："+basic_num+"）");
-    		$("#refund_basic_num").val(basic_num);	
-    			
-    		//显示弹出框
-    		$(".zhezhao").show();
-    		$("#remark_realfee").show();
+    
+    
+    //同意退款、退款退货
+    function refundAgree(id){
+    	$.post('/refund/refuseAgree ', {
+            id : id
+        }, function(result) {
+            if (result.success) {
+                parent.$.messager.alert('提示', result.msg, 'info');
+                dataGrid.datagrid('reload');
+            }
+            progressClose();
+        }, 'JSON');
     }
+    //自动退款
+    function Agree(){
+    	
+    }
+    
+  
     

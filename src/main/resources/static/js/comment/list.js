@@ -9,6 +9,7 @@
             rownumbers : true,
             pagination : true,
             singleSelect : true,
+            nowrap: false,
             idField : 'id',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
@@ -23,14 +24,14 @@
                 title : '商品ID',
                 field : 'goodId',
             },
-            {
-                width : '120',
-                title : '评论图片',
-                field : 'goodImg',
-                formatter : function(value, row, index) {
-                	return '<img src='+value+' />'
-                }
-            },
+//            {
+//                width : '120',
+//                title : '评论图片',
+//                field : 'goodImg1',
+//                formatter : function(value, row, index) {
+//                	return '<img src='+value+' />'
+//                }
+//            },
                     {
                 width : '120',
                 title : '用户名',
