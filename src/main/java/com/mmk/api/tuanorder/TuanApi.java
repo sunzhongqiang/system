@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.constants.TuanConstant;
+import com.mmk.business.model.Goods;
+import com.mmk.business.model.WxUser;
+import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
 import com.mmk.trade.model.Tuan;
@@ -52,9 +55,9 @@ public class TuanApi {
 	 * @date 2016年11月8日 下午2:47:43
 	 * @author hu
 	 */
-	@RequestMapping("/api/tuan/tuanSave")
+	@RequestMapping("/api/tuan/join")
 	@ResponseBody
-	public ResultMsg tuanSave(Tuan tuan){
+	public ResultData join(Tuan tuan){
 
 		Random random = new Random();
 		Map<String, Object> result = new HashMap<String,Object>();
@@ -83,7 +86,15 @@ public class TuanApi {
 			}
 		}
 		result.put("tuan", tuan);
-		return new ResultMsg(true, "查找成功", result);
+		return new ResultData(true, "查找成功", result);
 	}	
+	
+	@RequestMapping("/api/tuan/open")
+	@ResponseBody
+	public ResultData open(WxUser user,Goods goods){
+		
+		ResultData result = new ResultData(false,"正在实现");
+		return result ;
+	}
 
 }
