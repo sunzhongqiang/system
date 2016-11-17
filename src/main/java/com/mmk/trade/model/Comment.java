@@ -71,15 +71,61 @@ public class Comment {
     /**
      * 商品图片
      */
-    @Column(name="good_img")
-    private String goodImg;
+    @Column(name="good_img1")
+    private String goodImg1;
 
-    public String getGoodImg() {
-		return goodImg;
+    /**
+     * 商品图片
+     */
+    @Column(name="good_img2")
+    private String goodImg2;
+    /**
+     * 商品图片
+     */
+    @Column(name="good_img3")
+    private String goodImg3;
+    /**
+     * 商品图片
+     */
+    @Column(name="good_img4")
+    private String goodImg4;
+    /**
+     * 商品图片
+     */
+    @Column(name="good_img5")
+    private String goodImg5;
+    
+    public String getGoodImg2() {
+		return goodImg2;
 	}
-	public void setGoodImg(String goodImg) {
-		this.goodImg = goodImg;
+	public void setGoodImg2(String goodImg2) {
+		this.goodImg2 = goodImg2;
 	}
+	public String getGoodImg3() {
+		return goodImg3;
+	}
+	public void setGoodImg3(String goodImg3) {
+		this.goodImg3 = goodImg3;
+	}
+	public String getGoodImg4() {
+		return goodImg4;
+	}
+	public void setGoodImg4(String goodImg4) {
+		this.goodImg4 = goodImg4;
+	}
+	public String getGoodImg5() {
+		return goodImg5;
+	}
+	public void setGoodImg5(String goodImg5) {
+		this.goodImg5 = goodImg5;
+	}
+	public String getGoodImg1() {
+		return goodImg1;
+	}
+	public void setGoodImg1(String goodImg1) {
+		this.goodImg1 = goodImg1;
+	}
+	
 	/** 
 	* @return id ：评价ID
 	*/

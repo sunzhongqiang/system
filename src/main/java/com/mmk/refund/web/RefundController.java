@@ -75,6 +75,37 @@ public class RefundController extends BaseController {
     }
     
     /**
+     * 拒绝退货页面
+     * @param id 退款退货ID
+     */ 
+    @RequestMapping("/refund/refundReason")
+    public ModelAndView refundReason(Long id){
+        log.info("拒绝退货页面货页面");
+        Refund refund = refundService.find(id);
+        ModelAndView modelAndView = new ModelAndView("/refund/refundReason");
+        if(refund == null){
+        	refund = new Refund();
+        }
+        modelAndView.addObject("refund", refund);
+        modelAndView.addObject("id", id);
+        return modelAndView ;
+    } 
+    
+    /**
+     * 拒绝退款退货的理由
+     * @param id 订单ID
+     */ 
+    @RequestMapping("/refund/saveReason")
+    public ResultMsg saveReason(Long id, String refuseReason){
+        log.info("拒绝退款退货的理由");
+        Refund refund = refundService.find(id);
+        refund.setRefuseReason(refuseReason);
+        refund.setRefundStatus("5");
+        refundService.save(refund);
+        return  new ResultMsg(true,"拒绝退款退货成功");
+    } 
+    
+    /**
      * 查看退款详情页面
      * @param id 订单ID
      */ 
