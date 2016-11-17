@@ -100,6 +100,7 @@ public class RefundController extends BaseController {
         log.info("拒绝退款退货的理由");
         Refund refund = refundService.find(id);
         refund.setRefuseReason(refuseReason);
+        refund.setRefundStatus("5");
         refundService.save(refund);
         return  new ResultMsg(true,"拒绝退款退货成功");
     } 
