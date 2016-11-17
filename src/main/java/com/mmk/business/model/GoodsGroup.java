@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsGroup 创建于 2016-11-17 11:30:51 版权归作者和作者当前组织所有
+ *  GoodsGroup 创建于 2016-11-17 11:42:27 版权归作者和作者当前组织所有
  */
 package com.mmk.business.model;
 
@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 /**
 * GoodsGroup: 商品拼团管理 数据领域模型
-* 2016-11-17 11:30:51
+* 2016-11-17 11:42:27
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */

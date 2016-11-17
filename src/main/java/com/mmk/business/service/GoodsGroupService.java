@@ -9,7 +9,7 @@ import com.mmk.business.condition.GoodsGroupCondition;
 
 /**
 * GoodsGroupService: 商品拼团管理 业务服务层接口
-*2016-11-17 11:30:52
+*2016-11-17 11:42:27
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */

@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsGroupDaoImpl 创建于 2016-11-17 11:30:52 版权归作者和作者当前组织所有
+ *  GoodsGroupDaoImpl 创建于 2016-11-17 11:42:27 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao.impl;
 

@@ -25,9 +25,12 @@
             <table>
                 <tr>
 
-                    <th>拼团价：</th>
+                        <th>拼团价：</th>
                       <td>
-                        <input type="text" name="groupPrice" th:value="${goodsGroupCondition} ? ${goodsGroupCondition.groupPrice} :''"/>
+                        <input type="text" class="easyui-datebox"  name="groupPriceBegin" th:value="${goodsGroupCondition} ? ${goodsGroupCondition.groupPriceBegin} :''"/>
+                      </td>
+                       <td>
+                       到： <input type="text" class="easyui-datebox"  name="groupPriceEnd" th:value="${goodsGroupCondition} ? ${goodsGroupCondition.groupPriceEnd} :''"/>
                       </td>
                   
 

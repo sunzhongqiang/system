@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsGroupCondition 创建于 2016-11-17 11:30:52 版权归作者和作者当前组织所有
+ *  GoodsGroupCondition 创建于 2016-11-17 11:42:27 版权归作者和作者当前组织所有
  */
 package com.mmk.business.condition;
 import java.util.Date;
@@ -8,18 +8,45 @@ import com.mmk.business.model.GoodsGroup;
 
 /**
 * GoodsGroupCondition ： 商品拼团管理 扩展查询模型
-* 2016-11-17 11:30:52
+* 2016-11-17 11:42:27
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 *
 */
 public class GoodsGroupCondition extends GoodsGroup{
 
+    private Double groupPriceBegin;
+    private Double groupPriceEnd;
     private Date startTimeBegin;
     private Date startTimeEnd;
     private Date endTimeBegin;
     private Date endTimeEnd;
 
+    /** 
+    * @return groupPriceBegin ：拼团价
+    */
+    public Double getGroupPriceBegin() {
+        return groupPriceBegin;
+    }
+    /** 
+    *@param groupPriceBegin 设置拼团价 开始
+    */
+    public void setGroupPriceBegin(Double groupPriceBegin) {
+        this.groupPriceBegin = groupPriceBegin;
+    }
+    
+     /** 
+    * @return groupPriceEnd ：拼团价
+    */
+    public Double getGroupPriceEnd() {
+        return groupPriceEnd;
+    }
+    /** 
+    *@param groupPriceEnd 设置拼团价 开始
+    */
+    public void setGroupPriceEnd(Double groupPriceEnd) {
+        this.groupPriceEnd = groupPriceEnd;
+    }
     /** 
     * @return startTimeBegin ：拼团开始时间
     */
