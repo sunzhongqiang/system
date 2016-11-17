@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import java.util.Date;
@@ -34,8 +36,9 @@ public class GoodsGroup {
     /**
      * 商品主键
      */
-    @Column(name="goods_id")
-    private Long goodsId;
+    @ManyToOne
+    @JoinColumn(name="goods_id")
+    private Goods goods;
 
     /**
      * 拼团数量
@@ -80,14 +83,14 @@ public class GoodsGroup {
     /** 
 	* @return goodsId ：商品主键
 	*/
-    public Long getGoodsId() {
-        return goodsId;
+    public Goods getGoods() {
+        return goods;
     }
     /** 
     *@param goodsId 设置商品主键 
     */
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
+    public void setGoodsId(Goods goods) {
+        this.goods = goods;
     }
 
     /** 
