@@ -40,19 +40,24 @@
                     <tr>
                         <td class="tdTit"><label>配送方式名称：</label></td>
                         <td>
-                        <input type="text"  name="shippingName"   class="easyui-validatebox" data-options="required:true" th:value="${shipping.shippingName}"/>
+                        <input type="text"  name="shippingName"   class="easyui-textbox" data-options="required:true" th:value="${shipping.shippingName}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>是否可用:1，是；2，否：</label></td>
+                        <td class="tdTit"><label>是否可用:</label></td>
                         <td>
-                        <input type="text"  name="enabled"   class="easyui-validatebox" data-options="required:true" th:value="${shipping.enabled}"/>
+<!--                         <input type="text"  name="enabled"   class="easyui-validatebox" data-options="required:true" th:value="${shipping.enabled}"/> -->
+                        <select name="enabled" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              
+			              <option th:selected="${shipping.enabled} == '1' ? 'selected' "  value="1">可用</option>
+			              <option th:selected="${shipping.enabled} == '2' ? 'selected' "  value="2">禁用</option>
+		               </select>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="tdTit"><label>最后更新时间：</label></td>
-                        <td><input id="" name="lastUpdateTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${shipping.lastUpdateTime}"/></td>
-                    </tr>
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><label>最后更新时间：</label></td> -->
+<!--                         <td><input id="" name="lastUpdateTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${shipping.lastUpdateTime}"/></td> -->
+<!--                     </tr> -->
             </table>
             <input type="hidden" name="id" th:value="${shipping.id}"/>
         </form>
