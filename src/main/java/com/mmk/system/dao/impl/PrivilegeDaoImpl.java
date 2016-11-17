@@ -98,11 +98,11 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 	public Privilege findByIdAndFunctionID(Long roleId, Long functionId) {
 		StringBuffer sb = new StringBuffer("select model from Privilege model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(roleId!=null){
+		if (roleId != null) {
 			sb.append(" and model.roleId = :roleId ");
 			params.put("roleId", roleId);
 		}
-		if(roleId!=null){
+		if (roleId != null) {
 			sb.append(" and model.functionId = :functionId ");
 			params.put("functionId", functionId);
 		}
@@ -113,16 +113,17 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 	@Override
 	public List<Map<String, Object>> findRolePrivilege(Long roleId) {
 		Map<Integer, Object> params = new HashMap<Integer, Object>();
-		StringBuffer sb = new StringBuffer(" SELECT distinct func.id AS functionId,func.name AS functionName, func.parent_id AS parentId,pri.id as privilegeId FROM system_function func ");
-	    sb.append(" LEFT JOIN ( ");
-	    sb.append(" SELECT id,function_id,role_id FROM system_privilege privilege  ");
-	    if(roleId!=null){
-	    	sb.append(" WHERE privilege.role_id = ?1 ");
-	    	params.put(1, roleId);
-	    }else{
-	    	sb.append(" where 1<>1 ");
-	    }
-	    sb.append(" ) pri ON func.id = pri.function_id order by functionId  ");
+		StringBuffer sb = new StringBuffer(
+				" SELECT distinct func.id AS functionId,func.name AS functionName, func.parent_id AS parentId,pri.id as privilegeId FROM system_function func ");
+		sb.append(" LEFT JOIN ( ");
+		sb.append(" SELECT id,function_id,role_id FROM system_privilege privilege  ");
+		if (roleId != null) {
+			sb.append(" WHERE privilege.role_id = ?1 ");
+			params.put(1, roleId);
+		} else {
+			sb.append(" where 1<>1 ");
+		}
+		sb.append(" ) pri ON func.id = pri.function_id order by functionId  ");
 		return queryFieldsBySql(sb.toString(), params);
 	}
 
@@ -130,11 +131,11 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 	public Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID) {
 		StringBuffer sb = new StringBuffer("select model from Privilege model  where model.");
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(roleId!=null){
+		if (roleId != null) {
 			sb.append(" and model.roleId = :roleId ");
 			params.put("roleId", roleId);
 		}
-		if(roleId!=null){
+		if (roleId != null) {
 			sb.append(" and model.functionId = :privilegeID ");
 			params.put("privilegeID", privilegeID);
 		}
@@ -144,16 +145,17 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 
 	@Override
 	public Privilege findByRoleIdAndUri(String authority, String requestURI) {
-		StringBuffer sb = new StringBuffer("select model from Privilege model , Function function where function.id = model.functionId ");
+		StringBuffer sb = new StringBuffer(
+				"select model from Privilege model , Function function where function.id = model.functionId ");
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(StringUtils.isNotBlank(authority)&&StringUtils.isNumeric(authority)){
+		if (StringUtils.isNotBlank(authority) && StringUtils.isNumeric(authority)) {
 			sb.append(" and model.roleId = :authority ");
 			params.put("authority", Long.valueOf(authority));
 		}
-		
-		if(StringUtils.isNotBlank(requestURI)){
+
+		if (StringUtils.isNotBlank(requestURI)) {
 			sb.append(" and function.uri = :uri ");
-			params.put("uri",requestURI );
+			params.put("uri", requestURI);
 		}
 		List<Privilege> resultList = queryByJpql(sb.toString(), params);
 		return resultList.isEmpty() ? null : resultList.get(0);
@@ -163,11 +165,11 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 	public Privilege findByRoleIdAndFunctionId(Long authority, Long functionId) {
 		StringBuffer sb = new StringBuffer("select model from Privilege model  where 1=1 ");
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(authority!=null){
+		if (authority != null) {
 			sb.append(" and model.roleId = :roleId ");
 			params.put("roleId", authority);
 		}
-		if(functionId!=null){
+		if (functionId != null) {
 			sb.append(" and model.functionId = :functionId ");
 			params.put("functionId", functionId);
 		}

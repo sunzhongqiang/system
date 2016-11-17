@@ -10,12 +10,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.mmk.system.model.LoginLog;
 
 /**
-* LoginLogRepository: 系统登录日志 数据资源层
-* 2016-10-22 13:46:30
-* @author codegenerator
-* @version 1.0
-*/
-public interface LoginLogRepository extends JpaRepository<LoginLog, Long>{
-
+ * LoginLogRepository: 系统登录日志 数据资源层 2016-10-22 13:46:30
+ * 
+ * @author codegenerator
+ * @version 1.0
+ */
+public interface LoginLogRepository extends JpaRepository<LoginLog, Long> {
 
 }

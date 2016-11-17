@@ -40,6 +40,7 @@ public class UserController extends BaseController {
 
 	/**
 	 * 跳转至列表页面
+	 * 
 	 * @return 返回页面以及页面模型
 	 * 
 	 */
@@ -67,9 +68,10 @@ public class UserController extends BaseController {
 		GridData<User> grid = new GridData<User>(userPage);
 		return grid;
 	}
-	
+
 	/**
 	 * 根据组织机构加载用户
+	 * 
 	 * @param userCondition
 	 * @param pageable
 	 * @return
@@ -78,12 +80,10 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public GridData<User> loadByOrgId(Long orgId, EasyPageable pageable) {
 		log.info("根据组织结构加载用户");
-		Page<User> userPage = userService.loadByOrgId(orgId,pageable.pageable());
+		Page<User> userPage = userService.loadByOrgId(orgId, pageable.pageable());
 		GridData<User> grid = new GridData<User>(userPage);
 		return grid;
 	}
-	
-	
 
 	/**
 	 * 编辑页面
@@ -278,7 +278,7 @@ public class UserController extends BaseController {
 			return new ResultMsg(false, "原密码错误！");
 		}
 	}
-	
+
 	/**
 	 * 修改密码逻辑
 	 * 
@@ -310,10 +310,12 @@ public class UserController extends BaseController {
 	public ModelAndView changePwdForm() {
 		return new ModelAndView("user/changePwdForm");
 	}
-	
+
 	/**
 	 * 修改密码界面
-	 * @param user 要修改的用户密码
+	 * 
+	 * @param user
+	 *            要修改的用户密码
 	 * @return 修改密码界面
 	 */
 	@RequestMapping("/user/editPwdForm")
@@ -322,31 +324,35 @@ public class UserController extends BaseController {
 		modelAndView.addObject("id", user.getId());
 		return modelAndView;
 	}
-	
+
 	/**
 	 * 修改组织界面
-	 * @param user 要修改的用户
+	 * 
+	 * @param user
+	 *            要修改的用户
 	 * @return 修改组织界面
 	 */
 	@RequestMapping("/user/changeOrgForm")
-	public ModelAndView changeOrgForm(User user){
+	public ModelAndView changeOrgForm(User user) {
 		ModelAndView modelAndView = new ModelAndView("user/changeOrgForm");
 		modelAndView.addObject("id", user.getId());
-		modelAndView.addObject("user",userService.get(user.getId()));
+		modelAndView.addObject("user", userService.get(user.getId()));
 		return modelAndView;
 	}
-	
+
 	/**
 	 * 修改组织结构
-	 * @param user 要修改的用户
+	 * 
+	 * @param user
+	 *            要修改的用户
 	 * @return 修改结果
 	 */
 	@RequestMapping("/user/changeOrganization")
-	public ResultMsg changeOrganization(User user){
+	public ResultMsg changeOrganization(User user) {
 		User bean = userService.get(user.getId());
 		bean.setOrganizationId(user.getOrganizationId());
 		userService.save(bean);
-		return new ResultMsg(true,"部门修改成功");
+		return new ResultMsg(true, "部门修改成功");
 	}
 
 }
