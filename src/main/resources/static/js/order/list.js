@@ -329,5 +329,5 @@
         parent.addTab({
 			url : '/order/orderDetail?id=' + id,
 			title : '订单详情',
-		});
+		},true);
     }
