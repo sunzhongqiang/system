@@ -33,7 +33,7 @@
                   <tr>
                         <td class="tdTit"><label>商品分类：</label></td>
                         <td>
-                        	<select  name="goodsCat" class="easyui-combobox"    required="true"   data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        	<select  name="goodsCat" class="easyui-combobox"   data-options="required:true,width:140,height:29,editable:false,panelHeight:'auto'">
 	                            <option>请选择</option>
 	                            <option th:selected="${goods.goodsCat} == '0' ? 'selected' " value="0" >一元购</option>
 	                            <option th:selected="${goods.goodsCat} == '1' ? 'selected' "  value="1">拼团</option>
@@ -62,7 +62,7 @@
                     <tr>
                         <td class="tdTit"><label>团购价：</label></td>
                         <td>
-                        <input type="text"  name="promotePrice"   class="easyui-numberbox"  th:value="${goods.promotePrice}"/>
+                        <input type="text"  name="promotePrice"   class="easyui-numberbox"  th:value="${goods.promotePrice}" data-options="required:true"/>
                         </td>
                     </tr>
                     <tr>
