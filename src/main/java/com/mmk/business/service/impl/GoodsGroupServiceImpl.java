@@ -10,9 +10,11 @@ import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.dao.GoodsGroupRepository;
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.condition.GoodsGroupCondition;
 import com.mmk.business.service.GoodsGroupService;
+import com.mmk.business.service.GoodsService;
 import com.mmk.business.dao.GoodsGroupDao;
 /**
 * GoodsGroupServiceImpl: 商品拼团管理 业务服务层实现
@@ -26,6 +28,8 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private GoodsGroupDao goodsGroupDao;
+    @Resource
+    private GoodsService goodsService;
     
     private GoodsGroupRepository goodsGroupRepository;
     /**
@@ -66,12 +70,14 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
      */
     @Override
     public List<GoodsGroup>  findAllByGoodsId(Long goodsId){
-        return goodsGroupRepository.findAllByGoodsId(goodsId);
+        Goods goods = goodsService.get(goodsId);
+		return goodsGroupRepository.findAllByGoods(goods );
     }
     
      @Override
     public Page<GoodsGroup>  findAllByGoodsId(Long goodsId, Pageable pageable){
-        return goodsGroupRepository.findAllByGoodsId(goodsId,pageable);
+	  Goods goods = goodsService.get(goodsId);
+        return goodsGroupRepository.findAllByGoods(goods,pageable);
     }
     @Override 
     public GoodsGroup findBy(String field,Object value){
