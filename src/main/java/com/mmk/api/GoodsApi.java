@@ -1,6 +1,5 @@
 package com.mmk.api;
 
-
 import org.springframework.data.domain.Pageable;
 
 import com.mmk.business.model.Goods;
@@ -10,6 +9,7 @@ import com.mmk.common.model.ResultMsg;
 public interface GoodsApi {
 	/**
 	 * 商品保存
+	 * 
 	 * @param user
 	 * @return
 	 */
@@ -17,13 +17,16 @@ public interface GoodsApi {
 
 	/**
 	 * 商品检索
-	 * @param goods 要检索商品的Id
+	 * 
+	 * @param goods
+	 *            要检索商品的Id
 	 * @return
 	 */
 	ResultMsg findGoods();
 
 	/**
 	 * 商品详情
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -31,18 +34,18 @@ public interface GoodsApi {
 
 	/**
 	 * 即将开团的商品
+	 * 
 	 * @param pageable
 	 * @return
 	 */
 	ResultData toBegin(Pageable pageable);
-	
-	
+
 	/**
 	 * 推荐的商品
+	 * 
 	 * @param pageable
 	 * @return
 	 */
-	ResultData findRecommend(String code,Pageable pageable);
-	
+	ResultData findRecommend(String code, Pageable pageable);
 
 }

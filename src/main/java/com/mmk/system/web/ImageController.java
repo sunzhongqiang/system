@@ -21,7 +21,7 @@ import com.mmk.common.tool.FileClient;
 @Controller
 @RestController
 public class ImageController {
-	
+
 	private Log log = LogFactory.getLog(this.getClass());
 
 	@RequestMapping(value = "/image/upload")
@@ -33,46 +33,48 @@ public class ImageController {
 			try {
 				String imageUrl = FileClient.getDefault().upload("tuan", file).getImageUrl();
 				result.put("success", true);
-				 result.put("file", imageUrl);
-				 result.put("callback", callback);
-				 
+				result.put("file", imageUrl);
+				result.put("callback", callback);
+
 			} catch (IOException e) {
 				result.put("success", false);
 				result.put("message", e.getMessage());
 				e.printStackTrace();
 			}
 		}
-		log.debug("文件上传用时："+String.valueOf(System.currentTimeMillis()-start));
+		log.debug("文件上传用时：" + String.valueOf(System.currentTimeMillis() - start));
 		return result;
 	}
-	
-	 /**
-     * 百度编辑器 专用 图片上传
-     * @param m
-     * @param errors
-     * @param dir
-     * @param pictitle
-     * @param file
-     * @return
-     */
-    @RequestMapping("/ueditor/add")
-    @ResponseBody
-    public Map addForUeditor(String dir,String pictitle,@RequestParam MultipartFile file,HttpServletRequest request){
-        Map<String,Object> map=new HashMap<String,Object>();
-        map.put("state", "SUCCESS");
-        if(file.isEmpty()){
-            map.put("state", "未包含上传的图片");
-        }
-        try {
-            String url = FileClient.getDefault().upload("detailimage", file).getImageUrl();
-            map.put("title", "image");
-            map.put("original", file.getOriginalFilename());
-            map.put("url",url);
-        } catch (IOException e) {
-            map.put("state", "文件上传失败");
-            e.printStackTrace();
-        }
-        
-        return map;
-    }
+
+	/**
+	 * 百度编辑器 专用 图片上传
+	 * 
+	 * @param m
+	 * @param errors
+	 * @param dir
+	 * @param pictitle
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("/ueditor/add")
+	@ResponseBody
+	public Map addForUeditor(String dir, String pictitle, @RequestParam MultipartFile file,
+			HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("state", "SUCCESS");
+		if (file.isEmpty()) {
+			map.put("state", "未包含上传的图片");
+		}
+		try {
+			String url = FileClient.getDefault().upload("detailimage", file).getImageUrl();
+			map.put("title", "image");
+			map.put("original", file.getOriginalFilename());
+			map.put("url", url);
+		} catch (IOException e) {
+			map.put("state", "文件上传失败");
+			e.printStackTrace();
+		}
+
+		return map;
+	}
 }

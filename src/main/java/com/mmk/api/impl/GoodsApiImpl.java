@@ -20,15 +20,14 @@ import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 
 @RestController
-public class GoodsApiImpl implements GoodsApi{
-	
+public class GoodsApiImpl implements GoodsApi {
+
 	@Resource
 	private GoodsService goodsServiceImpl;
-	
+
 	@Resource
 	private GoodsImgService goodsImgService;
-	
-	
+
 	@RequestMapping("/api/goods/save")
 	@Override
 	public ResultMsg save(Goods good) {
@@ -56,7 +55,6 @@ public class GoodsApiImpl implements GoodsApi{
 		return new ResultMsg(false, "商品已经存在！");
 	}
 
-
 	@RequestMapping("/api/goods/findGoods")
 	@Override
 	public ResultMsg findGoods() {
@@ -69,18 +67,18 @@ public class GoodsApiImpl implements GoodsApi{
 			return new ResultMsg(true, "查找成功", result);
 		}
 	}
-	
+
 	@RequestMapping("/api/goods/findGoodsInfo")
 	@Override
 	public ResultMsg findGoodsInfo(Long id) {
 		Goods goods = goodsServiceImpl.findById(id);
 		List<GoodsImg> goodsImageList = goodsImgService.findByGoodId(id);
-		Map<String, Object> result = new HashMap<String, Object>() ;
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("goods", goods);
 		result.put("goodsImgs", goodsImageList);
 		return new ResultMsg(true, "查找成功", result);
 	}
-	
+
 	@RequestMapping("/api/goods/toBegin")
 	@Override
 	public ResultData toBegin(Pageable pageable) {
@@ -90,17 +88,12 @@ public class GoodsApiImpl implements GoodsApi{
 		return resultData;
 	}
 
-
 	@RequestMapping("/api/goods/recommend")
 	@Override
 	public ResultData findRecommend(String code, Pageable pageable) {
-		goodsServiceImpl.findRecommend(code,pageable);
+		goodsServiceImpl.findRecommend(code, pageable);
 		ResultData result = new ResultData();
-		return result ;
+		return result;
 	}
-	
-	
-	
-
 
 }

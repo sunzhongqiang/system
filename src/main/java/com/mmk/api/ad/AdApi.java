@@ -14,15 +14,15 @@ import com.mmk.common.model.ResultData;
 
 @RestController
 public class AdApi {
-	
+
 	@Resource
 	private AdService adService;
-	
+
 	@RequestMapping("/api/ad/listByPositionCode")
 	@ResponseBody
-	public ResultData listByPositionCode(String code){
+	public ResultData listByPositionCode(String code) {
 		List<Ad> adList = adService.findAllByPositionCode(code);
-		ResultData resultData = new ResultData(true,"广告位置列表");
+		ResultData resultData = new ResultData(true, "广告位置列表");
 		resultData.addData("adList", adList);
 		return resultData;
 	}
