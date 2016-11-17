@@ -56,7 +56,7 @@
                     <tr>
                         <td class="tdTit"><label>评论内容：</label></td>
                         <td>
-                        <input class="easyui-textbox" data-options="multiline:true"  style="width:300px;height:100px" th:value="${comment.content}" />
+                        <input class="easyui-textbox" name="content"  data-options="multiline:true"  style="width:300px;height:100px" th:value="${comment.content}" />
 <!--                         <input type="text"  name="content"  style="width:300px;height:100px"   class="easyui-textbox" data-options="required:true" /> -->
                         </td>
                     </tr>
@@ -69,9 +69,9 @@
                         <td>
 							 <div id="mainfile" class="my-ad uploader-list">
                                     <div id="mainPicker">评论图片</div>
-                                     <input type="hidden" name="goodImg" data-options="required:true" th:value="${comment.goodImg}" />
+                                     <input type="hidden" name="goodImg1" data-options="required:true" th:value="${comment.goodImg1}" />
                                       <div  class="file-item">
-                                       <img th:src="${comment.goodImg}" />
+                                       <img th:src="${comment.goodImg1}" />
                                        <div class="info"></div>
                                        <div class="diyCancel"></div>
                                      </div>
@@ -84,5 +84,5 @@
     </div>
 </div>
 <script type="text/javascript">
-var mainUploader = Upload.init("#mainPicker","#mainfile","goodImg",true);
+var mainUploader = Upload.init("#mainPicker","#mainfile","goodImg1",true);
 </script>

@@ -89,7 +89,7 @@
                         	 <span th:if="${refund.refundStatus=='1'}"><p class="red bold">待处理</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >同意</a><a class="btn_send1" shape="rect">拒绝</a></p></span>
                         	 <span th:if="${refund.refundStatus=='2'}"><p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >直接确认收货</a></p></span>
                         	 <span th:if="${refund.refundStatus=='3'}"><p class="green bold">待确认收货</p></span>
-                        	 <span th:if="${refund.refundStatus=='4'}"><p class="red" >待退款</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >退款成功</a><a class="btn_send1" shape="rect">退款失败</a></p></span>
+                        	 <span th:if="${refund.refundStatus=='4'}"><p class="red" >待退款</p><p class="order_close blue bold"><a class="btn_send1" shape="rect">确认退款</a></p></span>
                         	 <span th:if="${refund.refundStatus=='5'}"><a class="red" >已拒绝</a></span>
                         	 <span th:if="${refund.refundStatus=='6'}"><a class="red" >已关闭</a></span>
                         	 <span th:if="${refund.refundStatus=='7'}"><a class="green" >已成功</a></span>
