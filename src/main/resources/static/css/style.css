@@ -390,8 +390,11 @@ overflow: hidden;}
 }
 /*∆¿º€π‹¿Ì*/
 .pingj #uploader-demo {width: 400px;}
-
-
+.comment .datagrid-body tr td {
+    height: 100px;
+}
+.comment .datagrid-body tr td .datagrid-cell-c1-adImg{text-align: center;}
+.comment .datagrid-body tr td .datagrid-cell-c1-adImg img{ max-height:98px;}
 
 
 

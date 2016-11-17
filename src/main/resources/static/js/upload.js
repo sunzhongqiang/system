@@ -4,9 +4,14 @@ var Upload = {
 		 * @param picker 选择器
 		 * @param container 文件上传容器
 		 * @param input 对应的输入框
+		 * @param num 添加图片数量
+		 * @param replace 是否替换以前的图片
 		 * @returns
 		 */
-	init:function(picker,container,input,replace){
+	init:function(picker,container,input,replace,num){
+		if(!num){
+			num=1;
+		}
 		var uploader = {
 				
 		};
@@ -18,7 +23,7 @@ var Upload = {
 		     swf: '/webuploader/Uploader.swf',
 		     // 文件接收服务端。
 		     server: '/image/upload',
-		     fileNumLimit :1,
+		     fileNumLimit :num,
 		     // 选择文件的按钮。可选。
 		     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
 		     pick: picker,

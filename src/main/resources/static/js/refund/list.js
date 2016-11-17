@@ -393,12 +393,12 @@
     //拒绝退款理由
     function refundReason(id) {
         parent.$.modalDialog({
-            title : '商品发货',
+            title : '拒绝原因',
             width : 400,
             height : 250,
-            href : '/order/refundReason?id='+id,
+            href : '/refund/refundReason?id='+id,
             buttons : [ {
-                text : '确认发货',
+                text : '拒绝',
                 handler : function() {
                     parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
