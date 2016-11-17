@@ -75,6 +75,23 @@ public class RefundController extends BaseController {
     }
     
     /**
+     * 发货
+     * @param id 订单ID
+     */ 
+    @RequestMapping("/refund/refundReason")
+    public ModelAndView refundReason(Long id){
+        log.info("发货页面");
+        Refund refund = refundService.find(id);
+        ModelAndView modelAndView = new ModelAndView("/refund/refundReason");
+        if(refund == null){
+        	refund = new Refund();
+        }
+        modelAndView.addObject("refund", refund);
+        modelAndView.addObject("id", id);
+        return modelAndView ;
+    } 
+    
+    /**
      * 查看退款详情页面
      * @param id 订单ID
      */ 
