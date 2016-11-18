@@ -10,6 +10,7 @@
             rownumbers : true,
             pagination : true,
             singleSelect : true,
+            nowrap :false,
             idField : 'id',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
@@ -59,31 +60,31 @@
                 field : 'goodsOriginalPrice',
                 align: 'center',
             },
-                    {
-                width : '80',
-                title : '团购价',
-                field : 'promotePrice',
-                align: 'center',
-            },
-                    {
-                width : '150',
-                title : '促销开始时间',
-                field : 'promoteStartDate',
-                formatter: formatDatebox,
-                align: 'center',
-            },
-                    {
-                width : '150',
-                title : '促销结束时间',
-                field : 'promoteEndDate',
-                formatter: formatDatebox,
-                align: 'center',
-            },
-                    {
-                width : '80',
-                title : '促销数量',
-                field : 'promoteNumber',
-            },
+//                    {
+//                width : '80',
+//                title : '团购价',
+//                field : 'promotePrice',
+//                align: 'center',
+//            },
+//                    {
+//                width : '150',
+//                title : '促销开始时间',
+//                field : 'promoteStartDate',
+//                formatter: formatDatebox,
+//                align: 'center',
+//            },
+//                    {
+//                width : '150',
+//                title : '促销结束时间',
+//                field : 'promoteEndDate',
+//                formatter: formatDatebox,
+//                align: 'center',
+//            },
+//                    {
+//                width : '80',
+//                title : '促销数量',
+//                field : 'promoteNumber',
+//            },
 //                    {
 //                width : '80',
 //                title : '已售数量',
@@ -124,13 +125,13 @@
                     return str;
                 }
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){
-	            	addFun();
-	            }
-            }],
+//           toolbar :  [{
+//	            iconCls: 'icon-add',
+//	            text:'新增',
+//	            handler: function(){
+//	            	addFun();
+//	            }
+//            }],
             onLoadSuccess : function(data){
                 $('.btn_edit').linkbutton({text:'拼团设置',plain:true,iconCls:'icon-edit'});
                 $(this).datagrid('fixRowHeight');
@@ -170,19 +171,19 @@
                 field : 'groupPrice',
             },
                     {
-                width : '80',
+                width : '130',
                 title : '拼团开始时间',
                 field : 'startTime',
                 formatter: formatDatebox,
             },
                     {
-                width : '80',
+                width : '130',
                 title : '拼团结束时间',
                 field : 'endTime',
                 formatter: formatDatebox,
             },
                     {
-                width : '80',
+                width : '100',
                 title : '持续时间（天）',
                 field : 'duration',
             },

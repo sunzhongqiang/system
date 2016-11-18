@@ -11,6 +11,7 @@
             striped : true,
             rownumbers : true,
             pagination : true,
+            nowrap : false,
             singleSelect : true,
             idField : 'id',
             pageSize : 50,
@@ -46,14 +47,14 @@
                     return str;
                 }
             }] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){
-	            	
-	            	addFun();
-	            	}
-            }],
+//           toolbar :  [{
+//	            iconCls: 'icon-add',
+//	            text:'新增',
+//	            handler: function(){
+//	            	
+//	            	addFun();
+//	            	}
+//            }],
             onLoadSuccess : function(data){
                 $('.btn_edit1').linkbutton({text:'推荐	',plain:true,iconCls:'icon-edit'});
 //                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
@@ -161,7 +162,7 @@
             }] ],
            toolbar :  [{
 	            iconCls: 'icon-add',
-	            text:'新增',
+	            text:'新增广告位置',
 	            handler: function(){addPosFun();}
             }],
             
@@ -256,6 +257,7 @@
             rownumbers : true,
             pagination : false,
             singleSelect : true,
+            nowrap : false,
             idField : 'id',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
@@ -310,7 +312,7 @@
                     var str = '';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >编辑排序</a>', row.recommend.id);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.goodId);
 //                  
 //                   
                     return str;

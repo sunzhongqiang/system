@@ -25,10 +25,6 @@
         <form id="searchForm">
             <table>
             	<tr>
-					<th>商品ID：</th>
-					<td>
-					<input type="number" class="easyui-textbox" name="id" th:value="${goodsCondition} ? ${goodsCondition.id} :''"/>
-					</td>
 					<th>商品名称：</th>
 					<td>
 					<input type="text" class="easyui-textbox" name="goodsName" th:value="${goodsCondition} ? ${goodsCondition.goodsName} :''"/>
@@ -40,6 +36,22 @@
 					<th>促销结束时间：</th>
 					<td>
 					<input type="text" class="easyui-datebox" name="promoteEndDate" th:value="${goodsCondition} ? ${goodsCondition.promoteEndDate} :''"/>
+					</td>
+					<th>商品分类：</th>
+					<td>
+						<select name="goodsCat" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">请选择</option>
+			              <option  value="0">一元购</option>
+			              <option  value="1" >拼团</option>
+		               </select>
+					</td>
+					<th>是否上架：</th>
+					<td>
+						<select name="isDelete" class="easyui-combobox"   data-options="width:100,height:29,editable:false,panelHeight:'auto'" >
+			              <option  value="">请选择</option>
+			              <option  value="0">上架</option>
+			              <option  value="1" >下架</option>
+		               </select>
 					</td>
                       <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>

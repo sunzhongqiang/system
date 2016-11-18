@@ -128,7 +128,7 @@
             }] ],
            toolbar :  [{
 	            iconCls: 'icon-add',
-	            text:'新增',
+	            text:'发布商品',
 	            handler: function(){
 	            	
 	            	addFun();

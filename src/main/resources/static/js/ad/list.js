@@ -11,6 +11,7 @@
             rownumbers : true,
             pagination : true,
             singleSelect : true,
+            nowrap : false,
             idField : 'id',
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
@@ -33,11 +34,6 @@
                 align: 'center',
             },
 //                    {
-//                width : '180',
-//                title : '广告链接',
-//                field : 'adLink',
-//            },
-//                    {
 //                width : '80',
 //                title : '广告编码',
 //                field : 'adCode',
@@ -49,12 +45,19 @@
                 formatter:function(value,row,index)
                 {return '<img src='+value+'  />';}
             },
-    		{
+            	{
                 width : '300',
-                title : '图片地址',
-                field : 'adImgLink',
+                title : '广告链接',
+                field : 'adLink',
                 align: 'center',
             },
+
+//    		{
+//                width : '300',
+//                title : '图片地址',
+//                field : 'adImgLink',
+//                align: 'center',
+//            },
                     {
                 width : '150',
                 title : '开始时间',
