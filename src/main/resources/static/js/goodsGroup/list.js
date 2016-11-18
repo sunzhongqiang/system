@@ -161,14 +161,6 @@
             },
                     {
                 width : '80',
-                title : '商品主键',
-                field : 'goodsId',
-                formatter : function(value, row, index) {
-					return row.goods.goodsName;
-				}
-            },
-                    {
-                width : '80',
                 title : '拼团数量',
                 field : 'num',
             },
@@ -191,44 +183,70 @@
             },
                     {
                 width : '80',
-                title : '持续时间：天',
+                title : '持续时间（天）',
                 field : 'duration',
+            },
+            {
+                field : 'action',
+                title : '操作',
+                width : 140,
+                align : 'center',
+                formatter : function(value, row, index) {
+                    var str = '';
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editGroupFun(\'{0}\');" class="btn_edit_group" >编辑</a>', row.id);
+                    str += '&nbsp;|&nbsp;';
+                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteGroupFun(\'{0}\');" class="btn_delete_group" >删除</a>', row.id);
+                    return str;
+                }
             }
             ] ],
-           toolbar :  [{
-	            iconCls: 'icon-add',
-	            text:'新增',
-	            handler: function(){addFun();}
-            }],
             onLoadSuccess : function(data){
-//                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-//                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
+                $('.btn_edit_group').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
+                $('.btn_delete_group').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');
             }
         });
     });
     
     
-    function deleteFun(id) {
-        if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.messager.confirm('询问', '您是否要删除商品活动？', function(b) {
-            if (b) {
-                progressLoad();
-                    $.post('/goods/delete', {
-                        id : id
-                    }, function(result) {
-                        if (result.success) {
-                            parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
-                        }
-                        progressClose();
-                    }, 'JSON');
+    function deleteGroupFun(id) {
+    	 if (id == undefined) {//点击右键菜单才会触发这个
+             var rows = groupData.datagrid('getSelections');
+             id = rows[0].id;
+         } else {//点击操作里面的删除图标会触发这个
+        	 groupData.datagrid('unselectAll').datagrid('uncheckAll');
+         }
+         parent.$.messager.confirm('询问', '您是否要删除商品拼团管理？', function(b) {
+             if (b) {
+                 progressLoad();
+                     $.post('/goodsGroup/delete', {
+                         id : id
+                     }, function(result) {
+                         if (result.success) {
+                             parent.$.messager.alert('提示', result.msg, 'info');
+                             groupData.datagrid('reload');
+                         }
+                         progressClose();
+                     }, 'JSON');
+                 }
+         });
+    }
+    
+    function editGroupFun(id){
+    	parent.$.modalDialog({
+            title : '拼团设置',
+            width : 500,
+            height : 500,
+            href : '/goodsGroup/edit?id=' + id,
+            buttons : [ {
+                text : '保存',
+                handler : function() {
+                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    var f = parent.$.modalDialog.handler.find('#modelForm');
+                    f.submit();
                 }
+            } 
+            ]
         });
     }
     
