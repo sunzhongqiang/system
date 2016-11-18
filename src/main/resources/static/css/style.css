@@ -398,12 +398,25 @@ overflow: hidden;}
 
 
 
+/*拼团管理*/
+.tuan2 .datagrid-body tr td {
+    height: 40px;
+}
 
+/*广告管理*/
+.myad2 .datagrid-body tr td{
+	height: 40px;
+}
 
+/*商品推荐*/
+.reGood1 .datagrid-body tr td, .reGood2 .datagrid-body tr td, .reGood3 .datagrid-body tr td{
+	height: 40px;
+}
 
-
-
-
+/*权限管理*/
+.function .datagrid-body tr td{
+	height: 40px;
+}
 
 
 

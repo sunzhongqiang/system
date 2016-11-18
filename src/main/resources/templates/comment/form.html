@@ -65,6 +65,10 @@
                         <td><input id="" class="easyui-datetimebox" name="contentTime" type="text" placeholder="点击选择时间"  onfocus="WdatePicker();" th:value="${comment.contentTime}"/></td>
                     </tr>
                     <tr>
+                        <td class="tdTit"><label>评论回复：</label></td>
+                        <td><input id="" class="easyui-textbox" name="reply"  data-options="multiline:true" type="text" style="width:300px;height:100px"  th:value="${comment.reply}"/></td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"><label>上传评论图片：</label></td>
                         <td>
 							 <div id="mainfile" class="my-ad uploader-list">
