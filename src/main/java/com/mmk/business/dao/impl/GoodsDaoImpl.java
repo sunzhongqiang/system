@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
@@ -51,6 +52,22 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	public Page<Goods> list(GoodsCondition goodsCondition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from Goods model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
+	    if(goodsCondition.getId()!=null){
+            sb.append(" and model.id = :id ");
+            params.put("id",goodsCondition.getId());
+        }
+        if(StringUtils.isNotBlank(goodsCondition.getGoodsName())){
+            sb.append(" and model.goodsName like :goodsName ");
+            params.put("goodsName","%"+goodsCondition.getGoodsName()+"%");
+        }
+		if(goodsCondition.getPromoteStartDate()!=null){
+            sb.append(" and model.promoteStartDate = :promoteStartDate ");
+            params.put("promoteStartDate",goodsCondition.getPromoteStartDate());
+        }
+		if(goodsCondition.getPromoteEndDate()!=null){
+            sb.append(" and model.promoteEndDate = :promoteEndDate ");
+            params.put("promoteEndDate",goodsCondition.getPromoteEndDate());
+        }
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 
