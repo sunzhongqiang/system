@@ -1,6 +1,6 @@
 /*
  * 
- *  RecommendGroup 创建于 2016-11-18 15:08:15 版权归作者和作者当前组织所有
+ *  RecommendGroup 创建于 2016-11-18 15:33:44 版权归作者和作者当前组织所有
  */
 package com.mmk.business.model;
 
@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 
 /**
-* RecommendGroup: 拼团管理 数据领域模型
-* 2016-11-18 15:08:15
+* RecommendGroup: 拼团推荐管理 数据领域模型
+* 2016-11-18 15:33:44
 *@author huguangling 胡广玲
 *@version 1.0
 */
@@ -23,6 +23,8 @@ public class RecommendGroup {
     /**
      * 主键
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
 

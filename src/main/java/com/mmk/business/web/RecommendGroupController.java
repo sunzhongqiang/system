@@ -1,6 +1,6 @@
 /*
  * 
- *  拼团管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
+ *  拼团推荐管理Controller 创建于 2016-10-12 11:54:23 版权归作者和作者当前组织所有
  */
 package com.mmk.business.web;
 
@@ -29,7 +29,7 @@ import com.mmk.business.condition.RecommendGroupCondition;
 
 /**
 *@Title: RecommendGroupController
-*@Description: 拼团管理 的web控制层
+*@Description: 拼团推荐管理 的web控制层
 *@author huguangling 胡广玲
 */
 @RestController
@@ -44,7 +44,7 @@ public class RecommendGroupController extends BaseController {
      */
     @RequestMapping("/recommendGroup/list")
     public ModelAndView list(){
-        log.info("拼团管理列表查询");
+        log.info("拼团推荐管理列表查询");
         ModelAndView modelAndView = new ModelAndView("recommendGroup/list");
         return  modelAndView;
     }
@@ -62,7 +62,7 @@ public class RecommendGroupController extends BaseController {
     @RequestMapping("/recommendGroup/gridData")
     @ResponseBody
     public GridData<RecommendGroup> loadList(RecommendGroupCondition recommendGroupCondition, EasyPageable pageable){
-        log.info("获取拼团管理列表数据");
+        log.info("获取拼团推荐管理列表数据");
         Page<RecommendGroup> recommendGroupPage = recommendGroupService.list(recommendGroupCondition,pageable.pageable());   
         GridData<RecommendGroup> grid = new GridData<RecommendGroup>(recommendGroupPage);
         return grid;
@@ -70,7 +70,7 @@ public class RecommendGroupController extends BaseController {
     
     /**
      * 新增页面
-     * @return 跳转到拼团管理新增页面
+     * @return 跳转到拼团推荐管理新增页面
      */
     @RequestMapping("/recommendGroup/add")
     public ModelAndView addPage(){
@@ -85,7 +85,7 @@ public class RecommendGroupController extends BaseController {
      */ 
     @RequestMapping("/recommendGroup/edit")
     public ModelAndView editPage(RecommendGroup recommendGroup){
-        log.info("拼团管理编辑页面");
+        log.info("拼团推荐管理编辑页面");
         recommendGroup = recommendGroupService.find(recommendGroup.getId());
         ModelAndView modelAndView = new ModelAndView("recommendGroup/form");
         modelAndView.addObject("recommendGroup", recommendGroup);
@@ -94,20 +94,20 @@ public class RecommendGroupController extends BaseController {
     
     
     /**
-     * 拼团管理数据保存方法
+     * 拼团推荐管理数据保存方法
      * @param recommendGroup 要保存的数据
      * @return recommendGroup 保存后的数据
      */
     @RequestMapping("/recommendGroup/save")
     @ResponseBody
     public ResultMsg save(RecommendGroup recommendGroup){
-        log.info("拼团管理保存");
+        log.info("拼团推荐管理保存");
         try {
             recommendGroupService.save(recommendGroup);
         } catch (Exception e) {
-            return new ResultMsg(false,"拼团管理保存失败");
+            return new ResultMsg(false,"拼团推荐管理保存失败");
         }
-        return new ResultMsg(true,"拼团管理保存成功");
+        return new ResultMsg(true,"拼团推荐管理保存成功");
     }
     
    
@@ -120,7 +120,7 @@ public class RecommendGroupController extends BaseController {
     @RequestMapping("/recommendGroup/details")
     @ResponseBody
     public RecommendGroup details(RecommendGroup recommendGroup){
-        log.info("拼团管理详细信息");
+        log.info("拼团推荐管理详细信息");
         recommendGroup = recommendGroupService.find(recommendGroup.getId());
         return recommendGroup;
     }
@@ -132,7 +132,7 @@ public class RecommendGroupController extends BaseController {
      */
     @RequestMapping("/recommendGroup/delete")
     public ResultMsg delete(RecommendGroup recommendGroup){
-        log.info("拼团管理删除");
+        log.info("拼团推荐管理删除");
         try {
             recommendGroupService.delete(recommendGroup);
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class RecommendGroupController extends BaseController {
      */
     @RequestMapping("/recommendGroup/deleteAll")
     public boolean delete(List<RecommendGroup> recommendGroupList){
-        log.info("拼团管理批量删除");
+        log.info("拼团推荐管理批量删除");
         try {
             recommendGroupService.delete(recommendGroupList);
         } catch (Exception e) {

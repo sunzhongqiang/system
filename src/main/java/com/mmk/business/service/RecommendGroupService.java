@@ -8,8 +8,8 @@ import com.mmk.business.model.RecommendGroup;
 import com.mmk.business.condition.RecommendGroupCondition;
 
 /**
-* RecommendGroupService: 拼团管理 业务服务层接口
-*2016-11-18 15:08:15
+* RecommendGroupService: 拼团推荐管理 业务服务层接口
+*2016-11-18 15:33:45
 *@author huguangling 胡广玲
 *@version 1.0
 */

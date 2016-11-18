@@ -82,7 +82,7 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除拼团管理？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除拼团推荐管理？', function(b) {
             if (b) {
                 progressLoad();
                     $.post('/recommendGroup/delete', {

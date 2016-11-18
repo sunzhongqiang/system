@@ -1,6 +1,6 @@
 /*
  * 
- *  RecommendGroupDaoImpl 创建于 2016-11-18 15:08:15 版权归作者和作者当前组织所有
+ *  RecommendGroupDaoImpl 创建于 2016-11-18 15:33:45 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao.impl;
 
@@ -24,7 +24,7 @@ import com.mmk.business.condition.RecommendGroupCondition;
 
 
 /**
-* RecommendGroupDaoImpl: 拼团管理 数据持久层接口实现
+* RecommendGroupDaoImpl: 拼团推荐管理 数据持久层接口实现
 *@author huguangling 胡广玲
 *@version 1.0
 *

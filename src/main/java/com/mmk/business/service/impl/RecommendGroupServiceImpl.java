@@ -15,8 +15,8 @@ import com.mmk.business.condition.RecommendGroupCondition;
 import com.mmk.business.service.RecommendGroupService;
 import com.mmk.business.dao.RecommendGroupDao;
 /**
-* RecommendGroupServiceImpl: 拼团管理 业务服务层实现
-* 2016-11-18 15:08:16
+* RecommendGroupServiceImpl: 拼团推荐管理 业务服务层实现
+* 2016-11-18 15:33:45
 * @author huguangling 胡广玲
 * @version 1.0
 */
@@ -40,13 +40,13 @@ public class RecommendGroupServiceImpl extends BaseServiceImpl<RecommendGroup, L
 
     @Override
     public Page<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition, Pageable pageable) {
-        log.info("拼团管理查询列表");
+        log.info("拼团推荐管理查询列表");
         return recommendGroupDao.list(recommendGroupCondition, pageable);
     }
     
     @Override
     public List<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition) {
-        log.info("拼团管理查询列表无分页");
+        log.info("拼团推荐管理查询列表无分页");
         return recommendGroupDao.list(recommendGroupCondition);
     }
 
@@ -61,13 +61,13 @@ public class RecommendGroupServiceImpl extends BaseServiceImpl<RecommendGroup, L
     }
     @Override 
     public RecommendGroup findBy(String field,Object value){
-        log.info("拼团管理根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
+        log.info("拼团推荐管理根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return recommendGroupDao.findBy(field,value);
     }
     
     @Override 
     public List<RecommendGroup> findAllBy(String field,Object value){
-        log.info("拼团管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
+        log.info("拼团推荐管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return recommendGroupDao.findAllBy(field,value);
     }
 }
