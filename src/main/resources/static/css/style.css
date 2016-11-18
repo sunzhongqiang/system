@@ -412,14 +412,10 @@ overflow: hidden;}
 .reGood1 .datagrid-body tr td, .reGood2 .datagrid-body tr td, .reGood3 .datagrid-body tr td{
 	height: 40px;
 }
-<<<<<<< HEAD
-
 /*权限管理*/
 .function .datagrid-body tr td{
 	height: 40px;
 }
-=======
->>>>>>> branch 'master' of https://github.com/sunzhongqiang/system.git
 
 
 
