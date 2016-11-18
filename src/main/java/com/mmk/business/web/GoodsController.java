@@ -34,10 +34,12 @@ import com.mmk.common.tool.FileClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsImgService;
 import com.mmk.business.service.GoodsService;
 import com.mmk.business.service.GoodsSkuService;
 import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.GoodsSku;
 import com.mmk.business.model.RecommendGoods;
@@ -59,6 +61,9 @@ public class GoodsController extends BaseController {
     private GoodsSkuService goodsSkuService;
     @Resource 
     private GoodsImgService goodsImgService;
+    @Resource 
+    private GoodsGroupService goodsGroupService;
+    
     /**
      * 跳转至列表页面
      * @return 返回页面以及页面模型
@@ -87,6 +92,29 @@ public class GoodsController extends BaseController {
         Page<Goods> goodsPage = goodsService.list(goodsCondition,pageable.pageable());   
         GridData<Goods> grid = new GridData<Goods>(goodsPage);
         return grid;
+    }
+    
+    /**
+     * 查询商品分组里所有的商品信息
+     * 
+     * @param goodsGroupCondition
+     *            用户查询参数
+     * @param pageable
+     *            分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/goods/goodsAllData")
+    @ResponseBody
+    public List<Goods> goodsAllData(){
+    	log.info("查询商品分组里所有的商品信息");
+    	List<Goods> goodsList = new ArrayList<>();
+    	Iterable<GoodsGroup> goodsGroupPage = goodsGroupService.findAll();   
+    	for(GoodsGroup goodsGroup : goodsGroupPage) {
+//    		Goods good = goodsService.findById(goodsGroup.getGoodsId());
+    		Goods good = new Goods();
+    		goodsList.add(good);
+    	}
+        return goodsList;
     }
     
     /**
