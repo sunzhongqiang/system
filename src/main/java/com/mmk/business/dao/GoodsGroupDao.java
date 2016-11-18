@@ -7,6 +7,8 @@ package com.mmk.business.dao;
 import java.util.List;
 import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
+import com.mmk.trade.model.Tuan;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.GoodsGroupCondition;
@@ -75,6 +77,7 @@ public interface GoodsGroupDao extends SpringDataQueryDao<GoodsGroup>{
      * @return
      */
 	List<GoodsGroup> findAllByGoodsId(Long goodsId);
+	
     
     
 

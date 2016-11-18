@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.trade.model.Tuan;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.dao.GoodsGroupRepository;
@@ -95,4 +97,5 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
         log.info("商品拼团管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return goodsGroupDao.findAllBy(field,value);
     }
+
 }

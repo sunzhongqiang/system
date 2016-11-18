@@ -65,4 +65,10 @@ public interface WxUserService extends BaseService<WxUser, Long> {
 	 * 
 	 */
 	List<WxUser> findAllBy(String field, Object value);
+	/**
+	 * 根据openid获取用户信息
+	 * @param openid openid
+	 * @return 用户信息
+	 */
+	WxUser findByOpenid(String openid);
 }

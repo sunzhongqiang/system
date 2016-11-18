@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
+import com.mmk.trade.model.Tuan;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -132,6 +134,8 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 	        params.put("goodsId",goodsId);
 	        return queryByJpql(sb.toString(), params);
 	}
+
+	
     
     
 }
