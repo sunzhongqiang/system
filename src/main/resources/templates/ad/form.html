@@ -45,19 +45,19 @@
                     <tr>
                         <td class="tdTit"><label>位置ID：</label></td>
                         <td>
-                        <input type="text"  name="positionId"   class="easyui-validatebox" readonly="readonly" data-options="required:true" th:value="${ad.positionId}"/>
+                        <input type="text"  name="positionId"   class="easyui-textbox" readonly="readonly" data-options="required:true" th:value="${ad.positionId}" style="width:250px"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>广告名称：</label></td>
                         <td>
-                        <input type="text"  name="adName"   class="easyui-validatebox" data-options="required:true" th:value="${ad.adName}"/>
+                        <input type="text"  name="adName"   class="easyui-textbox" data-options="required:true" th:value="${ad.adName}" style="width:250px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>广告链接：</label></td>
                         <td>
-                        <input type="text"  name="adLink"   class="easyui-validatebox"  th:value="${ad.adLink}"/>
+                        <input type="text"  name="adLink"   class="easyui-textbox"  th:value="${ad.adLink}" style="width:250px" />
                         </td>
                     </tr>
                     <tr>
@@ -79,33 +79,33 @@
                     <tr>
                         <td class="tdTit"><label>图片地址：</label></td>
                         <td>
-                        <input type="text"  name="adImgLink"   class="easyui-validatebox"  />
+                        <input type="text"  name="adImgLink"   class="easyui-textbox"  style="width:250px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>广告编码：</label></td>
                         <td>
-                        <input type="text"  name="adCode"   class="easyui-validatebox"  th:value="${ad.adCode}"/>
+                        <input type="text"  name="adCode"   class="easyui-textbox"  th:value="${ad.adCode}" style="width:250px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>开始时间：</label></td>
-                        <td><input class="easyui-datebox" name="startTime" type="text" placeholder="点击选择时间"  onfocus="WdatePicker();" th:value="${ad.startTime}"/></td>
+                        <td><input class="easyui-datetimebox" name="startTime" type="text" placeholder="点击选择时间"  onfocus="WdatePicker();" th:value="${ad.startTime}" style="width:250px" /></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>结束时间：</label></td>
-                        <td><input class="easyui-datebox" name="endTime" type="text" placeholder="点击选择时间"  onfocus="WdatePicker();" th:value="${ad.endTime}"/></td>
+                        <td><input class="easyui-datetimebox" name="endTime" type="text" placeholder="点击选择时间"  onfocus="WdatePicker();" th:value="${ad.endTime}" style="width:250px" /></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>点击次数：</label></td>
                         <td>
-                        <input type="text"  name="clickCount"   class="easyui-numberbox"   th:value="${ad.clickCount}"/>
+                        <input type="text"  name="clickCount"   class="easyui-numberbox"   th:value="${ad.clickCount}" style="width:250px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>描述：</label></td>
                         <td>
-                        <input type="text"  name="description"   class="easyui-validatebox"  th:value="${ad.description}"/>
+                        <input type="text"  name="description"   class="easyui-textbox"  th:value="${ad.description}" style="width:250px" />
                         </td>
                     </tr>
             </table>

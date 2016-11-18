@@ -136,12 +136,12 @@
 //                field : 'id',
 //            },
 					{
-                width : '50',
+                width : '80',
                 title : '位置编码',
                 field : 'code',
             },
                     {
-                width : '120',
+                width : '140',
                 title : '位置名称',
                 field : 'positionName',
             },

@@ -20,44 +20,42 @@
 <script type="text/javascript" src="/js/userAddress/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px;; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>会员id：</th>
                       <td>
-                        <input type="text" name="userId" th:value="${userAddressCondition} ? ${userAddressCondition.userId} :''"/>
+                        <input type="text" class="easyui-textbox" name="userId" th:value="${userAddressCondition} ? ${userAddressCondition.userId} :''"/>
                       </td>
-                  
-
                     <th>收货人姓名：</th>
                       <td>
-                        <input type="text" name="consignee" th:value="${userAddressCondition} ? ${userAddressCondition.consignee} :''"/>
+                        <input type="text" class="easyui-textbox" name="consignee" th:value="${userAddressCondition} ? ${userAddressCondition.consignee} :''"/>
                       </td>
                   
 
                     <th>省：</th>
                       <td>
-                        <input type="text" name="province" th:value="${userAddressCondition} ? ${userAddressCondition.province} :''"/>
+                        <input type="text" class="easyui-textbox" name="province" th:value="${userAddressCondition} ? ${userAddressCondition.province} :''"/>
                       </td>
                   
 
                     <th>市：</th>
                       <td>
-                        <input type="text" name="city" th:value="${userAddressCondition} ? ${userAddressCondition.city} :''"/>
+                        <input type="text" class="easyui-textbox" name="city" th:value="${userAddressCondition} ? ${userAddressCondition.city} :''"/>
                       </td>
                   
 
                     <th>区、县：</th>
                       <td>
-                        <input type="text" name="district" th:value="${userAddressCondition} ? ${userAddressCondition.district} :''"/>
+                        <input type="text" class="easyui-textbox" name="district" th:value="${userAddressCondition} ? ${userAddressCondition.district} :''"/>
                       </td>
                   
 
                     <th>手机：</th>
                       <td>
-                        <input type="text" name="mobile" th:value="${userAddressCondition} ? ${userAddressCondition.mobile} :''"/>
+                        <input type="text" class="easyui-textbox" name="mobile" th:value="${userAddressCondition} ? ${userAddressCondition.mobile} :''"/>
                       </td>
                   
                       <td>
