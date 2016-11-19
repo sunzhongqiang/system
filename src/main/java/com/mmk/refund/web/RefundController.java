@@ -132,7 +132,7 @@ public class RefundController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("/refund/refundDetail");
         Order order = orderService.findById(id);
         User user = userService.find(order.getUserId());
-        Refund refund = refundService.findByOrderID(id);
+        Refund refund = refundService.find(id);
         modelAndView.addObject("order", order);
         modelAndView.addObject("refund", refund);
         modelAndView.addObject("user", user);

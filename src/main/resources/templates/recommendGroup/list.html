@@ -12,28 +12,22 @@
 <link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
 <link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
-<title>拼团推荐管理</title>
+<title>商品 位置 关系表</title>
 <script type="text/javascript" src="/js/extJs.js"></script>
 <script type="text/javascript" src="/js/recommendGroup/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
-
-                    <th>拼团组ID：</th>
+                    <th>商品名称：</th>
                       <td>
-                        <input type="text" name="groupId" th:value="${recommendGroupCondition} ? ${recommendGroupCondition.groupId} :''"/>
-                      </td>
-                  
-
-                    <th>位置id：</th>
-                      <td>
-                        <input type="text" name="positionId" th:value="${recommendGroupCondition} ? ${recommendGroupCondition.positionId} :''"/>
+                        <input class="easyui-textbox" type="text" name="goodsName" th:value="${goodsCondition} ? ${goodsCondition.goodsName} :''"/>
                       </td>
                   
                       <td>
@@ -44,8 +38,20 @@
             </table>
         </form>
     </div>
-    <div data-options="region:'center',border:true,title:'拼团推荐管理'" >
+    
+    
+    <div class="reGood1" data-options="region:'west',border:true,title:'推荐位置',split:true"  style="width:400px;">
+        <div id="positionGrid" data-options="fit:true,border:false"></div>
+    </div>
+   
+    <div class="reGood2" data-options="region:'center',border:true,title:'推荐商品',split:true" >
+        <div id="tuiList" data-options="fit:true,border:false"></div>
+    </div>
+     <div class="reGood3" data-options="region:'east',border:true,title:'全部商品',split:true" style="width:500px;">
         <table id="dataGrid" data-options="fit:true,border:false"></table>
     </div>
+    
+    
+    
 </body>
 </html>
