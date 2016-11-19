@@ -4,6 +4,7 @@
  */
 package com.mmk.business.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,4 +186,18 @@ public class GoodsGroupController extends BaseController {
         return true; 
     }
     
+    /**
+     * 新增页面
+     * @return 跳转到商品拼团管理新增页面
+     */
+    @RequestMapping("/goodsGroup/goodsList")
+    public List<Goods> goodsList(){
+    	List<Goods> goodsList = new ArrayList<>(); 
+        Iterable<GoodsGroup> goodsGroupList = goodsGroupService.findAll();
+        for(GoodsGroup goodsGroup : goodsGroupList) {
+        	goodsList.add(goodsGroup.getGoods());
+        }
+        
+        return goodsList;
+    }
 }
