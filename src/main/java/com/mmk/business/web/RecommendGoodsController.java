@@ -43,8 +43,7 @@ public class RecommendGoodsController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("recommendGoods/list");
         return  modelAndView;
     }
-    
-    
+   
     /**
      * 加载表格数据 用户
      * 
@@ -60,9 +59,7 @@ public class RecommendGoodsController extends BaseController {
         GridData<RecommendGoods> grid = new GridData<RecommendGoods>(recommendGoodsPage);
         return grid;
     }
-    
-
-    
+     
     /**
      * 新增页面
      * @return 跳转到商品 位置 关系表新增页面
@@ -163,8 +160,7 @@ public class RecommendGoodsController extends BaseController {
         recomm.setOrderby(orderby);
         recommendGoodsService.save(recomm);
         return new ResultMsg(true,"推荐商品的排序保存成功");
-    }
-    
+    }   
     
     /**
      * 跳转至详细信息页面

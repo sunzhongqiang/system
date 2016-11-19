@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.business.condition.RecommendGroupCondition;
-import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.model.RecommendGroup;
 import com.mmk.business.service.RecommendGroupService;
 import com.mmk.common.BaseController;
@@ -43,8 +42,7 @@ public class RecommendGroupController extends BaseController {
         log.info("拼团推荐管理列表查询");
         ModelAndView modelAndView = new ModelAndView("recommendGroup/list");
         return  modelAndView;
-    }
-    
+    }   
     
     /**
      * 加载表格数据 用户
@@ -207,5 +205,20 @@ public class RecommendGroupController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("recommendGroup/editOrder");
         modelAndView.addObject("recommendGoods", recommendGoods);
         return modelAndView ;
+    }
+    
+    /**
+     * 商品 排序保存方法
+     * @param recommendGroup 要保存的数据
+     * @return recommendGroup 保存后的数据
+     */
+    @RequestMapping("/recommendGroup/saveOrder")
+    @ResponseBody
+    public ResultMsg saveOrder(Long id, Long orderby){
+        log.info("推荐商品排序保存");
+        RecommendGroup recomm =  recommendGroupService.findById(id);
+        recomm.setOrderby(orderby);
+        recommendGroupService.save(recomm);
+        return new ResultMsg(true,"推荐商品的排序保存成功");
     }
 }
