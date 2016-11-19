@@ -80,4 +80,10 @@ public class RecommendGoodsServiceImpl extends BaseServiceImpl<RecommendGoods, L
         return recommendGoodsDao.findByPositionId(positionId,goodId);
 	}
 
+	@Override
+	public List<RecommendGoods> findByPosition(Long positionId) {
+        log.info("查找对应位置下的推荐商品 ");
+        return recommendGoodsDao.findByPosition(positionId);
+	}
+
 }

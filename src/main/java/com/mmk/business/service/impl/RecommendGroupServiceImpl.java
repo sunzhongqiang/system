@@ -80,4 +80,10 @@ public class RecommendGroupServiceImpl extends BaseServiceImpl<RecommendGroup, L
         log.info("推荐商品 ");
         return recommendGroupDao.findByPositionId(positionId,goodId);
 	}
+
+	@Override
+	public List<RecommendGroup> findByPosition(Long positionId) {
+        log.info("查找对应位置下的推荐团 ");
+        return recommendGroupDao.findByPosition(positionId);
+	}
 }

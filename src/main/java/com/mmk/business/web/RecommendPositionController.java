@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.business.condition.RecommendPositionCondition;
+import com.mmk.business.model.RecommendGoods;
+import com.mmk.business.model.RecommendGroup;
 import com.mmk.business.model.RecommendPosition;
+import com.mmk.business.service.RecommendGoodsService;
+import com.mmk.business.service.RecommendGroupService;
 import com.mmk.business.service.RecommendPositionService;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
@@ -32,6 +36,10 @@ public class RecommendPositionController extends BaseController {
     
     @Resource 
     private RecommendPositionService recommendPositionService;
+    @Resource 
+    private RecommendGoodsService recommendGoodService;
+    @Resource 
+    private RecommendGroupService recommendGroupService;
 
     /**
      * 跳转至列表页面
@@ -43,8 +51,7 @@ public class RecommendPositionController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("recommendPosition/list");
         return  modelAndView;
     }
-    
-    
+ 
     /**
      * 加载表格数据 用户
      * 
@@ -83,8 +90,7 @@ public class RecommendPositionController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("recommendPosition/form");
         modelAndView.addObject("recommendPosition", recommendPosition);
         return modelAndView ;
-    }
-    
+    }   
     
     /**
      * 位置表数据保存方法
@@ -102,9 +108,7 @@ public class RecommendPositionController extends BaseController {
         }
         return new ResultMsg(true,"位置表保存成功");
     }
-    
-   
-    
+  
     /**
      * 跳转至详细信息页面
      * @param recommendPosition 参数
@@ -127,6 +131,15 @@ public class RecommendPositionController extends BaseController {
     public ResultMsg delete(RecommendPosition recommendPosition){
         log.info("位置表删除");
         try {
+        	List<RecommendGroup> recommendGroupList = recommendGroupService.findByPosition(recommendPosition.getId());
+        	for (RecommendGroup recommendGroup : recommendGroupList) {
+        		recommendGroupService.delete(recommendGroup);
+        	}
+        	List<RecommendGoods> recommendGoodsList = recommendGoodService.findByPosition(recommendPosition.getId());
+        	for(RecommendGoods recommendGoods : recommendGoodsList){
+        		recommendGoodService.delete(recommendGoods);
+        	}
+        	
             recommendPositionService.delete(recommendPosition);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

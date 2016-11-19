@@ -126,6 +126,17 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
         List<RecommendGoods> result = queryByJpql(sb.toString(), params,0l,1l);
         return result.isEmpty() ? null : result.get(0);
     
+	}
+
+	@Override
+	public List<RecommendGoods> findByPosition(Long positionId) {
+        StringBuffer sb=new StringBuffer("select model from RecommendGoods model  where 1 = 1");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(positionId != null){
+            sb.append(" and positionId = :positionId ");
+            params.put("positionId", positionId);
+        }
+        return queryByJpql(sb.toString(), params);
 	}  
     
 }
