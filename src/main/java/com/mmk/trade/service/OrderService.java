@@ -17,10 +17,8 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 生成的列表分页查询方法
 	 * 
-	 * @param orderCondition
-	 *            查询条件
-	 * @param pageable
-	 *            分页参数
+	 * @param orderCondition　查询条件
+	 * @param pageable　分页参数
 	 * @return 分页返回查询的结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -30,8 +28,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
 	 * 
-	 * @param order
-	 *            查询类
+	 * @param order　查询类
 	 * @return 查询的结果集
 	 * @author huguangling 胡广玲
 	 * 
@@ -41,8 +38,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param id
-	 *            团订单ID
+	 * @param id　团订单ID
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -52,8 +48,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param id
-	 *            团订单ID
+	 * @param id　团订单ID
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -63,10 +58,8 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param id
-	 *            团订单ID
-	 * @param pageable
-	 *            分页参数
+	 * @param id　团订单ID
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -76,8 +69,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param tuanCode
-	 *            团ID
+	 * @param tuanCode　团ID
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -87,8 +79,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param tuanCode
-	 *            团ID
+	 * @param tuanCode　团ID
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -98,10 +89,8 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param tuanCode
-	 *            团ID
-	 * @param pageable
-	 *            分页参数
+	 * @param tuanCode　 团ID
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -111,10 +100,8 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            Order 中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　Order中的某个字段
+	 * @param value　字段的值
 	 * @return Order 返回符合条件的结果，如果没有返回null
 	 * @author huguangling 胡广玲
 	 * 
@@ -125,10 +112,8 @@ public interface OrderService extends BaseService<Order, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            Order中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　Order中的某个字段
+	 * @param value　字段的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 

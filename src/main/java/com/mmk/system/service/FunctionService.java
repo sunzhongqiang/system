@@ -2,13 +2,13 @@ package com.mmk.system.service;
 
 import java.util.List;
 
-import com.mmk.common.model.Tree;
-import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.system.model.Function;
-import com.mmk.system.model.Organization;
+
+import com.mmk.common.model.Tree;
+import com.mmk.gene.service.BaseService;
 import com.mmk.system.condition.FunctionCondition;
+import com.mmk.system.model.Function;
 
 /**
 * FunctionService: 系统功能 业务服务层接口

@@ -7,19 +7,17 @@ package com.mmk.business.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.model.GoodsImg;
-import com.mmk.business.dao.GoodsImgDao;
 
 import com.mmk.business.condition.GoodsImgCondition;
+import com.mmk.business.dao.GoodsImgDao;
+import com.mmk.business.model.GoodsImg;
+import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 
 /**
  * GoodsImgDaoImpl: 商品相册 数据持久层接口实现
@@ -40,10 +38,8 @@ public class GoodsImgDaoImpl extends SpringDataQueryDaoImpl<GoodsImg> implements
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param goodsImgCondition
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param goodsImgCondition   查询类
+	 * @param pageable   传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author huguangling 胡广玲
 	 * 

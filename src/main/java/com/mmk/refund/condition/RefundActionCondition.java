@@ -14,6 +14,4 @@ import com.mmk.refund.model.RefundAction;
 */
 public class RefundActionCondition extends RefundAction{
 
-
-
 }

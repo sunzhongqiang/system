@@ -48,10 +48,8 @@ public class CommentController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param commentCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param commentCondition　用户查询参数
+     * @param pageable　分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/comment/gridData")
@@ -104,9 +102,7 @@ public class CommentController extends BaseController {
         }
         return new ResultMsg(true,"评价管理保存成功");
     }
-    
-   
-    
+ 
     /**
      * 跳转至详细信息页面
      * @param comment 参数

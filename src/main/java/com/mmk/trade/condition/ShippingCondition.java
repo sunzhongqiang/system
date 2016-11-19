@@ -4,7 +4,6 @@
  */
 package com.mmk.trade.condition;
 
-import java.util.Date;
 import com.mmk.trade.model.Shipping;
 
 /**

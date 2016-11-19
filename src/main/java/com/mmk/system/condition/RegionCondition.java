@@ -4,7 +4,6 @@
  */
 package com.mmk.system.condition;
 
-import java.util.Date;
 import com.mmk.system.model.Region;
 
 /**

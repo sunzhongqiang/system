@@ -3,7 +3,6 @@
  *  CommentCondition 创建于 2016-11-11 13:31:11 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.condition;
-import java.util.Date;
 import com.mmk.trade.model.Comment;
 
 /**
@@ -14,7 +13,5 @@ import com.mmk.trade.model.Comment;
 *
 */
 public class CommentCondition extends Comment{
-
-
 
 }

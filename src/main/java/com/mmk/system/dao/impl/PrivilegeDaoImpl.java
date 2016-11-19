@@ -4,26 +4,21 @@
  */
 package com.mmk.system.dao.impl;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
-import javax.persistence.Query;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Repository;
-import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
-import com.mmk.system.model.Privilege;
-import com.mmk.system.dao.PrivilegeDao;
-
+import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import com.mmk.system.condition.PrivilegeCondition;
+import com.mmk.system.dao.PrivilegeDao;
+import com.mmk.system.model.Privilege;
 
 /**
  * PrivilegeDaoImpl: 系统权限表 数据持久层接口实现
@@ -44,10 +39,8 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param privilegeCondition
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param privilegeCondition 查询类
+	 * @param pageable  传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author
 	 * 

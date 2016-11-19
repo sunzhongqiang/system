@@ -20,8 +20,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	/**
 	 * 根据给定的字段：userId 用户主键获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            用户主键
+	 * @param userId　 用户主键
 	 * @return 符合条件的所有对象
 	 * @author code
 	 * 
@@ -31,10 +30,8 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	/**
 	 * 根据给定的字段：userId 用户主键所有符合的记录
 	 * 
-	 * @param userId
-	 *            用户主键
-	 * @param pageable
-	 *            分页参数
+	 * @param userId　用户主键
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author code
 	 * 
@@ -44,8 +41,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	/**
 	 * 根据给定的字段：roleId 角色主键获取所有符合的记录
 	 * 
-	 * @param roleId
-	 *            角色主键
+	 * @param roleId　角色主键
 	 * @return 符合条件的所有对象
 	 * @author code
 	 * 
@@ -55,10 +51,8 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	/**
 	 * 根据给定的字段：roleId 角色主键所有符合的记录
 	 * 
-	 * @param roleId
-	 *            角色主键
-	 * @param pageable
-	 *            分页参数
+	 * @param roleId 角色主键
+	 * @param pageable 分页参数
 	 * @return 符合条件的所有对象
 	 * @author code
 	 * 

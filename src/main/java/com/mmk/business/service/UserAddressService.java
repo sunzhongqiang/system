@@ -17,10 +17,8 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 生成的列表分页查询方法
 	 * 
-	 * @param userAddressCondition
-	 *            查询条件
-	 * @param pageable
-	 *            分页参数
+	 * @param userAddressCondition　查询条件
+	 * @param pageable　分页参数
 	 * @return 分页返回查询的结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -30,8 +28,7 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
 	 * 
-	 * @param userAddress
-	 *            查询类
+	 * @param userAddress　查询类
 	 * @return 查询的结果集
 	 * @author huguangling 胡广玲
 	 * 
@@ -41,8 +38,7 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param id
-	 *            地址id
+	 * @param id　地址id
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -52,8 +48,7 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            会员id
+	 * @param userId　会员id
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -63,10 +58,8 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            会员id
-	 * @param pageable
-	 *            分页参数
+	 * @param userId　会员id
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -76,10 +69,8 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            UserAddress 中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　 UserAddress 中的某个字段
+	 * @param value　字段的值
 	 * @return UserAddress 返回符合条件的结果，如果没有返回null
 	 * @author huguangling 胡广玲
 	 * 
@@ -90,10 +81,8 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            UserAddress中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　UserAddress中的某个字段
+	 * @param value　字段的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -104,10 +93,8 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param openid
-	 *            openid
-	 * @param pageable
-	 *            分页参数
+	 * @param openid openid
+	 * @param pageable 分页参数
 	 * @return 符合条件的所有对象
 	 * @author sunzhongqiang 孙中强
 	 * 

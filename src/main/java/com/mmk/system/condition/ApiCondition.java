@@ -3,7 +3,6 @@
  *  ApiCondition 创建于 2016-11-15 10:01:04 版权归作者和作者当前组织所有
  */
 package com.mmk.system.condition;
-import java.util.Date;
 import com.mmk.system.model.Api;
 
 /**
@@ -14,7 +13,5 @@ import com.mmk.system.model.Api;
 *
 */
 public class ApiCondition extends Api{
-
-
 
 }

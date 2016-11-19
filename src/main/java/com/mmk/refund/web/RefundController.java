@@ -56,10 +56,8 @@ public class RefundController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param refundCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param refundCondition　用户查询参数
+     * @param pageable 分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/refund/gridData")
@@ -68,9 +66,6 @@ public class RefundController extends BaseController {
         log.info("获取退款表列表数据");
         Page<Refund> refundPage = refundService.list(refundCondition,pageable.pageable());   
         GridData<Refund> grid = new GridData<Refund>(refundPage);
-//        Page<Order> orderPage = orderService.list(orderCondition,pageable.pageable());
-//        GridData<Order> grid = new GridData<Order>(orderPage);
-//        ModelAndView modelAndView = new ModelAndView("refund/list");
         return grid;
     }
     

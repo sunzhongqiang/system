@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,14 +47,11 @@ public class FunctionController extends BaseController {
         return  modelAndView;
     }
     
-    
     /**
      * 加载表格数据 用户
      * 
-     * @param functionCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param functionCondition 用户查询参数
+     * @param pageable 分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/function/gridData")
@@ -90,8 +86,7 @@ public class FunctionController extends BaseController {
         modelAndView.addObject("function", function);
         return modelAndView ;
     }
-    
-    
+       
     /**
      * 系统功能数据保存方法
      * @param function 要保存的数据
@@ -108,9 +103,7 @@ public class FunctionController extends BaseController {
             return new ResultMsg(false,"系统功能保存失败");
         }
         return new ResultMsg(true,"系统功能保存成功");
-    }
-    
-   
+    }  
     
     /**
      * 跳转至详细信息页面

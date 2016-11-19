@@ -67,7 +67,5 @@ public interface CommentDao extends SpringDataQueryDao<Comment>{
      * 
      */
     List<Comment> findAllBy(String field,Object value);
-    
-    
 
 }

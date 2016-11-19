@@ -68,6 +68,4 @@ public interface OrganizationDao extends SpringDataQueryDao<Organization>{
      */
     List<Organization> findAllBy(String field,Object value);
     
-    
-
 }

@@ -33,8 +33,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	/**
 	 * 构造方法
 	 * 
-	 * @param userRepository
-	 *            资源服务
+	 * @param userRepository 资源服务
 	 */
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository) {

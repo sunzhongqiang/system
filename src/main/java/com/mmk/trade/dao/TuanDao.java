@@ -77,19 +77,6 @@ public interface TuanDao extends SpringDataQueryDao<Tuan>{
      * 
      * 
      */
-	Tuan findById(Long id);
-	
-//	 /**
-//     * 根据用户Openid获取团列表
-//     * @param openid
-//     * @param status
-//     * @param pageable
-//     * @return
-//     */
-//	Page<Tuan> listByOpenId(String openid, Long status, Pageable pageable);
-//	
-//	Page<Tuan> listByOpenId(Long id, Long status, Pageable pageable);
-    
-    
+	Tuan findById(Long id);    
 
 }

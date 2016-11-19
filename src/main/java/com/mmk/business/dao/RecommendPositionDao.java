@@ -67,7 +67,4 @@ public interface RecommendPositionDao extends SpringDataQueryDao<RecommendPositi
      * 
      */
     List<RecommendPosition> findAllBy(String field,Object value);
-    
-    
-
 }

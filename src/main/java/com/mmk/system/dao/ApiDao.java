@@ -68,6 +68,4 @@ public interface ApiDao extends SpringDataQueryDao<Api>{
      */
     List<Api> findAllBy(String field,Object value);
     
-    
-
 }

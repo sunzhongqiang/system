@@ -4,28 +4,23 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.system.service.RegionService;
-import com.mmk.system.model.Region;
 import com.mmk.system.condition.RegionCondition;
+import com.mmk.system.model.Region;
+import com.mmk.system.service.RegionService;
 
 /**
 *@Title: RegionController
@@ -53,10 +48,8 @@ public class RegionController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param regionCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param regionCondition 用户查询参数
+     * @param pageable 分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/region/gridData")
@@ -91,8 +84,7 @@ public class RegionController extends BaseController {
         modelAndView.addObject("region", region);
         return modelAndView ;
     }
-    
-    
+   
     /**
      * 区域管理数据保存方法
      * @param region 要保存的数据
@@ -109,9 +101,7 @@ public class RegionController extends BaseController {
         }
         return new ResultMsg(true,"区域管理保存成功");
     }
-    
-   
-    
+  
     /**
      * 跳转至详细信息页面
      * @param region 参数

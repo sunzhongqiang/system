@@ -68,6 +68,4 @@ public interface RoleDao extends SpringDataQueryDao<Role>{
      */
     List<Role> findAllBy(String field,Object value);
     
-    
-
 }

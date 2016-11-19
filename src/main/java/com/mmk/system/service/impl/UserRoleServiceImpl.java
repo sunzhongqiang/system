@@ -40,8 +40,7 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, Long> impleme
 	/**
 	 * 构造方法
 	 * 
-	 * @param userRoleRepository
-	 *            数据容器
+	 * @param userRoleRepository  数据容器
 	 */
 	@Autowired
 	public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
@@ -64,8 +63,7 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, Long> impleme
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            用户主键
+	 * @param userId 用户主键
 	 * @return 符合条件的所有对象
 	 */
 	@Override
@@ -81,8 +79,7 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, Long> impleme
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param roleId
-	 *            角色主键
+	 * @param roleId  角色主键
 	 * @return 符合条件的所有对象
 	 */
 	@Override

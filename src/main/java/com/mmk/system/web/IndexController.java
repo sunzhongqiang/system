@@ -1,11 +1,8 @@
 package com.mmk.system.web;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpRequest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +20,7 @@ import com.mmk.common.BaseController;
 import com.mmk.common.CurrentUser;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.common.model.Tree;
-import com.mmk.system.model.User;
 import com.mmk.system.service.FunctionService;
-import com.mmk.system.service.PrivilegeService;
 
 @CacheConfig(cacheNames = "demo1")
 @RestController

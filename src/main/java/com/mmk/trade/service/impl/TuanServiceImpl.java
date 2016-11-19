@@ -1,22 +1,23 @@
 package com.mmk.trade.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.model.WxUser;
-import com.mmk.business.service.WxUserService;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.service.WxUserService;
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.trade.condition.TuanCondition;
+import com.mmk.trade.dao.TuanDao;
 import com.mmk.trade.dao.TuanRepository;
 import com.mmk.trade.model.Tuan;
-import com.mmk.trade.condition.TuanCondition;
 import com.mmk.trade.service.TuanService;
-import com.mmk.trade.dao.TuanDao;
 /**
 * TuanServiceImpl: 团管理 业务服务层实现
 * 2016-11-07 14:59:09

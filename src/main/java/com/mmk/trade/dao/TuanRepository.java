@@ -3,10 +3,8 @@
  */
 package com.mmk.trade.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.trade.model.Tuan;
 
 /**
@@ -16,6 +14,5 @@ import com.mmk.trade.model.Tuan;
 * @version 1.0
 */
 public interface TuanRepository extends JpaRepository<Tuan, Long>{
-
 
 }

@@ -5,30 +5,25 @@
 package com.mmk.business.web;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.business.condition.GoodsGroupCondition;
+import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.service.GoodsGroupService;
+import com.mmk.business.service.GoodsService;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.business.service.GoodsGroupService;
-import com.mmk.business.service.GoodsService;
-import com.mmk.business.model.Goods;
-import com.mmk.business.model.GoodsGroup;
-import com.mmk.business.condition.GoodsGroupCondition;
 
 /**
 *@Title: GoodsGroupController
@@ -58,10 +53,8 @@ public class GoodsGroupController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param goodsGroupCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param goodsGroupCondition  用户查询参数
+     * @param pageable 分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/goodsGroup/gridData")
@@ -76,10 +69,8 @@ public class GoodsGroupController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param goodsGroupCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param goodsGroupCondition 用户查询参数
+     * @param pageable 分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/goodsGroup/loadByGoods")

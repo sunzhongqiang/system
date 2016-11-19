@@ -66,8 +66,5 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * 
      * 
      */
-    List<GoodsSku> findAllBy(String field,Object value);
-    
-    
-
+    List<GoodsSku> findAllBy(String field,Object value);   
 }

@@ -23,10 +23,8 @@ public interface ShippingDao extends SpringDataQueryDao<Shipping> {
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param shipping
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param shipping　查询类
+	 * @param pageable　传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author huguangling 胡广玲
 	 * 
@@ -62,10 +60,8 @@ public interface ShippingDao extends SpringDataQueryDao<Shipping> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            Shipping 中的某个字段
-	 * @param value
-	 *            字段对应的值
+	 * @param field　Shipping 中的某个字段
+	 * @param value　字段对应的值
 	 * @return 返回符合条件的结果，如果没有返回null
 	 * @author huguangling 胡广玲
 	 * 
@@ -76,10 +72,8 @@ public interface ShippingDao extends SpringDataQueryDao<Shipping> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            Shipping 中的某个字段
-	 * @param value
-	 *            字段对应的值
+	 * @param field　Shipping 中的某个字段
+	 * @param value　字段对应的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 

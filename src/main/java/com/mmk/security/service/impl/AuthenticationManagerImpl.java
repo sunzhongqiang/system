@@ -32,8 +32,6 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 	private LoginLogService loginLogService;	
 	@Resource
 	private UserService userService;
-//	@Resource
-//	private RoleService roleService;
 	@Resource
 	private UserRoleService userRoleService;
 

@@ -4,28 +4,23 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.system.service.RoleService;
-import com.mmk.system.model.Role;
 import com.mmk.system.condition.RoleCondition;
+import com.mmk.system.model.Role;
+import com.mmk.system.service.RoleService;
 
 /**
  * @Title: RoleController
@@ -53,10 +48,8 @@ public class RoleController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param roleCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param roleCondition 用户查询参数
+	 * @param pageable 分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/role/gridData")
@@ -83,8 +76,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 跳转到编辑页面
 	 * 
-	 * @param role
-	 *            跳转到编辑页面
+	 * @param role 跳转到编辑页面
 	 */
 	@RequestMapping("/role/edit")
 	public ModelAndView editPage(Role role) {
@@ -98,8 +90,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 系统角色数据保存方法
 	 * 
-	 * @param role
-	 *            要保存的数据
+	 * @param role 要保存的数据
 	 * @return role 保存后的数据
 	 */
 	@RequestMapping("/role/save")
@@ -117,8 +108,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param role
-	 *            参数
+	 * @param role 参数
 	 * @return 详情数据
 	 */
 	@RequestMapping("/role/details")
@@ -132,8 +122,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 删除数据操作组方法
 	 * 
-	 * @param page
-	 *            role
+	 * @param page role
 	 * @return
 	 */
 	@RequestMapping("/role/delete")
@@ -151,8 +140,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 批量删除数据操作组方法
 	 * 
-	 * @param page
-	 *            role
+	 * @param page role
 	 * @return ture or false 如果成功返回true ,出现错误返回false
 	 */
 	@RequestMapping("/role/deleteAll")
@@ -170,8 +158,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 禁用角色权限
 	 * 
-	 * @param page
-	 *            role
+	 * @param page role
 	 * @return 禁用成功
 	 */
 	@RequestMapping("/role/disable")
@@ -186,8 +173,7 @@ public class RoleController extends BaseController {
 	/**
 	 * 启用角色权限
 	 * 
-	 * @param page
-	 *            role
+	 * @param page role
 	 * @return 启用成功
 	 */
 	@RequestMapping("/role/enable")

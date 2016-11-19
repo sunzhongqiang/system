@@ -15,5 +15,4 @@ import com.mmk.refund.model.RefundAction;
 */
 public interface RefundActionRepository extends JpaRepository<RefundAction, Long>{
 
-
 }

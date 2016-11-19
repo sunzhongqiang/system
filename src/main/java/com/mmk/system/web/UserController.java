@@ -54,10 +54,8 @@ public class UserController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param userCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param userCondition 用户查询参数
+	 * @param pageable 分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/user/gridData")
@@ -94,7 +92,6 @@ public class UserController extends BaseController {
 	public ModelAndView addPage(User user) {
 		ModelAndView modelAndView = new ModelAndView("user/form");
 		// 如果存在id获取该用户信息
-
 		if (user.getId() != null) {
 			user = userService.find(user.getId());
 		}
@@ -102,9 +99,7 @@ public class UserController extends BaseController {
 		if (user == null) {
 			user = new User();
 		}
-
 		modelAndView.addObject("user", user);
-
 		return modelAndView;
 	}
 
@@ -121,8 +116,7 @@ public class UserController extends BaseController {
 	/**
 	 * 系统用户数据保存方法
 	 * 
-	 * @param user
-	 *            要保存的数据
+	 * @param user 要保存的数据
 	 * @return 保存后的数据
 	 * @author sunzhongqiang 孙中强
 	 * 
@@ -154,8 +148,7 @@ public class UserController extends BaseController {
 	/**
 	 * 系统用户数据批量保存方法
 	 * 
-	 * @param userList
-	 *            要保存的数据
+	 * @param userList  要保存的数据
 	 * @return 是否成功
 	 * @author sunzhongqiang 孙中强
 	 * 
@@ -177,8 +170,7 @@ public class UserController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param user
-	 *            要查询的数据
+	 * @param user 要查询的数据
 	 * @return 返回详情数据
 	 * @author sunzhongqiang 孙中强
 	 * 
@@ -194,8 +186,7 @@ public class UserController extends BaseController {
 	/**
 	 * 删除数据操作组方法
 	 * 
-	 * @param user
-	 *            要删除的数据
+	 * @param user 要删除的数据
 	 * @return 是否成功
 	 * @author sunzhongqiang 孙中强
 	 * 
@@ -215,8 +206,7 @@ public class UserController extends BaseController {
 	/**
 	 * 批量删除数据操作组方法
 	 * 
-	 * @param userList
-	 *            要删除的数据
+	 * @param userList 要删除的数据
 	 * @return ture or false 如果成功返回true ,出现错误返回false
 	 * @author sunzhongqiang 孙中强
 	 * 
@@ -236,10 +226,8 @@ public class UserController extends BaseController {
 	/**
 	 * 判断用户名是否重复
 	 * 
-	 * @param username
-	 *            当前的用户名
-	 * @param id
-	 *            当前的用户id
+	 * @param username 当前的用户名
+	 * @param id 当前的用户id
 	 * @return true or false
 	 */
 	@RequestMapping("/user/username/exist")
@@ -256,10 +244,8 @@ public class UserController extends BaseController {
 	/**
 	 * 修改密码逻辑
 	 * 
-	 * @param oldPwd
-	 *            旧密码
-	 * @param pwd
-	 *            新密码
+	 * @param oldPwd 旧密码
+	 * @param pwd 新密码
 	 * @return 处理结果
 	 */
 	@RequestMapping("/user/changePwd")
@@ -282,10 +268,8 @@ public class UserController extends BaseController {
 	/**
 	 * 修改密码逻辑
 	 * 
-	 * @param oldPwd
-	 *            旧密码
-	 * @param pwd
-	 *            新密码
+	 * @param oldPwd 旧密码
+	 * @param pwd 新密码
 	 * @return 处理结果
 	 */
 	@RequestMapping("/user/changeUserPwd")
@@ -314,8 +298,7 @@ public class UserController extends BaseController {
 	/**
 	 * 修改密码界面
 	 * 
-	 * @param user
-	 *            要修改的用户密码
+	 * @param user 要修改的用户密码
 	 * @return 修改密码界面
 	 */
 	@RequestMapping("/user/editPwdForm")
@@ -328,8 +311,7 @@ public class UserController extends BaseController {
 	/**
 	 * 修改组织界面
 	 * 
-	 * @param user
-	 *            要修改的用户
+	 * @param user 要修改的用户
 	 * @return 修改组织界面
 	 */
 	@RequestMapping("/user/changeOrgForm")
@@ -343,8 +325,7 @@ public class UserController extends BaseController {
 	/**
 	 * 修改组织结构
 	 * 
-	 * @param user
-	 *            要修改的用户
+	 * @param user 要修改的用户
 	 * @return 修改结果
 	 */
 	@RequestMapping("/user/changeOrganization")

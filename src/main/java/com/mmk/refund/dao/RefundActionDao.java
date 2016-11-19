@@ -67,7 +67,4 @@ public interface RefundActionDao extends SpringDataQueryDao<RefundAction>{
      * 
      */
     List<RefundAction> findAllBy(String field,Object value);
-    
-    
-
 }

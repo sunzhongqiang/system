@@ -7,21 +7,19 @@ package com.mmk.trade.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.mmk.business.constants.TuanConstant;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.trade.model.Order;
-import com.mmk.trade.dao.OrderDao;
-
 import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.dao.OrderDao;
+import com.mmk.trade.model.Order;
 
 /**
  * OrderDaoImpl: 订单管理 数据持久层接口实现
@@ -42,10 +40,8 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param orderCondition
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param orderCondition  查询类
+	 * @param pageable 传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author huguangling 胡广玲
 	 * 

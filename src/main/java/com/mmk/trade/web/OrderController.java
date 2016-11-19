@@ -8,25 +8,24 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.refund.service.RefundService;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
-
-import com.mmk.trade.service.OrderService;
-import com.mmk.trade.service.ShippingService;
+import com.mmk.trade.condition.OrderCondition;
 import com.mmk.trade.model.Order;
 import com.mmk.trade.model.Shipping;
-import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.service.OrderService;
+import com.mmk.trade.service.ShippingService;
 
 /**
 *@Title: OrderController
@@ -138,8 +137,6 @@ public class OrderController extends BaseController {
         return modelAndView ;
     } 
     
-
-    
     /**
      * 跳转到编辑页面
      * @param order  跳转到编辑页面
@@ -170,9 +167,7 @@ public class OrderController extends BaseController {
         }
         return new ResultMsg(true,"订单管理保存成功");
     }
-    
-   
-    
+  
     /**
      * 跳转至详细信息页面
      * @param order 参数

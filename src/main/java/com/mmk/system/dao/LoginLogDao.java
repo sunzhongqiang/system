@@ -23,10 +23,8 @@ public interface LoginLogDao extends SpringDataQueryDao<LoginLog> {
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param loginLog
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param loginLog 查询类
+	 * @param pageable 传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author codegenerator
 	 * 
@@ -37,8 +35,7 @@ public interface LoginLogDao extends SpringDataQueryDao<LoginLog> {
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
 	 * 
-	 * @param loginLog
-	 *            查询类
+	 * @param loginLog 查询类
 	 * @return 符合条件的查询结果集
 	 * @author codegenerator
 	 * 
@@ -48,10 +45,8 @@ public interface LoginLogDao extends SpringDataQueryDao<LoginLog> {
 	/**
 	 * 使用sql查询，并以map和分页的形式进行返回数据结果
 	 * 
-	 * @param loginLog
-	 *            LoginLog类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param loginLog LoginLog类
+	 * @param pageable 传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author codegenerator
 	 * 
@@ -62,10 +57,8 @@ public interface LoginLogDao extends SpringDataQueryDao<LoginLog> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            LoginLog 中的某个字段
-	 * @param value
-	 *            字段对应的值
+	 * @param field LoginLog 中的某个字段
+	 * @param value 字段对应的值
 	 * @return 返回符合条件的结果，如果没有返回null
 	 * @author codegenerator
 	 * 
@@ -76,10 +69,8 @@ public interface LoginLogDao extends SpringDataQueryDao<LoginLog> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            LoginLog 中的某个字段
-	 * @param value
-	 *            字段对应的值
+	 * @param field LoginLog 中的某个字段
+	 * @param value 字段对应的值
 	 * @return 返回符合条件的所有结果
 	 * @author codegenerator
 	 * 

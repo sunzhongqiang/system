@@ -67,7 +67,5 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * 
      */
     List<Order> findAllBy(String field,Object value);
-    
-    
 
 }

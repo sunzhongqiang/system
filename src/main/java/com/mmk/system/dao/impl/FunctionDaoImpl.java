@@ -7,19 +7,18 @@ package com.mmk.system.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.system.model.Function;
-import com.mmk.system.dao.FunctionDao;
-
 import com.mmk.system.condition.FunctionCondition;
+import com.mmk.system.dao.FunctionDao;
+import com.mmk.system.model.Function;
 
 
 
@@ -121,7 +120,7 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
     public List<Function> findAllBy(String field,Object value){
         StringBuffer sb=new StringBuffer("select model from Function model  where model.");
         sb.append(field);
-       sb.append(" = :value ");
+        sb.append(" = :value ");
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
@@ -136,9 +135,7 @@ public class FunctionDaoImpl extends SpringDataQueryDaoImpl<Function> implements
 			params.put("roleIds", roleIdList);
 		}
 		sb.append("order by function.sort,function.id");
-		List result = queryArrayByJpql(sb.toString(),params);
-		return result;
+		return queryArrayByJpql(sb.toString(),params);
 	}
-    
     
 }

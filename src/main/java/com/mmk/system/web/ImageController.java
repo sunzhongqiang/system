@@ -1,6 +1,5 @@
 package com.mmk.system.web;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,11 +48,10 @@ public class ImageController {
 	/**
 	 * 百度编辑器 专用 图片上传
 	 * 
-	 * @param m
-	 * @param errors
 	 * @param dir
 	 * @param pictitle
 	 * @param file
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/ueditor/add")

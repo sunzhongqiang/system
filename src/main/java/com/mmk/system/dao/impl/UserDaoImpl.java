@@ -40,10 +40,8 @@ public class UserDaoImpl extends SpringDataQueryDaoImpl<User> implements UserDao
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param userCondition
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param userCondition 查询类
+	 * @param pageable 传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author sunzhongqiang 孙中强
 	 * 

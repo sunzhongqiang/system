@@ -7,19 +7,18 @@ package com.mmk.business.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.model.WxUser;
-import com.mmk.business.dao.WxUserDao;
 
 import com.mmk.business.condition.WxUserCondition;
+import com.mmk.business.dao.WxUserDao;
+import com.mmk.business.model.WxUser;
+import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 
 /**
  * WxUserDaoImpl: 微信用户 数据持久层接口实现
@@ -40,10 +39,8 @@ public class WxUserDaoImpl extends SpringDataQueryDaoImpl<WxUser> implements WxU
 	/**
 	 * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
 	 * 
-	 * @param wxUserCondition
-	 *            查询类
-	 * @param pageable
-	 *            传入的分页对象
+	 * @param wxUserCondition　 查询类
+	 * @param pageable　传入的分页对象
 	 * @return 符合条件的查询结果集
 	 * @author 胡广玲 huguangling
 	 * 

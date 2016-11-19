@@ -20,8 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：id 团订单ID返回符合条件的第一个对象
 	 * 
-	 * @param id
-	 *            团订单ID
+	 * @param id　团订单ID
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -31,8 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：id 团订单ID获取所有符合的记录
 	 * 
-	 * @param id
-	 *            团订单ID
+	 * @param id　团订单ID
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -42,10 +40,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：id 团订单ID所有符合的记录
 	 * 
-	 * @param id
-	 *            团订单ID
-	 * @param pageable
-	 *            分页参数
+	 * @param id　团订单ID
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -55,8 +51,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：tuanCode 团ID返回符合条件的第一个对象
 	 * 
-	 * @param tuanCode
-	 *            团ID
+	 * @param tuanCode　团ID
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -66,8 +61,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：tuanCode 团ID获取所有符合的记录
 	 * 
-	 * @param tuanCode
-	 *            团ID
+	 * @param tuanCode　团ID
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -77,10 +71,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	/**
 	 * 根据给定的字段：tuanCode 团ID所有符合的记录
 	 * 
-	 * @param tuanCode
-	 *            团ID
-	 * @param pageable
-	 *            分页参数
+	 * @param tuanCode　团ID
+	 * @param pageable　分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 

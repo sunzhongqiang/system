@@ -3,10 +3,8 @@
  */
 package com.mmk.business.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.business.model.RecommendGroup;
 
 /**
@@ -25,5 +23,4 @@ public interface RecommendGroupRepository extends JpaRepository<RecommendGroup, 
      * 
      */
     RecommendGroup findFirstById(Long id);
-
 }

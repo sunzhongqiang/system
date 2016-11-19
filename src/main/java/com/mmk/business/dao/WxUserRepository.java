@@ -3,10 +3,8 @@
  */
 package com.mmk.business.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.business.model.WxUser;
 
 /**
@@ -16,6 +14,4 @@ import com.mmk.business.model.WxUser;
 * @version 1.0
 */
 public interface WxUserRepository extends JpaRepository<WxUser, Long>{
-
-
 }

@@ -20,8 +20,7 @@ public interface AdPositionRepository extends JpaRepository<AdPosition, Long> {
 	/**
 	 * 根据给定的字段：positionId 广告位ID返回符合条件的第一个对象
 	 * 
-	 * @param positionId
-	 *            广告位ID
+	 * @param positionId　广告位ID
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -31,8 +30,7 @@ public interface AdPositionRepository extends JpaRepository<AdPosition, Long> {
 	/**
 	 * 根据给定的字段：positionId 广告位ID获取所有符合的记录
 	 * 
-	 * @param positionId
-	 *            广告位ID
+	 * @param positionId　   广告位ID
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -42,10 +40,8 @@ public interface AdPositionRepository extends JpaRepository<AdPosition, Long> {
 	/**
 	 * 根据给定的字段：positionId 广告位ID所有符合的记录
 	 * 
-	 * @param positionId
-	 *            广告位ID
-	 * @param pageable
-	 *            分页参数
+	 * @param positionId　   广告位ID
+	 * @param pageable　 分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 

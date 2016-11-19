@@ -48,10 +48,8 @@ public class ShippingController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param shippingCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param shippingCondition　 用户查询参数
+	 * @param pageable　分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/shipping/gridData")
@@ -66,10 +64,8 @@ public class ShippingController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param shippingCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param shippingCondition　用户查询参数
+	 * @param pageable　分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/shipping/shippingList")
@@ -82,10 +78,8 @@ public class ShippingController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param shippingCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param shippingCondition　用户查询参数
+	 * @param pageable　 分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/shipping/enable")
@@ -117,8 +111,7 @@ public class ShippingController extends BaseController {
 	/**
 	 * 跳转到编辑页面
 	 * 
-	 * @param shipping
-	 *            跳转到编辑页面
+	 * @param shipping　跳转到编辑页面
 	 */
 	@RequestMapping("/shipping/edit")
 	public ModelAndView editPage(Shipping shipping) {
@@ -132,8 +125,7 @@ public class ShippingController extends BaseController {
 	/**
 	 * 物流管理数据保存方法
 	 * 
-	 * @param shipping
-	 *            要保存的数据
+	 * @param shipping　要保存的数据
 	 * @return shipping 保存后的数据
 	 */
 	@RequestMapping("/shipping/save")
@@ -151,8 +143,7 @@ public class ShippingController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param shipping
-	 *            参数
+	 * @param shipping　参数
 	 * @return 详情数据
 	 */
 	@RequestMapping("/shipping/details")
@@ -166,8 +157,7 @@ public class ShippingController extends BaseController {
 	/**
 	 * 删除数据操作组方法
 	 * 
-	 * @param page
-	 *            shipping
+	 * @param page　shipping
 	 * @return
 	 */
 	@RequestMapping("/shipping/delete")
@@ -185,8 +175,7 @@ public class ShippingController extends BaseController {
 	/**
 	 * 批量删除数据操作组方法
 	 * 
-	 * @param page
-	 *            shipping
+	 * @param page　shipping
 	 * @return ture or false 如果成功返回true ,出现错误返回false
 	 */
 	@RequestMapping("/shipping/deleteAll")

@@ -7,19 +7,18 @@ package com.mmk.refund.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.refund.model.Refund;
-import com.mmk.refund.dao.RefundDao;
-
 import com.mmk.refund.condition.RefundCondition;
+import com.mmk.refund.dao.RefundDao;
+import com.mmk.refund.model.Refund;
 
 
 
@@ -172,6 +171,5 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
         List<Refund> result = queryByJpql(sb.toString(), params);
         return result.isEmpty() ? null : result.get(0);
 	}
-    
-    
+       
 }

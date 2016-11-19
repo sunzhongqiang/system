@@ -1,19 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.RecommendGroupCondition;
+import com.mmk.business.dao.RecommendGroupDao;
 import com.mmk.business.dao.RecommendGroupRepository;
 import com.mmk.business.model.RecommendGroup;
-import com.mmk.business.condition.RecommendGroupCondition;
 import com.mmk.business.service.RecommendGroupService;
-import com.mmk.business.dao.RecommendGroupDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * RecommendGroupServiceImpl: 拼团推荐管理 业务服务层实现
 * 2016-11-18 15:33:45
@@ -70,4 +73,11 @@ public class RecommendGroupServiceImpl extends BaseServiceImpl<RecommendGroup, L
         log.info("拼团推荐管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return recommendGroupDao.findAllBy(field,value);
     }
+    
+
+	@Override
+	public RecommendGroup findByPositionId(Long positionId, Long goodId) {
+        log.info("推荐商品 ");
+        return recommendGroupDao.findByPositionId(positionId,goodId);
+	}
 }

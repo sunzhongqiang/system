@@ -34,8 +34,7 @@ public class RecommendPositionServiceImpl extends BaseServiceImpl<RecommendPosit
 	/**
 	 * 构造方法
 	 * 
-	 * @param recommendPositionRepository
-	 *            数据容器
+	 * @param recommendPositionRepository 数据容器
 	 */
 	@Autowired
 	public RecommendPositionServiceImpl(RecommendPositionRepository recommendPositionRepository) {
@@ -58,8 +57,7 @@ public class RecommendPositionServiceImpl extends BaseServiceImpl<RecommendPosit
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param id
-	 *            id
+	 * @param id  id
 	 * @return 符合条件的唯一对象
 	 */
 	@Override

@@ -74,6 +74,4 @@ public interface FunctionDao extends SpringDataQueryDao<Function>{
      */
 	List<Function> findAllByRoleIds(List<Long> roleIdList);
     
-    
-
 }

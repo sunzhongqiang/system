@@ -17,10 +17,8 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	/**
 	 * 生成的列表分页查询方法
 	 * 
-	 * @param goodsImgCondition
-	 *            查询条件
-	 * @param pageable
-	 *            分页参数
+	 * @param goodsImgCondition   查询条件
+	 * @param pageable 分页参数
 	 * @return 分页返回查询的结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -30,8 +28,7 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
 	 * 
-	 * @param goodsImg
-	 *            查询类
+	 * @param goodsImg 查询类
 	 * @return 查询的结果集
 	 * @author huguangling 胡广玲
 	 * 
@@ -41,10 +38,8 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            GoodsImg 中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field GoodsImg 中的某个字段
+	 * @param value 字段的值
 	 * @return GoodsImg 返回符合条件的结果，如果没有返回null
 	 * @author huguangling 胡广玲
 	 * 
@@ -55,10 +50,8 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            GoodsImg中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field GoodsImg中的某个字段
+	 * @param value 字段的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -69,10 +62,8 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            GoodsImg中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field GoodsImg中的某个字段
+	 * @param value 字段的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 

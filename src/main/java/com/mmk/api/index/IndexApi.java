@@ -25,13 +25,6 @@ public class IndexApi {
 	private GoodsService goodsService;
 	@Resource
 	private AdPositionService	goodPositionService;
-//	@Resource
-//	private CategoryService categoryService;
-//	@Resource
-//	private BrandService brandService;
-//	@Resource
-//	private DicRepository dicRepository;
-	
 	
 	/**
 	 * 
@@ -49,5 +42,4 @@ public class IndexApi {
 		resultData.addData("adList", adList);
 		return resultData;
 	}	
-	
 }

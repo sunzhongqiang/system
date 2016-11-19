@@ -4,18 +4,15 @@
  */
 package com.mmk.system.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
@@ -23,15 +20,11 @@ import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.common.model.Tree;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.system.service.FunctionService;
-import com.mmk.system.service.PrivilegeService;
+import com.mmk.system.condition.PrivilegeCondition;
 import com.mmk.system.model.Function;
 import com.mmk.system.model.Privilege;
-import com.mmk.system.condition.PrivilegeCondition;
+import com.mmk.system.service.FunctionService;
+import com.mmk.system.service.PrivilegeService;
 
 /**
  * @Title: PrivilegeController
@@ -62,10 +55,8 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 加载表格数据 用户
 	 * 
-	 * @param privilegeCondition
-	 *            用户查询参数
-	 * @param pageable
-	 *            分页参数
+	 * @param privilegeCondition 用户查询参数
+	 * @param pageable 分页参数
 	 * @return 查询所得数据
 	 */
 	@RequestMapping("/privilege/gridData")
@@ -92,8 +83,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 跳转到编辑页面
 	 * 
-	 * @param privilege
-	 *            跳转到编辑页面
+	 * @param privilege 跳转到编辑页面
 	 */
 	@RequestMapping("/privilege/edit")
 	public ModelAndView editPage(Privilege privilege) {
@@ -107,8 +97,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 系统权限表数据保存方法
 	 * 
-	 * @param privilege
-	 *            要保存的数据
+	 * @param privilege 要保存的数据
 	 * @return privilege 保存后的数据
 	 */
 	@RequestMapping("/privilege/save")
@@ -126,8 +115,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param privilege
-	 *            参数
+	 * @param privilege 参数
 	 * @return 详情数据
 	 */
 	@RequestMapping("/privilege/details")
@@ -141,8 +129,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 删除数据操作组方法
 	 * 
-	 * @param page
-	 *            privilege
+	 * @param page privilege
 	 * @return
 	 */
 	@RequestMapping("/privilege/delete")
@@ -160,8 +147,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 批量删除数据操作组方法
 	 * 
-	 * @param page
-	 *            privilege
+	 * @param page privilege
 	 * @return ture or false 如果成功返回true ,出现错误返回false
 	 */
 	@RequestMapping("/privilege/deleteAll")
@@ -179,8 +165,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param privilege
-	 *            参数
+	 * @param privilege 参数
 	 * @return 用户角色权限
 	 */
 	@RequestMapping("/privilege/loadByRoleId")
@@ -194,8 +179,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param privilege
-	 *            参数
+	 * @param privilege 参数
 	 * @return 用户角色权限设置
 	 */
 	@Cacheable(cacheNames = "privilege")
@@ -224,8 +208,7 @@ public class PrivilegeController extends BaseController {
 	/**
 	 * 跳转至详细信息页面
 	 * 
-	 * @param privilege
-	 *            参数
+	 * @param privilege 参数
 	 * @return 用户角色权限设置
 	 */
 	@RequestMapping("/privilege/authorizeTree")

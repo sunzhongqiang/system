@@ -3,10 +3,8 @@
  */
 package com.mmk.system.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.system.model.Role;
 
 /**
@@ -16,6 +14,5 @@ import com.mmk.system.model.Role;
 * @version 1.0
 */
 public interface RoleRepository extends JpaRepository<Role, Long>{
-
 
 }

@@ -1,7 +1,6 @@
 package com.mmk.system.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +8,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,6 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.mmk.common.model.Tree;
@@ -105,10 +101,8 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 			temp.add(treeNode);
 			helpMap.put(treeNode.getId(), treeNode);
 		}
-		
-		
-		for (Tree child : temp) {
-			
+				
+		for (Tree child : temp) {		
 			Tree parent = helpMap.get(child.getPid());
 			if(parent == null){
 				tree.add(child);
@@ -124,14 +118,13 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 	public Privilege findByRoleIdAndPrivilegeID(Long roleId, String privilegeID) {
 		return privilegeDao.findByRoleIdAndPrivilegeID(roleId, privilegeID);
 	}
-
 	
 	@Cacheable
 	@Override
 	public boolean checkRight(Long authority, String requestURI) {
 		log.info("角色："+authority+"  授权检查："+requestURI);
 		Function function = functionService.findBy("uri", requestURI);
-		//如果权限没有被管理起来，就直接可以访问
+		// 如果权限没有被管理起来，就直接可以访问
 		if(function==null){
 			return true;
 		}else{

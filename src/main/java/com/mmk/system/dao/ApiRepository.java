@@ -3,10 +3,8 @@
  */
 package com.mmk.system.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.system.model.Api;
 
 /**
@@ -16,6 +14,5 @@ import com.mmk.system.model.Api;
 * @version 1.0
 */
 public interface ApiRepository extends JpaRepository<Api, Long>{
-
 
 }

@@ -17,7 +17,6 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Component;
 
 import com.mmk.system.model.OperationLog;
-import com.mmk.system.model.Privilege;
 import com.mmk.system.service.OperationLogService;
 import com.mmk.system.service.PrivilegeService;
 

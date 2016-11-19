@@ -7,19 +7,18 @@ package com.mmk.system.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.system.model.OperationLog;
-import com.mmk.system.dao.OperationLogDao;
-
 import com.mmk.system.condition.OperationLogCondition;
+import com.mmk.system.dao.OperationLogDao;
+import com.mmk.system.model.OperationLog;
 
 
 
@@ -136,6 +135,5 @@ public class OperationLogDaoImpl extends SpringDataQueryDaoImpl<OperationLog> im
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
-    
-    
+      
 }

@@ -51,7 +51,6 @@ public class WxUserApiImpl implements WxUserApi {
 			// 新增用户逻辑
 			wxUserService.save(user);
 			return new ResultMsg(true, "用户新增成功");
-
 		}
 		return new ResultMsg(false, "用户已经存在！");
 	}
@@ -68,5 +67,4 @@ public class WxUserApiImpl implements WxUserApi {
 			return new ResultMsg(true, "查找成功", result);
 		}
 	}
-
 }

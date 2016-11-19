@@ -48,10 +48,8 @@ public class LoginLogController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param loginLogCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param loginLogCondition 用户查询参数
+     * @param pageable  分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/loginLog/gridData")
@@ -104,9 +102,7 @@ public class LoginLogController extends BaseController {
         }
         return new ResultMsg(true,"系统登录日志保存成功");
     }
-    
-   
-    
+       
     /**
      * 跳转至详细信息页面
      * @param loginLog 参数

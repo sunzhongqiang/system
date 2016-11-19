@@ -33,8 +33,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements Role
 	/**
 	 * 构造方法
 	 * 
-	 * @param roleRepository
-	 *            数据容器
+	 * @param roleRepository 数据容器
 	 */
 	@Autowired
 	public RoleServiceImpl(RoleRepository roleRepository) {

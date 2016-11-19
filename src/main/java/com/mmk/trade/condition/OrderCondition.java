@@ -3,7 +3,6 @@
  *  OrderCondition 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.condition;
-import java.util.Date;
 import com.mmk.trade.model.Order;
 
 /**
@@ -14,7 +13,5 @@ import com.mmk.trade.model.Order;
 *
 */
 public class OrderCondition extends Order{
-
-
 
 }

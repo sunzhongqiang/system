@@ -36,7 +36,6 @@ public class GoodsApiImpl implements GoodsApi {
 			// 新增商品逻辑
 			goodsServiceImpl.save(good);
 			return new ResultMsg(true, "商品新增成功");
-
 		} else {
 			goods.setGoodsCat(good.getGoodsCat());
 			goods.setGoodsMainImg(good.getGoodsMainImg());
@@ -95,5 +94,4 @@ public class GoodsApiImpl implements GoodsApi {
 		ResultData result = new ResultData();
 		return result;
 	}
-
 }

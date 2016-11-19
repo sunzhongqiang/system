@@ -93,7 +93,6 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization, Long>
 			helpMap.put(node.getId(), node);
 		}
 		
-		
 		for (Tree node : temp) {
 			Tree parent = helpMap.get(node.getPid());
 			if(parent!=null){
