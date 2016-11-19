@@ -110,6 +110,15 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods, Long> implements Go
         return goodsDao.findGoodsGrid(positionId);
 	}
 
+	@Override
+	public List<Object[]> groupsGrid(Long positionId) {
+        log.info("返回对应位置下的所有商品");
+        if(positionId == null){
+        	return new ArrayList();
+        }
+        return goodsDao.findGroupsGrid(positionId);
+	}
+	
 	public Page<Goods> findBeginStart(Pageable pageable) {
 		DateTime now = DateTime.now();
 		DateTime yesterday = now.minusDays(1);

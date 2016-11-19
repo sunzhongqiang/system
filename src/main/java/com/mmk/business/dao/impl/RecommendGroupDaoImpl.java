@@ -50,9 +50,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public Page<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGroupCondition.getGroupId()!=null){
-            sb.append(" and model.groupId = :groupId ");
-            params.put("groupId",recommendGroupCondition.getGroupId());
+        if(recommendGroupCondition.getGoodId()!=null){
+            sb.append(" and model.goodId = :goodId ");
+            params.put("goodId",recommendGroupCondition.getGoodId());
         }
         if(recommendGroupCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -65,9 +65,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public List<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition){
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGroupCondition.getGroupId()!=null){
-            sb.append(" and model.groupId = :groupId ");
-            params.put("groupId",recommendGroupCondition.getGroupId());
+        if(recommendGroupCondition.getGoodId()!=null){
+            sb.append(" and model.goodId = :goodId ");
+            params.put("goodId",recommendGroupCondition.getGoodId());
         }
         if(recommendGroupCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -81,9 +81,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public Page< Map<String,Object>> listBySql(RecommendGroupCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,group_id,position_id,orderby from business_recommend_group  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getGroupId()!=null){
-            sb.append(" and group_id = ?2 ");
-            params.put(2,condition.getGroupId());
+        if(condition.getGoodId()!=null){
+            sb.append(" and goood_id = ?2 ");
+            params.put(2,condition.getGoodId());
         }
         if(condition.getPositionId()!=null){
             sb.append(" and position_id = ?3 ");

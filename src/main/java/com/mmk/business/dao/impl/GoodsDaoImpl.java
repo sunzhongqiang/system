@@ -121,6 +121,19 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	}
 
 	@Override
+	public List<Object[]> findGroupsGrid(Long positionId) {
+		StringBuffer sb = new StringBuffer(
+				"select model,recommendGroup from Goods model,RecommendGroup recommendGroup where recommendGroup.goodId = model.id ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		sb.append(" and recommendGroup.positionId = :positionId ");
+		params.put("positionId", positionId);
+		sb.append(" order by recommendGroup.orderby asc ");
+
+		return queryArrayByJpql(sb.toString(), params);
+
+	}
+	
+	@Override
 	public Page<Goods> findAllGoodsBy(Date begin, Date end, long cat, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from Goods model  where model.goodsCat = :cat  ");
 		sb.append(" and model.promoteStartDate between :start and :end ");

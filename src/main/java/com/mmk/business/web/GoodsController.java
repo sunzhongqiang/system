@@ -95,29 +95,6 @@ public class GoodsController extends BaseController {
     }
     
     /**
-     * 查询商品分组里所有的商品信息
-     * 
-     * @param goodsGroupCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
-     * @return 查询所得数据
-     */
-    @RequestMapping("/goods/goodsAllData")
-    @ResponseBody
-    public List<Goods> goodsAllData(){
-    	log.info("查询商品分组里所有的商品信息");
-    	List<Goods> goodsList = new ArrayList<>();
-    	Iterable<GoodsGroup> goodsGroupPage = goodsGroupService.findAll();   
-    	for(GoodsGroup goodsGroup : goodsGroupPage) {
-//    		Goods good = goodsService.findById(goodsGroup.getGoodsId());
-    		Goods good = new Goods();
-    		goodsList.add(good);
-    	}
-        return goodsList;
-    }
-    
-    /**
      * 新增页面
      * @return 跳转到商品活动新增页面
      */
@@ -326,5 +303,25 @@ public class GoodsController extends BaseController {
 	
 		return result;   
         
+    }
+    /**
+     * 查询商品分组里所有的商品信息
+     * 
+     * @param goodsGroupCondition 用户查询参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/goods/groupsGrid")
+    @ResponseBody
+    public List<Map<String, Object>> groupsGrid(Long positionId){
+    	log.info("查询指定位置下的推荐团里的所有的商品信息");
+        List<Object[]> goodsGrid = goodsService.groupsGrid(positionId);
+    	List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        for (Object[] array : goodsGrid) {
+			Map<String, Object> element = new HashMap<String,Object>();
+			element.put("goods", array[0]);
+			element.put("recommend", array[1]);
+			result.add(element );
+		}
+        return result;
     }
 }
