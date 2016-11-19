@@ -13,7 +13,7 @@
                 return isValid;
             }
             $.ajax({
-                url: '/recommendGoods/saveOrder',
+                url: '/recommendGroup/saveOrder',
                 data: $form.serialize(),
                 success: function(result){
                     progressClose();

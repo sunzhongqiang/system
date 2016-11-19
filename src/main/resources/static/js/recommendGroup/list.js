@@ -6,7 +6,7 @@
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
         	//url : '/recommendGroup/gridData', 所有推荐商品地址
-        	url : '',
+        	url : '/goodsGroup/goodsList',
             fit : true,
             fitColumns : true,
             striped : true,
@@ -69,7 +69,7 @@
     		return;
     	}else{
     		
-             $.post('/recommendGoods/addRecomm', {
+             $.post('/recommendGroup/addRecomm', {
             	 goodId : id,
                  positionId:positionId,
              }, function(result) {
@@ -208,6 +208,7 @@
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
                             positionGrid.datagrid('reload');
+                            tuiList.datagrid('reload');
                         }
                         progressClose();
                     }, 'JSON');
@@ -247,7 +248,7 @@
     
     $(function() {
     	tuiList = $('#tuiList').datagrid({
-            url : '',
+            url : '/goods/groupsGrid',
             //推荐商品business_recommend_group
             fit : true,
             striped : true,
@@ -347,7 +348,7 @@
             title : '编辑排序',
             width : 500,
             height : 300,
-            href : '',
+            href : '/recommendGroup/editOrder?id='+ id,
            //href : '/recommendGoods/editOrder?id=' + id, 编辑的是business_recommend_group表里的排序
             
             buttons : [ {
@@ -375,9 +376,9 @@
     		return;
     	}else{
     		
-             $.post('/recommendGoods/cancleRecomm', {
+             $.post('/recommendGroup/cancleRecomm', {
             //$.post('/recommendGoods/cancleRecomm', { 取消推荐删除的是business_recommend_group表里的排序	
-            	 id : id,
+            	 goodId : id,
             	 positionId:positionId,
              }, function(result) {
                  if (result.success) {

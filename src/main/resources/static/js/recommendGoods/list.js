@@ -162,7 +162,7 @@
             }] ],
            toolbar :  [{
 	            iconCls: 'icon-add',
-	            text:'新增广告位置',
+	            text:'新增推荐位置',
 	            handler: function(){addPosFun();}
             }],
             
@@ -212,6 +212,7 @@
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
                             positionGrid.datagrid('reload');
+                            tuiList.datagrid('reload');
                         }
                         progressClose();
                     }, 'JSON');

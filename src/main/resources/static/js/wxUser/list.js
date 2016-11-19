@@ -19,12 +19,12 @@
                 field : 'id',
                 align: 'center',
             },
-                    {
-                width : '100',
-                title : '窗口id',
-                field : 'openid',
-                align: 'center',
-            },
+//                    {
+//                width : '100',
+//                title : '窗口id',
+//                field : 'openid',
+//                align: 'center',
+//            },
                     {
                 width : '200',
                 title : '昵称',

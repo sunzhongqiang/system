@@ -98,7 +98,7 @@
             }] ],
            toolbar :  [{
 	            iconCls: 'icon-add',
-	            text:'新增',
+	            text:'新增广告',
 	            handler: function(){addFun(positionId);}
             }],
             onLoadSuccess : function(data){
@@ -264,7 +264,7 @@
             
            toolbar :  [{
 	            iconCls: 'icon-add',
-	            text:'新增',
+	            text:'新增广告位置',
 	            handler: function(){addFun1();}
             }],
             onLoadSuccess : function(data){

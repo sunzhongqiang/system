@@ -83,6 +83,7 @@
                 width : '80',
                 title : '促销数量',
                 field : 'promoteNumber',
+                align: 'center',
             },
 //                    {
 //                width : '80',
