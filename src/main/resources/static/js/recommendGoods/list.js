@@ -382,7 +382,7 @@
     	}else{
     		
              $.post('/recommendGoods/cancleRecomm', {
-            	 id : id,
+            	 goodId : id,
             	 positionId:positionId,
              }, function(result) {
                  if (result.success) {
