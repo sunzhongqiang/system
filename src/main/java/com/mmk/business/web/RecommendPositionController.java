@@ -104,7 +104,7 @@ public class RecommendPositionController extends BaseController {
         try {
             recommendPositionService.save(recommendPosition);
         } catch (Exception e) {
-            return new ResultMsg(false,"位置表保存失败");
+            return new ResultMsg(false,"位置编码重复，请修改！");
         }
         return new ResultMsg(true,"位置表保存成功");
     }
