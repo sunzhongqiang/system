@@ -61,4 +61,9 @@ public class WxUserServiceImpl extends BaseServiceImpl<WxUser, Long> implements 
         log.info("微信用户根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return wxUserDao.findAllBy(field,value);
     }
+
+	@Override
+	public WxUser findByOpenid(String openid) {
+		return wxUserDao.findBy("openid", openid);
+	}
 }

@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mmk.business.model.WxUser;
+import com.mmk.business.service.WxUserService;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +29,9 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private TuanDao tuanDao;
+    
+    @Resource
+    private WxUserService userService;
     
     private TuanRepository tuanRepository;
     /**
@@ -66,5 +72,12 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
 	public Tuan findById(Long id) {
         log.info("根据团ID查询指定的团");
         return tuanDao.findById(id);
+	}
+
+	@Override
+	public Page<Tuan> listByOpenId(String openid, Long status, Pageable pageable) {
+//		WxUser user = userService.findByOpenid(openid);
+//		return tuanDao.listByOpenId(user.getId(),status,pageable);
+		return null;
 	}
 }

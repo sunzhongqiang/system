@@ -195,6 +195,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
         List<Tuan> tuanList = queryByJpql(sb.toString(), params);
         return tuanList.isEmpty() ? null : tuanList.get(0);
 	}
+
     
     
 }

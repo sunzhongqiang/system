@@ -10,6 +10,8 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,23 +20,26 @@ import com.mmk.business.constants.TuanConstant;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.WxUser;
+import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsService;
 import com.mmk.business.service.impl.GoodsGroupServiceImpl;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
 import com.mmk.trade.model.Tuan;
+import com.mmk.trade.service.OrderService;
+import com.mmk.trade.service.TuanService;
 import com.mmk.trade.service.impl.OrderServiceImpl;
 import com.mmk.trade.service.impl.TuanServiceImpl;
 
 @RestController
 public class TuanApi {
 	@Resource
-	private TuanServiceImpl tuanService;
+	private TuanService tuanService;
 	@Resource
-	private OrderServiceImpl orderService;
+	private OrderService orderService;
 	@Resource
-	private GoodsGroupServiceImpl groupService;
+	private GoodsGroupService groupService;
 	@Resource
 	private GoodsService goodsService;
 
@@ -120,6 +125,15 @@ public class TuanApi {
 		tuan.setOrderSort(goods.getGoodsCat());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
+		ResultData result = new ResultData(false, "正在实现");
+		return result;
+	}
+	
+	
+	@RequestMapping("/api/tuan/list")
+	@ResponseBody
+	public ResultData list(String openid,Long status,Pageable pageable) {
+		Page<Tuan> tuanList = tuanService.listByOpenId(openid,status,pageable);
 		ResultData result = new ResultData(false, "正在实现");
 		return result;
 	}
