@@ -17,10 +17,8 @@ public interface RecommendPositionService extends BaseService<RecommendPosition,
 	/**
 	 * 生成的列表分页查询方法
 	 * 
-	 * @param recommendPositionCondition
-	 *            查询条件
-	 * @param pageable
-	 *            分页参数
+	 * @param recommendPositionCondition　查询条件
+	 * @param pageable　分页参数
 	 * @return 分页返回查询的结果
 	 * @author huguangling 胡广玲
 	 * 
@@ -30,8 +28,7 @@ public interface RecommendPositionService extends BaseService<RecommendPosition,
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
 	 * 
-	 * @param recommendPosition
-	 *            查询类
+	 * @param recommendPosition　 查询类
 	 * @return 查询的结果集
 	 * @author huguangling 胡广玲
 	 * 
@@ -41,8 +38,7 @@ public interface RecommendPositionService extends BaseService<RecommendPosition,
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param id
-	 *            id
+	 * @param id　 id
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -52,10 +48,8 @@ public interface RecommendPositionService extends BaseService<RecommendPosition,
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
 	 * 
-	 * @param field
-	 *            RecommendPosition 中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　RecommendPosition 中的某个字段
+	 * @param value　字段的值
 	 * @return RecommendPosition 返回符合条件的结果，如果没有返回null
 	 * @author huguangling 胡广玲
 	 * 
@@ -66,10 +60,8 @@ public interface RecommendPositionService extends BaseService<RecommendPosition,
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
 	 * 
-	 * @param field
-	 *            RecommendPosition中的某个字段
-	 * @param value
-	 *            字段的值
+	 * @param field　RecommendPosition中的某个字段
+	 * @param value　字段的值
 	 * @return 返回符合条件的所有结果
 	 * @author huguangling 胡广玲
 	 * 

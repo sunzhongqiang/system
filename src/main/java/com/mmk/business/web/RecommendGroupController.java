@@ -48,10 +48,8 @@ public class RecommendGroupController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param recommendGroupCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param recommendGroupCondition　 用户查询参数
+     * @param pageable　分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/recommendGroup/gridData")
@@ -154,4 +152,49 @@ public class RecommendGroupController extends BaseController {
         return true; 
     }
     
+    /**
+     * 商品 位置 关系表数据保存方法
+     * @param recommendGoods 要保存的数据
+     * @return recommendGoods 保存后的数据
+     */
+    @RequestMapping("/recommendGroup/cancleRecomm")
+    @ResponseBody
+    public ResultMsg cancleRecomm(Long positionId,Long goodId){
+        log.info("取消推荐商品 ");
+        try {
+        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodId);
+        	recommendGroupService.delete(recommendGroup);
+        	
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品取消推荐失败");
+        }
+        return new ResultMsg(true,"商品取消推荐成功");
+    }
+    
+    /**
+     * 商品 位置 关系表数据保存方法
+     * @param recommendGoods 要保存的数据
+     * @return recommendGoods 保存后的数据
+     */
+    @RequestMapping("/recommendGroup/addRecomm")
+    @ResponseBody
+    public ResultMsg addRecomm(Long positionId,Long goodId){
+        log.info("推荐商品 ");
+        try {
+        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodId);
+        	if(recommendGroup == null){
+        		recommendGroup = new RecommendGroup();
+        		recommendGroup.setGoodId(goodId);
+        		recommendGroup.setPositionId(positionId);
+        		recommendGroup.setOrderby(50L);
+        		recommendGroupService.save(recommendGroup);
+        	}else{
+        		return new ResultMsg(false,"商品 重复推荐");
+        	}
+        	
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品推荐失败");
+        }
+        return new ResultMsg(true,"商品推荐成功");
+    }
 }

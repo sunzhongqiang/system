@@ -15,37 +15,28 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.data.domain.Page;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.echin.api.tool.ThumbTool;
+import com.mmk.business.condition.GoodsCondition;
+import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsImg;
+import com.mmk.business.model.GoodsSku;
+import com.mmk.business.service.GoodsGroupService;
+import com.mmk.business.service.GoodsImgService;
+import com.mmk.business.service.GoodsService;
+import com.mmk.business.service.GoodsSkuService;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.common.tool.FileClient;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.service.GoodsGroupService;
-import com.mmk.business.service.GoodsImgService;
-import com.mmk.business.service.GoodsService;
-import com.mmk.business.service.GoodsSkuService;
-import com.mmk.business.model.Goods;
-import com.mmk.business.model.GoodsGroup;
-import com.mmk.business.model.GoodsImg;
-import com.mmk.business.model.GoodsSku;
-import com.mmk.business.model.RecommendGoods;
-import com.echin.api.tool.ThumbTool;
-import com.mmk.business.condition.GoodsCondition;
-import com.mmk.business.condition.RecommendGoodsCondition;
 
 /**
 *@Title: GoodsController
@@ -282,10 +273,7 @@ public class GoodsController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param recommendGoodsCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param recommendGoodsCondition 用户查询参数
      * @return 查询所得数据
      */
     @RequestMapping("/goods/goodsList")

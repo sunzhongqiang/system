@@ -4,34 +4,25 @@
  */
 package com.mmk.business.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.business.condition.AdCondition;
+import com.mmk.business.model.Ad;
+import com.mmk.business.model.AdPosition;
+import com.mmk.business.service.AdPositionService;
+import com.mmk.business.service.AdService;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.common.tool.FileClient;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.mmk.business.service.AdPositionService;
-import com.mmk.business.service.AdService;
-import com.mmk.business.model.Ad;
-import com.mmk.business.model.AdPosition;
-import com.mmk.business.condition.AdCondition;
 
 /**
 *@Title: AdController
@@ -53,14 +44,7 @@ public class AdController extends BaseController {
     @RequestMapping("/ad/list")
     public ModelAndView list(){
         log.info("广告列表查询");
-//		Page<Ad> adList = adService.list(adCondition,pageable);
-//		// 查询广告位置
-//		List<AdPosition> adPositions = adPositionService.listAll();
-		
         ModelAndView modelAndView = new ModelAndView("ad/list");
-//        modelAndView.addObject("adPositions", adPositions);
-//        modelAndView.addObject("page", adList);
-//        modelAndView.addObject("adCondition", adCondition);
         return  modelAndView;
     }
     
@@ -68,10 +52,8 @@ public class AdController extends BaseController {
     /**
      * 加载表格数据 用户
      * 
-     * @param adCondition
-     *            用户查询参数
-     * @param pageable
-     *            分页参数
+     * @param adCondition  用户查询参数
+     * @param pageable　分页参数
      * @return 查询所得数据
      */
     @RequestMapping("/ad/gridData")
@@ -90,10 +72,6 @@ public class AdController extends BaseController {
     @RequestMapping("/ad/add")
     public ModelAndView addPage(Ad ad){
         ModelAndView modelAndView = new ModelAndView("ad/form");
-		// 广告位置
-//		List<AdPosition> adPositions = adPositionService.listAll();
-//		modelAndView.addObject("adPosList",adPositions);
-		
         modelAndView.addObject("ad", ad);
         return modelAndView;
     }
@@ -126,9 +104,7 @@ public class AdController extends BaseController {
     public ResultMsg save(Ad ad){
         log.info("广告保存");
         try {
-           
-           
-            adService.save(ad);
+        	adService.save(ad);
         } catch (Exception e) {
             return new ResultMsg(false,"广告保存失败");
         }

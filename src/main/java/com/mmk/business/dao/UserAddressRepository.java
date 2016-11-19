@@ -20,8 +20,7 @@ public interface UserAddressRepository extends JpaRepository<UserAddress, Long> 
 	/**
 	 * 根据给定的字段：id 地址id返回符合条件的第一个对象
 	 * 
-	 * @param id
-	 *            地址id
+	 * @param id 地址id
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -31,8 +30,7 @@ public interface UserAddressRepository extends JpaRepository<UserAddress, Long> 
 	/**
 	 * 根据给定的字段：userId 会员id获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            会员id
+	 * @param userId 会员id
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 
@@ -42,10 +40,8 @@ public interface UserAddressRepository extends JpaRepository<UserAddress, Long> 
 	/**
 	 * 根据给定的字段：userId 会员id所有符合的记录
 	 * 
-	 * @param userId
-	 *            会员id
-	 * @param pageable
-	 *            分页参数
+	 * @param userId 会员id
+	 * @param pageable 分页参数
 	 * @return 符合条件的所有对象
 	 * @author huguangling 胡广玲
 	 * 

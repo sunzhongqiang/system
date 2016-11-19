@@ -3,7 +3,6 @@
  *  WxUserCondition 创建于 2016-10-28 14:50:57 版权归作者和作者当前组织所有
  */
 package com.mmk.business.condition;
-import java.util.Date;
 import com.mmk.business.model.WxUser;
 
 /**
@@ -14,7 +13,5 @@ import com.mmk.business.model.WxUser;
 *
 */
 public class WxUserCondition extends WxUser{
-
-
 
 }

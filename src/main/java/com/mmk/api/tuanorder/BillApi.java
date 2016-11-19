@@ -33,10 +33,4 @@ public class BillApi {
 		result.put("order", save);
 		return result ;
 	}
-	
-	
-	
-	
-	
-
 }

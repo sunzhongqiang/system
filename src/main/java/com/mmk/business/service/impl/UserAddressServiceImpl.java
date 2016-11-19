@@ -33,8 +33,7 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
 	/**
 	 * 构造方法
 	 * 
-	 * @param userAddressRepository
-	 *            数据容器
+	 * @param userAddressRepository  数据容器
 	 */
 	@Autowired
 	public UserAddressServiceImpl(UserAddressRepository userAddressRepository) {
@@ -57,8 +56,7 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
 	/**
 	 * 根据给定的字段返回符合的对象
 	 * 
-	 * @param id
-	 *            地址id
+	 * @param id 地址id
 	 * @return 符合条件的唯一对象
 	 */
 	@Override
@@ -69,8 +67,7 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
 	/**
 	 * 根据字段获取所有符合的记录
 	 * 
-	 * @param userId
-	 *            会员id
+	 * @param userId  会员id
 	 * @return 符合条件的所有对象
 	 */
 	@Override

@@ -1,20 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.business.dao.RecommendGoodsRepository;
-import com.mmk.business.model.Goods;
-import com.mmk.business.model.RecommendGoods;
+import org.springframework.stereotype.Service;
+
 import com.mmk.business.condition.RecommendGoodsCondition;
-import com.mmk.business.service.RecommendGoodsService;
 import com.mmk.business.dao.RecommendGoodsDao;
+import com.mmk.business.dao.RecommendGoodsRepository;
+import com.mmk.business.model.RecommendGoods;
+import com.mmk.business.service.RecommendGoodsService;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * RecommendGoodsServiceImpl: 商品 位置 关系表 业务服务层实现
 * 2016-11-14 13:55:42

@@ -56,12 +56,9 @@ public class FileClient {
 	/**
 	 * 构造文件服务器客户端
 	 * 
-	 * @param host
-	 *            图片服务器地址或者域名：192.168.1.131 or 127.0.0.1 or img.yiqingo.com
-	 * @param port
-	 *            图片服务器的端口 80 8080 12000 默认为80端口
-	 * @param uri
-	 *            图片服务器的接口地址 /upload
+	 * @param host　 图片服务器地址或者域名：192.168.1.131 or 127.0.0.1 or img.yiqingo.com
+	 * @param port　图片服务器的端口 80 8080 12000 默认为80端口
+	 * @param uri　图片服务器的接口地址 /upload
 	 */
 	public FileClient(String host, int port, String uri) {
 		this.host = host;
@@ -80,12 +77,9 @@ public class FileClient {
 	/**
 	 * 上传文件到指定位置
 	 * 
-	 * @param dir
-	 *            存储的路径
-	 * @param name
-	 *            文件名
-	 * @param file
-	 *            文件
+	 * @param dir　存储的路径
+	 * @param name　文件名
+	 * @param file　文件
 	 * @return 客户端
 	 */
 	public FileClient upload(String dir, String name, File file) {
@@ -223,12 +217,9 @@ public class FileClient {
 	/**
 	 * 上传文件到指定位置
 	 * 
-	 * @param dir
-	 *            存储的路径
-	 * @param name
-	 *            文件名
-	 * @param file
-	 *            文件
+	 * @param dir　存储的路径
+	 * @param name　文件名
+	 * @param file　文件
 	 * @return 客户端
 	 */
 	public FileClient upload(String dir, String name, byte[] filebyte) {

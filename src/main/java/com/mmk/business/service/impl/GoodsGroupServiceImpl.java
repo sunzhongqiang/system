@@ -1,25 +1,25 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
-import com.mmk.trade.model.Tuan;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.GoodsGroupCondition;
+import com.mmk.business.dao.GoodsGroupDao;
 import com.mmk.business.dao.GoodsGroupRepository;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
-import com.mmk.business.condition.GoodsGroupCondition;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsService;
-import com.mmk.business.dao.GoodsGroupDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * GoodsGroupServiceImpl: 商品拼团管理 业务服务层实现
 * 2016-11-17 11:42:27

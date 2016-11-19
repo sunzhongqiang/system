@@ -3,10 +3,8 @@
  */
 package com.mmk.business.dao;
 
-import java.util.List;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.mmk.business.model.RecommendGoods;
 
 /**
@@ -20,8 +18,7 @@ public interface RecommendGoodsRepository extends JpaRepository<RecommendGoods, 
 	/**
 	 * 根据给定的字段：id 主键返回符合条件的第一个对象
 	 * 
-	 * @param id
-	 *            主键
+	 * @param id  主键
 	 * @return 符合条件的唯一对象
 	 * @author huguangling 胡广玲
 	 * 
