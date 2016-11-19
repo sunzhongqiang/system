@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.business.condition.RecommendGroupCondition;
+import com.mmk.business.model.RecommendGoods;
 import com.mmk.business.model.RecommendGroup;
 import com.mmk.business.service.RecommendGroupService;
 import com.mmk.common.BaseController;
@@ -84,8 +85,7 @@ public class RecommendGroupController extends BaseController {
         modelAndView.addObject("recommendGroup", recommendGroup);
         return modelAndView ;
     }
-    
-    
+       
     /**
      * 拼团推荐管理数据保存方法
      * @param recommendGroup 要保存的数据
@@ -102,8 +102,6 @@ public class RecommendGroupController extends BaseController {
         }
         return new ResultMsg(true,"拼团推荐管理保存成功");
     }
-    
-   
     
     /**
      * 跳转至详细信息页面
@@ -196,5 +194,18 @@ public class RecommendGroupController extends BaseController {
             return new ResultMsg(false,"商品推荐失败");
         }
         return new ResultMsg(true,"商品推荐成功");
+    }
+    
+    /**
+     * 跳转到编辑页面
+     * @param refund  跳转到编辑页面
+     */ 
+    @RequestMapping("/recommendGroup/editOrder")
+    public ModelAndView editOrder(Long id){
+        log.info("商品排序修改");
+        RecommendGroup  recommendGoods = recommendGroupService.find(id);
+        ModelAndView modelAndView = new ModelAndView("recommendGroup/editOrder");
+        modelAndView.addObject("recommendGoods", recommendGoods);
+        return modelAndView ;
     }
 }
