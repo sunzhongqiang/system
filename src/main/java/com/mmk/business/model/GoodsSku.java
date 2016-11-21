@@ -31,8 +31,6 @@ public class GoodsSku {
     /**
      * 商品id
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="good_id")
     private Long goodId;
 
