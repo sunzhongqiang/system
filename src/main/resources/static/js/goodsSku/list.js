@@ -25,32 +25,27 @@
                     {
                 width : '80',
                 title : '属性值',
-                field : 'skuValue',
+                field : 'skuName',
             },
                     {
                 width : '80',
                 title : '商品价格',
-                field : 'goodPrice',
+                field : 'price',
             },
                     {
                 width : '80',
                 title : '该sku库存',
-                field : 'goodStock',
+                field : 'stock',
             },
                     {
                 width : '80',
                 title : '商品条形码',
-                field : 'goodCode',
+                field : 'code',
             },
                     {
                 width : '80',
                 title : '商品重量',
-                field : 'goodWeight',
-            },
-                    {
-                width : '80',
-                title : '商品颜色',
-                field : 'goodColor',
+                field : 'weight',
             },
             {
                 field : 'action',
@@ -102,7 +97,7 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除商品属性？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除商品SKU？', function(b) {
             if (b) {
                 progressLoad();
                     $.post('/goodsSku/delete', {

@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsSkuDao 创建于 2016-11-01 08:42:10 版权归作者和作者当前组织所有
+ *  GoodsSkuDao 创建于 2016-11-21 14:08:15 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao;
 
@@ -12,8 +12,8 @@ import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.GoodsSkuCondition;
 import com.mmk.business.model.GoodsSku;
 /**
-* GoodsSkuDao:商品属性 数据持久层接口
-* @author huguangling 胡广玲
+* GoodsSkuDao:商品SKU 数据持久层接口
+* @author sunzhongqiang 孙中强
 * @version 1.0
 */
 public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
@@ -23,7 +23,7 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * @param goodsSku 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      * 
      */
@@ -32,7 +32,7 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param goodsSku 查询类
      * @return 符合条件的查询结果集
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      */
     List<GoodsSku> list(GoodsSkuCondition goodsSku);
@@ -41,7 +41,7 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * @param goodsSku GoodsSku类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      * 
      */
@@ -51,7 +51,7 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * @param field GoodsSku 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的结果，如果没有返回null
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      * 
      */
@@ -62,9 +62,12 @@ public interface GoodsSkuDao extends SpringDataQueryDao<GoodsSku>{
      * @param field GoodsSku 中的某个字段
      * @param value 字段对应的值
      * @return 返回符合条件的所有结果
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      * 
      */
-    List<GoodsSku> findAllBy(String field,Object value);   
+    List<GoodsSku> findAllBy(String field,Object value);
+    
+    
+
 }

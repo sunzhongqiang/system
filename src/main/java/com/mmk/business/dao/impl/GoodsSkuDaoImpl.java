@@ -1,29 +1,31 @@
 /*
  * 
- *  GoodsSkuDaoImpl 创建于 2016-11-01 08:42:10 版权归作者和作者当前组织所有
+ *  GoodsSkuDaoImpl 创建于 2016-11-21 14:08:15 版权归作者和作者当前组织所有
  */
 package com.mmk.business.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.StringUtils;
+import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.mmk.business.model.GoodsSku;
+import com.mmk.business.dao.GoodsSkuDao;
 
 import com.mmk.business.condition.GoodsSkuCondition;
-import com.mmk.business.dao.GoodsSkuDao;
-import com.mmk.business.model.GoodsSku;
-import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 
 
 
 /**
-* GoodsSkuDaoImpl: 商品属性 数据持久层接口实现
-*@author huguangling 胡广玲
+* GoodsSkuDaoImpl: 商品SKU 数据持久层接口实现
+*@author sunzhongqiang 孙中强
 *@version 1.0
 *
 */
@@ -41,7 +43,7 @@ public class GoodsSkuDaoImpl extends SpringDataQueryDaoImpl<GoodsSku> implements
      * @param goodsSkuCondition 查询类
      * @param pageable 传入的分页对象
      * @return 符合条件的查询结果集
-     * @author huguangling 胡广玲
+     * @author sunzhongqiang 孙中强
      * 
      */
     @Override 
@@ -61,7 +63,7 @@ public class GoodsSkuDaoImpl extends SpringDataQueryDaoImpl<GoodsSku> implements
     
     @Override 
     public Page< Map<String,Object>> listBySql(GoodsSkuCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,good_id,sku_value,good_price,good_stock,good_code,good_weight,good_color from business_goods_sku  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,good_id,sku_name,price,stock,code,weight from business_goods_sku  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

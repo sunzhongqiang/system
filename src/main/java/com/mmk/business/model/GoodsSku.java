@@ -1,6 +1,6 @@
 /*
  * 
- *  GoodsSku 创建于 2016-11-01 08:42:10 版权归作者和作者当前组织所有
+ *  GoodsSku 创建于 2016-11-21 14:08:14 版权归作者和作者当前组织所有
  */
 package com.mmk.business.model;
 
@@ -12,9 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 
 /**
-* GoodsSku: 商品属性 数据领域模型
-* 2016-11-01 08:42:10
-*@author huguangling 胡广玲
+* GoodsSku: 商品SKU 数据领域模型
+* 2016-11-21 14:08:14
+*@author sunzhongqiang 孙中强
 *@version 1.0
 */
 @Entity
@@ -31,44 +31,40 @@ public class GoodsSku {
     /**
      * 商品id
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="good_id")
     private Long goodId;
 
     /**
      * 属性值
      */
-    @Column(name="sku_value")
-    private String skuValue;
+    @Column(name="sku_name")
+    private String skuName;
 
     /**
      * 商品价格
      */
-    @Column(name="good_price")
-    private Double goodPrice;
+    @Column(name="price")
+    private Double price;
 
     /**
      * 该sku库存
      */
-    @Column(name="good_stock")
-    private Long goodStock;
+    @Column(name="stock")
+    private Long stock;
 
     /**
      * 商品条形码
      */
-    @Column(name="good_code")
-    private String goodCode;
+    @Column(name="code")
+    private String code;
 
     /**
      * 商品重量
      */
-    @Column(name="good_weight")
-    private Long goodWeight;
-
-    /**
-     * 商品颜色
-     */
-    @Column(name="good_color")
-    private String goodColor;
+    @Column(name="weight")
+    private Long weight;
 
 
     /** 
@@ -98,81 +94,68 @@ public class GoodsSku {
     }
 
     /** 
-	* @return skuValue ：属性值
+	* @return skuName ：属性值
 	*/
-    public String getSkuValue() {
-        return skuValue;
+    public String getSkuName() {
+        return skuName;
     }
     /** 
-    *@param skuValue 设置属性值 
+    *@param skuName 设置属性值 
     */
-    public void setSkuValue(String skuValue) {
-        this.skuValue = skuValue;
+    public void setSkuName(String skuName) {
+        this.skuName = skuName;
     }
 
     /** 
-	* @return goodPrice ：商品价格
+	* @return price ：商品价格
 	*/
-    public Double getGoodPrice() {
-        return goodPrice;
+    public Double getPrice() {
+        return price;
     }
     /** 
-    *@param goodPrice 设置商品价格 
+    *@param price 设置商品价格 
     */
-    public void setGoodPrice(Double goodPrice) {
-        this.goodPrice = goodPrice;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     /** 
-	* @return goodStock ：该sku库存
+	* @return stock ：该sku库存
 	*/
-    public Long getGoodStock() {
-        return goodStock;
+    public Long getStock() {
+        return stock;
     }
     /** 
-    *@param goodStock 设置该sku库存 
+    *@param stock 设置该sku库存 
     */
-    public void setGoodStock(Long goodStock) {
-        this.goodStock = goodStock;
+    public void setStock(Long stock) {
+        this.stock = stock;
     }
 
     /** 
-	* @return goodCode ：商品条形码
+	* @return code ：商品条形码
 	*/
-    public String getGoodCode() {
-        return goodCode;
+    public String getCode() {
+        return code;
     }
     /** 
-    *@param goodCode 设置商品条形码 
+    *@param code 设置商品条形码 
     */
-    public void setGoodCode(String goodCode) {
-        this.goodCode = goodCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /** 
-	* @return goodWeight ：商品重量
+	* @return weight ：商品重量
 	*/
-    public Long getGoodWeight() {
-        return goodWeight;
+    public Long getWeight() {
+        return weight;
     }
     /** 
-    *@param goodWeight 设置商品重量 
+    *@param weight 设置商品重量 
     */
-    public void setGoodWeight(Long goodWeight) {
-        this.goodWeight = goodWeight;
-    }
-
-    /** 
-	* @return goodColor ：商品颜色
-	*/
-    public String getGoodColor() {
-        return goodColor;
-    }
-    /** 
-    *@param goodColor 设置商品颜色 
-    */
-    public void setGoodColor(String goodColor) {
-        this.goodColor = goodColor;
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 
 

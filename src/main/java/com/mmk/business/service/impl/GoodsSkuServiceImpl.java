@@ -15,9 +15,9 @@ import com.mmk.business.condition.GoodsSkuCondition;
 import com.mmk.business.service.GoodsSkuService;
 import com.mmk.business.dao.GoodsSkuDao;
 /**
-* GoodsSkuServiceImpl: 商品属性 业务服务层实现
-* 2016-11-01 08:42:10
-* @author huguangling 胡广玲
+* GoodsSkuServiceImpl: 商品SKU 业务服务层实现
+* 2016-11-21 14:08:15
+* @author sunzhongqiang 孙中强
 * @version 1.0
 */
 @Service
@@ -40,13 +40,13 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
 
     @Override
     public Page<GoodsSku> list(GoodsSkuCondition goodsSkuCondition, Pageable pageable) {
-        log.info("商品属性查询列表");
+        log.info("商品SKU查询列表");
         return goodsSkuDao.list(goodsSkuCondition, pageable);
     }
     
     @Override
     public List<GoodsSku> list(GoodsSkuCondition goodsSkuCondition) {
-        log.info("商品属性查询列表无分页");
+        log.info("商品SKU查询列表无分页");
         return goodsSkuDao.list(goodsSkuCondition);
     }
 
@@ -84,13 +84,13 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
     }
     @Override 
     public GoodsSku findBy(String field,Object value){
-        log.info("商品属性根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
+        log.info("商品SKU根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return goodsSkuDao.findBy(field,value);
     }
     
     @Override 
     public List<GoodsSku> findAllBy(String field,Object value){
-        log.info("商品属性根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
+        log.info("商品SKU根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return goodsSkuDao.findAllBy(field,value);
     }
 }

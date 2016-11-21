@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>详情:商品属性</title>
+        <title>详情:商品SKU</title>
         <link href="/css/style.css" rel="stylesheet" type="text/css" />
         <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
     </head>
@@ -10,7 +10,7 @@
     <body>
         <div class="container amn_add">
             <div class="headtt">
-                <h1>商品属性详情</h1>            
+                <h1>商品SKU详情</h1>            
             </div>
             <div class="role_tit"></div>            
             <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
@@ -25,27 +25,23 @@
                     </tr>
                     <tr>
                         <td class="tdTit"><label>属性值：</label></td>
-                        <td th:text="${goodsSku.skuValue}"></td>
+                        <td th:text="${goodsSku.skuName}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品价格：</label></td>
-                        <td th:text="${goodsSku.goodPrice}"></td>
+                        <td th:text="${goodsSku.price}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>该sku库存：</label></td>
-                        <td th:text="${goodsSku.goodStock}"></td>
+                        <td th:text="${goodsSku.stock}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品条形码：</label></td>
-                        <td th:text="${goodsSku.goodCode}"></td>
+                        <td th:text="${goodsSku.code}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>商品重量：</label></td>
-                        <td th:text="${goodsSku.goodWeight}"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品颜色：</label></td>
-                        <td th:text="${goodsSku.goodColor}"></td>
+                        <td th:text="${goodsSku.weight}"></td>
                     </tr>
                     <tr>
                         <td class="tdTit"></td>
