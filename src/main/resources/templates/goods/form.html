@@ -16,6 +16,7 @@
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 <script type="text/javascript" src="/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="/js/goods/form.js"></script>
+<script type="text/javascript" src="/js/extJs.js"></script>
 <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css" />
 <title>管理后台</title>
 </head>
@@ -173,7 +174,7 @@
 			         </tr>
 				</table>
 				
-				<div id="table2">
+				<div id="table2"  data-options="" style="height: 690px;">
 				    <table id="dataGrid"  data-options="fit:true,border:false"></table>
 				</div>
 				
@@ -218,13 +219,8 @@
             url: '/goods/save',
             onSubmit: function(){   
             	 return $("#modelForm").form('validate')
-            	 
-                // return false to prevent submit;   
-            	
             },   
             success:function(data){
-            	//parent.closeTab("修改商品");
-            	
                 parent.refreshTab("商品列表");
 				setTimeout(function(){
 					parent.closeTab("修改商品");

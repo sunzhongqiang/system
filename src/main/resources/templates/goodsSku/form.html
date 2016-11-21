@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
     $(function() {
-        $('#modelForm').on('submit', function(event){
+        $('#skuForm').on('submit', function(event){
             var $form = $(this);
             progressLoad();
             var isValid = $form.form('validate');
@@ -35,7 +35,7 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
-        <form id="modelForm" method="post">
+        <form id="skuForm" method="post">
             <table class="grid">
                     <tr>
                         <td class="tdTit"><label>销售属性：</label></td>

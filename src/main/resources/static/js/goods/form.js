@@ -73,18 +73,26 @@
         });
     });
     
-    function addFun() {
+    var data = {"total":0,"rows":[]};
+    
+    function addFun(id) {
+    	var url = '/goodsSku/add';
+    	if(id){
+    		url = '/goodsSku/add?goodsId='+id;
+    	}
         parent.$.modalDialog({
             title : '添加',
             width : 500,
             height : 300,
-            href : '/goodsSku/add',
+            href : url,
             buttons : [ {
                 text : '添加',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
-                    f.submit();
+                    var f = parent.$.modalDialog.handler.find('#skuForm');
+                	 var object = getFormJson(f);
+                	data.rows.push(object);
+                	data.total = data.rows.length;
+                	dataGrid.datagrid("loadData",data);
                 }
             } ]
         });
@@ -129,7 +137,7 @@
                 text : '编辑',
                 handler : function() {
                     parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#modelForm');
+                    var f = parent.$.modalDialog.handler.find('#skuForm');
                     f.submit();
                 }
             } 
