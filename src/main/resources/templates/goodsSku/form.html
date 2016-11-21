@@ -38,37 +38,38 @@
         <form id="modelForm" method="post">
             <table class="grid">
                     <tr>
-                        <td class="tdTit"><label>属性值：</label></td>
+                        <td class="tdTit"><label>销售属性：</label></td>
                         <td>
                         <input type="text"  name="skuName"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.skuName}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品价格：</label></td>
+                        <td class="tdTit"><label>价格：</label></td>
                         <td>
                         <input type="text"  name="price"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.price}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>该sku库存：</label></td>
+                        <td class="tdTit"><label>库存：</label></td>
                         <td>
                         <input type="text"  name="stock"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.stock}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品条形码：</label></td>
+                        <td class="tdTit"><label>条形码：</label></td>
                         <td>
                         <input type="text"  name="code"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.code}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>商品重量：</label></td>
+                        <td class="tdTit"><label>重量：</label></td>
                         <td>
                         <input type="text"  name="weight"   class="easyui-validatebox" data-options="required:true" th:value="${goodsSku.weight}"/>
                         </td>
                     </tr>
             </table>
             <input type="hidden" name="id" th:value="${goodsSku.id}"/>
+            <input type="hidden" name="goodsId" th:value="${goodsSku.goodId}" />
         </form>
     </div>
 </div>

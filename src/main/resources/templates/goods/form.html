@@ -15,6 +15,7 @@
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 <script type="text/javascript" src="/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="/js/goods/form.js"></script>
 <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css" />
 <title>管理后台</title>
 </head>
@@ -172,44 +173,10 @@
 			         </tr>
 				</table>
 				
-				<table id="table2" cellspacing="1" cellpadding="3" class="tbbox" style="display: none;">
-				     <tr>
-                        <td class="tdTit"><label>属性值：</label></td>
-                        <td>
-                        <input type="text"  name="skuValue"   class="easyui-validatebox mytextbox"  th:value="${goodsSku.skuValue}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品价格：</label></td>
-                        <td>
-                        <input type="text"  name="goodPrice"   class="easyui-validatebox mytextbox"  th:value="${goodsSku.goodPrice}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>该sku库存：</label></td>
-                        <td>
-                        <input type="text"  name="goodStock"   class="easyui-validatebox mytextbox" th:value="${goodsSku.goodStock}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品条形码：</label></td>
-                        <td>
-                        <input type="text"  name="goodCode"   class="easyui-validatebox mytextbox"  th:value="${goodsSku.goodCode}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品重量：</label></td>
-                        <td>
-                        <input type="text"  name="goodWeight"   class="easyui-validatebox mytextbox"  th:value="${goodsSku.goodWeight}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><label>商品颜色：</label></td>
-                        <td>
-                        <input type="text"  name="goodColor"   class="easyui-validatebox mytextbox"  th:value="${goodsSku.goodColor}"/>
-                        </td>
-                    </tr>
-				</table>
+				<div id="table2">
+				    <table id="dataGrid"  data-options="fit:true,border:false"></table>
+				</div>
+				
 				<div class="tab_bott">
 						<input type="hidden" name="id" th:value="${goods.id}"/>
 						<input type="hidden" name="id" th:value="${goodsSku.id}"/>
