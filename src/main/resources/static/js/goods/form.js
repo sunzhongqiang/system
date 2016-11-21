@@ -3,7 +3,8 @@
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
             url : '/goodsSku/gridData',
-            fit : true,
+            fit : false,
+            fitColumns : true,
             striped : true,
             rownumbers : true,
             pagination : true,
