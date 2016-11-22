@@ -20,7 +20,7 @@
                     {
                 width : '80',
                 title : '商品id',
-                field : 'goodId',
+                field : 'goodsId',
             },
                     {
                 width : '80',

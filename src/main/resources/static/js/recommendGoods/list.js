@@ -69,7 +69,7 @@
     	}else{
     		
              $.post('/recommendGoods/addRecomm', {
-            	 goodId : id,
+            	 goodsId : id,
                  positionId:positionId,
              }, function(result) {
                  if (result.success) {
@@ -313,7 +313,7 @@
                     var str = '';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >编辑排序</a>', row.recommend.id);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.goodId);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.goodsId);
 //                  
 //                   
                     return str;
@@ -383,7 +383,7 @@
     	}else{
     		
              $.post('/recommendGoods/cancleRecomm', {
-            	 goodId : id,
+            	 goodsId : id,
             	 positionId:positionId,
              }, function(result) {
                  if (result.success) {
