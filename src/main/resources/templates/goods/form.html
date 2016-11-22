@@ -217,17 +217,22 @@
         
         $("#modelForm").form({
             url: '/goods/save',
-            onSubmit: function(){   
+            onSubmit: function(param){   
+            	 param.sku = store.rows ;
             	 return $("#modelForm").form('validate')
             },   
             success:function(data){
                 parent.refreshTab("商品列表");
-				setTimeout(function(){
-					parent.closeTab("修改商品");
-            	},100);
+               /*
+                setTimeout(function(){
+                    parent.closeTab("商品发布");
+                },100);*/
+				//var sku = 
                 
             }   
         });   
+        
+       //dataGrid.datagrid("load","");
     
     })
     

@@ -146,22 +146,8 @@
     function addFun() {
     	 parent.addTab({
 			url : '/goods/add',
-			title : '添加商品',
+			title : '商品发布',
 		},true);
-//        parent.$.modalDialog({
-//            title : '添加',
-//            width : 500,
-//            height : 300,
-//            href : '/goods/add',
-//            buttons : [ {
-//                text : '添加',
-//                handler : function() {
-//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-//                    var f = parent.$.modalDialog.handler.find('#modelForm');
-//                    f.submit();
-//                }
-//            } ]
-//        });
     }
     
     function deleteFun(id) {
@@ -197,23 +183,8 @@
         
         parent.addTab({
 			url : '/goods/edit?id=' + id,
-			title : '修改商品',
+			title : '商品发布',
 		},true);
-//        parent.$.modalDialog({
-//            title : '编辑',
-//            width : 500,
-//            height : 300,
-//            href : '/goods/edit?id=' + id,
-//            buttons : [ {
-//                text : '编辑',
-//                handler : function() {
-//                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-//                    var f = parent.$.modalDialog.handler.find('#modelForm');
-//                    f.submit();
-//                }
-//            } 
-//            ]
-//        });
     }
     
     function searchFun() {

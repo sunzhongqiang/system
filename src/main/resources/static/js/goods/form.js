@@ -2,12 +2,10 @@
     var dataGrid;
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
-            url : '/goodsSku/gridData',
             fit : false,
             fitColumns : true,
             striped : true,
             rownumbers : true,
-            pagination : true,
             singleSelect : true,
             idField : 'id',
             pageSize : 50,
@@ -55,9 +53,9 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', index);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', index);
                     return str;
                 }
             }] ],
@@ -74,7 +72,26 @@
         });
     });
     
-    var data = {"total":0,"rows":[]};
+    var store = {
+    		data:{"total":0,"rows":[]},
+    		remove:function(index){
+    			 this.data.rows.splice(index,1);
+    	    	 dataGrid.datagrid("loadData",this.data);
+    		},
+    		add:function(item){
+    			this.data.rows.push(item);
+    			this.data.total = this.data.rows.length;
+    			dataGrid.datagrid("loadData",this.data);
+    		},
+    		update:function(index,item){
+    			this.data.rows.splice(index,1,item);
+    			this.data.total = this.data.rows.length;
+    			dataGrid.datagrid("loadData",this.data);
+    		},
+    		get:function(index){
+    			return this.data.rows.slice(index);
+    		}
+    };
     
     function addFun(id) {
     	var url = '/goodsSku/add';
@@ -90,59 +107,42 @@
                 text : '添加',
                 handler : function() {
                     var f = parent.$.modalDialog.handler.find('#skuForm');
-                	 var object = getFormJson(f);
-                	data.rows.push(object);
-                	data.total = data.rows.length;
-                	dataGrid.datagrid("loadData",data);
+                	var object = getFormJson(f);
+                	store.add(object);
+                	parent.$.modalDialog.handler.dialog('close');
                 }
             } ]
         });
     }
     
     function deleteFun(id) {
-        if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.messager.confirm('询问', '您是否要删除商品SKU？', function(b) {
-            if (b) {
-                progressLoad();
-                    $.post('/goodsSku/delete', {
-                        id : id
-                    }, function(result) {
-                        if (result.success) {
-                            parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
-                        }
-                        progressClose();
-                    }, 'JSON');
-                }
-        });
+    	 store.remove(id);
     }
     
     function editFun(id) {
-        if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
-            id = rows[0].id;
-        } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-        }
-        parent.$.modalDialog({
-            title : '编辑',
+    	var url = '/goodsSku/add';
+    	if(id){
+    		url = '/goodsSku/add?goodsId='+id;
+    	}
+    	parent.$.modalDialog({
+            title : '添加',
             width : 500,
             height : 300,
-            href : '/goodsSku/edit?id=' + id,
+            href : url,
             buttons : [ {
                 text : '编辑',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#skuForm');
-                    f.submit();
+                	var f = parent.$.modalDialog.handler.find('#skuForm');
+                  	var object = getFormJson(f);
+                  	store.update(id,object);
+                  	parent.$.modalDialog.handler.dialog('close');
                 }
-            } 
-            ]
+            } ],
+            onLoad:function(){
+            	var item = store.get(id);
+                var f = parent.$.modalDialog.handler.find('#skuForm');
+                f.form("load",item[0]);
+            }
         });
     }
     
