@@ -48,9 +48,9 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
     public Page<RecommendGoods> list(RecommendGoodsCondition recommendGoodsCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from RecommendGoods model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGoodsCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",recommendGoodsCondition.getGoodId());
+        if(recommendGoodsCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",recommendGoodsCondition.getGoodsId());
         }
         if(recommendGoodsCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -63,9 +63,9 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
     public List<RecommendGoods> list(RecommendGoodsCondition recommendGoodsCondition){
         StringBuffer sb=new StringBuffer("select model from RecommendGoods model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGoodsCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",recommendGoodsCondition.getGoodId());
+        if(recommendGoodsCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodId",recommendGoodsCondition.getGoodsId());
         }
         if(recommendGoodsCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -77,11 +77,11 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
     
     @Override 
     public Page< Map<String,Object>> listBySql(RecommendGoodsCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,good_id,position_id,sort from business_recommend_goods  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,goods_id,position_id,sort from business_recommend_goods  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getGoodId()!=null){
-            sb.append(" and good_id = ?2 ");
-            params.put(2,condition.getGoodId());
+        if(condition.getGoodsId()!=null){
+            sb.append(" and goods_id = ?2 ");
+            params.put(2,condition.getGoodsId());
         }
         if(condition.getPositionId()!=null){
             sb.append(" and position_id = ?3 ");

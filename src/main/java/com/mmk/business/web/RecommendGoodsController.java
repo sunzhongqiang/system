@@ -97,7 +97,7 @@ public class RecommendGoodsController extends BaseController {
         	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodId);
         	if(recommendGoods == null){
         		recommendGoods = new RecommendGoods();
-        		recommendGoods.setGoodId(goodId);
+        		recommendGoods.setGoodsId(goodId);
         		recommendGoods.setPositionId(positionId);
             	recommendGoods.setOrderby(50L);
             	recommendGoodsService.save(recommendGoods);

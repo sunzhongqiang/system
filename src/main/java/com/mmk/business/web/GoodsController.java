@@ -148,7 +148,7 @@ public class GoodsController extends BaseController {
 			    if(goodImgList.size() != 0 && goodImgList.size() >= i+1){	
 		    		goodImg = goodImgList.get(i);	    	
 			    }
-		    	goodImg.setGoodId(goods.getId());
+		    	goodImg.setGoodsId(goods.getId());
 			    goodImg.setOriginalImg(originalImg[i]);
 			    goodImg.setBigThumbImg(bigThumbImg[i]);
 			    goodImg.setSmallThumbImg(smallThumbImg[i]);

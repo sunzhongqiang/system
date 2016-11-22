@@ -31,8 +31,8 @@ public class GoodsSku {
     /**
      * 商品id
      */
-    @Column(name="good_id")
-    private Long goodId;
+    @Column(name="goods_id")
+    private Long goodsId;
 
     /**
      * 属性值
@@ -79,16 +79,16 @@ public class GoodsSku {
     }
 
     /** 
-	* @return goodId ：商品id
+	* @return goodsId ：商品id
 	*/
-    public Long getGoodId() {
-        return goodId;
+    public Long getGoodsId() {
+        return goodsId;
     }
     /** 
-    *@param goodId 设置商品id 
+    *@param goodsId 设置商品id 
     */
-    public void setGoodId(Long goodId) {
-        this.goodId = goodId;
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     /** 

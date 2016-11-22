@@ -79,4 +79,12 @@ public interface GoodsGroupService extends BaseService<GoodsGroup, Long> {
      * 
      */
     List<GoodsGroup> findAllBy(String field,Object value);
+
+    /**
+     * 获取推荐的团商品
+     * @param code 商品推荐位置的编码
+     * @param pageable 分页
+     * @return 返回商品分页参数
+     */
+	Page<GoodsGroup> findRecommend(String code, Pageable pageable);
 }

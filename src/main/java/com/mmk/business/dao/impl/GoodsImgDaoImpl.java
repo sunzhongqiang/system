@@ -61,7 +61,7 @@ public class GoodsImgDaoImpl extends SpringDataQueryDaoImpl<GoodsImg> implements
 	@Override
 	public Page<Map<String, Object>> listBySql(GoodsImgCondition condition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer(
-				"select id,good_id,original_img,small_thumb_img,big_thumb_img from business_goods_img  where 1=1  ");
+				"select id,goods_id,original_img,small_thumb_img,big_thumb_img from business_goods_img  where 1=1  ");
 		Map<Integer, Object> params = new HashMap<Integer, Object>();
 		return queryFieldsBySql(sb.toString(), params, pageable);
 	}
