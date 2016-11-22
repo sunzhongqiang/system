@@ -218,17 +218,21 @@
         $("#modelForm").form({
             url: '/goods/save',
             onSubmit: function(param){   
-            	 param.sku = store.rows ;
             	 return $("#modelForm").form('validate')
             },   
-            success:function(data){
-                parent.refreshTab("商品列表");
-               /*
-                setTimeout(function(){
-                    parent.closeTab("商品发布");
-                },100);*/
-				//var sku = 
-                
+            success:function(goods){
+            	var goods = JSON.parse(goods);
+            	var url = '/goodsSku/save?goodsId='+goods.id;
+                $.ajax({
+                	  type: 'POST',
+                	  contentType: "application/json;charset=utf-8", 
+                	  url: url ,
+                	  data: JSON.stringify(store.data.rows),
+                	  success: function(data){
+                		  console.log("skusave",data);
+                	  }
+               });
+               parent.refreshTab("商品列表");
             }   
         });   
         

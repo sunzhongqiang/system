@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,13 +98,13 @@ public class GoodsSkuController extends BaseController {
      */
     @RequestMapping("/goodsSku/save")
     @ResponseBody
-    public ResultMsg save(GoodsSku goodsSku){
+    public ResultMsg save(@RequestBody List<GoodsSku> gooodsList,Long goodsId){
         log.info("商品SKU保存");
-        try {
-            goodsSkuService.save(goodsSku);
-        } catch (Exception e) {
-            return new ResultMsg(false,"商品SKU保存失败");
-        }
+//        try {
+//            goodsSkuService.save(goodsSku);
+//        } catch (Exception e) {
+//            return new ResultMsg(false,"商品SKU保存失败");
+//        }
         return new ResultMsg(true,"商品SKU保存成功");
     }
     
