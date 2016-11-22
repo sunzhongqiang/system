@@ -24,7 +24,7 @@ public interface GoodsSkuRepository extends JpaRepository<GoodsSku, Long>{
      * @author sunzhongqiang 孙中强
      * 
      */
-    GoodsSku findFirstByGoodId(Long goodId);
+    GoodsSku findFirstByGoodsId(Long goodsId);
     /**
      *  根据给定的字段：goodId 商品id获取所有符合的记录
      * @param goodId 商品id
@@ -32,7 +32,7 @@ public interface GoodsSkuRepository extends JpaRepository<GoodsSku, Long>{
      * @author sunzhongqiang 孙中强
      * 
      */
-    List<GoodsSku> findAllByGoodId(Long goodId);
+    List<GoodsSku> findAllByGoodsId(Long goodsId);
     /**
      *  根据给定的字段：goodId 商品id所有符合的记录
      * @param goodId 商品id
@@ -41,6 +41,6 @@ public interface GoodsSkuRepository extends JpaRepository<GoodsSku, Long>{
      * @author sunzhongqiang 孙中强
      * 
      */
-    Page<GoodsSku> findAllByGoodId(Long goodId,Pageable pageable);
+    Page<GoodsSku> findAllByGoodsId(Long goodsId,Pageable pageable);
 
 }
