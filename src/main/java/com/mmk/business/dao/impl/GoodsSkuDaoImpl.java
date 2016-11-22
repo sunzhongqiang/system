@@ -63,7 +63,7 @@ public class GoodsSkuDaoImpl extends SpringDataQueryDaoImpl<GoodsSku> implements
     
     @Override 
     public Page< Map<String,Object>> listBySql(GoodsSkuCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,good_id,sku_name,price,stock,code,weight from business_goods_sku  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,goods_id,sku_name,price,stock,code,weight from business_goods_sku  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

@@ -180,7 +180,7 @@ public class RecommendGroupController extends BaseController {
         	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodId);
         	if(recommendGroup == null){
         		recommendGroup = new RecommendGroup();
-        		recommendGroup.setGoodId(goodId);
+        		recommendGroup.setGoodsId(goodId);
         		recommendGroup.setPositionId(positionId);
         		recommendGroup.setOrderby(50L);
         		recommendGroupService.save(recommendGroup);

@@ -77,6 +77,13 @@ public interface GoodsGroupDao extends SpringDataQueryDao<GoodsGroup>{
      * @return
      */
 	List<GoodsGroup> findAllByGoodsId(Long goodsId);
+	/**
+	 * 获得推荐的团商品
+	 * @param code
+	 * @param pageable
+	 * @return
+	 */
+	Page<GoodsGroup> findRecommend(String code, Pageable pageable);
 	
     
     

@@ -348,6 +348,7 @@ $.modalDialog = function(options) {
 			title : '',
 			width : 840,
 			height : 680,
+			resizable:true,
 			modal : true,
 			onClose : function() {
 				$.modalDialog.handler = undefined;

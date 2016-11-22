@@ -11,32 +11,27 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
-                    {
+            {
                 width : '80',
                 title : '商品属性ID',
                 field : 'id',
             },
-                    {
-                width : '80',
-                title : '商品id',
-                field : 'goodId',
-            },
-                    {
+            {
                 width : '80',
                 title : '属性值',
                 field : 'skuName',
             },
-                    {
+            {
                 width : '80',
                 title : '商品价格',
                 field : 'price',
             },
-                    {
+            {
                 width : '80',
                 title : '该sku库存',
                 field : 'stock',
             },
-                    {
+            {
                 width : '80',
                 title : '商品条形码',
                 field : 'code',
@@ -89,7 +84,7 @@
     			dataGrid.datagrid("loadData",this.data);
     		},
     		get:function(index){
-    			return this.data.rows.slice(index);
+    			return this.data.rows.slice(index)[0];
     		}
     };
     
@@ -116,7 +111,15 @@
     }
     
     function deleteFun(id) {
-    	 store.remove(id);
+    	var item = store.get(id);
+    	console.log(item);
+    	if(item.id){
+    		$.get("/goodsSku/delete?id="+item.id,function(data){
+    			store.remove(id);
+    		});
+    	}else{
+    		store.remove(id);
+    	}
     }
     
     function editFun(id) {
@@ -141,7 +144,7 @@
             onLoad:function(){
             	var item = store.get(id);
                 var f = parent.$.modalDialog.handler.find('#skuForm');
-                f.form("load",item[0]);
+                f.form("load",item);
             }
         });
     }

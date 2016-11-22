@@ -31,8 +31,8 @@ public class GoodsImg {
 	/**
 	 * 商品ID
 	 */
-	@Column(name = "good_id")
-	private Long goodId;
+	@Column(name = "goods_id")
+	private Long goodsId;
 
 	/**
 	 * 商品原图
@@ -68,18 +68,18 @@ public class GoodsImg {
 	}
 
 	/**
-	 * @return goodId ：商品ID
+	 * @return goodsId ：商品ID
 	 */
-	public Long getGoodId() {
-		return goodId;
+	public Long getGoodsId() {
+		return goodsId;
 	}
 
 	/**
-	 * @param goodId
+	 * @param goodsId
 	 *            设置商品ID
 	 */
-	public void setGoodId(Long goodId) {
-		this.goodId = goodId;
+	public void setGoodsId(Long goodsId) {
+		this.goodsId = goodsId;
 	}
 
 	/**

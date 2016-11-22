@@ -236,7 +236,8 @@
                parent.refreshTab("商品列表");
             }   
         });   
-    })
+    });
+    
     
     
 //     function saveGoods(){
@@ -259,7 +260,21 @@
     // submit the form   
     
     
-</script>       
+</script>  
+<script type="text/javascript" th:inline="javascript">
+$(document).ready(function(){
+	var goodsId = [[${goods.id}]];
+	if(goodsId){
+		$.get("/goodsSku/findSku?goodsId="+goodsId,function(data,status){
+			for(var index in data){
+				store.add(data[index]);
+			}
+		});
+	}
+});
+</script>   
+
+  
 <script type="text/javascript" src="/js/shangchuan.js"></script>
 </body>
 </html>

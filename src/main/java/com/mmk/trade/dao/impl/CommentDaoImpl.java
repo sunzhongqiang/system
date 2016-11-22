@@ -49,9 +49,9 @@ public class CommentDaoImpl extends SpringDataQueryDaoImpl<Comment> implements C
     public Page<Comment> list(CommentCondition commentCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Comment model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(commentCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",commentCondition.getGoodId());
+        if(commentCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",commentCondition.getGoodsId());
         }
         if(StringUtils.isNotBlank(commentCondition.getUserName())){
             sb.append(" and model.userName like :userName ");
@@ -64,9 +64,9 @@ public class CommentDaoImpl extends SpringDataQueryDaoImpl<Comment> implements C
     public List<Comment> list(CommentCondition commentCondition){
         StringBuffer sb=new StringBuffer("select model from Comment model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(commentCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",commentCondition.getGoodId());
+        if(commentCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",commentCondition.getGoodsId());
         }
         if(StringUtils.isNotBlank(commentCondition.getUserName())){
             sb.append(" and model.userName like :userName ");
@@ -78,11 +78,11 @@ public class CommentDaoImpl extends SpringDataQueryDaoImpl<Comment> implements C
     
     @Override 
     public Page< Map<String,Object>> listBySql(CommentCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,good_id,user_name,content,content_time,add_content,reply from trade_comment  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,goods_id,user_name,content,content_time,add_content,reply from trade_comment  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getGoodId()!=null){
-            sb.append(" and good_id = ?2 ");
-            params.put(2,condition.getGoodId());
+        if(condition.getGoodsId()!=null){
+            sb.append(" and goods_id = ?2 ");
+            params.put(2,condition.getGoodsId());
         }
         if(StringUtils.isNotBlank(condition.getUserName())){
             sb.append(" and user_name like ?3 ");

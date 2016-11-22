@@ -113,7 +113,7 @@ public class TuanApi {
 		GoodsGroup group = groupService.find(groupId);
 		Goods goods = group.getGoods();
 		Tuan tuan = new Tuan();
-		tuan.setGoodId(goods.getId());
+		tuan.setGoodsId(goods.getId());
 		tuan.setGoodName(goods.getGoodsName());
 		tuan.setGoodImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));

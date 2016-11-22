@@ -31,8 +31,8 @@ public class RecommendGroup {
     /**
      * 拼团组ID
      */
-    @Column(name="good_id")
-    private Long goodId;
+    @Column(name="goods_id")
+    private Long goodsId;
 
     /**
      * 位置id
@@ -61,17 +61,17 @@ public class RecommendGroup {
     }
 
     /** 
-	* @return goodId ：拼团组ID
-	*/
-    public Long getGoodId() {
-        return goodId;
-    }
-    /** 
-    *@param goodId 设置拼团组ID 
-    */
-    public void setGoodId(Long goodId) {
-        this.goodId = goodId;
-    }
+   	* @return goodsId ：商品id
+   	*/
+   public Long getGoodsId() {
+       return goodsId;
+   }
+   /** 
+   *@param goodsId 设置商品id 
+   */
+   public void setGoodsId(Long goodsId) {
+       this.goodsId = goodsId;
+   }
 
     /** 
 	* @return positionId ：位置id

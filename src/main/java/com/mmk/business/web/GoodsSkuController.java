@@ -72,7 +72,7 @@ public class GoodsSkuController extends BaseController {
     public ModelAndView addPage(Long goodsId){
         ModelAndView modelAndView = new ModelAndView("goodsSku/form");
         GoodsSku goodsSku = new GoodsSku();
-        goodsSku.setGoodId(goodsId);
+        goodsSku.setGoodsId(goodsId);
 		modelAndView.addObject("goodsSku", goodsSku);
         return modelAndView;
     }
@@ -102,7 +102,7 @@ public class GoodsSkuController extends BaseController {
         log.info("商品SKU保存");
         try {
             for (GoodsSku goodsSku : gooodsList){
-            	goodsSku.setGoodId(goodsId);
+            	goodsSku.setGoodsId(goodsId);
                 goodsSkuService.save(goodsSku);
             }
         } catch (Exception e) {

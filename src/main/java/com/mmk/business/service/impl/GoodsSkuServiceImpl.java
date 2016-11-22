@@ -56,8 +56,8 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
      * @return 如果存在的话返回true ,没有的返回false
      */
     @Override
-    public boolean existsGoodId(Long goodId){
-        return goodsSkuRepository.findFirstByGoodId(goodId)!=null;
+    public boolean existsGoodId(Long goodsId){
+        return goodsSkuRepository.findFirstByGoodsId(goodsId)!=null;
     }
     /**
      * 根据给定的字段返回符合的对象
@@ -65,8 +65,8 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
      * @return 符合条件的唯一对象
      */
     @Override
-    public GoodsSku findByGoodId(Long goodId){
-         return goodsSkuRepository.findFirstByGoodId(goodId);
+    public GoodsSku findByGoodId(Long goodsId){
+         return goodsSkuRepository.findFirstByGoodsId(goodsId);
     }
     /**
      * 根据字段获取所有符合的记录
@@ -74,13 +74,13 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
      * @return 符合条件的所有对象
      */
     @Override
-    public List<GoodsSku>  findAllByGoodId(Long goodId){
-        return goodsSkuRepository.findAllByGoodId(goodId);
+    public List<GoodsSku>  findAllByGoodId(Long goodsId){
+        return goodsSkuRepository.findAllByGoodsId(goodsId);
     }
     
      @Override
-    public Page<GoodsSku>  findAllByGoodId(Long goodId, Pageable pageable){
-        return goodsSkuRepository.findAllByGoodId(goodId,pageable);
+    public Page<GoodsSku>  findAllByGoodId(Long goodsId, Pageable pageable){
+        return goodsSkuRepository.findAllByGoodsId(goodsId,pageable);
     }
     @Override 
     public GoodsSku findBy(String field,Object value){

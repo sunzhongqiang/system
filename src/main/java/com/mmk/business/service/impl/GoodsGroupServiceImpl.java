@@ -98,4 +98,9 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
         return goodsGroupDao.findAllBy(field,value);
     }
 
+	@Override
+	public Page<GoodsGroup> findRecommend(String code, Pageable pageable) {
+		return goodsGroupDao.findRecommend(code,pageable);
+	}
+
 }
