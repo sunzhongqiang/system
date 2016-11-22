@@ -100,11 +100,14 @@ public class GoodsSkuController extends BaseController {
     @ResponseBody
     public ResultMsg save(@RequestBody List<GoodsSku> gooodsList,Long goodsId){
         log.info("商品SKU保存");
-//        try {
-//            goodsSkuService.save(goodsSku);
-//        } catch (Exception e) {
-//            return new ResultMsg(false,"商品SKU保存失败");
-//        }
+        try {
+            for (GoodsSku goodsSku : gooodsList){
+            	goodsSku.setGoodId(goodsId);
+                goodsSkuService.save(goodsSku);
+            }
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品SKU保存失败");
+        }
         return new ResultMsg(true,"商品SKU保存成功");
     }
     
