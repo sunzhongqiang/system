@@ -174,8 +174,8 @@
 			         </tr>
 				</table>
 				
-				<div id="table2"  data-options="" >
-				    <table id="dataGrid"  data-options="fit:true,border:false"></table>
+				<div id="table2" style="display:none;">
+				    <table id="dataGrid"  data-options="fit:true,border:false" ></table>
 				</div>
 				
 				<div class="tab_bott">
@@ -210,6 +210,7 @@
                  $("#table0").css("display","none");
                  $("#table1").css("display","none");
                  $("#table2").css("display","block");
+                 $("#dataGrid").datagrid("resize"); 
              }
             
         });
