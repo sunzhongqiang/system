@@ -100,15 +100,28 @@ public class GoodsSkuController extends BaseController {
     @ResponseBody
     public ResultMsg save(@RequestBody List<GoodsSku> gooodsList,Long goodsId){
         log.info("商品SKU保存");
-//        try {
-//            goodsSkuService.save(goodsSku);
-//        } catch (Exception e) {
-//            return new ResultMsg(false,"商品SKU保存失败");
-//        }
+        try {
+            for (GoodsSku goodsSku : gooodsList){
+            	goodsSku.setGoodId(goodsId);
+                goodsSkuService.save(goodsSku);
+            }
+        } catch (Exception e) {
+            return new ResultMsg(false,"商品SKU保存失败");
+        }
         return new ResultMsg(true,"商品SKU保存成功");
     }
     
-   
+    /**
+     * 商品ID获取商品的所有属性
+     * @param goodsId vs
+     * @return goodsSku 查询到的商品属性
+     */
+    @RequestMapping("/goodsSku/findSku")
+    @ResponseBody
+    public List<GoodsSku> findSkuByGoodsId(Long goodsId){
+        log.info("商品ID获取商品的所有属性");
+        return goodsSkuService.findAllByGoodId(goodsId);
+    }
     
     /**
      * 跳转至详细信息页面
