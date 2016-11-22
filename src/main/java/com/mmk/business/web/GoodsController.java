@@ -127,7 +127,7 @@ public class GoodsController extends BaseController {
     @RequestMapping("/goods/save")
     @ResponseBody
     public Goods save(@Valid Goods goods , BindingResult result ,
-    		GoodsSku goodsSku,String[] originalImg,String[] smallThumbImg,String[] bigThumbImg){
+    		String[] originalImg,String[] smallThumbImg,String[] bigThumbImg){
         log.info("商品活动保存");
         ModelAndView modelAndView = new ModelAndView("goods/form");
     	Goods good  = goodsService.findById(goods.getId());
@@ -138,12 +138,6 @@ public class GoodsController extends BaseController {
 	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());	    
 		List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
 	    
-        // 商品属性的保存 
-	    if(goodSkuList.size() != 0){  
-	    	goodsSku.setGoodId(good.getId());
-	    	goodsSku.setId(goodSkuList.get(0).getId());
-	    }
-        goodsSkuService.save(goodsSku);
     	GoodsImg goodImg = new GoodsImg();
     	int imgLength = 0;
 	    if(originalImg != null){
@@ -167,7 +161,6 @@ public class GoodsController extends BaseController {
 	    	}
 	    }
           
-        modelAndView.addObject("goodsSku", goodsSku);
         modelAndView.addObject("goods", goods);
         modelAndView.addObject("goodImg", goodImg);
         return goods ;
@@ -198,10 +191,8 @@ public class GoodsController extends BaseController {
         log.info("商品活动删除");
         try {
             goodsService.delete(goods);
-            GoodsSku goodsSku =  goodsSkuService.findByGoodId(goods.getId());
-            if(goodsSku != null ){
-                goodsSkuService.delete(goodsSku);          	
-            }
+            List<GoodsSku> goodsSkus = goodsSkuService.findAllByGoodId(goods.getId());
+            goodsSkuService.delete(goodsSkus);
             List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
             for(GoodsImg goodsImg : goodImgList){
             	goodsImgService.delete(goodsImg);
