@@ -18,24 +18,24 @@ import com.mmk.business.model.GoodsSku;
 public interface GoodsSkuRepository extends JpaRepository<GoodsSku, Long>{
 
     /**
-     *  根据给定的字段：goodId 商品id返回符合条件的第一个对象
-     * @param goodId 商品id
+     *  根据给定的字段：goodsId 商品id返回符合条件的第一个对象
+     * @param goodsId 商品id
      * @return 符合条件的唯一对象
      * @author sunzhongqiang 孙中强
      * 
      */
     GoodsSku findFirstByGoodsId(Long goodsId);
     /**
-     *  根据给定的字段：goodId 商品id获取所有符合的记录
-     * @param goodId 商品id
+     *  根据给定的字段：goodsId 商品id获取所有符合的记录
+     * @param goodsId 商品id
      * @return 符合条件的所有对象
      * @author sunzhongqiang 孙中强
      * 
      */
     List<GoodsSku> findAllByGoodsId(Long goodsId);
     /**
-     *  根据给定的字段：goodId 商品id所有符合的记录
-     * @param goodId 商品id
+     *  根据给定的字段：goodsId 商品id所有符合的记录
+     * @param goodsId 商品id
      * @param pageable 分页参数
      * @return 符合条件的所有对象
      * @author sunzhongqiang 孙中强

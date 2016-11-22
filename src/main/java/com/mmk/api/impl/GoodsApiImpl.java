@@ -71,7 +71,7 @@ public class GoodsApiImpl implements GoodsApi {
 	@Override
 	public ResultMsg findGoodsInfo(Long id) {
 		Goods goods = goodsServiceImpl.findById(id);
-		List<GoodsImg> goodsImageList = goodsImgService.findByGoodId(id);
+		List<GoodsImg> goodsImageList = goodsImgService.findByGoodsId(id);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("goods", goods);
 		result.put("goodsImgs", goodsImageList);

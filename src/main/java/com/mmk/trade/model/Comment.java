@@ -140,13 +140,13 @@ public class Comment {
     }
 
     /** 
-	* @return goodId ：商品ID
+	* @return goodsId ：商品ID
 	*/
     public Long getGoodsId() {
         return goodsId;
     }
     /** 
-    *@param goodId 设置商品ID 
+    *@param goodsId 设置商品ID 
     */
     public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;

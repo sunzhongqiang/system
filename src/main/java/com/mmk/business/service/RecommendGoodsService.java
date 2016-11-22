@@ -79,7 +79,7 @@ public interface RecommendGoodsService extends BaseService<RecommendGoods, Long>
      * @author huguangling 胡广玲
      * 
      */
-	RecommendGoods findByPositionId(Long positionId, Long goodId);
+	RecommendGoods findByPositionId(Long positionId, Long goodsId);
 	
 	 /**
      * 根据给定的字段和属性值，获得符合条件的所有结果

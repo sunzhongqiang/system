@@ -52,34 +52,34 @@ public class GoodsSkuServiceImpl extends BaseServiceImpl<GoodsSku, Long> impleme
 
     /**
      * 是否存在该
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 如果存在的话返回true ,没有的返回false
      */
     @Override
-    public boolean existsGoodId(Long goodsId){
+    public boolean existsGoodsId(Long goodsId){
         return goodsSkuRepository.findFirstByGoodsId(goodsId)!=null;
     }
     /**
      * 根据给定的字段返回符合的对象
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 符合条件的唯一对象
      */
     @Override
-    public GoodsSku findByGoodId(Long goodsId){
+    public GoodsSku findByGoodsId(Long goodsId){
          return goodsSkuRepository.findFirstByGoodsId(goodsId);
     }
     /**
      * 根据字段获取所有符合的记录
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 符合条件的所有对象
      */
     @Override
-    public List<GoodsSku>  findAllByGoodId(Long goodsId){
+    public List<GoodsSku>  findAllByGoodsId(Long goodsId){
         return goodsSkuRepository.findAllByGoodsId(goodsId);
     }
     
      @Override
-    public Page<GoodsSku>  findAllByGoodId(Long goodsId, Pageable pageable){
+    public Page<GoodsSku>  findAllByGoodsId(Long goodsId, Pageable pageable){
         return goodsSkuRepository.findAllByGoodsId(goodsId,pageable);
     }
     @Override 

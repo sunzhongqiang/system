@@ -65,7 +65,7 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
         Map<String,Object> params = new HashMap<String,Object>();
         if(recommendGoodsCondition.getGoodsId()!=null){
             sb.append(" and model.goodsId = :goodsId ");
-            params.put("goodId",recommendGoodsCondition.getGoodsId());
+            params.put("goodsId",recommendGoodsCondition.getGoodsId());
         }
         if(recommendGoodsCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -112,16 +112,16 @@ public class RecommendGoodsDaoImpl extends SpringDataQueryDaoImpl<RecommendGoods
     }
 
 	@Override
-	public RecommendGoods findByPositionId(Long positionId, Long goodId) {
+	public RecommendGoods findByPositionId(Long positionId, Long goodsId) {
         StringBuffer sb=new StringBuffer("select model from RecommendGoods model  where 1 = 1");
         Map<String,Object> params = new HashMap<String,Object>();
         if(positionId != null){
             sb.append(" and positionId = :positionId ");
             params.put("positionId", positionId);
         }
-        if(goodId != null){
-            sb.append(" and goodId = :goodId ");
-            params.put("goodId", goodId);
+        if(goodsId != null){
+            sb.append(" and goodsId = :goodsId ");
+            params.put("goodsId", goodsId);
         }
         List<RecommendGoods> result = queryByJpql(sb.toString(), params,0l,1l);
         return result.isEmpty() ? null : result.get(0);

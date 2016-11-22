@@ -88,6 +88,6 @@ public interface GoodsImgDao extends SpringDataQueryDao<GoodsImg> {
 	 * 
 	 * 
 	 */
-	List<GoodsImg> findByGoodId(Long id);
+	List<GoodsImg> findByGoodsId(Long id);
 
 }

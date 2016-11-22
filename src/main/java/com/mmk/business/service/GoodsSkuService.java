@@ -35,37 +35,37 @@ public interface GoodsSkuService extends BaseService<GoodsSku, Long> {
 
     /**
      * 是否存在该
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 如果存在的话返回true ,没有的返回false
      * @author sunzhongqiang 孙中强
      * 
      */
-    boolean existsGoodId(Long goodId);
+    boolean existsGoodsId(Long goodsId);
     /**
      * 根据给定的字段返回符合的对象
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 符合条件的唯一对象
      * @author sunzhongqiang 孙中强
      * 
      */
-    GoodsSku findByGoodId(Long goodId);
+    GoodsSku findByGoodsId(Long goodsId);
     /**
      * 根据字段获取所有符合的记录
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @return 符合条件的所有对象
      * @author sunzhongqiang 孙中强
      * 
      */
-    List<GoodsSku> findAllByGoodId(Long goodId);
+    List<GoodsSku> findAllByGoodsId(Long goodsId);
     /**
      * 根据字段获取所有符合的记录
-     * @param goodId 商品id
+     * @param goodsId 商品id
      * @param pageable 分页参数
      * @return 符合条件的所有对象
      * @author sunzhongqiang 孙中强
      * 
      */
-    Page<GoodsSku> findAllByGoodId(Long goodId, Pageable pageable);
+    Page<GoodsSku> findAllByGoodsId(Long goodsId, Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field GoodsSku 中的某个字段

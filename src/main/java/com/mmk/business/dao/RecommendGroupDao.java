@@ -71,16 +71,16 @@ public interface RecommendGroupDao extends SpringDataQueryDao<RecommendGroup>{
     /**
      * 根据给定的字段和属性值，获得符合条件的所有结果
      * @param positionId RecommendGroup 中的某个字段
-     * @param goodId 字段对应的值
+     * @param goodsId 字段对应的值
      * @return 返回符合条件的所有结果
      * @author huguangling 胡广玲
      */
-	RecommendGroup findByPositionId(Long positionId, Long goodId);
+	RecommendGroup findByPositionId(Long positionId, Long goodsId);
 	
 	/**
      * 根据给定的字段和属性值，获得符合条件的所有结果
      * @param positionId RecommendGroup 中的某个字段
-     * @param goodId 字段对应的值
+     * @param goodsId 字段对应的值
      * @return 返回符合条件的所有结果
      * @author huguangling 胡广玲
      */

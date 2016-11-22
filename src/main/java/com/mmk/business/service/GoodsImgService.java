@@ -69,5 +69,5 @@ public interface GoodsImgService extends BaseService<GoodsImg, Long> {
 	 * 
 	 * 
 	 */
-	List<GoodsImg> findByGoodId(Long id);
+	List<GoodsImg> findByGoodsId(Long id);
 }

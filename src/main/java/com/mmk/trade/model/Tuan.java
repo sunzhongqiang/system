@@ -127,14 +127,14 @@ public class Tuan {
 	}
 
 	/**
-	 * @return goodId ：商品ID
+	 * @return goodsId ：商品ID
 	 */
 	public Long getGoodsId() {
 		return goodsId;
 	}
 
 	/**
-	 * @param goodId
+	 * @param goodsId
 	 *            设置商品ID
 	 */
 	public void setGoodsId(Long goodsId) {

@@ -105,8 +105,8 @@ public class GoodsController extends BaseController {
     public ModelAndView editPage(Goods goods){
         log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
-        GoodsSku goodsSku = goodsSkuService.findByGoodId(goods.getId());
-        List<GoodsImg> goodsImgList = goodsImgService.findByGoodId(goods.getId());
+        GoodsSku goodsSku = goodsSkuService.findByGoodsId(goods.getId());
+        List<GoodsImg> goodsImgList = goodsImgService.findByGoodsId(goods.getId());
         
         ModelAndView modelAndView = new ModelAndView("goods/form");
         modelAndView.addObject("goods", goods);
@@ -135,8 +135,8 @@ public class GoodsController extends BaseController {
     	    goods.setId(good.getId());
     	}
 	    goodsService.save(goods); 
-	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodId(goods.getId());	    
-		List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
+	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodsId(goods.getId());	    
+		List<GoodsImg>  goodImgList = goodsImgService.findByGoodsId(goods.getId());
 	    
     	GoodsImg goodImg = new GoodsImg();
     	int imgLength = 0;
@@ -191,9 +191,9 @@ public class GoodsController extends BaseController {
         log.info("商品活动删除");
         try {
             goodsService.delete(goods);
-            List<GoodsSku> goodsSkus = goodsSkuService.findAllByGoodId(goods.getId());
+            List<GoodsSku> goodsSkus = goodsSkuService.findAllByGoodsId(goods.getId());
             goodsSkuService.delete(goodsSkus);
-            List<GoodsImg>  goodImgList = goodsImgService.findByGoodId(goods.getId());
+            List<GoodsImg>  goodImgList = goodsImgService.findByGoodsId(goods.getId());
             for(GoodsImg goodsImg : goodImgList){
             	goodsImgService.delete(goodsImg);
             }

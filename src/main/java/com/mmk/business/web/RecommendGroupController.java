@@ -155,10 +155,10 @@ public class RecommendGroupController extends BaseController {
      */
     @RequestMapping("/recommendGroup/cancleRecomm")
     @ResponseBody
-    public ResultMsg cancleRecomm(Long positionId,Long goodId){
+    public ResultMsg cancleRecomm(Long positionId,Long goodsId){
         log.info("取消推荐商品 ");
         try {
-        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodId);
+        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodsId);
         	recommendGroupService.delete(recommendGroup);
         	
         } catch (Exception e) {
@@ -174,13 +174,13 @@ public class RecommendGroupController extends BaseController {
      */
     @RequestMapping("/recommendGroup/addRecomm")
     @ResponseBody
-    public ResultMsg addRecomm(Long positionId,Long goodId){
+    public ResultMsg addRecomm(Long positionId,Long goodsId){
         log.info("推荐商品 ");
         try {
-        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodId);
+        	RecommendGroup recommendGroup = recommendGroupService.findByPositionId(positionId,goodsId);
         	if(recommendGroup == null){
         		recommendGroup = new RecommendGroup();
-        		recommendGroup.setGoodsId(goodId);
+        		recommendGroup.setGoodsId(goodsId);
         		recommendGroup.setPositionId(positionId);
         		recommendGroup.setOrderby(50L);
         		recommendGroupService.save(recommendGroup);

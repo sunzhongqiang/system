@@ -63,8 +63,8 @@ public class GoodsImgServiceImpl extends BaseServiceImpl<GoodsImg, Long> impleme
     }
 
 	@Override
-	public List<GoodsImg> findByGoodId(Long id) {
+	public List<GoodsImg> findByGoodsId(Long id) {
         log.info("根据商品ID查找相册");
-        return goodsImgDao.findByGoodId(id);
+        return goodsImgDao.findByGoodsId(id);
 	}
 }

@@ -112,16 +112,16 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     }
     
     @Override
-	public RecommendGroup findByPositionId(Long positionId, Long goodId) {
+	public RecommendGroup findByPositionId(Long positionId, Long goodsId) {
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1 = 1");
         Map<String,Object> params = new HashMap<String,Object>();
         if(positionId != null){
             sb.append(" and positionId = :positionId ");
             params.put("positionId", positionId);
         }
-        if(goodId != null){
-            sb.append(" and goodId = :goodId ");
-            params.put("goodId", goodId);
+        if(goodsId != null){
+            sb.append(" and goodsId = :goodsId ");
+            params.put("goodsId", goodsId);
         }
         List<RecommendGroup> result = queryByJpql(sb.toString(), params,0l,1l);
         return result.isEmpty() ? null : result.get(0);

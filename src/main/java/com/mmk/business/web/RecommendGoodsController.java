@@ -91,13 +91,13 @@ public class RecommendGoodsController extends BaseController {
      */
     @RequestMapping("/recommendGoods/addRecomm")
     @ResponseBody
-    public ResultMsg addRecomm(Long positionId,Long goodId){
+    public ResultMsg addRecomm(Long positionId,Long goodsId){
         log.info("推荐商品 ");
         try {
-        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodId);
+        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodsId);
         	if(recommendGoods == null){
         		recommendGoods = new RecommendGoods();
-        		recommendGoods.setGoodsId(goodId);
+        		recommendGoods.setGoodsId(goodsId);
         		recommendGoods.setPositionId(positionId);
             	recommendGoods.setOrderby(50L);
             	recommendGoodsService.save(recommendGoods);
@@ -118,10 +118,10 @@ public class RecommendGoodsController extends BaseController {
      */
     @RequestMapping("/recommendGoods/cancleRecomm")
     @ResponseBody
-    public ResultMsg cancleRecomm(Long positionId,Long goodId){
+    public ResultMsg cancleRecomm(Long positionId,Long goodsId){
         log.info("取消推荐商品 ");
         try {
-        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodId);
+        	RecommendGoods recommendGoods = recommendGoodsService.findByPositionId(positionId,goodsId);
         	recommendGoodsService.delete(recommendGoods);
         	
         } catch (Exception e) {

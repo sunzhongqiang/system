@@ -108,7 +108,7 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	@Override
 	public List<Object[]> findGoodsGrid(Long positionId) {
 		StringBuffer sb = new StringBuffer(
-				"select model,recommendGoods from Goods model,RecommendGoods recommendGoods where recommendGoods.goodId = model.id ");
+				"select model,recommendGoods from Goods model,RecommendGoods recommendGoods where recommendGoods.goodsId = model.id ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		sb.append(" and recommendGoods.positionId = :positionId ");
 		params.put("positionId", positionId);
@@ -121,7 +121,7 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	@Override
 	public List<Object[]> findGroupsGrid(Long positionId) {
 		StringBuffer sb = new StringBuffer(
-				"select model,recommendGroup from Goods model,RecommendGroup recommendGroup where recommendGroup.goodId = model.id ");
+				"select model,recommendGroup from Goods model,RecommendGroup recommendGroup where recommendGroup.goodsId = model.id ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		sb.append(" and recommendGroup.positionId = :positionId ");
 		params.put("positionId", positionId);
@@ -147,7 +147,7 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	@Override
 	public Page<Goods> findRecommend(String code, Pageable pageable) {
 		StringBuffer sb = new StringBuffer(
-				"select model from Goods model,RecommendGoods recommendGoods,RecommendPosition position where recommendGoods.goodId = model.id and position.id = recommendGoods.positionId ");
+				"select model from Goods model,RecommendGoods recommendGoods,RecommendPosition position where recommendGoods.goodsId = model.id and position.id = recommendGoods.positionId ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		sb.append(" and position.code = :code ");
 		params.put("code", code);

@@ -75,9 +75,9 @@ public class RecommendGoodsServiceImpl extends BaseServiceImpl<RecommendGoods, L
     }
 
 	@Override
-	public RecommendGoods findByPositionId(Long positionId, Long goodId) {
+	public RecommendGoods findByPositionId(Long positionId, Long goodsId) {
         log.info("推荐商品 ");
-        return recommendGoodsDao.findByPositionId(positionId,goodId);
+        return recommendGoodsDao.findByPositionId(positionId,goodsId);
 	}
 
 	@Override

@@ -120,7 +120,7 @@ public class GoodsSkuController extends BaseController {
     @ResponseBody
     public List<GoodsSku> findSkuByGoodsId(Long goodsId){
         log.info("商品ID获取商品的所有属性");
-        return goodsSkuService.findAllByGoodId(goodsId);
+        return goodsSkuService.findAllByGoodsId(goodsId);
     }
     
     /**
@@ -172,13 +172,13 @@ public class GoodsSkuController extends BaseController {
     
     /**
      * 跳转至详细信息页面
-     * @param  goodId 检查字段是否存在
+     * @param  goodsId 检查字段是否存在
      * @return  true or false
      */ 
-    @RequestMapping("/goodsSku/goodId/exist")
+    @RequestMapping("/goodsSku/goodsId/exist")
     @ResponseBody
-    public boolean existsGoodId(Long goodId){
-        log.info("检测商品SKU是否存在  goodId");
-        return goodsSkuService.existsGoodId(goodId);
+    public boolean existsGoodsId(Long goodsId){
+        log.info("检测商品SKU是否存在  goodsId");
+        return goodsSkuService.existsGoodsId(goodsId);
     }
 }

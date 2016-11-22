@@ -88,11 +88,11 @@ public class GoodsImgDaoImpl extends SpringDataQueryDaoImpl<GoodsImg> implements
 	}
 
 	@Override
-	public List<GoodsImg> findByGoodId(Long goodId) {
-		StringBuffer sb = new StringBuffer("select model from GoodsImg model  where model.goodId");
-		sb.append(" = :goodId ");
+	public List<GoodsImg> findByGoodsId(Long goodsId) {
+		StringBuffer sb = new StringBuffer("select model from GoodsImg model  where model.goodsId");
+		sb.append(" = :goodsId ");
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("goodId", goodId);
+		params.put("goodsId", goodsId);
 		return queryByJpql(sb.toString(), params);
 	}
 
