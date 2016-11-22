@@ -29,7 +29,7 @@ public class WxUser {
 	private Long id;
 
 	/**
-	 * 窗口id
+	 *  id
 	 */
 	@Column(name = "openID")
 	private String openid;

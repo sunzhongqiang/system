@@ -75,13 +75,13 @@
                     <tr>
                         <td class="tdTit"><label>参数：</label></td>
                         <td>
-                        <input type="text"  name="params"   class="easyui-validatebox" data-options="required:true" th:value="${api.params}"/>
+                        <textarea   name="params"   class="easyui-validatebox" data-options="required:true" th:text="${api.params}" cols="50" rows="10"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>返回值：</label></td>
                         <td>
-                        <input type="text"  name="returnValues"   class="easyui-validatebox" data-options="required:true" th:value="${api.returnValues}"/>
+                        <textarea   name="returnValues"   class="easyui-validatebox" data-options="required:true" th:text="${api.returnValues}" cols="50" rows="10" ></textarea>
                         </td>
                     </tr>
             </table>
