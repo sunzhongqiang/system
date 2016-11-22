@@ -126,7 +126,7 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/save")
     @ResponseBody
-    public ModelAndView save(@Valid Goods goods , BindingResult result ,
+    public Goods save(@Valid Goods goods , BindingResult result ,
     		GoodsSku goodsSku,String[] originalImg,String[] smallThumbImg,String[] bigThumbImg){
         log.info("商品活动保存");
         ModelAndView modelAndView = new ModelAndView("goods/form");
@@ -170,7 +170,7 @@ public class GoodsController extends BaseController {
         modelAndView.addObject("goodsSku", goodsSku);
         modelAndView.addObject("goods", goods);
         modelAndView.addObject("goodImg", goodImg);
-        return modelAndView ;
+        return goods ;
     }
     
    
