@@ -53,9 +53,9 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",tuanCondition.getGoodId());
+        if(tuanCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",tuanCondition.getGoodsId());
         }
         if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
             sb.append(" and model.tuanCode like :tuanCode ");
@@ -92,9 +92,9 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getGoodId()!=null){
-            sb.append(" and model.goodId = :goodId ");
-            params.put("goodId",tuanCondition.getGoodId());
+        if(tuanCondition.getGoodsId()!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId",tuanCondition.getGoodsId());
         }
         if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
             sb.append(" and model.tuanCode like :tuanCode ");
@@ -126,15 +126,15 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
     
     @Override 
     public Page< Map<String,Object>> listBySql(TuanCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,good_id,tuan_code,people_num,tuan_start_date,tuan_end_date,order_sort,good_img,good_name,good_code,good_price,order_code,user_name,tuan_status from trade_tuan  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,goods_id,tuan_code,people_num,tuan_start_date,tuan_end_date,order_sort,good_img,good_name,good_code,good_price,order_code,user_name,tuan_status from trade_tuan  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         if(condition.getId()!=null){
             sb.append(" and id = ?1 ");
             params.put(1,condition.getId());
         }
-        if(condition.getGoodId()!=null){
-            sb.append(" and good_id = ?2 ");
-            params.put(2,condition.getGoodId());
+        if(condition.getGoodsId()!=null){
+            sb.append(" and goods_id = ?2 ");
+            params.put(2,condition.getGoodsId());
         }
         if(StringUtils.isNotBlank(condition.getTuanCode())){
             sb.append(" and tuan_code like ?3 ");
