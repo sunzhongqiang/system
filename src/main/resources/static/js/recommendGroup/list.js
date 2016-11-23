@@ -27,13 +27,20 @@
                     {
                 width : '200',
                 title : '商品名称',
-                field : 'goodsName',
+                field : 'goods.goodsName',
+                formatter : function(value, row, index) {
+                	return row.goods.goodsName;
+                }
+                
             },
                     {
                 width : '80',
                 title : '商品原价',
-                field : 'goodsOriginalPrice',
+                field : 'goods.OriginalPrice',
                 align: 'center',
+                formatter : function(value, row, index) {
+                	return row.goods.goodsOriginalPrice;
+                }
             },
             {
                 field : 'action',
@@ -70,7 +77,7 @@
     	}else{
     		
              $.post('/recommendGroup/addRecomm', {
-            	 goodsId : id,
+	            	 groupId : id,
                  positionId:positionId,
              }, function(result) {
                  if (result.success) {
@@ -305,7 +312,7 @@
                     var str = '';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >编辑排序</a>', row.recommend.id);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.goodsId);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.groupId);
 //                  
 //                   
                     return str;
@@ -378,7 +385,7 @@
     		
              $.post('/recommendGroup/cancleRecomm', {
             //$.post('/recommendGoods/cancleRecomm', { 取消推荐删除的是business_recommend_group表里的排序	
-            	 goodsId : id,
+            	 groupId : id,
             	 positionId:positionId,
              }, function(result) {
                  if (result.success) {

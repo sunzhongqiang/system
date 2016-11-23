@@ -182,13 +182,8 @@ public class GoodsGroupController extends BaseController {
      * @return 跳转到商品拼团管理新增页面
      */
     @RequestMapping("/goodsGroup/goodsList")
-    public List<Goods> goodsList(){
-    	List<Goods> goodsList = new ArrayList<>(); 
+    public Iterable<GoodsGroup> goodsList(){
         Iterable<GoodsGroup> goodsGroupList = goodsGroupService.findAll();
-        for(GoodsGroup goodsGroup : goodsGroupList) {
-        	goodsList.add(goodsGroup.getGoods());
-        }
-        
-        return goodsList;
+        return goodsGroupList;
     }
 }

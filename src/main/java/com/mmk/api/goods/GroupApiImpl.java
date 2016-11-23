@@ -30,7 +30,7 @@ public class GroupApiImpl {
 
 	@RequestMapping("/api/group/recommend")
 	@ResponseBody
-	public ResultData findRecommend(String code,Pageable pageable2) {
+	public ResultData findRecommend(String code) {
 		
 		Pageable pageable = new PageRequest(0, 50);
 		Page<GoodsGroup> page = goodsGroupService.findRecommend(code, pageable );

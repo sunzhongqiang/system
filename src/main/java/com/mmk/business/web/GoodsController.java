@@ -291,9 +291,9 @@ public class GoodsController extends BaseController {
      */
     @RequestMapping("/goods/groupsGrid")
     @ResponseBody
-    public List<Map<String, Object>> groupsGrid(Long positionId){
+    public List<Map<String, Object>> groupsGrid(Long positionId,EasyPageable pageable){
     	log.info("查询指定位置下的推荐团里的所有的商品信息");
-        List<Object[]> goodsGrid = goodsService.groupsGrid(positionId);
+        List<Object[]> goodsGrid = goodsService.groupsGrid(positionId,pageable.pageable());
     	List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
         for (Object[] array : goodsGrid) {
 			Map<String, Object> element = new HashMap<String,Object>();

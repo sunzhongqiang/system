@@ -133,7 +133,7 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 
 	@Override
 	public Page<GoodsGroup> findRecommend(String code, Pageable pageable) {
-		StringBuffer sb = new StringBuffer("select model from RecommendPosition position , RecommendGroup recommendGroup, GoodsGroup model left join fetch model.goods ");
+		StringBuffer sb = new StringBuffer("select model from RecommendPosition position , RecommendGroup recommendGroup, GoodsGroup model join fetch model.goods ");
 		sb.append("   where position.id = recommendGroup.positionId and  model.id =  recommendGroup.goodsId  ");
 		sb.append(" and position.code = :code ");
 		Map<String, Object> params = new HashMap<String, Object>();

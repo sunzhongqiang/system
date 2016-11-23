@@ -48,9 +48,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public Page<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGroupCondition.getGoodsId()!=null){
-            sb.append(" and model.goodsId = :goodsId ");
-            params.put("goodsId",recommendGroupCondition.getGoodsId());
+        if(recommendGroupCondition.getGroupId()!=null){
+            sb.append(" and model.groupId = :groupId ");
+            params.put("groupId",recommendGroupCondition.getGroupId());
         }
         if(recommendGroupCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -63,9 +63,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public List<RecommendGroup> list(RecommendGroupCondition recommendGroupCondition){
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(recommendGroupCondition.getGoodsId()!=null){
-            sb.append(" and model.goodsId = :goodsId ");
-            params.put("goodsId",recommendGroupCondition.getGoodsId());
+        if(recommendGroupCondition.getGroupId()!=null){
+            sb.append(" and model.groupId = :groupId ");
+            params.put("groupId",recommendGroupCondition.getGroupId());
         }
         if(recommendGroupCondition.getPositionId()!=null){
             sb.append(" and model.positionId = :positionId ");
@@ -79,9 +79,9 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     public Page< Map<String,Object>> listBySql(RecommendGroupCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,group_id,position_id,orderby from business_recommend_group  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getGoodsId()!=null){
-            sb.append(" and goods_id = ?2 ");
-            params.put(2,condition.getGoodsId());
+        if(condition.getGroupId()!=null){
+            sb.append(" and group_id = ?2 ");
+            params.put(2,condition.getGroupId());
         }
         if(condition.getPositionId()!=null){
             sb.append(" and position_id = ?3 ");
@@ -112,16 +112,16 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
     }
     
     @Override
-	public RecommendGroup findByPositionId(Long positionId, Long goodsId) {
+	public RecommendGroup findByPositionId(Long positionId, Long groupId) {
         StringBuffer sb=new StringBuffer("select model from RecommendGroup model  where 1 = 1");
         Map<String,Object> params = new HashMap<String,Object>();
         if(positionId != null){
             sb.append(" and positionId = :positionId ");
             params.put("positionId", positionId);
         }
-        if(goodsId != null){
-            sb.append(" and goodsId = :goodsId ");
-            params.put("goodsId", goodsId);
+        if(groupId != null){
+            sb.append(" and groupId = :groupId ");
+            params.put("groupId", groupId);
         }
         List<RecommendGroup> result = queryByJpql(sb.toString(), params,0l,1l);
         return result.isEmpty() ? null : result.get(0);

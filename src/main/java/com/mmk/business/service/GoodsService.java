@@ -123,7 +123,7 @@ public interface GoodsService extends BaseService<Goods, Long> {
 	 * 
 	 * 
 	 */
-	List<Object[]> groupsGrid(Long positionId);
+	List<Object[]> groupsGrid(Long positionId,Pageable pageable);
 
 	/**
 	 * 获取即将开团的商品

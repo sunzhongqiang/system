@@ -86,7 +86,7 @@ public interface GoodsDao extends SpringDataQueryDao<Goods>{
      * 
      * 
      */
-    List<Object[]> findGroupsGrid(Long positionId);
+    List<Object[]> findGroupsGrid(Long positionId , Pageable pageable);
     
     /**
      * 根据时间获取商品信息
