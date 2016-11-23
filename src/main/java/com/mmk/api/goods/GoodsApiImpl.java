@@ -1,4 +1,4 @@
-package com.mmk.api.impl;
+package com.mmk.api.goods;
 
 import java.util.HashMap;
 import java.util.List;
