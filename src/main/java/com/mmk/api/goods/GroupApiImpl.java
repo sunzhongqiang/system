@@ -1,10 +1,12 @@
-package com.mmk.api;
+package com.mmk.api.goods;
 
 import javax.annotation.Resource;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.GoodsGroup;
@@ -27,9 +29,15 @@ public class GroupApiImpl {
 
 
 	@RequestMapping("/api/group/recommend")
-	public ResultData findRecommend(String code, Pageable pageable) {
-		Page<GoodsGroup> page = goodsGroupService.findRecommend(code, pageable);
-		ResultData result = new ResultData();
+	@ResponseBody
+	public ResultData findRecommend(String code,Pageable pageable2) {
+		
+		Pageable pageable = new PageRequest(0, 50);
+		Page<GoodsGroup> page = goodsGroupService.findRecommend(code, pageable );
+		ResultData result = new ResultData(true,"推荐的商品");
+		result.addData("content", page.getContent());
+		result.addData("total", page.getTotalElements());
+		result.addData("totalPage", page.getTotalPages());
 		return result;
 	}
 
