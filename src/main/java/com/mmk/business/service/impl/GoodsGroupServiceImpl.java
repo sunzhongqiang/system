@@ -103,4 +103,9 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 		return goodsGroupDao.findRecommend(code,pageable);
 	}
 
+	@Override
+	public Page<Goods> findBeginStart(Pageable pageable) {
+		return null;
+	}
+
 }

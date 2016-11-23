@@ -4,6 +4,8 @@ import java.util.List;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.condition.GoodsGroupCondition;
 
@@ -87,4 +89,11 @@ public interface GoodsGroupService extends BaseService<GoodsGroup, Long> {
      * @return 返回商品分页参数
      */
 	Page<GoodsGroup> findRecommend(String code, Pageable pageable);
+
+	/**
+	 * 即将开始的团
+	 * @param pageable
+	 * @return
+	 */
+	Page<Goods> findBeginStart(Pageable pageable);
 }

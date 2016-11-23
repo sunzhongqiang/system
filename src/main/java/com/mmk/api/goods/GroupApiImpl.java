@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsImgService;
@@ -35,10 +36,18 @@ public class GroupApiImpl {
 		Pageable pageable = new PageRequest(0, 50);
 		Page<GoodsGroup> page = goodsGroupService.findRecommend(code, pageable );
 		ResultData result = new ResultData(true,"推荐的商品");
-		result.addData("content", page.getContent());
+		result.addData("commendList", page.getContent());
 		result.addData("total", page.getTotalElements());
 		result.addData("totalPage", page.getTotalPages());
 		return result;
+	}
+	
+	@RequestMapping("/api/group/toBegin")
+	public ResultData toBegin(Pageable pageable) {
+		Page<Goods> goodsList = goodsGroupService.findBeginStart(pageable);
+		ResultData resultData = new ResultData(true, "查找成功");
+		resultData.addData("goodsList", goodsList);
+		return resultData;
 	}
 
 }
