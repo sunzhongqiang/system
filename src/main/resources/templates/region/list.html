@@ -20,20 +20,20 @@
 <script type="text/javascript" src="/js/region/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>所属区域id：</th>
                       <td>
-                        <input type="text" name="parentId" th:value="${regionCondition} ? ${regionCondition.parentId} :''"/>
+                        <input type="text" class="easyui-textbox" name="parentId" th:value="${regionCondition} ? ${regionCondition.parentId} :''"/>
                       </td>
                   
 
                     <th>区域名称：</th>
                       <td>
-                        <input type="text" name="regionName" th:value="${regionCondition} ? ${regionCondition.regionName} :''"/>
+                        <input type="text" class="easyui-textbox" name="regionName" th:value="${regionCondition} ? ${regionCondition.regionName} :''"/>
                       </td>
                   
 
