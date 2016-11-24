@@ -41,11 +41,18 @@ public class GoodsGroup {
     @JoinColumn(name="goods_id")
     private Goods goods;
 
+    
     /**
      * 拼团数量
      */
     @Column(name="num")
     private Long num;
+    
+    /**
+     * 拼团类型
+     */
+    @Column(name="type")
+    private Long type;
 
     /**
      * 拼团价
@@ -166,6 +173,14 @@ public class GoodsGroup {
 	 */
 	public void setDuration(Long duration) {
 		this.duration = duration;
+	}
+	
+	
+	public Long getType() {
+		return type;
+	}
+	public void setType(Long type) {
+		this.type = type;
 	}
 
 }

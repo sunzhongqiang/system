@@ -4,6 +4,7 @@
  */
 package com.mmk.business.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,6 +139,22 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 		sb.append(" and position.code = :code ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("code", code);
+		return queryByJpql(sb.toString(), params, pageable);
+	}
+
+	@Override
+	public Page<GoodsGroup> findAllByStart(Date begin, Date end,Long type,Pageable pageable) {
+		StringBuffer sb = new StringBuffer("select model from GoodsGroup model  where model.goods.goodsCat = :cat  ");
+		sb.append(" and model.promoteStartDate between :start and :end ");
+
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("start", begin);
+		params.put("end", end);
+		if(type!=null){
+			sb.append(" and model.type = :type ");
+			params.put("type", type);
+		}
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 

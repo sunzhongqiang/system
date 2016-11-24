@@ -43,10 +43,16 @@ public class GroupApiImpl {
 	}
 	
 	@RequestMapping("/api/group/toBegin")
-	public ResultData toBegin(Pageable pageable) {
-		Page<Goods> goodsList = goodsGroupService.findBeginStart(pageable);
+	public ResultData toBegin(Long type,Pageable pageable) {
+		Page<GoodsGroup> goodsList = goodsGroupService.findBeginStart(type,pageable);
 		ResultData resultData = new ResultData(true, "查找成功");
 		resultData.addData("goodsList", goodsList);
+		return resultData;
+	}
+	
+	@RequestMapping("/api/group/detail")
+	public ResultData detail(Pageable pageable) {
+		ResultData resultData = new ResultData(true, "查找成功");
 		return resultData;
 	}
 

@@ -93,7 +93,8 @@ public interface GoodsGroupService extends BaseService<GoodsGroup, Long> {
 	/**
 	 * 即将开始的团
 	 * @param pageable
+	 * @param type 商品类型
 	 * @return
 	 */
-	Page<Goods> findBeginStart(Pageable pageable);
+	Page<GoodsGroup> findBeginStart(Long type ,Pageable pageable);
 }

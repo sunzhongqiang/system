@@ -4,6 +4,7 @@
  */
 package com.mmk.business.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
@@ -84,6 +85,13 @@ public interface GoodsGroupDao extends SpringDataQueryDao<GoodsGroup>{
 	 * @return
 	 */
 	Page<GoodsGroup> findRecommend(String code, Pageable pageable);
+	
+	/**
+	 * 获取即将开始的团 
+	 * @param pageable
+	 * @return
+	 */
+	Page<GoodsGroup> findAllByStart(Date begin, Date end,Long type,Pageable pageable);
 	
     
     

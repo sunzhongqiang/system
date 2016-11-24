@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -104,8 +105,10 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 	}
 
 	@Override
-	public Page<Goods> findBeginStart(Pageable pageable) {
-		return null;
+	public Page<GoodsGroup> findBeginStart(Long type ,Pageable pageable) {
+		DateTime now = DateTime.now();
+		DateTime yesterday = now.minusDays(1);
+		return goodsGroupDao.findAllByStart(yesterday.toDate(),now.toDate(),type,pageable);
 	}
 
 }
