@@ -135,9 +135,9 @@
 .tuan .datagrid-body tr td {
     height: 100px;
 }
-.tuan img{ padding: 2%;    width: 96%;   max-height: 98px;}
+.tuan img{ padding: 2px;   max-width: 96px;   max-height: 98px;}
 .tuan .datagrid-body tr td .datagrid-cell-c2-goodImg{text-align: center;}
-.tuan .datagrid-body tr td .datagrid-cell-c2-goodImg img{ max-height:98px;}
+.tuan .datagrid-body tr td .datagrid-cell-c2-goodImg img{ max-height:96px;}
 
 
 li{list-style: none;}
