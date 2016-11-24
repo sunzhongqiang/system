@@ -21,7 +21,7 @@
                 field : 'id',
                 align: 'center',
             },
-                    {
+           {
                 width : '80',
                 title : '商品分类',
                 field : 'goodsCat',
@@ -34,7 +34,6 @@
 						return '拼团';
 					}
 				}
-                
             },
 //            		{
 //                width : '80',
@@ -157,8 +156,16 @@
             columns : [ [ 
             {
                 width : '80',
-                title : '主键',
-                field : 'id',
+                title : '拼团类型',
+                field : 'type',
+                formatter : function(value, row, index) {
+					switch (value) {
+					case 0:
+						return '一元购';
+					case 1:
+						return '拼团';
+					}
+				}
             },
                     {
                 width : '80',
@@ -242,7 +249,7 @@
             buttons : [ {
                 text : '保存',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = groupData;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }
@@ -260,7 +267,7 @@
             buttons : [ {
                 text : '保存',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = groupData;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }
