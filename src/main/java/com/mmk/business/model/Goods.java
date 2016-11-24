@@ -53,6 +53,11 @@ public class Goods {
      */
     @Column(name="goods_number")
     private Long goodsNumber;
+	/**
+     * 商品编码
+     */
+    @Column(name="goods_code")
+    private Long goodsCode;
 
     /**
      * 商品原价
@@ -169,6 +174,19 @@ public class Goods {
         this.goodsNumber = goodsNumber;
     }
 
+    /** 
+   	* @return goodsCode ：商品编码
+   	*/
+    public Long getGoodsCode() {
+        return goodsCode;
+    }
+    /** 
+    *@param goodsCode 设置商品编码
+    */
+    public void setGoodsCode(Long goodsCode) {
+        this.goodsCode = goodsCode;
+    }
+   
     /** 
 	* @return goodsOriginalPrice ：商品原价
 	*/
