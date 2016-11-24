@@ -180,11 +180,31 @@ public class TuanApi {
 		return result;
 	}
 	
-	
+	/**
+	 * 用户的团订单列表
+	 * @param openid 用户的openid
+	 * @param status 状态
+	 * @param pageable 分页
+	 * @return 返回想用的用户订单列表
+	 */
 	@RequestMapping("/api/tuan/list")
 	@ResponseBody
 	public ResultData list(String openid,Long status,Pageable pageable) {
 		Page<Tuan> tuanList = tuanService.listByOpenId(openid,status,pageable);
+		ResultData result = new ResultData(false, "正在实现");
+		return result;
+	}
+	
+	/**
+	 * 获取当前团商品的参团未成团的团 
+	 * @param groupId 团商品
+	 * @param pageable 分页
+	 * @return 返回该团商品的未成团的团
+	 */
+	@RequestMapping("/api/tuan/listByGroup")
+	@ResponseBody
+	public ResultData list(Long groupId,Pageable pageable) {
+		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanConstant.TUAN_STATUS_WAIT,pageable);
 		ResultData result = new ResultData(false, "正在实现");
 		return result;
 	}

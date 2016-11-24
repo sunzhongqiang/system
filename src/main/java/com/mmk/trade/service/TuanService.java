@@ -75,4 +75,14 @@ public interface TuanService extends BaseService<Tuan, Long> {
      * @return
      */
 	Page<Tuan> listByOpenId(String openid, Long status, Pageable pageable);
+
+	/**
+	 * 根据团和状态获取团的列表
+	 * @param groupId
+	 * @param tuanStatusWait
+	 * @param pageable
+	 * @return
+	 */
+	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long tuanStatusWait, Pageable pageable);
+
 }
