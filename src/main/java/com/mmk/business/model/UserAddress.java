@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.Column;
 
 /**
@@ -366,4 +369,25 @@ public class UserAddress {
     }
 
 
+    @Override
+    public String toString() {
+    	StringBuilder address = new StringBuilder();
+    	address.append("收货人：");
+    	address.append(StringUtils.trimToEmpty(consignee));
+    	address.append(" 联系电话：");
+    	address.append(StringUtils.trimToEmpty(tel));
+    	address.append(" ");
+    	address.append(StringUtils.trimToEmpty(mobile));
+    	address.append(" 地址：");
+    	address.append( StringUtils.trimToEmpty(provinceName));
+    	address.append(" ");
+    	address.append( StringUtils.trimToEmpty(cityName));
+    	address.append(" ");
+    	address.append( StringUtils.trimToEmpty(districtName));
+    	address.append(" ");
+    	address.append( StringUtils.trimToEmpty(addressName));
+    	address.append(" 邮编：");
+    	address.append(zipcode);
+    	return address.toString();
+    }
 }

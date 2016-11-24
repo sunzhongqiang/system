@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mmk.business.constants.TuanConstant;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.model.UserAddress;
 import com.mmk.business.model.WxUser;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsService;
+import com.mmk.business.service.UserAddressService;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
@@ -38,6 +40,8 @@ public class TuanApi {
 	private GoodsGroupService groupService;
 	@Resource
 	private GoodsService goodsService;
+	@Resource
+	private UserAddressService addressService;
 
 	/**
 	 * 团管理
@@ -99,14 +103,65 @@ public class TuanApi {
 		return new ResultData(true, "查找成功", result);
 	}
 
+	/**
+	 * 开团
+	 * @param user
+	 * @param goods
+	 * @return
+	 */
 	@RequestMapping("/api/tuan/open")
 	@ResponseBody
-	public ResultData open(WxUser user, Goods goods) {
-
-		ResultData result = new ResultData(false, "正在实现");
+	public ResultData open(WxUser user, GoodsGroup goodsGroup,UserAddress address) {
+		GoodsGroup group = groupService.find(goodsGroup.getId());
+		Goods goods = group.getGoods();
+		//生成团信息
+		Tuan tuan = new Tuan();
+		tuan.setGoodsId(goods.getId());
+		tuan.setGoodName(goods.getGoodsName());
+		tuan.setGoodImg(goods.getGoodsMainImg());
+		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
+		tuan.setOrderSort(goods.getGoodsCat());
+		tuan.setPeopleNum(group.getNum());
+		tuan.setTuanStartDate(new Date());
+		
+		Tuan bean = tuanService.save(tuan);
+		
+		//用户地址
+		address = addressService.find(address.getId());
+		//生成团订单信息
+		Order order = new Order();
+		order.setAddress(address.toString());
+		order.setColonel(user.getId());
+		order.setGoodCode(goods.getGoodsCode());
+		order.setGoodImg(goods.getGoodsOriginalImg());
+		order.setGoodName(goods.getGoodsName());
+		order.setGoodPrice(goods.getPromotePrice());
+		order.setGoodsId(goods.getId());
+		order.setOrderCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+		order.setOrderPhone(address.getMobile());
+		order.setOrderPrice(goodsGroup.getGroupPrice());
+		order.setOrderSort(goodsGroup.getType());
+		order.setOrderStatus(TuanConstant.TUAN_STATUS_WAIT);
+		order.setOrderTime(new Date());
+		order.setTuanCode(bean.getTuanCode());
+		order.setUserId(user.getId());
+		order.setUserName(user.getNickname());
+		
+		order = orderService.save(order);
+		
+		ResultData result = new ResultData(true, "完成");
 		return result;
 	}
 
+	
+
+	/**
+	 * 构建团订单
+	 * @param user 用户信息
+	 * @param groupId 团订单编号
+	 * @return
+	 */
 	@RequestMapping("/api/tuan/build")
 	@ResponseBody
 	public ResultData build(WxUser user, Long groupId) {
