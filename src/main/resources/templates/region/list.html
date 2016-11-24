@@ -12,6 +12,7 @@
 <link id="icon" rel="stylesheet" href="http://g.yiqingo.com/easyui/themes/icon.css" type="text/css" />
 <link id="icon2" rel="stylesheet" href="/css/icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/lightmvc.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
@@ -20,20 +21,20 @@
 <script type="text/javascript" src="/js/region/list.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;background-color: #fff">
+    <div data-options="region:'north',border:false" style="padding:10px; overflow: hidden;background-color: #fff">
         <form id="searchForm">
             <table>
                 <tr>
 
                     <th>所属区域id：</th>
                       <td>
-                        <input type="text" name="parentId" th:value="${regionCondition} ? ${regionCondition.parentId} :''"/>
+                        <input type="text" class="easyui-textbox" name="parentId" th:value="${regionCondition} ? ${regionCondition.parentId} :''"/>
                       </td>
                   
 
                     <th>区域名称：</th>
                       <td>
-                        <input type="text" name="regionName" th:value="${regionCondition} ? ${regionCondition.regionName} :''"/>
+                        <input type="text" class="easyui-textbox" name="regionName" th:value="${regionCondition} ? ${regionCondition.regionName} :''"/>
                       </td>
                   
 

@@ -1,3 +1,11 @@
+
+/*morenyangshixiugai*/
+.panel-header{ height:25px; line-height: 25px;}
+.panel-header .panel-title{ display: inline-block;}
+.datagrid-toolbar{padding: 5px;}
+.datagrid-header .datagrid-header-row{height: 35px;}
+.datagrid-btable .datagrid-cell{ line-height: 30px;}
+/*morenyangshixiugai*/
 .tab_body .tdTit {
     width: 162px;
     text-align: right;
@@ -369,7 +377,6 @@ li{list-style: none;}
     border-right: 1px solid #CCDEE4;
     border-top: 1px solid #CCDEE4;
     line-height: 30px;
-    text-align: left;
 }
 .order_log th,.order_log td {
     padding: 5px;
