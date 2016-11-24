@@ -57,7 +57,7 @@ public class Goods {
      * 商品编码
      */
     @Column(name="goods_code")
-    private Long goodsCode;
+    private String goodsCode;
 
     /**
      * 商品原价
@@ -177,13 +177,13 @@ public class Goods {
     /** 
    	* @return goodsCode ：商品编码
    	*/
-    public Long getGoodsCode() {
+    public String getGoodsCode() {
         return goodsCode;
     }
     /** 
     *@param goodsCode 设置商品编码
     */
-    public void setGoodsCode(Long goodsCode) {
+    public void setGoodsCode(String goodsCode) {
         this.goodsCode = goodsCode;
     }
    
