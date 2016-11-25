@@ -133,10 +133,10 @@ public class TuanApi {
 		Order order = new Order();
 		order.setAddress(address.toString());
 		order.setColonel(user.getId());
-		order.setGoodCode(goods.getGoodsCode());
-		order.setGoodImg(goods.getGoodsOriginalImg());
-		order.setGoodName(goods.getGoodsName());
-		order.setGoodPrice(goods.getPromotePrice());
+		order.setGoodsCode(goods.getGoodsCode());
+		order.setGoodsImg(goods.getGoodsOriginalImg());
+		order.setGoodsName(goods.getGoodsName());
+		order.setGoodsPrice(goods.getPromotePrice());
 		order.setGoodsId(goods.getId());
 		order.setOrderCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		order.setOrderPhone(address.getMobile());

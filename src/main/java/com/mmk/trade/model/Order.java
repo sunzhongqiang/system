@@ -89,26 +89,26 @@ public class Order {
     /**
      * 商品图片
      */
-    @Column(name="good_img")
-    private String goodImg;
+    @Column(name="goods_img")
+    private String goodsImg;
 
     /**
      * 商品名称
      */
-    @Column(name="good_name")
-    private String goodName;
+    @Column(name="goods_name")
+    private String goodsName;
 
     /**
      * 商品编码
      */
-    @Column(name="good_code")
-    private String goodCode;
+    @Column(name="goods_code")
+    private String goodsCode;
 
     /**
      * 商品价格
      */
-    @Column(name="good_price")
-    private Double goodPrice;
+    @Column(name="goods_price")
+    private Double goodsPrice;
 
     /**
      * 订单价格
@@ -286,53 +286,53 @@ public class Order {
     /** 
 	* @return goodImg ：商品图片
 	*/
-    public String getGoodImg() {
-        return goodImg;
+    public String getGoodsImg() {
+        return goodsImg;
     }
     /** 
     *@param goodImg 设置商品图片 
     */
-    public void setGoodImg(String goodImg) {
-        this.goodImg = goodImg;
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
     }
 
     /** 
 	* @return goodName ：商品名称
 	*/
-    public String getGoodName() {
-        return goodName;
+    public String getGoodsName() {
+        return goodsName;
     }
     /** 
     *@param goodName 设置商品名称 
     */
-    public void setGoodName(String goodName) {
-        this.goodName = goodName;
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
     }
 
     /** 
 	* @return goodCode ：商品编码
 	*/
-    public String getGoodCode() {
-        return goodCode;
+    public String getGoodsCode() {
+        return goodsCode;
     }
     /** 
     *@param goodCode 设置商品编码 
     */
-    public void setGoodCode(String goodCode) {
-        this.goodCode = goodCode;
+    public void setGoodsCode(String goodsCode) {
+        this.goodsCode = goodsCode;
     }
 
     /** 
 	* @return goodPrice ：商品价格
 	*/
-    public Double getGoodPrice() {
-        return goodPrice;
+    public Double getGoodsPrice() {
+        return goodsPrice;
     }
     /** 
     *@param goodPrice 设置商品价格 
     */
-    public void setGoodPrice(Double goodPrice) {
-        this.goodPrice = goodPrice;
+    public void setGoodsPrice(Double goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
     /** 
