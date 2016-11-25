@@ -46,7 +46,11 @@ public class GroupApiImpl {
 	public ResultData toBegin(Long type,Pageable pageable) {
 		Page<GoodsGroup> goodsList = goodsGroupService.findBeginStart(type,pageable);
 		ResultData resultData = new ResultData(true, "查找成功");
-		resultData.addData("goodsList", goodsList);
+		resultData.addData("groupList", goodsList.getContent());
+		resultData.addData("total", goodsList.getTotalElements());
+		resultData.addData("totalPage", goodsList.getTotalPages());
+		resultData.addData("number", goodsList.getNumber());
+		resultData.addData("numberOfElement", goodsList.getNumberOfElements());
 		return resultData;
 	}
 	
