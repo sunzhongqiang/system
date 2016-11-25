@@ -6,6 +6,21 @@
 .datagrid-header .datagrid-header-row{height: 35px;}
 .datagrid-btable .datagrid-cell{ line-height: 30px;}
 .tabs-wrap .tabs li a.tabs-inner{ padding:0 15px;}
+.datagrid-btable .datagrid-cell .tree-title{ line-height: 30px;height: 30px;}
+.datagrid-btable .datagrid-cell .tree-file{vertical-align: sub;}
+.datagrid-btable .datagrid-cell .tree-folder{vertical-align: sub;}
+.datagrid-btable .datagrid-cell .tree-expanded{vertical-align: sub;}
+/* .datagrid-btable .datagrid-cell .tree-expanded{vertical-align: sub;background: url('../images/tree_icons1.png') no-repeat -144px 0;} */
+/* .datagrid-btable .datagrid-cell .tree-line{background: url('../images/tree_icons1.png') no-repeat -180px 0;} */
+/* .datagrid-btable .datagrid-cell .tree-joinbottom {background: url('../images/tree_icons1.png') no-repeat -165px 5px;} */
+/* .datagrid-btable .datagrid-cell .tree-file {background: url('../images/tree_icons1.png') no-repeat -240px 0;} */
+/* .datagrid-btable .datagrid-cell .tree-folder-open {background: url('../images/tree_icons1.png') no-repeat -224px -1px;} */
+/* .datagrid-btable .datagrid-cell  .tree-join { */
+/*     background: url('../images/tree_icons1.png') no-repeat -197px 0; */
+/* } */
+
+
+
 /*morenyangshixiugai*/
 .tab_body .tdTit {
     width: 162px;
@@ -130,13 +145,13 @@
     height: 100px;
 }
 .myad .datagrid-body tr td .datagrid-cell-c1-adImg{text-align: center;}
-.myad .datagrid-body tr td .datagrid-cell-c1-adImg img{ max-height:98px;}
+.myad .datagrid-body tr td .datagrid-cell-c1-adImg img{ max-height:98px; width:98%;}
 
 
 .tuan .datagrid-body tr td {
     height: 100px;
 }
-.tuan img{ padding: 2px;   max-width: 96px;   max-height: 98px;}
+.tuan img{ padding: 2px;max-width: 96px;max-height: 98px;}
 .tuan .datagrid-body tr td .datagrid-cell-c2-goodImg{text-align: center;}
 .tuan .datagrid-body tr td .datagrid-cell-c2-goodImg img{ max-height:96px;}
 
