@@ -61,6 +61,7 @@ public class ApiDaoImpl extends SpringDataQueryDaoImpl<Api> implements ApiDao {
             sb.append(" and model.uri like :uri ");
             params.put("uri","%"+apiCondition.getUri()+"%");
         }
+        sb.append(" order by model.apiGroup ");
         return queryByJpql(sb.toString(), params, pageable);
     }
 
