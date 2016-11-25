@@ -84,11 +84,11 @@
                     </tr>
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>拼团开始时间：</label></td>
-                        <td><input  name="startTime" type="text" placeholder="点击选择时间" class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.startTime}"/></td>
+                        <td><input  name="startTime" type="text" placeholder="点击选择时间" data-options="required:true" class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.startTime}"/></td>
                     </tr>
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>拼团结束时间：</label></td>
-                        <td><input  name="endTime" type="text" placeholder="点击选择时间"  class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.endTime}"/></td>
+                        <td><input  name="endTime" type="text" placeholder="点击选择时间"  data-options="required:true" class="easyui-datebox" onfocus="WdatePicker();" th:value="${goodsGroup.endTime}"/></td>
                     </tr>
             </table>
             <input type="hidden" name="id" th:value="${goodsGroup.id}"/>
