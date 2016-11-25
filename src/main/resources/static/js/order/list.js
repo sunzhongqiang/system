@@ -193,11 +193,11 @@
                 cc.push('<tr class="orders">');
                 cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
                 cc.push('<span class="is_02 is_00">'+formatType(rowData.orderSort)+'</span>');
-                cc.push('<a><img name="goodImg" src="'+rowData.goodImg+'"></a>');
-                cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
+                cc.push('<a><img name="goodsImg" src="'+rowData.goodsImg+'"></a>');
+                cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodsName+'</p></div>');
                 cc.push('</div></td>');
                 
-                cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodPrice+'元</span></td>');
+                cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodsPrice+'元</span></td>');
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.orderPrice+'元</span>');
                 cc.push('<p><a class="blue" onclick="orderDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');

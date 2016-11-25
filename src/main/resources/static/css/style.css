@@ -5,6 +5,7 @@
 .datagrid-toolbar{padding: 5px;}
 .datagrid-header .datagrid-header-row{height: 35px;}
 .datagrid-btable .datagrid-cell{ line-height: 30px;}
+.tabs-wrap .tabs li a.tabs-inner{ padding:0 15px;}
 /*morenyangshixiugai*/
 .tab_body .tdTit {
     width: 162px;
