@@ -55,8 +55,10 @@ public class GroupApiImpl {
 	}
 	
 	@RequestMapping("/api/group/detail")
-	public ResultData detail(Pageable pageable) {
+	public ResultData detail(Long id) {
+		GoodsGroup goodsGroup = goodsGroupService.find(id);
 		ResultData resultData = new ResultData(true, "查找成功");
+		resultData.addData("goodsGroup", goodsGroup);
 		return resultData;
 	}
 
