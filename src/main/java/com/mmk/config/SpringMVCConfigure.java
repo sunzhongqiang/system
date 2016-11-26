@@ -4,30 +4,29 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.support.GenericConversionService;
-import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import com.mmk.common.convert.StringToDate;
+import com.mmk.security.service.impl.APISecurityInterceptorAdapter;
 
 @Configuration
-public class SpringMVCConfigure  {
+public class SpringMVCConfigure  extends WebMvcConfigurerAdapter{
 
-	@Resource
-	private RequestMappingHandlerAdapter handlerAdapter;
 
-	/**
-	 * 增加字符串转日期的功能
-	 */
-	@PostConstruct
-	public void initEditableValidation() {
-		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
-		if (initializer.getConversionService() != null) {
-			GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
-			genericConversionService.addConverter(new StringToDate());
-		}
-	}
+	
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new APISecurityInterceptorAdapter()).addPathPatterns("/api/**");
+    }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+    	StringToDate converter = new StringToDate();
+    	registry.addConverter(converter);
+    }
+    
+    
+    
 }

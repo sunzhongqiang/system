@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -150,6 +151,11 @@ public class TuanApi {
 		
 		order = orderService.save(order);
 		
+		//开团数量加1
+		Long groupNum = group.getGroupNum() == null ? 1l : group.getGroupNum()+1;
+		group.setGroupNum(groupNum);
+		groupService.save(goodsGroup);
+		
 		ResultData result = new ResultData(true, "完成");
 		return result;
 	}
@@ -206,6 +212,8 @@ public class TuanApi {
 	public ResultData list(Long groupId,Pageable pageable) {
 		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanConstant.TUAN_STATUS_WAIT,pageable);
 		ResultData result = new ResultData(false, "正在实现");
+		result.addData("groupNum", 10);
+		result.addData("tuanList", tuanList);
 		return result;
 	}
 }

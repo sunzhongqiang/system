@@ -79,6 +79,12 @@ public class GoodsGroup {
      */
     @Column(name="duration")
     private Long duration;
+    
+    /**
+     * 已经开始的团数量
+     */
+    @Column(name="group_num")
+    private Long groupNum;
 
 
 
@@ -181,6 +187,12 @@ public class GoodsGroup {
 	}
 	public void setType(Long type) {
 		this.type = type;
+	}
+	public Long getGroupNum() {
+		return groupNum;
+	}
+	public void setGroupNum(Long groupNum) {
+		this.groupNum = groupNum;
 	}
 
 }

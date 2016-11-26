@@ -2,7 +2,7 @@
     var dataGrid;
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
-            url : '/shipping/gridData',
+            url : '/shippingFee/gridData',
             fit : true,
             striped : true,
             rownumbers : true,
@@ -18,43 +18,42 @@
                 field : 'id',
             },
                     {
-                width : '120',
-                title : '配送方式名称',
-                field : 'shippingName',
+                width : '80',
+                title : '配送方式',
+                field : 'shippingId',
             },
                     {
-                width : '100',
-                title : '是否可用',
-                field : 'enabled',
-                formatter : function(value, row, index) {
-					switch (value) {
-					case 1:
-						return '可用';
-					case 2:
-						return '禁用';
-					}
-				}
+                width : '80',
+                title : '地区主键',
+                field : 'regionId',
             },
                     {
-                width : '150',
-                title : '最后更新时间',
-                field : 'lastUpdateTime',
-                formatter: formatDatebox,
+                width : '80',
+                title : '首重',
+                field : 'initStart',
+            },
+                    {
+                width : '80',
+                title : '首费',
+                field : 'initFee',
+            },
+                    {
+                width : '80',
+                title : '续重',
+                field : 'addStart',
+            },
+                    {
+                width : '80',
+                title : '续费',
+                field : 'addFee',
             },
             {
                 field : 'action',
                 title : '操作',
-                width : 200,
+                width : 140,
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
-                    if(row.enabled == "1"){
-                    	str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_lock" >禁用</a>', row.id);
-                	}else{
-                		str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_unlock" >启用</a>', row.id);
-                	}
-                    str += $.formatString('<a href="javascript:void(0)" onclick="setting(\'{0}\');" class="btn_setting" >设置运费/a>', row.id);
-                    str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
@@ -67,10 +66,7 @@
 	            handler: function(){addFun();}
             }],
             onLoadSuccess : function(data){
-            	$('.btn_lock').linkbutton({text:'禁用',plain:true,iconCls:'icon-lock'});
-            	$('.btn_unlock').linkbutton({text:'启用',plain:true,iconCls:'icon-unlock'});
-            	$('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_setting').linkbutton({text:'设置运费',plain:true,iconCls:'icon-setting'});
+                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');
             }
@@ -82,7 +78,7 @@
             title : '添加',
             width : 500,
             height : 300,
-            href : '/shipping/add',
+            href : '/shippingFee/add',
             buttons : [ {
                 text : '添加',
                 handler : function() {
@@ -101,10 +97,10 @@
         } else {//点击操作里面的删除图标会触发这个
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
-        parent.$.messager.confirm('询问', '您是否要删除物流管理？', function(b) {
+        parent.$.messager.confirm('询问', '您是否要删除快递地区运费？', function(b) {
             if (b) {
                 progressLoad();
-                    $.post('/shipping/delete', {
+                    $.post('/shippingFee/delete', {
                         id : id
                     }, function(result) {
                         if (result.success) {
@@ -128,7 +124,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '/shipping/edit?id=' + id,
+            href : '/shippingFee/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
                 handler : function() {
@@ -150,59 +146,5 @@
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
         dataGrid.datagrid('load', {});
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // 禁用
-    function disable(id) {
-    	  if (id == undefined) {//点击右键菜单才会触发这个
-              var rows = dataGrid.datagrid('getSelections');
-              id = rows[0].id;
-          } else {//点击操作里面的删除图标会触发这个
-              dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-          }
-    	  parent.$.messager.confirm('询问', '您是否要禁用此角色？', function(b) {
-              if (b) {
-                  progressLoad();
-                      $.post('/shipping/enable', {
-                          id : id
-                      }, function(result) {
-                          if (result.success) {
-                              dataGrid.datagrid('reload');
-                          }
-                          progressClose();
-                      }, 'JSON');
-                  }
-          });
-    }
-    
- // 启用
-    function enable(id) {
-    	  if (id == undefined) {//点击右键菜单才会触发这个
-              var rows = dataGrid.datagrid('getSelections');
-              id = rows[0].id;
-          } else {//点击操作里面的删除图标会触发这个
-              dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-          }
-    	  parent.$.messager.confirm('询问', '您是否要启用此角色？', function(b) {
-              if (b) {
-                  progressLoad();
-                      $.post('/shipping/enable', {
-                          id : id
-                      }, function(result) {
-                          if (result.success) {
-                              dataGrid.datagrid('reload');
-                          }
-                          progressClose();
-                      }, 'JSON');
-                  }
-          });
     }
     

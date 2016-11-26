@@ -107,8 +107,8 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 	@Override
 	public Page<GoodsGroup> findBeginStart(Long type ,Pageable pageable) {
 		DateTime now = DateTime.now();
-		DateTime yesterday = now.minusDays(1);
-		return goodsGroupDao.findAllByStart(yesterday.toDate(),now.toDate(),type,pageable);
+		DateTime tomorrow = now.minusDays(1);
+		return goodsGroupDao.findAllByStart(now.toDate(),tomorrow.toDate(),type,pageable);
 	}
 
 }

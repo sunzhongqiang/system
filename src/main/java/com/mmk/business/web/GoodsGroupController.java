@@ -91,7 +91,7 @@ public class GoodsGroupController extends BaseController {
         GoodsGroup goodsGroup = new GoodsGroup();
         Goods goods = goodsService.find(goodsId);
 		goodsGroup.setGoods(goods );
-        
+		
 		modelAndView.addObject("goodsGroup", goodsGroup);
         
         return modelAndView;
@@ -121,6 +121,7 @@ public class GoodsGroupController extends BaseController {
     public ResultMsg save(GoodsGroup goodsGroup){
         log.info("商品拼团管理保存");
         try {
+        	goodsGroup.setGroupNum(0l);
             goodsGroupService.save(goodsGroup);
         } catch (Exception e) {
             return new ResultMsg(false,"商品拼团管理保存失败");
