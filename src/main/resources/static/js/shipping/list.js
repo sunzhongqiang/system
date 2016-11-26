@@ -53,6 +53,8 @@
                 	}else{
                 		str += $.formatString('<a href="javascript:void(0)" onclick="disable(\'{0}\');" class="btn_unlock" >启用</a>', row.id);
                 	}
+                    str += $.formatString('<a href="javascript:void(0)" onclick="setting(\'{0}\');" class="btn_setting" >设置运费/a>', row.id);
+                    str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
@@ -67,7 +69,8 @@
             onLoadSuccess : function(data){
             	$('.btn_lock').linkbutton({text:'禁用',plain:true,iconCls:'icon-lock'});
             	$('.btn_unlock').linkbutton({text:'启用',plain:true,iconCls:'icon-unlock'});
-                $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
+            	$('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
+                $('.btn_setting').linkbutton({text:'设置运费',plain:true,iconCls:'icon-setting'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');
             }
