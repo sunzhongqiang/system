@@ -34,6 +34,12 @@ public class User {
 	/**
 	 * 部门主键
 	 */
+	@Column(name = "address_id")
+	private Long addressId;
+
+	/**
+	 * 部门主键
+	 */
 	@Column(name = "organization_id")
 	private Long organizationId;
 
@@ -215,5 +221,12 @@ public class User {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
+	
+	public Long getAddressId() {
+		return addressId;
+	}
 
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
 }
