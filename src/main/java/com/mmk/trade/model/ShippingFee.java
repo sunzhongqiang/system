@@ -41,7 +41,7 @@ public class ShippingFee {
      * 地区主键
      */
     @Column(name="region_area")
-    private Long regionArea;
+    private String regionArea;
 
     /**
      * 首重
@@ -97,13 +97,13 @@ public class ShippingFee {
     /** 
 	* @return regionArea ：地区主键
 	*/
-    public Long getRegionArea() {
+    public String getRegionArea() {
         return regionArea;
     }
     /** 
     *@param regionArea 设置地区主键 
     */
-    public void setRegionArea(Long regionArea) {
+    public void setRegionArea(String regionArea) {
         this.regionArea = regionArea;
     }
 

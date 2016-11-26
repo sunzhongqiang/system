@@ -42,22 +42,5 @@ public interface ShippingFeeRepository extends JpaRepository<ShippingFee, Long>{
      * 
      */
     Page<ShippingFee> findAllByShippingId(Long shippingId,Pageable pageable);
-    /**
-     *  根据给定的字段：regionId 地区主键获取所有符合的记录
-     * @param regionId 地区主键
-     * @return 符合条件的所有对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    List<ShippingFee> findAllByRegionId(Long regionId);
-    /**
-     *  根据给定的字段：regionId 地区主键所有符合的记录
-     * @param regionId 地区主键
-     * @param pageable 分页参数
-     * @return 符合条件的所有对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    Page<ShippingFee> findAllByRegionId(Long regionId,Pageable pageable);
 
 }

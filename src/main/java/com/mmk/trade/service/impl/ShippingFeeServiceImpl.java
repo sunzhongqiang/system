@@ -73,20 +73,6 @@ public class ShippingFeeServiceImpl extends BaseServiceImpl<ShippingFee, Long> i
     public Page<ShippingFee>  findAllByShippingId(Long shippingId, Pageable pageable){
         return shippingFeeRepository.findAllByShippingId(shippingId,pageable);
     }
-    /**
-     * 根据字段获取所有符合的记录
-     * @param regionId 地区主键
-     * @return 符合条件的所有对象
-     */
-    @Override
-    public List<ShippingFee>  findAllByRegionId(Long regionId){
-        return shippingFeeRepository.findAllByRegionId(regionId);
-    }
-    
-     @Override
-    public Page<ShippingFee>  findAllByRegionId(Long regionId, Pageable pageable){
-        return shippingFeeRepository.findAllByRegionId(regionId,pageable);
-    }
     @Override 
     public ShippingFee findBy(String field,Object value){
         log.info("快递地区运费根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
