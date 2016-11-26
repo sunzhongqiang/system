@@ -40,8 +40,8 @@ public class ShippingFee {
     /**
      * 地区主键
      */
-    @Column(name="region_id")
-    private Long regionId;
+    @Column(name="region_area")
+    private Long regionArea;
 
     /**
      * 首重
@@ -95,16 +95,16 @@ public class ShippingFee {
     }
 
     /** 
-	* @return regionId ：地区主键
+	* @return regionArea ：地区主键
 	*/
-    public Long getRegionId() {
-        return regionId;
+    public Long getRegionArea() {
+        return regionArea;
     }
     /** 
-    *@param regionId 设置地区主键 
+    *@param regionArea 设置地区主键 
     */
-    public void setRegionId(Long regionId) {
-        this.regionId = regionId;
+    public void setRegionArea(Long regionArea) {
+        this.regionArea = regionArea;
     }
 
     /** 

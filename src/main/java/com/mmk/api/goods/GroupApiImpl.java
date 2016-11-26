@@ -1,6 +1,9 @@
 package com.mmk.api.goods;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.management.AttributeList;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.model.GoodsSku;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsImgService;
 import com.mmk.business.service.GoodsService;
+import com.mmk.business.service.GoodsSkuService;
 import com.mmk.common.model.ResultData;
 
 @RestController
@@ -23,6 +28,9 @@ public class GroupApiImpl {
 	private GoodsService goodsService;
 	@Resource
 	private GoodsGroupService goodsGroupService;
+	
+	@Resource
+	private GoodsSkuService goodsSkuService;
 
 	@Resource
 	private GoodsImgService goodsImgService;
@@ -57,8 +65,10 @@ public class GroupApiImpl {
 	@RequestMapping("/api/group/detail")
 	public ResultData detail(Long id) {
 		GoodsGroup goodsGroup = goodsGroupService.find(id);
+		List<GoodsSku> attributeList = goodsSkuService.findAllByGoodsId(goodsGroup.getGoods().getId());
 		ResultData resultData = new ResultData(true, "查找成功");
 		resultData.addData("goodsGroup", goodsGroup);
+		resultData.addData("skuList", attributeList);
 		return resultData;
 	}
 

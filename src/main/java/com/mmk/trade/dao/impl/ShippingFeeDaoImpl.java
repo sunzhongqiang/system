@@ -50,9 +50,9 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     public Page<ShippingFee> list(ShippingFeeCondition shippingFeeCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from ShippingFee model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(shippingFeeCondition.getRegionId()!=null){
-            sb.append(" and model.regionId = :regionId ");
-            params.put("regionId",shippingFeeCondition.getRegionId());
+        if(shippingFeeCondition.getRegionArea()!=null){
+            sb.append(" and model.regionArea = :regionArea ");
+            params.put("regionArea",shippingFeeCondition.getRegionArea());
         }
         return queryByJpql(sb.toString(), params, pageable);
     }
@@ -61,9 +61,9 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     public List<ShippingFee> list(ShippingFeeCondition shippingFeeCondition){
         StringBuffer sb=new StringBuffer("select model from ShippingFee model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(shippingFeeCondition.getRegionId()!=null){
-            sb.append(" and model.regionId = :regionId ");
-            params.put("regionId",shippingFeeCondition.getRegionId());
+        if(shippingFeeCondition.getRegionArea()!=null){
+            sb.append(" and model.regionArea = :regionArea ");
+            params.put("regionArea",shippingFeeCondition.getRegionArea());
         }
         return queryByJpql(sb.toString(), params);
     }
@@ -71,11 +71,11 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     
     @Override 
     public Page< Map<String,Object>> listBySql(ShippingFeeCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,shipping_id,region_id,init_start,init_fee,add_start,add_fee from trade_shipping_fee  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,shipping_id,region_area,init_start,init_fee,add_start,add_fee from trade_shipping_fee  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getRegionId()!=null){
-            sb.append(" and region_id = ?3 ");
-            params.put(3,condition.getRegionId());
+        if(condition.getRegionArea()!=null){
+            sb.append(" and region_area = ?3 ");
+            params.put(3,condition.getRegionArea());
         }
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
