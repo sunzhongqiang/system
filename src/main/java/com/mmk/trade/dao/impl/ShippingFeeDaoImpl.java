@@ -50,10 +50,6 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     public Page<ShippingFee> list(ShippingFeeCondition shippingFeeCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from ShippingFee model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(shippingFeeCondition.getShippingId()!=null){
-            sb.append(" and model.shippingId = :shippingId ");
-            params.put("shippingId",shippingFeeCondition.getShippingId());
-        }
         if(shippingFeeCondition.getRegionId()!=null){
             sb.append(" and model.regionId = :regionId ");
             params.put("regionId",shippingFeeCondition.getRegionId());
@@ -65,10 +61,6 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     public List<ShippingFee> list(ShippingFeeCondition shippingFeeCondition){
         StringBuffer sb=new StringBuffer("select model from ShippingFee model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
-        if(shippingFeeCondition.getShippingId()!=null){
-            sb.append(" and model.shippingId = :shippingId ");
-            params.put("shippingId",shippingFeeCondition.getShippingId());
-        }
         if(shippingFeeCondition.getRegionId()!=null){
             sb.append(" and model.regionId = :regionId ");
             params.put("regionId",shippingFeeCondition.getRegionId());
@@ -81,10 +73,6 @@ public class ShippingFeeDaoImpl extends SpringDataQueryDaoImpl<ShippingFee> impl
     public Page< Map<String,Object>> listBySql(ShippingFeeCondition condition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select id,shipping_id,region_id,init_start,init_fee,add_start,add_fee from trade_shipping_fee  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
-        if(condition.getShippingId()!=null){
-            sb.append(" and shipping_id = ?2 ");
-            params.put(2,condition.getShippingId());
-        }
         if(condition.getRegionId()!=null){
             sb.append(" and region_id = ?3 ");
             params.put(3,condition.getRegionId());
