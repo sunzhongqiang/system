@@ -446,5 +446,23 @@ li{list-style: none;}
 
 a{ cursor: pointer;}
 
+/*‘À∑—…Ë÷√*/
+#selectSub span {
+    margin-right: 30px;
+}
+.pa_span {line-height: 30px;}
+.pa_span span:first-child {
+    width: 50px;
+    display: inline-block;
+}
+#selectSub span input {
+    margin-right: 5px;
+}
+.cont {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 30px;
+}
+
 
 

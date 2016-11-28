@@ -137,7 +137,6 @@
             },
             //点击左侧位置推荐商品
             onSelect: function(index,row) {
-            	console.log(row);
             	groupData.datagrid('load',{"goodsId":row.id});
         	},
         });
