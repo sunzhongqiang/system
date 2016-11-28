@@ -46,7 +46,9 @@
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>机构编码：</label></td>
                         <td>
-                        <input type="text"  name="code"   class="easyui-validatebox" data-options="required:true" th:value="${organization.code}"/>
+                        <input type="text"  name="code"   class="easyui-validatebox" 
+                        required="required" validType="remote['/organization/existCode?id='+param[0],'code']"
+                        th:value="${organization.code}"/>
                         </td>
                     </tr>
                     <tr>

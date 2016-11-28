@@ -176,5 +176,13 @@ public class OrganizationController extends BaseController {
         }
         return true; 
     }
+    @RequestMapping("/organization/existCode")
+    public boolean existCode(String code,Long id){
+    	Organization organization = organizationService.findBy("code", code);
+    	if(organization==null){
+    		return true;
+    	}
+    	return false;
+    }
     
 }
