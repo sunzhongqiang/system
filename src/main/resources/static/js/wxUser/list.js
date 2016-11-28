@@ -62,7 +62,7 @@
             		{
                 width : '120',
                 title : '省份',
-                field : 'privince',
+                field : 'province',
                 align: 'center',
             },
                     {
