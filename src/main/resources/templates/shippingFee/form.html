@@ -35,42 +35,175 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+    	
+    
+    
         <form id="modelForm" method="post">
+        
+        	<div class="cont">
+		<div id="selectSub">
+			<div class="pa_span">
+				<span>东北</span>
+				<span>
+					<input value="18" checked="checked" type="checkbox" /><label>辽宁</label>
+				</span>
+				<span>
+					<input value="15" checked="checked" type="checkbox" /><label>吉林</label>
+				</span>
+				<span>
+					<input value="12" type="checkbox" /><label>黑龙江</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>华东</span>
+				<span>
+					<input value="16" type="checkbox" /><label>江苏</label>
+				</span>
+				<span>
+					<input value="17" type="checkbox" /><label>江西</label>
+				</span>
+				<span>
+					<input value="3" checked="checked" type="checkbox" /><label>安徽</label>
+				</span>
+				<span>
+					<input value="31" type="checkbox" /><label>浙江</label>
+				</span>
+				<span>
+					<input value="25" type="checkbox" /><label>上海</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>华中</span>
+				<span>
+					<input value="11" type="checkbox" /><label>河南</label>
+				</span>
+				<span>
+					<input value="14" type="checkbox" /><label>湖南</label>
+				</span>
+				<span>
+					<input value="13" type="checkbox" /><label>湖北</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>华北</span>
+				<span>
+					<input value="23" type="checkbox" /><label>山西</label>
+				</span>
+				<span>
+					<input value="27" type="checkbox" /><label>天津</label>
+				</span>
+				<span>
+					<input value="19" type="checkbox" /><label>内蒙古</label>
+				</span>
+				<span>
+					<input value="22" type="checkbox" /><label>山东</label>
+				</span>
+				<span>
+					<input value="2" type="checkbox" /><label>北京</label>
+				</span>
+				<span>
+					<input value="10" type="checkbox" /><label>河北</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>华南</span>
+				<span>
+					<input value="9" type="checkbox" /><label>海南</label>
+				</span>
+				<span>
+					<input value="4" type="checkbox" /><label>福建</label>
+				</span>
+				<span>
+					<input value="7" type="checkbox" /><label>广西</label>
+				</span>
+				<span>
+					<input value="6" type="checkbox" /><label>广东</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>西北</span>
+				<span>
+					<input value="5" type="checkbox" /><label>甘肃</label>
+				</span>
+				<span>
+					<input value="24" type="checkbox" /><label>陕西</label>
+				</span>
+				<span>
+					<input value="20" type="checkbox" /><label>宁夏</label>
+				</span>
+				<span>
+					<input value="29" type="checkbox" /><label>新疆</label>
+				</span>
+				<span>
+					<input value="21" type="checkbox" /><label>青海</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>西南</span>
+				<span>
+					<input value="32" type="checkbox" /><label>重庆</label>
+				</span>
+				<span>
+					<input value="8" type="checkbox" /><label>贵州</label>
+				</span>
+				<span>
+					<input value="30" type="checkbox" /><label>云南</label>
+				</span>
+				<span>
+					<input value="28" type="checkbox" /><label>西藏</label>
+				</span>
+				<span>
+					<input value="26" type="checkbox" /><label>四川</label>
+				</span>
+			</div>
+			<div class="pa_span">
+				<span>港澳台</span>
+				<span>
+					<input value="34" type="checkbox" /><label>澳门</label>
+				</span>
+				<span>
+					<input value="33" type="checkbox" /><label>香港</label>
+				</span>
+				<span>
+					<input value="35" type="checkbox" /><label>台湾</label>
+				</span>
+			</div>
+		</div>
+	</div>
+        
+        
             <table class="grid">
-                    <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>配送方式：</label></td>
-                        <td>
-                        <input type="text"  name="shippingId"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.shippingId}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdTit"><strong class="red" >*</strong><label>地区主键：</label></td>
-                        <td>
-                        <input type="text"  name="regionId"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.regionId}"/>
-                        </td>
-                    </tr>
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><strong class="red" >*</strong><label>配送方式：</label></td> -->
+<!--                         <td> -->
+<!--                         <input type="text"  name="shipping.id"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.shipping.id}"/> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+<!--                     <tr> -->
+<!--                         <td class="tdTit"><strong class="red" >*</strong><label>地区主键：</label></td> -->
+<!--                         <td> -->
+<!--                         <input type="text"  name="regionArea"   class="easyui-textbox" data-options="required:true" th:value="${shippingFee.regionArea}"/> -->
+<!--                         </td> -->
+<!--                     </tr> -->
                     <tr>
                         <td class="tdTit"><label>首重：</label></td>
                         <td>
-                        <input type="text"  name="initStart"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.initStart}"/>
+                        <input type="text"  name="initStart"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shippingFee.initStart}"/>
                         </td>
-                    </tr>
-                    <tr>
+                   
                         <td class="tdTit"><label>首费：</label></td>
                         <td>
-                        <input type="text"  name="initFee"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.initFee}"/>
+                        <input type="text"  name="initFee"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shippingFee.initFee}"/>
                         </td>
-                    </tr>
-                    <tr>
+                   
                         <td class="tdTit"><label>续重：</label></td>
                         <td>
-                        <input type="text"  name="addStart"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.addStart}"/>
+                        <input type="text"  name="addStart"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shippingFee.addStart}"/>
                         </td>
-                    </tr>
-                    <tr>
+                    
                         <td class="tdTit"><label>续费：</label></td>
                         <td>
-                        <input type="text"  name="addFee"   class="easyui-validatebox" data-options="required:true" th:value="${shippingFee.addFee}"/>
+                        <input type="text"  name="addFee"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shippingFee.addFee}"/>
                         </td>
                     </tr>
             </table>
