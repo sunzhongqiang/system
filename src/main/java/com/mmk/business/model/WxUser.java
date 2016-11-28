@@ -61,8 +61,8 @@ public class WxUser {
 	/**
 	 * 省份
 	 */
-	@Column(name = "privince")
-	private String privince;
+	@Column(name = "province")
+	private String province;
 
 	/**
 	 * 城市
@@ -186,18 +186,18 @@ public class WxUser {
 	}
 
 	/**
-	 * @return privince ：省份
+	 * @return province ：省份
 	 */
-	public String getPrivince() {
-		return privince;
+	public String getProvince() {
+		return province;
 	}
 
 	/**
-	 * @param privince
+	 * @param province
 	 *            设置省份
 	 */
-	public void setPrivince(String privince) {
-		this.privince = privince;
+	public void setProvince(String province) {
+		this.province = province;
 	}
 
 	/**
