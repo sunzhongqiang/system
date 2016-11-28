@@ -70,4 +70,11 @@ public interface RegionService extends BaseService<Region, Long> {
      * 
      */
     List<Region> findAllBy(String field,Object value);
+
+    /**
+     * 根据父类获取对应的子省市区
+     * @param parentId
+     * @return
+     */
+	List<Region> findAllByParentId(Long parentId);
 }

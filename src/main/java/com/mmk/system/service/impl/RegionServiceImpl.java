@@ -79,4 +79,9 @@ public class RegionServiceImpl extends BaseServiceImpl<Region, Long> implements 
         log.info("区域管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return regionDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Region> findAllByParentId(Long parentId) {
+		return regionRepository.findAllByParentId(parentId);
+	}
 }

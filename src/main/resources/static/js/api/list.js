@@ -17,36 +17,43 @@
                 width : '80',
                 title : '主键',
                 field : 'id',
+                sortable:true
             },
                     {
                 width : '80',
                 title : 'API组',
                 field : 'apiGroup',
+                sortable:true
             },
                     {
                 width : '180',
                 title : 'API名称',
                 field : 'name',
+                sortable:true
             },
                     {
                 width : '280',
                 title : '接口说明',
                 field : 'description',
+                sortable:true
             },
                     {
                 width : '280',
                 title : '地址',
                 field : 'uri',
+                sortable:true
             },
                     {
                 width : '280',
                 title : '参数',
                 field : 'params',
+                sortable:true
             },
                     {
                 width : '280',
                 title : '返回值',
                 field : 'returnValues',
+                sortable:true
             },
             {
                 field : 'action',

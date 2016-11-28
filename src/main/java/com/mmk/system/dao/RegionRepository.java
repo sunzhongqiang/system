@@ -3,6 +3,8 @@
  */
 package com.mmk.system.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.mmk.system.model.Region;
@@ -31,5 +33,11 @@ public interface RegionRepository extends JpaRepository<Region, Long>{
      * 
      */
     Region findFirstByRegionName(String regionName);
+    /**
+     * 根据父类获取省市区
+     * @param parentId 父类
+     * @return 地区列表
+     */
+	List<Region> findAllByParentId(Long parentId);
 
 }
