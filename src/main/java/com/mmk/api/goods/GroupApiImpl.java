@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.GoodsSku;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsImgService;
@@ -65,11 +66,18 @@ public class GroupApiImpl {
 	@RequestMapping("/api/group/detail")
 	public ResultData detail(Long id) {
 		GoodsGroup goodsGroup = goodsGroupService.find(id);
-		List<GoodsSku> attributeList = goodsSkuService.findAllByGoodsId(goodsGroup.getGoods().getId());
-		ResultData resultData = new ResultData(true, "查找成功");
-		resultData.addData("goodsGroup", goodsGroup);
-		resultData.addData("skuList", attributeList);
-		return resultData;
+		if(goodsGroup!=null){
+			ResultData resultData = new ResultData(true, "查找成功");
+			Long goodsId = goodsGroup.getGoods().getId();
+			List<GoodsSku> attributeList = goodsSkuService.findAllByGoodsId(goodsId);
+			List<GoodsImg> goodsImageList = goodsImgService.findByGoodsId(goodsId);
+			resultData.addData("goodsGroup", goodsGroup);
+			resultData.addData("skuList", attributeList);
+			resultData.addData("goodsImgs", goodsImageList);
+			return resultData;
+		}else{
+			return new ResultData(false, "没有找到对应的团商品");
+		}
 	}
 
 }

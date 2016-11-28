@@ -100,4 +100,11 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	 * 
 	 */
 	Page<UserAddress> findAllByOpenid(String openid, Pageable pageable);
+
+	/**
+	 * 获取用户的默认地址
+	 * @param openid
+	 * @return
+	 */
+	UserAddress findDefaultByOpenid(String openid);
 }

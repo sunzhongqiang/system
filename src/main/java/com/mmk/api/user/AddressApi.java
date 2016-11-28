@@ -1,6 +1,8 @@
 package com.mmk.api.user;
 
 
+import javax.annotation.Resource;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,13 +10,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.UserAddress;
+import com.mmk.business.model.WxUser;
 import com.mmk.business.service.UserAddressService;
+import com.mmk.business.service.WxUserService;
 import com.mmk.common.model.ResultData;
 
 @RestController
 public class AddressApi {
 	
+	@Resource
 	private UserAddressService addressService;
+	@Resource
+	private WxUserService wxUserService;
 
 	/**
 	 * 获取用户的所有地址信息
@@ -77,6 +84,32 @@ public class AddressApi {
 			return result;
 		} catch (Exception e) {
 			ResultData result = new ResultData(false,"用户地址保存失败");
+			return result ;
+		}
+	}
+	
+
+	/**
+	 * 用户默认地址
+	 * @param openid
+	 * @param address
+	 * @return
+	 */
+	
+	@RequestMapping("/api/address/default")
+	@ResponseBody
+	public ResultData save(String openid){
+		try {
+			WxUser user = wxUserService.findByOpenid(openid);
+			UserAddress userAddress = null;
+			if(user.getAddressId()!=null){
+				userAddress = addressService.find(user.getAddressId());
+			}
+			ResultData result = new ResultData(true,"用户默认地址信息");
+			result.addData("userAddress", userAddress);
+			return result;
+		} catch (Exception e) {
+			ResultData result = new ResultData(false,"用户默认地址获取失败");
 			return result ;
 		}
 	}

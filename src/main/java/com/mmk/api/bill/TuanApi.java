@@ -71,7 +71,7 @@ public class TuanApi {
 	 */
 	@RequestMapping("/api/tuan/join")
 	@ResponseBody
-	public ResultData join(Tuan tuan) {
+	public ResultData join(Tuan tuan,WxUser user,UserAddress address) {
 
 		Random random = new Random();
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -211,9 +211,25 @@ public class TuanApi {
 	@ResponseBody
 	public ResultData list(Long groupId,Pageable pageable) {
 		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanConstant.TUAN_STATUS_WAIT,pageable);
-		ResultData result = new ResultData(false, "正在实现");
+		ResultData result = new ResultData(true, "当前为开团的团但是未成团的团");
 		result.addData("groupNum", 10);
 		result.addData("tuanList", tuanList);
+		return result;
+	}
+	
+	/**
+	 * 团详情
+	 * @param id 团详情id
+	 * @return 获得的团详情
+	 */
+	@RequestMapping("/api/tuan/info")
+	@ResponseBody
+	public ResultData info(Long id) {
+		Tuan tuan = tuanService.find(id);
+		List<Order> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
+		ResultData result = new ResultData(true, "正在实现");
+		result.addData("tuan", tuan);
+		result.addData("orderList", orderList);
 		return result;
 	}
 }

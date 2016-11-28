@@ -87,6 +87,13 @@ public class WxUser {
 	 */
 	@Column(name = "privilege")
 	private String privilege;
+	
+
+	/**
+	 * 部门主键
+	 */
+	@Column(name = "address_id")
+	private Long addressId;
 
 	/**
 	 * @return id ：用户id
@@ -251,6 +258,14 @@ public class WxUser {
 	 */
 	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
+	}
+	
+	public Long getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
 	}
 
 }

@@ -1,7 +1,11 @@
 package com.mmk.business.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
@@ -95,5 +99,11 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
 	@Override
 	public Page<UserAddress> findAllByOpenid(String openid, Pageable pageable) {
 		return userAddressRepository.findAllByOpenid(openid, pageable);
+	}
+
+	@Override
+	public UserAddress findDefaultByOpenid(String openid) {
+		Map<String, Object> params = new HashMap<String,Object>();
+		return userAddressDao.findBy(params );
 	}
 }
