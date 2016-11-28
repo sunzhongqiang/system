@@ -1,12 +1,76 @@
-html, body { width: 100%; height: 100%; overflow: hidden; margin: 0; font-family: 'microsoft yahei'; background-image:url(../images/login_bg.jpg); }
+html, body { width: 100%; height: 100%;  margin: 0; font-family: 'microsoft yahei'; }
 html { _height: auto; _padding: 50px 0 0px; }
 
-.login { width:640px; height:400px; position:absolute; left:50%; top:50%; margin-left:-320px; margin-top:-200px;}
-.login  .logo { background-image:url(../images/login_logo.png); background-repeat:no-repeat; background-position: 30px center; height:150px;}
-.login .logo h1{color: #fff;text-align: center;line-height: 150px;vertical-align: bottom;}
-.login_form { height:80px; margin-left:auto; margin-right:auto; width:600px;}
-.login_form .user{ background-image:url(../images/login_name_bg.jpg); width:540px; height:80px; float:left;}
-.login_form .button { background:url(../images/login_button.jpg); width:50px; background-repeat:no-repeat; background-position:left center; height:54px; float:left; display:block; text-indent: -9999px; border:none; margin-top:10px; position:relative}
-.login_form .text_value { float:left; margin-left:17px; padding-left:10px; padding-right:10px; margin-top:15px; width:225px; height:50px; line-height:50px; font-size:16px; color:#666; font-weight:bold; border:none; background-color:#f5f6f7}
-.foot { padding-top:30px; text-align:center; color:#FFF; padding-right:80px;}
-#tip { padding-top:10px; color:#FFF;   background-image:none; text-align:center; padding-right:80px; font-size:14px;}
+/* .login { width:640px; height:400px; position:absolute; left:50%; top:50%; margin-left:-320px; margin-top:-200px;} */
+/* .login  .logo { background-image:url(../images/login_logo.png); background-repeat:no-repeat; background-position: 30px center; height:150px;} */
+/* .login .logo h1{color: #fff;text-align: center;line-height: 150px;vertical-align: bottom;} */
+/* .login_form { height:80px; margin-left:auto; margin-right:auto; width:600px;} */
+/* .login_form .user{ background-image:url(../images/login_name_bg.jpg); width:540px; height:80px; float:left;} */
+/* .login_form .button { background:url(../images/login_button.jpg); width:50px; background-repeat:no-repeat; background-position:left center; height:54px; float:left; display:block; text-indent: -9999px; border:none; margin-top:10px; position:relative} */
+/* .login_form .text_value { float:left; margin-left:17px; padding-left:10px; padding-right:10px; margin-top:15px; width:225px; height:50px; line-height:50px; font-size:16px; color:#666; font-weight:bold; border:none; background-color:#f5f6f7} */
+/* .foot { padding-top:30px; text-align:center; color:#FFF; padding-right:80px;} */
+/* #tip { padding-top:10px; color:#FFF;   background-image:none; text-align:center; padding-right:80px; font-size:14px;} */
+
+
+/**/
+.yyg-login{min-width: 1200px;}
+.yyg-login .header {
+    height: 120px;
+    width: 1190px;
+    margin: auto;
+    line-height: 120px;
+}
+.content {
+    position: relative;
+    width: 1200px;
+    margin:0 auto;
+}
+.login-bg{width: 100%; background: url(../images/login-bg.png) no-repeat; min-height:650px;}
+
+.yyg-login .inner{position: absolute;left: 10px;top: 90px;}
+.yyg-login .login-box{ position: absolute; width:360px;height:400px; right:10px; top:75px; background: #fff; padding:40px 70px;}
+.yyg-login .login-box h3{ font-size:26px; color:#6687a3; margin:0 0 50px 0;}
+.yyg-login .item {
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 1;
+    border: 1px solid #93c6e1;
+}
+.yyg-login .item .login-label {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    background: url() no-repeat;
+}
+.yyg-login .text_value {
+    line-height: 28px;
+    height: 28px;
+    border: 0;
+    padding: 10px 0 10px 65px;
+    width: 293px;
+    float: none;
+    overflow: hidden;
+    font-size: 14px;
+}
+.yyg-login .item  .name-label{background: url(../images/login-1.png) no-repeat;}
+.yyg-login .item  .pwd-label{background: url(../images/login-2.png) no-repeat;}
+.yyg-login .login_form .button {
+    border: 1px solid #749cbd;
+    display: block;
+    width: 360px;
+    background: #749cbd;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 20px;
+    border-radius:5px;
+    margin-top:50px;
+}
+.login-footer{ width:1200px; margin: 0 auto; text-align: center;font-size:18px;color:#666666;margin-top:50px;}
+
+
+
+
