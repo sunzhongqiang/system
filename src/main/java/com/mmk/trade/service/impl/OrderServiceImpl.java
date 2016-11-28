@@ -107,4 +107,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
         log.info("订单管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return orderDao.findAllBy(field,value);
     }
+
+	@Override
+	public Integer countByOpenid(String openid, Long status) {
+		return orderDao.countByOpenid(openid,status);
+	}
 }

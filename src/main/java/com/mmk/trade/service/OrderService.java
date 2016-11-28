@@ -120,4 +120,12 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * 
 	 */
 	List<Order> findAllBy(String field, Object value);
+
+	/**
+	 * 根据用户openid获取数据
+	 * @param openid 用户的openid
+	 * @param status 订单状态
+	 * @return
+	 */
+	Integer countByOpenid(String openid, Long status);
 }

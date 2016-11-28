@@ -67,5 +67,12 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * 
      */
     List<Order> findAllBy(String field,Object value);
+    /**
+     * 统计订单数量
+     * @param openid 用户的openid
+     * @param status 订单状态
+     * @return 订单的数量
+     */
+	Integer countByOpenid(String openid, Long status);
 
 }

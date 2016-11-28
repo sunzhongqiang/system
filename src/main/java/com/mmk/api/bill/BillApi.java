@@ -6,8 +6,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mmk.business.constants.TuanConstant;
+import com.mmk.common.model.ResultData;
 import com.mmk.trade.model.Order;
 import com.mmk.trade.service.OrderService;
 
@@ -32,5 +35,15 @@ public class BillApi {
 		result.put("msg", "订单生成成功");
 		result.put("order", save);
 		return result ;
+	}
+	
+	
+	@RequestMapping("/api/bill/count")
+	@ResponseBody
+	public ResultData count(String openid) {
+		ResultData result = new ResultData(true, "用户订单统计");
+		Integer wait = orderService.countByOpenid(openid,TuanConstant.TUAN_STATUS_WAIT);
+		result.addData("wait", wait);
+		return result;
 	}
 }

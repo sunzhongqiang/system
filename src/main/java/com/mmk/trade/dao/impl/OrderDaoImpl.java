@@ -166,4 +166,19 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 		return queryByJpql(sb.toString(), params);
 	}
 
+	@Override
+	public Integer countByOpenid(String openid, Long status) {
+		StringBuffer sb = new StringBuffer("select model from Order model,WxUser user  where model.userId = user.id ");
+		sb.append(" and user.openid = :openid ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("openid", openid);
+		
+		if(status!=null){
+			sb.append(" and model.orderStatus = :status ");
+			params.put("status", status);
+		}
+		
+		return countByJpql(sb.toString(), params).intValue();
+	}
+
 }
