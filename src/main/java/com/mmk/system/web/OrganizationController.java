@@ -121,6 +121,13 @@ public class OrganizationController extends BaseController {
     public ResultMsg save(Organization organization){
         log.info("组织机构保存");
         try {
+        	Long parentId = organization.getParentId();
+        	if(parentId!=null){
+        		Organization parent = organizationService.find(parentId);
+        		organization.setPath(parent.getPath()+parent.getCode()+"/");
+        	}else {
+				organization.setPath("/");
+			}
             organizationService.save(organization);
         } catch (Exception e) {
             return new ResultMsg(false,"组织机构保存失败");
@@ -181,6 +188,10 @@ public class OrganizationController extends BaseController {
     	Organization organization = organizationService.findBy("code", code);
     	if(organization==null){
     		return true;
+    	}else{
+    		if(organization.getId().equals(id)){
+    			return true;
+    		}
     	}
     	return false;
     }

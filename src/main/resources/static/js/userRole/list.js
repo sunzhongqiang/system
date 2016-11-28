@@ -14,6 +14,17 @@
             pageSize : 50,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
+				{
+					width : '100',
+					title : '所在部门',
+					field : 'organization',
+					formatter:function(value, row, index) {
+						if(row['organization']){
+							return row['organization'].name;
+						}
+						return "";
+					}
+				},
                          {
      				width : '250',
      				title : '用户名',

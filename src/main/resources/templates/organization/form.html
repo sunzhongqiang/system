@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <link rel="shortcut icon" href="/style/images/index/favicon.png" />
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 
     $(function() {
         $('#modelForm').on('submit', function(event){
@@ -31,6 +31,11 @@
             });
             return false;
         });
+        
+        $('#code').validatebox({
+            required: true,
+            validType: "remote['/organization/existCode?id=[[${organization.id} ? ${organization.id} : '' ]]','code']"
+        });
     });
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
@@ -46,8 +51,8 @@
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>机构编码：</label></td>
                         <td>
-                        <input type="text"  name="code"   class="easyui-validatebox" 
-                        required="required" validType="remote['/organization/existCode?id='+param[0],'code']"
+                        <input type="text"  name="code" id="code" class="easyui-validatebox" 
+                        required="required"
                         th:value="${organization.code}"/>
                         </td>
                     </tr>

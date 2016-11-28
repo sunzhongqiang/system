@@ -45,6 +45,10 @@ public class Organization {
      */
     @Column(name="parent_id")
     private Long parentId;
+    
+    
+    @Column(name="path")
+    private String path;
 
 
     /** 
@@ -98,6 +102,12 @@ public class Organization {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 
 }

@@ -19,7 +19,19 @@
 				field : 'id',
 				align:'center'
 			},
-                    {
+			 {
+				width : '100',
+				title : '所在部门',
+				field : 'organization',
+				formatter:function(value, row, index) {
+					if(row['organization']){
+						return row['organization'].name;
+					}
+					return "";
+				}
+				
+			},
+            {
 				width : '100',
 				title : '用户名',
 				field : 'username',

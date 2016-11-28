@@ -331,7 +331,7 @@ public class UserController extends BaseController {
 	@RequestMapping("/user/changeOrganization")
 	public ResultMsg changeOrganization(User user) {
 		User bean = userService.get(user.getId());
-		bean.setOrganizationId(user.getOrganizationId());
+		bean.setOrganization(user.getOrganization());
 		userService.save(bean);
 		return new ResultMsg(true, "部门修改成功");
 	}

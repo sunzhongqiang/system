@@ -8,11 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 /**
  * User: 系统用户 数据领域模型 2016-10-12 11:54:22
@@ -34,8 +39,10 @@ public class User {
 	/**
 	 * 部门主键
 	 */
-	@Column(name = "organization_id")
-	private Long organizationId;
+	@NotFound(action=NotFoundAction.IGNORE)
+	@ManyToOne
+	@JoinColumn(name = "organization_id")
+	private Organization organization;
 
 	/**
 	 * 用户名
@@ -97,18 +104,18 @@ public class User {
 	}
 
 	/**
-	 * @return organizationId ：部门主键
+	 * @return organization ：部门主键
 	 */
-	public Long getOrganizationId() {
-		return organizationId;
+	public Organization getOrganization() {
+		return organization;
 	}
 
 	/**
-	 * @param organizationId
+	 * @param organization
 	 *            设置部门主键
 	 */
-	public void setOrganizationId(Long organizationId) {
-		this.organizationId = organizationId;
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 	/**

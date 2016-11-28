@@ -48,7 +48,7 @@ public class UserDaoImpl extends SpringDataQueryDaoImpl<User> implements UserDao
 	 */
 	@Override
 	public Page<User> list(UserCondition userCondition, Pageable pageable) {
-		StringBuffer sb = new StringBuffer("select model from User model  where 1=1  ");
+		StringBuffer sb = new StringBuffer("select model from User model left join fetch model.organization  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (userCondition.getId() != null) {
 			sb.append(" and model.id = :id ");
@@ -142,7 +142,7 @@ public class UserDaoImpl extends SpringDataQueryDaoImpl<User> implements UserDao
 		StringBuffer sb = new StringBuffer("select model from User model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (orgId != null) {
-			sb.append(" and model.organizationId = :organizationId ");
+			sb.append(" and model.organization.id = :organizationId ");
 			params.put("organizationId", orgId);
 		}
 		return queryByJpql(sb.toString(), params, pageable);
