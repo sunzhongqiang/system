@@ -36,10 +36,12 @@ public class AddressApi {
 	@RequestMapping("/api/address/findAllByOpenid")
 	@ResponseBody
 	public ResultData findUserAddress(String openid,Pageable pageable){
-		ResultData result = new ResultData();
+		ResultData result = new ResultData(true,"用户的地址列表");
 		
 		Page<UserAddress> userAddress = addressService.findAllByOpenid(openid, pageable);
 		result.addData("page", userAddress);
+		result.addData("addressList", userAddress.getContent());
+		result.addData("total", userAddress.getTotalElements());
 		return result ;
 	}
 	

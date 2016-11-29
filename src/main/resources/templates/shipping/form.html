@@ -42,8 +42,6 @@
                         <td>
                         <input type="text"  name="shippingName"   class="easyui-textbox" data-options="required:true" th:value="${shipping.shippingName}"/>
                         </td>
-                    </tr>
-                    <tr>
                         <td class="tdTit"><label>是否可用:</label></td>
                         <td>
 <!--                         <input type="text"  name="enabled"   class="easyui-validatebox" data-options="required:true" th:value="${shipping.enabled}"/> -->
@@ -58,6 +56,29 @@
 <!--                         <td class="tdTit"><label>最后更新时间：</label></td> -->
 <!--                         <td><input id="" name="lastUpdateTime" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${shipping.lastUpdateTime}"/></td> -->
 <!--                     </tr> -->
+            </table>
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>首重：</label></td>
+                        <td>
+                        <input type="text"  name="initStart"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shipping.initStart}"/>
+                        </td>
+                   
+                        <td class="tdTit"><label>首费：</label></td>
+                        <td>
+                        <input type="text"  name="initFee"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shipping.initFee}"/>
+                        </td>
+                   
+                        <td class="tdTit"><label>续重：</label></td>
+                        <td>
+                        <input type="text"  name="addStart"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shipping.addStart}"/>
+                        </td>
+                    
+                        <td class="tdTit"><label>续费：</label></td>
+                        <td>
+                        <input type="text"  name="addFee"   class="easyui-textbox" data-options="required:true,width:80" th:value="${shipping.addFee}"/>
+                        </td>
+                    </tr>
             </table>
             <input type="hidden" name="id" th:value="${shipping.id}"/>
         </form>

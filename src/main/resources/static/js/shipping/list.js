@@ -87,7 +87,7 @@
     function addFun() {
         parent.$.modalDialog({
             title : '添加',
-            width : 500,
+            width : 700,
             height : 300,
             href : '/shipping/add',
             buttons : [ {
@@ -133,7 +133,7 @@
         }
         parent.$.modalDialog({
             title : '编辑',
-            width : 500,
+            width : 700,
             height : 300,
             href : '/shipping/edit?id=' + id,
             buttons : [ {

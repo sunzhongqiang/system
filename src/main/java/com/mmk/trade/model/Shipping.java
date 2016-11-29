@@ -50,64 +50,136 @@ public class Shipping {
 	@Column(name = "last_update_time")
 	private Date lastUpdateTime;
 
-	/**
-	 * @return id ：主键
-	 */
-	public Long getId() {
-		return id;
-	}
+	
+    /**
+     * 首重
+     */
+    @Column(name="init_start")
+    private Long initStart;
 
-	/**
-	 * @param id
-	 *            设置主键
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /**
+     * 首费
+     */
+    @Column(name="init_fee")
+    private Double initFee;
 
-	/**
-	 * @return shippingName ：配送方式名称
-	 */
-	public String getShippingName() {
-		return shippingName;
-	}
+    /**
+     * 续重
+     */
+    @Column(name="add_start")
+    private Long addStart;
 
-	/**
-	 * @param shippingName
-	 *            设置配送方式名称
-	 */
-	public void setShippingName(String shippingName) {
-		this.shippingName = shippingName;
-	}
+    /**
+     * 续费
+     */
+    @Column(name="add_fee")
+    private Double addFee;
 
-	/**
-	 * @return enabled ：是否可用:1，是；2，否
-	 */
-	public Long getEnabled() {
-		return enabled;
-	}
 
-	/**
-	 * @param enabled
-	 *            设置是否可用:1，是；2，否
-	 */
-	public void setEnabled(Long enabled) {
-		this.enabled = enabled;
-	}
+    /** 
+	* @return id ：主键
+	*/
+    public Long getId() {
+        return id;
+    }
+    /** 
+    *@param id 设置主键 
+    */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return lastUpdateTime ：最后更新时间
-	 */
-	public Date getLastUpdateTime() {
-		return lastUpdateTime;
-	}
+    /** 
+	* @return shippingName ：配送方式名称
+	*/
+    public String getShippingName() {
+        return shippingName;
+    }
+    /** 
+    *@param shippingName 设置配送方式名称 
+    */
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
 
-	/**
-	 * @param lastUpdateTime
-	 *            设置最后更新时间
-	 */
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
-	}
+    /** 
+	* @return enabled ：是否可用:1，是；2，否
+	*/
+    public Long getEnabled() {
+        return enabled;
+    }
+    /** 
+    *@param enabled 设置是否可用:1，是；2，否 
+    */
+    public void setEnabled(Long enabled) {
+        this.enabled = enabled;
+    }
+
+    /** 
+	* @return lastUpdateTime ：最后更新时间
+	*/
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+    /** 
+    *@param lastUpdateTime 设置最后更新时间 
+    */
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    /** 
+	* @return initStart ：首重
+	*/
+    public Long getInitStart() {
+        return initStart;
+    }
+    /** 
+    *@param initStart 设置首重 
+    */
+    public void setInitStart(Long initStart) {
+        this.initStart = initStart;
+    }
+
+    /** 
+	* @return initFee ：首费
+	*/
+    public Double getInitFee() {
+        return initFee;
+    }
+    /** 
+    *@param initFee 设置首费 
+    */
+    public void setInitFee(Double initFee) {
+        this.initFee = initFee;
+    }
+
+    /** 
+	* @return addStart ：续重
+	*/
+    public Long getAddStart() {
+        return addStart;
+    }
+    /** 
+    *@param addStart 设置续重 
+    */
+    public void setAddStart(Long addStart) {
+        this.addStart = addStart;
+    }
+
+    /** 
+	* @return addFee ：续费
+	*/
+    public Double getAddFee() {
+        return addFee;
+    }
+    /** 
+    *@param addFee 设置续费 
+    */
+    public void setAddFee(Double addFee) {
+        this.addFee = addFee;
+    }
+
+
 
 }
