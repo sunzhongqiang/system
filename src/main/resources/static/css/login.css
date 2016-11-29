@@ -15,11 +15,12 @@ html { _height: auto; _padding: 50px 0 0px; }
 /**/
 .yyg-login{min-width: 1200px;}
 .yyg-login .header {
-    height: 120px;
+    height: 100px;
     width: 1190px;
     margin: auto;
     line-height: 120px;
 }
+.yyg-login .header img{border:none;}
 .content {
     position: relative;
     width: 1200px;
