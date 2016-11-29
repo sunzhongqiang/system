@@ -27,7 +27,7 @@ public class AddressApi {
 	 * 获取用户的所有地址信息
 	 * @param openid 用户的openid
 	 * @param pageable 分页信息
-	 * @return 所有
+	 * @return 所有地址分页返回
 	 */
 	@RequestMapping("/api/address/findAllByOpenid")
 	@ResponseBody
@@ -91,9 +91,8 @@ public class AddressApi {
 
 	/**
 	 * 用户默认地址
-	 * @param openid
-	 * @param address
-	 * @return
+	 * @param openid 用户的opendi
+	 * @return 返回用户的默认地址
 	 */
 	
 	@RequestMapping("/api/address/default")
