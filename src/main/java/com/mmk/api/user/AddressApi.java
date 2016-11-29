@@ -140,4 +140,24 @@ public class AddressApi {
 		ResultData result = new ResultData(true,"用户信息删除成功！");
 		return result ;
 	}
+	
+	@RequestMapping("/api/address/asDefault")
+	@ResponseBody
+	public ResultData asDefault(String openid,Long addressId){
+		try {
+			WxUser user = wxUserService.findByOpenid(openid);
+			UserAddress userAddress = null;
+			if(user.getAddressId()!=null){
+				userAddress = addressService.find(user.getAddressId());
+			}
+			user.setAddressId(userAddress.getId());
+			wxUserService.save(user);
+			ResultData result = new ResultData(true,"设置用户的默认地址成功");
+			result.addData("userAddress", userAddress);
+			return result;
+		} catch (Exception e) {
+			ResultData result = new ResultData(false,"设置用户的默认地址失败");
+			return result ;
+		}
+	}
 }
