@@ -1,11 +1,13 @@
 
 /*morenyangshixiugai*/
 .panel-header{ height:25px; line-height: 25px;}
-.panel-header .panel-title{ display: inline-block;}
+.panel-header .panel-title{line-height: 30px;}
 .datagrid-toolbar{padding: 5px;}
 .datagrid-header .datagrid-header-row{height: 35px;}
 .datagrid-btable .datagrid-cell{ line-height: 30px;}
-.tabs-wrap .tabs li a.tabs-inner{ padding:0 15px;}
+.tabs-wrap .tabs li a.tabs-inner{ padding:0px 15px;}
+.panel .panel-header{height: 30px;line-height: 30px;}
+
 .datagrid-btable .datagrid-cell .tree-title{ line-height: 30px;height: 30px;}
 .datagrid-btable .datagrid-cell .tree-file{vertical-align: sub;}
 .datagrid-btable .datagrid-cell .tree-folder{vertical-align: sub;}

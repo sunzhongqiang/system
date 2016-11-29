@@ -350,8 +350,8 @@
         }
         parent.$.modalDialog({
             title : '编辑',
-            width : 500,
-            height : 300,
+            width : 600,
+            height : 450,
             href : '/shippingFee/edit?id=' + id,
             buttons : [ {
                 text : '编辑',
