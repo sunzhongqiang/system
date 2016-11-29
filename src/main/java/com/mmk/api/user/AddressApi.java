@@ -141,6 +141,13 @@ public class AddressApi {
 		return result ;
 	}
 	
+	/**
+	 * 设置用户的默认地址
+	 * @param openid 用户的openid
+	 * @param addressId 用户的地址id
+	 * @return 成功或者失败
+	 */
+	
 	@RequestMapping("/api/address/asDefault")
 	@ResponseBody
 	public ResultData asDefault(String openid,Long addressId){
