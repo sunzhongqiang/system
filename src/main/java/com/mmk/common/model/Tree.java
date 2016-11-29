@@ -1,5 +1,6 @@
 package com.mmk.common.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class Tree  {
 	//额外属性
 	private Map<String,Object> attributes;
 	//树的孩子
-	private List<Tree> children; // 孩子节点
+	private List<Tree> children = new ArrayList<Tree>(); // 孩子节点
 	// 样式
 	private String iconCls;
 	// 父节点

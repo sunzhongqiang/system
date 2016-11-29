@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>详情:商品分类</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="/js/jquery-1.8.1.min.js"   type="text/javascript" charset="utf-8"></script>
+    </head>
+    
+    <body>
+        <div class="container amn_add">
+            <div class="headtt">
+                <h1>商品分类详情</h1>            
+            </div>
+            <div class="role_tit"></div>            
+            <form id="ad-form" class="form_add"  enctype="multipart/form-data" method="post" action="" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+                <table cellspacing="1" cellpadding="3" class="tbbox" >
+                    <tr>
+                        <td class="tdTit"><label>分类id：</label></td>
+                        <td th:text="${category.id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>父分类的id：</label></td>
+                        <td th:text="${category.parentId}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类名称：</label></td>
+                        <td th:text="${category.name}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类路径：</label></td>
+                        <td th:text="${category.path}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>排序：</label></td>
+                        <td th:text="${category.sortOrder}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>是否显示：</label></td>
+                        <td th:text="${category.isShow}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类标志：</label></td>
+                        <td th:text="${category.catIco}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类LOGO：</label></td>
+                        <td th:text="${category.catLogo}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"></td>
+                        <td class="top60">
+                            <input type="hidden" name="id" th:field="${category.id}"/>
+                            <input type="hidden" name="backurl" th:value="${#httpServletRequest.getHeader('Referer')}"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+                            <a href="/category/list" class="btn_back">返回</a>                        
+                       </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <script type="text/javascript" src="/js/category/details.js"></script>
+    </body>
+</html>

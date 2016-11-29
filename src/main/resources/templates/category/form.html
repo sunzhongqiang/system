@@ -1,0 +1,93 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/category/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_treeGrid.treegrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>父分类的id：</label></td>
+                        <td>
+                        <input class="easyui-combotreegrid" name="parentId" th:unless="${category.id}"  data-options="
+                                width:'150',
+                                panelWidth:150,
+                                url:'/category/treeGrid',
+                                idField:'id',
+                                treeField:'name',
+                                columns:[[
+                                    {field:'name',title:'分类',width:120},
+                                    {field:'path',title:'路径',width:120}
+                                ]]" />
+                            <input type="hidden"  name="parentId" th:if="${category.id}" th:value="${category.parentId}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类名称：</label></td>
+                        <td>
+                        <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${category.name}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>排序：</label></td>
+                        <td>
+                        <input type="text"  name="sortOrder"   class="easyui-validatebox" data-options="required:true" th:value="${category.sortOrder}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>是否显示：</label></td>
+                        <td>
+                         <select name="isShow" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                            <option th:selected="${category.isShow} == 1 ? 'selected' " value="1" >显示</option>
+                            <option th:selected="${category.isShow} == 0 ? 'selected' " value="0" >隐藏</option>
+                       </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类标志：</label></td>
+                        <td>
+                        <input type="text"  name="catIco"   class="easyui-validatebox"  th:value="${category.catIco}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>分类LOGO：</label></td>
+                        <td>
+                        <input type="text"  name="catLogo"   class="easyui-validatebox"  th:value="${category.catLogo}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${category.id}"/>
+        </form>
+    </div>
+</div>

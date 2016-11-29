@@ -3,6 +3,8 @@ package com.mmk.api.user;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import com.mmk.common.model.ResultData;
 
 @RestController
 public class AddressApi {
+	
+	private Log logger = LogFactory.getLog(getClass());
 	
 	@Resource
 	private UserAddressService addressService;
@@ -152,17 +156,20 @@ public class AddressApi {
 	public ResultData asDefault(String openid,Long addressId){
 		try {
 			WxUser user = wxUserService.findByOpenid(openid);
-			UserAddress userAddress = null;
-			if(user.getAddressId()!=null){
-				userAddress = addressService.find(user.getAddressId());
+			if(user!=null){
+				user.setAddressId(addressId);
+				wxUserService.save(user);
+				ResultData result = new ResultData(true,"设置用户的默认地址成功");
+				return result;
+			}else{
+				ResultData result = new ResultData(false,"没有找到该用户");
+				return result;
 			}
-			user.setAddressId(userAddress.getId());
-			wxUserService.save(user);
-			ResultData result = new ResultData(true,"设置用户的默认地址成功");
-			result.addData("userAddress", userAddress);
-			return result;
+			
 		} catch (Exception e) {
 			ResultData result = new ResultData(false,"设置用户的默认地址失败");
+			result.addData("error", e);
+			logger.error(e.getMessage(), e);
 			return result ;
 		}
 	}
