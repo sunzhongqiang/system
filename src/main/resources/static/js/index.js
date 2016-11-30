@@ -190,7 +190,6 @@ function refreshTab(title) {
 	if(title){
 		if(t.tabs('exists', title)){
 			t.tabs('select', title);
-			q.css("height","40px")
 		}
 	}
 	var index = t.tabs('getTabIndex', t.tabs('getSelected'));

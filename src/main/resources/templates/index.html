@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" />
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://g.yiqingo.com/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+<link href="/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 <title>管理后台</title>
 <script type="text/javascript" src="/js/extJs.js"></script>
@@ -40,9 +41,8 @@
         </div>
         
         
-        
-        <div data-options="region:'west',split:true" title="主导航" style="width: 230px; overflow: hidden;overflow-y:auto; background:#41586e;color:#fff;">
-            <div class="well well-small" style="padding: 5px 5px 5px 5px;">
+        <div id="dl-l" class="content" data-options="region:'west',split:true" title="主导航" style="width: 230px; overflow: hidden;overflow-y:auto; background:#41586e;color:#fff;">
+            <div class="well well-small" >
                 <ul id="layout_west_tree"></ul>
             </div>
         </div>
@@ -84,5 +84,45 @@
         <div onclick="changeTheme('gray');">gray</div>
         <div onclick="changeTheme('material');">material</div>
     </div>
+    
+    
+	<!-- custom scrollbars plugin -->
+	<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script>
+		(function($){
+			$(window).load(function(){
+				$("#dl-l").mCustomScrollbar({
+					scrollButtons:{
+						enable:true
+					}
+				});
+				//ajax demo fn
+				$("a[rel='load-content']").click(function(e){
+					e.preventDefault();
+					var $this=$(this),
+						url=$this.attr("href");
+					$this.addClass("loading");
+					$.get(url,function(data){
+						$this.removeClass("loading");
+						$("#dl-l .mCSB_container").html(data); //load new content inside .mCSB_container
+						$("#dl-l").mCustomScrollbar("update"); //update scrollbar according to newly loaded content
+						$("#dl-l").mCustomScrollbar("scrollTo","top",{scrollInertia:200}); //scroll to top
+					});
+				});
+				$("a[rel='append-content']").click(function(e){
+					e.preventDefault();
+					var $this=$(this),
+						url=$this.attr("href");
+					$this.addClass("loading");
+					$.get(url,function(data){
+						$this.removeClass("loading");
+						$("#dl-l .mCSB_container").append(data); //append new content inside .mCSB_container
+						$("#dl-l").mCustomScrollbar("update"); //update scrollbar according to newly appended content
+						$("#dl-l").mCustomScrollbar("scrollTo","h2:last",{scrollInertia:2500,scrollEasing:"easeInOutQuad"}); //scroll to appended content
+					});
+				});
+			});
+		})(jQuery);
+	</script>
 </body>
 </html>
