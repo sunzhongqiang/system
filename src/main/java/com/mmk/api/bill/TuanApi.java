@@ -125,6 +125,8 @@ public class TuanApi {
 		tuan.setOrderSort(goods.getGoodsCat());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
+		tuan.setCommander(user);
+		tuan.setJoinNum(1l);
 		
 		Tuan bean = tuanService.save(tuan);
 		

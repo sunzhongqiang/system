@@ -8,11 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.mmk.business.model.WxUser;
 
 /**
 * Tuan: 团订单 数据领域模型
@@ -40,8 +44,9 @@ public class Tuan {
     /**
      * 团长ID
      */
-    @Column(name="commander_id")
-    private Long commanderId;
+    @ManyToOne
+    @JoinColumn(name="commander_id")
+    private WxUser commander;
 
     /**
      * 团编码
@@ -151,16 +156,16 @@ public class Tuan {
     }
 
     /** 
-	* @return commanderId ：团长ID
+	* @return commander ：团长ID
 	*/
-    public Long getCommanderId() {
-        return commanderId;
+    public WxUser getCommander() {
+        return commander;
     }
     /** 
-    *@param commanderId 设置团长ID 
+    *@param commander 设置团长ID 
     */
-    public void setCommanderId(Long commanderId) {
-        this.commanderId = commanderId;
+    public void setCommander(WxUser commander) {
+        this.commander = commander;
     }
 
     /** 
