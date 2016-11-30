@@ -1,6 +1,6 @@
 /*
  * 
- *  OrderDaoImpl 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
+ *  TuanOrderDaoImpl 创建于 2016-11-07 10:37:06 版权归作者和作者当前组织所有
  */
 package com.mmk.trade.dao.impl;
 
@@ -22,7 +22,7 @@ import com.mmk.trade.dao.TuanOrderDao;
 import com.mmk.trade.model.TuanOrder;
 
 /**
- * OrderDaoImpl: 订单管理 数据持久层接口实现
+ * TuanOrderDaoImpl: 订单管理 数据持久层接口实现
  * 
  * @author huguangling 胡广玲
  * @version 1.0
@@ -48,7 +48,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 	 */
 	@Override
 	public Page<TuanOrder> list(OrderCondition orderCondition, Pageable pageable) {
-		StringBuffer sb = new StringBuffer("select model from Order model  where 1=1  ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
 			sb.append(" and model.userName like :userName ");
@@ -87,7 +87,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public List<TuanOrder> list(OrderCondition orderCondition) {
-		StringBuffer sb = new StringBuffer("select model from Order model  where 1=1  ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
 			sb.append(" and model.userName like :userName ");
@@ -120,7 +120,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 	@Override
 	public Page<Map<String, Object>> listBySql(OrderCondition condition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer(
-				"select id,tuan_id,user_id,goods_id,user_name,order_code,order_time,pay_time,order_sort,good_img,good_des,good_code,good_price,order_price,order_status,address from trade_order  where 1=1  ");
+				"select id,tuan_id,user_id,goods_id,user_name,order_code,order_time,pay_time,order_sort,good_img,good_des,good_code,good_price,order_price,order_status,address from trade_tuan_order  where 1=1  ");
 		Map<Integer, Object> params = new HashMap<Integer, Object>();
 		if (StringUtils.isNotBlank(condition.getUserName())) {
 			sb.append(" and user_name like ?5 ");
@@ -151,7 +151,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public TuanOrder findBy(String field, Object value) {
-		StringBuffer sb = new StringBuffer("select model from Order model  where model.");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where model.");
 		sb.append(field);
 		sb.append(" = :value ");
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -162,7 +162,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public List<TuanOrder> findAllBy(String field, Object value) {
-		StringBuffer sb = new StringBuffer("select model from Order model  where model.");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where model.");
 		sb.append(field);
 		sb.append(" = :value ");
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -172,7 +172,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public Integer countByOpenid(String openid, Long status) {
-		StringBuffer sb = new StringBuffer("select model from Order model,WxUser user  where model.userId = user.id ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model,WxUser user  where model.userId = user.id ");
 		sb.append(" and user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);
@@ -186,7 +186,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
-		StringBuffer sb = new StringBuffer("select model from Order model,WxUser user  where model.userId = user.id ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model,WxUser user  where model.userId = user.id ");
 		sb.append(" and user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);

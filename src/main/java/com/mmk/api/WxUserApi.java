@@ -11,12 +11,6 @@ public interface WxUserApi {
 	 */
 	ResultMsg save(WxUser user);
 
-	/**
-	 * 用户登录
-	 * @param user 要登录的用户
-	 * @return
-	 */
-	ResultMsg login(WxUser user);
 	
 	/**
 	 * 根据用户openid获取用户

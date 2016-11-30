@@ -34,27 +34,16 @@ public class WxUserApiImpl implements WxUserApi {
 			wxUser.setHeadimgurl(user.getHeadimgurl());
 			wxUser.setLanguage(user.getLanguage());
 			wxUser.setNickname(user.getNickname());
-			wxUser.setOpenid(user.getNickname());
+			wxUser.setOpenid(user.getOpenid());
 			wxUser.setPrivilege(user.getPrivilege());
 			wxUser.setRealname(user.getRealname());
 			wxUser.setSex(user.getSex());
 			wxUser.setProvince(user.getProvince());
 			wxUserService.save(wxUser);
 		}
-		return new ResultMsg(false, "用户已经存在！");
+		return new ResultMsg(true, "用户已经存在,更新成功！");
 	}
 
-	@RequestMapping("/api/user/login")
-	@Override
-	public ResultMsg login(WxUser user) {
-		WxUser wxUser = wxUserService.findBy("openid", user.getOpenid());
-		if (wxUser == null) {
-			// 新增用户逻辑
-			wxUserService.save(user);
-			return new ResultMsg(true, "用户新增成功");
-		}
-		return new ResultMsg(false, "用户已经存在！");
-	}
 
 	@RequestMapping("/api/user/findUser")
 	@Override
