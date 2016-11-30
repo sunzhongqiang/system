@@ -198,7 +198,6 @@ public class TuanApi {
 	public ResultData list(Long groupId,Pageable pageable) {
 		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanConstant.TUAN_STATUS_WAIT,pageable);
 		ResultData result = new ResultData(true, "当前为开团的团但是未成团的团");
-		result.addData("groupNum", 10);
 		result.addData("tuanList", tuanList);
 		return result;
 	}

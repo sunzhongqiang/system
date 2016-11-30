@@ -204,8 +204,8 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             params.put("groupId",groupId);
         }
         if(status!=null){
-            sb.append(" and model.status = :status ");
-            params.put("status",groupId);
+            sb.append(" and model.tuanStatus = :tuanStatus ");
+            params.put("tuanStatus",status);
         }
         return queryByJpql(sb.toString(), params, pageable);
 	}
