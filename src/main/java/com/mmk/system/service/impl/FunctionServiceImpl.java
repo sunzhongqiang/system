@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -78,13 +79,7 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
 		Map<Long,FunctionCondition> helpMap = new HashMap<Long,FunctionCondition>();
 		for (Function function : functionList) {
 			FunctionCondition condition = new FunctionCondition();
-			condition.setId(function.getId());
-			condition.setUri(function.getUri());
-			condition.setName(function.getName());
-			condition.setType(function.getType());
-			condition.setParentId(function.getParentId());
-			condition.setDescription(function.getDescription());
-			condition.setSort(function.getSort());
+			BeanUtils.copyProperties(function, condition);
 			helpMap.put(function.getId(), condition);
 			temp.add(condition);
 		}
@@ -116,6 +111,8 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
 			node.setId(String.valueOf(function.getId()));
 			Map<String,Object> attributes = new HashMap<String,Object>();
 			attributes.put("url", function.getUri());
+			attributes.put("url", function.getUri());
+			node.setIconCls(function.getIconCls());
 			node.setAttributes(attributes);
 			node.setChildren(new ArrayList<Tree>());
 			node.setPid(String.valueOf(function.getParentId()));

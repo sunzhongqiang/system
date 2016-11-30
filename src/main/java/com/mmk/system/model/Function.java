@@ -1,6 +1,6 @@
 /*
  * 
- *  Function 创建于 2016-10-24 15:52:09 版权归作者和作者当前组织所有
+ *  Function 创建于 2016-11-30 13:49:33 版权归作者和作者当前组织所有
  */
 package com.mmk.system.model;
 
@@ -13,8 +13,8 @@ import javax.persistence.Column;
 
 /**
 * Function: 系统功能 数据领域模型
-* 2016-10-24 15:52:09
-*@author huguangling 胡广玲
+* 2016-11-30 13:49:33
+*@author 
 *@version 1.0
 */
 @Entity
@@ -41,6 +41,12 @@ public class Function {
     private String name;
 
     /**
+     * 图标样式
+     */
+    @Column(name="icon_cls")
+    private String iconCls;
+
+    /**
      * 资源类型：function:功能;menu:菜单;module:模块;system:系统;一个系统有多个模块，一个模块包含多个功能
      */
     @Column(name="type")
@@ -57,12 +63,12 @@ public class Function {
      */
     @Column(name="description")
     private String description;
-    
+
     /**
      * 排序字段
      */
     @Column(name="sort")
-    private Integer sort;
+    private Long sort;
 
 
     /** 
@@ -105,6 +111,19 @@ public class Function {
     }
 
     /** 
+	* @return iconCls ：图标样式
+	*/
+    public String getIconCls() {
+        return iconCls;
+    }
+    /** 
+    *@param iconCls 设置图标样式 
+    */
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
+    }
+
+    /** 
 	* @return type ：资源类型：function:功能;menu:菜单;module:模块;system:系统;一个系统有多个模块，一个模块包含多个功能
 	*/
     public String getType() {
@@ -142,12 +161,19 @@ public class Function {
     public void setDescription(String description) {
         this.description = description;
     }
-	public Integer getSort() {
-		return sort;
-	}
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
+
+    /** 
+	* @return sort ：排序字段
+	*/
+    public Long getSort() {
+        return sort;
+    }
+    /** 
+    *@param sort 设置排序字段 
+    */
+    public void setSort(Long sort) {
+        this.sort = sort;
+    }
 
 
 }
