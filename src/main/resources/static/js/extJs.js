@@ -274,7 +274,7 @@ $.extend($.fn.tree.methods, {
 });
 
 //扩展tree，使其支持平滑数据格式
-$.fn.tree.defaults.loadFilter = function(data, parent) {
+$.fn.tree.defaults.loadFilter = function(data) {
 	var opt = $(this).data().tree.options;
 	var idFiled, textFiled, parentField;
 	if (opt.parentField) {
@@ -282,7 +282,7 @@ $.fn.tree.defaults.loadFilter = function(data, parent) {
 		textFiled = opt.textFiled || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
-		var rows = data.rows;
+		var rows = $.isArray(data) ? data : data.rows;
 		for (i = 0, l = rows.length; i < l; i++) {
 			tmpMap[rows[i][idFiled]] = rows[i];
 		}
@@ -311,7 +311,7 @@ $.fn.treegrid.defaults.loadFilter = function(data) {
 		textFiled = opt.textFiled || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
-		var rows = data.rows;
+		var rows = $.isArray(data) ? data : data.rows;
 		for (i = 0, l = rows.length; i < l; i++) {
 			tmpMap[rows[i][idFiled]] = rows[i];
 		}
