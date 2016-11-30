@@ -38,6 +38,7 @@ public class WxUserApiImpl implements WxUserApi {
 			wxUser.setPrivilege(user.getPrivilege());
 			wxUser.setRealname(user.getRealname());
 			wxUser.setSex(user.getSex());
+			wxUser.setProvince(user.getProvince());
 			wxUserService.save(wxUser);
 		}
 		return new ResultMsg(false, "用户已经存在！");

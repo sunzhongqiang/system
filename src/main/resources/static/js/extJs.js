@@ -282,18 +282,19 @@ $.fn.tree.defaults.loadFilter = function(data, parent) {
 		textFiled = opt.textFiled || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
-		for (i = 0, l = data.length; i < l; i++) {
-			tmpMap[data[i][idFiled]] = data[i];
+		var rows = data.rows;
+		for (i = 0, l = rows.length; i < l; i++) {
+			tmpMap[rows[i][idFiled]] = rows[i];
 		}
-		for (i = 0, l = data.length; i < l; i++) {
-			if (tmpMap[data[i][parentField]] && data[i][idFiled] != data[i][parentField]) {
-				if (!tmpMap[data[i][parentField]]['children'])
-					tmpMap[data[i][parentField]]['children'] = [];
-				data[i]['text'] = data[i][textFiled];
-				tmpMap[data[i][parentField]]['children'].push(data[i]);
+		for (i = 0, l = rows.length; i < l; i++) {
+			if (tmpMap[rows[i][parentField]] && rows[i][idFiled] != rows[i][parentField]) {
+				if (!tmpMap[rows[i][parentField]]['children'])
+					tmpMap[rows[i][parentField]]['children'] = [];
+				rows[i]['text'] = rows[i][textFiled];
+				tmpMap[rows[i][parentField]]['children'].push(rows[i]);
 			} else {
-				data[i]['text'] = data[i][textFiled];
-				treeData.push(data[i]);
+				rows[i]['text'] = rows[i][textFiled];
+				treeData.push(rows[i]);
 			}
 		}
 		return treeData;
@@ -302,7 +303,7 @@ $.fn.tree.defaults.loadFilter = function(data, parent) {
 };
 
 // 扩展treegrid，使其支持平滑数据格式
-$.fn.treegrid.defaults.loadFilter = function(data, parentId) {
+$.fn.treegrid.defaults.loadFilter = function(data) {
 	var opt = $(this).data().treegrid.options;
 	var idFiled, textFiled, parentField;
 	if (opt.parentField) {
@@ -310,18 +311,19 @@ $.fn.treegrid.defaults.loadFilter = function(data, parentId) {
 		textFiled = opt.textFiled || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
-		for (i = 0, l = data.length; i < l; i++) {
-			tmpMap[data[i][idFiled]] = data[i];
+		var rows = data.rows;
+		for (i = 0, l = rows.length; i < l; i++) {
+			tmpMap[rows[i][idFiled]] = rows[i];
 		}
-		for (i = 0, l = data.length; i < l; i++) {
-			if (tmpMap[data[i][parentField]] && data[i][idFiled] != data[i][parentField]) {
-				if (!tmpMap[data[i][parentField]]['children'])
-					tmpMap[data[i][parentField]]['children'] = [];
-				data[i]['text'] = data[i][textFiled];
-				tmpMap[data[i][parentField]]['children'].push(data[i]);
+		for (i = 0, l = rows.length; i < l; i++) {
+			if (tmpMap[rows[i][parentField]] && rows[i][idFiled] != rows[i][parentField]) {
+				if (!tmpMap[rows[i][parentField]]['children'])
+					tmpMap[rows[i][parentField]]['children'] = [];
+				rows[i]['text'] = rows[i][textFiled];
+				tmpMap[rows[i][parentField]]['children'].push(rows[i]);
 			} else {
-				data[i]['text'] = data[i][textFiled];
-				treeData.push(data[i]);
+				rows[i]['text'] = rows[i][textFiled];
+				treeData.push(rows[i]);
 			}
 		}
 		return treeData;
