@@ -117,7 +117,7 @@ public class TuanApi {
 		Goods goods = group.getGoods();
 		//生成团信息
 		Tuan tuan = new Tuan();
-		tuan.setGoodsId(goods.getId());
+		tuan.setGroupId(goods.getId());
 		tuan.setGoodName(goods.getGoodsName());
 		tuan.setGoodImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
@@ -174,7 +174,7 @@ public class TuanApi {
 		GoodsGroup group = groupService.find(groupId);
 		Goods goods = group.getGoods();
 		Tuan tuan = new Tuan();
-		tuan.setGoodsId(goods.getId());
+		tuan.setGroupId(goods.getId());
 		tuan.setGoodName(goods.getGoodsName());
 		tuan.setGoodImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
@@ -186,20 +186,6 @@ public class TuanApi {
 		return result;
 	}
 	
-	/**
-	 * 用户的团订单列表
-	 * @param openid 用户的openid
-	 * @param status 状态
-	 * @param pageable 分页
-	 * @return 返回想用的用户订单列表
-	 */
-	@RequestMapping("/api/tuan/list")
-	@ResponseBody
-	public ResultData list(String openid,Long status,Pageable pageable) {
-		Page<Tuan> tuanList = tuanService.listByOpenId(openid,status,pageable);
-		ResultData result = new ResultData(false, "正在实现");
-		return result;
-	}
 	
 	/**
 	 * 获取当前团商品的参团未成团的团 

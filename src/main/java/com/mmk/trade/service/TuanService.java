@@ -67,14 +67,6 @@ public interface TuanService extends BaseService<Tuan, Long> {
      */
     Tuan findById(Long id);
 
-	 /**
-     * 根据用户Openid获取团列表
-     * @param openid
-     * @param status
-     * @param pageable
-     * @return
-     */
-	Page<Tuan> listByOpenId(String openid, Long status, Pageable pageable);
 
 	/**
 	 * 根据团和状态获取团的列表

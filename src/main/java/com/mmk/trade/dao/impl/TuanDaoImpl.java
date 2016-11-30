@@ -53,9 +53,9 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getGoodsId()!=null){
+        if(tuanCondition.getGroupId()!=null){
             sb.append(" and model.goodsId = :goodsId ");
-            params.put("goodsId",tuanCondition.getGoodsId());
+            params.put("goodsId",tuanCondition.getGroupId());
         }
         if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
             sb.append(" and model.tuanCode like :tuanCode ");
@@ -92,9 +92,9 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.id = :id ");
             params.put("id",tuanCondition.getId());
         }
-        if(tuanCondition.getGoodsId()!=null){
+        if(tuanCondition.getGroupId()!=null){
             sb.append(" and model.goodsId = :goodsId ");
-            params.put("goodsId",tuanCondition.getGoodsId());
+            params.put("goodsId",tuanCondition.getGroupId());
         }
         if(StringUtils.isNotBlank(tuanCondition.getTuanCode())){
             sb.append(" and model.tuanCode like :tuanCode ");
@@ -132,9 +132,9 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and id = ?1 ");
             params.put(1,condition.getId());
         }
-        if(condition.getGoodsId()!=null){
+        if(condition.getGroupId()!=null){
             sb.append(" and goods_id = ?2 ");
-            params.put(2,condition.getGoodsId());
+            params.put(2,condition.getGroupId());
         }
         if(StringUtils.isNotBlank(condition.getTuanCode())){
             sb.append(" and tuan_code like ?3 ");

@@ -34,8 +34,8 @@ public class Tuan {
 	/**
 	 * 商品ID
 	 */
-	@Column(name = "goods_id")
-	private Long goodsId;
+	@Column(name = "group_id")
+	private Long groupId;
 
 	/**
 	 * 团编码
@@ -127,18 +127,18 @@ public class Tuan {
 	}
 
 	/**
-	 * @return goodsId ：商品ID
+	 * @return groupId ：商品ID
 	 */
-	public Long getGoodsId() {
-		return goodsId;
+	public Long getGroupId() {
+		return groupId;
 	}
 
 	/**
-	 * @param goodsId
+	 * @param groupId
 	 *            设置商品ID
 	 */
-	public void setGoodsId(Long goodsId) {
-		this.goodsId = goodsId;
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
 	}
 
 	/**

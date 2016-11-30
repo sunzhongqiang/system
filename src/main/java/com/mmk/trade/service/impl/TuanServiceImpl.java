@@ -75,16 +75,9 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
         return tuanDao.findById(id);
 	}
 
-	@Override
-	public Page<Tuan> listByOpenId(String openid, Long status, Pageable pageable) {
-//		WxUser user = userService.findByOpenid(openid);
-//		return tuanDao.listByOpenId(user.getId(),status,pageable);
-		return null;
-	}
 
 	@Override
 	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long tuanStatusWait, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return tuanDao.findAll;
 	}
 }
