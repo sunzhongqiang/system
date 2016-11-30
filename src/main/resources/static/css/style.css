@@ -12,9 +12,17 @@
 .tabs-wrap .tabs li{margin: 0px 6px -1px 0;}
 #index_layout .panel-header{ background: #41586e;color:#fff;border-color: #41586e;}
 #index_layout .panel-header>div{color:#fff;}
-.layout-panel-west .panel-body{
+#index_layout .panel-body{
     border-color: #41586E;
 }
+
+#index_layout .tree-line{background:none;}
+
+
+
+
+
+
 .tabs-wrap .tabs li.tabs-selected a.tabs-inner{color:#fb6b5b;}
 .datagrid-btable .datagrid-cell .tree-title{ line-height: 30px;height: 30px;}
 .datagrid-btable .datagrid-cell .tree-file{vertical-align: sub;}
