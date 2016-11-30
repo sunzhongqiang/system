@@ -17,10 +17,14 @@
 }
 
 #index_layout .tree-line{background:none;}
-
-
-
-
+#index_layout .tree-lines .tree-root-first .tree-expanded{background:none;}
+#index_layout .tree-lines .tree-expanded{background:none;}
+#index_layout .tree-join{background:none;}
+#index_layout .tree-lines .tree-collapsed,#index_layout  .tree-lines .tree-root-first .tree-collapsed {
+    background:none;
+}
+#index_layout .tree-joinbottom{background:none;}
+.tabs .tabs-icon{left: 2px;top: 30%;}
 
 
 .tabs-wrap .tabs li.tabs-selected a.tabs-inner{color:#fb6b5b;}
