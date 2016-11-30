@@ -14,6 +14,7 @@ $(function() {
 			{
 				fit : true,
 				border : false,
+				tabHeight : 35,
 				tools : [
 						{
 							iconCls : 'icon-home',
@@ -56,7 +57,7 @@ $(function() {
 					addTab({
 						url : url,
 						title : node.text,
-						iconCls : node.iconCls
+						iconCls : node.iconCls,
 					});
 				}
 			}
@@ -189,6 +190,7 @@ function refreshTab(title) {
 	if(title){
 		if(t.tabs('exists', title)){
 			t.tabs('select', title);
+			q.css("height","40px")
 		}
 	}
 	var index = t.tabs('getTabIndex', t.tabs('getSelected'));
@@ -198,3 +200,6 @@ function refreshTab(title) {
 		content:options.content
 	}});
 }
+
+
+
