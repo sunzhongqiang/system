@@ -51,15 +51,15 @@ $(function() {
 		parentField : 'pid',
 		lines : true,
 		onClick : function(node) {
-			if (node.attributes && node.attributes.url) {
-				if(node.children.length == 0){
-					var url = '' + node.attributes.url;
-					addTab({
-						url : url,
-						title : node.text,
-						iconCls : node.iconCls,
-					});
-				}
+			if(layout_west_tree.tree("isLeaf",node.target)){
+				var url = '' + node.attributes.url;
+				addTab({
+					url : url,
+					title : node.text,
+					iconCls : node.iconCls,
+				});
+			}else{
+				layout_west_tree.tree("toggle",node.target);
 			}
 		}
 	});
