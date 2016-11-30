@@ -77,6 +77,14 @@ public interface TuanDao extends SpringDataQueryDao<Tuan>{
      * 
      * 
      */
-	Tuan findById(Long id);    
+	Tuan findById(Long id);
+	/**
+	 * 根据团商品和
+	 * @param groupId
+	 * @param status
+	 * @param pageable
+	 * @return
+	 */
+	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long status, Pageable pageable);    
 
 }

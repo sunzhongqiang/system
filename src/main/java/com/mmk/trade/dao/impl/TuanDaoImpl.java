@@ -194,5 +194,20 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
         List<Tuan> tuanList = queryByJpql(sb.toString(), params);
         return tuanList.isEmpty() ? null : tuanList.get(0);
 	}
+
+	@Override
+	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long status, Pageable pageable) {
+		StringBuffer sb=new StringBuffer("select model from Tuan model  where 1=1  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(groupId!=null){
+            sb.append(" and model.groupId = :groupId ");
+            params.put("groupId",groupId);
+        }
+        if(status!=null){
+            sb.append(" and model.status = :status ");
+            params.put("status",groupId);
+        }
+        return queryByJpql(sb.toString(), params, pageable);
+	}
    
 }
