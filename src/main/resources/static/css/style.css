@@ -10,13 +10,24 @@
 .tabs-inner .tabs-title{font-size: 14px;}
 .tabs-icon{ width:30px; height:30px;}
 .tabs-wrap .tabs li{margin: 0px 6px -1px 0;}
-.panel .panel-header{ background: #41586e;color:#fff;border-color: #41586e;}
-.panel .panel-header>div{color:#fff;}
+#index_layout .panel-header{ background: #41586e;color:#fff;border-color: #41586e;}
+#index_layout .panel-header>div{color:#fff;}
+.layout-panel-west .panel-body{
+    border-color: #41586E;
+}
 .tabs-wrap .tabs li.tabs-selected a.tabs-inner{color:#fb6b5b;}
 .datagrid-btable .datagrid-cell .tree-title{ line-height: 30px;height: 30px;}
 .datagrid-btable .datagrid-cell .tree-file{vertical-align: sub;}
 .datagrid-btable .datagrid-cell .tree-folder{vertical-align: sub;}
 .datagrid-btable .datagrid-cell .tree-expanded{vertical-align: sub;}
+
+
+.tree-lines li ul{ background:#374b5e;}
+.tree-lines li ul .tree-node-selected{ background:none;color:#fe7b7b;}
+.tree-lines li  .tree-node-selected{ background:none;color:#fe7b7b;}
+.well-small #layout_west_tree li >div{padding: 8px 5px 8px 10px;}
+
+
 /* .datagrid-btable .datagrid-cell .tree-expanded{vertical-align: sub;background: url('../images/tree_icons1.png') no-repeat -144px 0;} */
 /* .datagrid-btable .datagrid-cell .tree-line{background: url('../images/tree_icons1.png') no-repeat -180px 0;} */
 /* .datagrid-btable .datagrid-cell .tree-joinbottom {background: url('../images/tree_icons1.png') no-repeat -165px 5px;} */
