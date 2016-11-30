@@ -7,7 +7,12 @@
 .datagrid-btable .datagrid-cell{ line-height: 30px;}
 .tabs-wrap .tabs li a.tabs-inner{ padding:0px 15px;}
 .panel .panel-header{height: 30px;line-height: 30px;}
-
+.tabs-inner .tabs-title{font-size: 14px;}
+.tabs-icon{ width:30px; height:30px;}
+.tabs-wrap .tabs li{margin: 0px 6px -1px 0;}
+.panel .panel-header{ background: #41586e;color:#fff;border-color: #41586e;}
+.panel .panel-header>div{color:#fff;}
+.tabs-wrap .tabs li.tabs-selected a.tabs-inner{color:#fb6b5b;}
 .datagrid-btable .datagrid-cell .tree-title{ line-height: 30px;height: 30px;}
 .datagrid-btable .datagrid-cell .tree-file{vertical-align: sub;}
 .datagrid-btable .datagrid-cell .tree-folder{vertical-align: sub;}
