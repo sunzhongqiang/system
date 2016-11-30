@@ -128,4 +128,13 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @return
 	 */
 	Integer countByOpenid(String openid, Long status);
+
+	/**
+	 * 根据openid和订单状态获取用户的订单列表
+	 * @param openid 用户的openid
+	 * @param orderCondition 订单查询条件 
+	 * @param pageable 分页参数
+	 * @return 符合条件的用户订单
+	 */
+	Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
 }

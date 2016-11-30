@@ -58,6 +58,7 @@ public class CategoryDaoImpl extends SpringDataQueryDaoImpl<Category> implements
             sb.append(" and model.path like :path ");
             params.put("path","%"+categoryCondition.getPath()+"%");
         }
+        sb.append(" order by model.sortOrder ");
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -73,6 +74,7 @@ public class CategoryDaoImpl extends SpringDataQueryDaoImpl<Category> implements
             sb.append(" and model.path like :path ");
             params.put("path","%"+categoryCondition.getPath()+"%");
         }
+        sb.append(" order by model.sortOrder ");
         return queryByJpql(sb.toString(), params);
     }
     
@@ -125,6 +127,7 @@ public class CategoryDaoImpl extends SpringDataQueryDaoImpl<Category> implements
             sb.append(" and model.path like :path ");
             params.put("path","%"+categoryCondition.getPath()+"%");
         }
+        sb.append(" order by model.sortOrder ");
 		return queryByJpql(sb.toString(), params);
 	}
 
@@ -136,6 +139,7 @@ public class CategoryDaoImpl extends SpringDataQueryDaoImpl<Category> implements
             sb.append(" and model.path like :path ");
             params.put("path",path+"%");
         }
+        sb.append(" order by model.sortOrder ");
 		return queryByJpql(sb.toString(), params);
 	}
     

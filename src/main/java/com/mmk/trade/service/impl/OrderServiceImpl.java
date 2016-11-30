@@ -112,4 +112,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
 	public Integer countByOpenid(String openid, Long status) {
 		return orderDao.countByOpenid(openid,status);
 	}
+
+	@Override
+	public Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
+		return orderDao.listBy(openid,orderCondition,pageable);
+	}
 }

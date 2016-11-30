@@ -89,7 +89,6 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege, Long> imple
 		List<Tree> temp = new ArrayList<Tree>();
 		Map<String,Tree> helpMap = new HashMap<String,Tree>();
 		for (Map<String, Object> map : rolePrivilege) {
-			Long functionId = MapUtils.getLong(map, "functionId");
 			Tree treeNode = new Tree();
 			treeNode.setText(MapUtils.getString(map, "functionName"));
 			treeNode.setId(MapUtils.getString(map, "functionId"));

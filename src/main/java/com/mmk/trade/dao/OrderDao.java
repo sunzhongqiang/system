@@ -74,5 +74,13 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * @return 订单的数量
      */
 	Integer countByOpenid(String openid, Long status);
+	/**
+	 * 用户订单列表
+	 * @param openid 用户的openid
+	 * @param orderCondition 订单查询条件
+	 * @param pageable 分页参数
+	 * @return 订单列表
+	 */
+	Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
 
 }

@@ -128,7 +128,7 @@
         parent.$.modalDialog({
             title : '编辑',
             width : 500,
-            height : 300,
+            height : 500,
             href : '/category/edit?id=' + id,
             buttons : [ {
                 text : '编辑',

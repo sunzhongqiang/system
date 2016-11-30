@@ -46,9 +46,17 @@ public class Organization {
     @Column(name="parent_id")
     private Long parentId;
     
-    
+    /**
+     * 组织结构路径
+     */
     @Column(name="path")
     private String path;
+    
+    /**
+     * 排序
+     */
+    @Column(name="sort")
+    private Integer sort;
 
 
     /** 
@@ -102,11 +110,35 @@ public class Organization {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+	
+	/**
+	 * @return path ：路径
+	 */
 	public String getPath() {
 		return path;
 	}
+
+	/**
+	 * @param path
+	 *            设置路径
+	 */
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	/**
+	 * @return sort ：排序
+	 */
+	public Integer getSort() {
+		return sort;
+	}
+
+	/**
+	 * @param sort
+	 *            设置排序
+	 */
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 
 

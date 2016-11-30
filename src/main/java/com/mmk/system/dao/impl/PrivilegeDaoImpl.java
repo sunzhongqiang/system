@@ -116,7 +116,7 @@ public class PrivilegeDaoImpl extends SpringDataQueryDaoImpl<Privilege> implemen
 		} else {
 			sb.append(" where 1<>1 ");
 		}
-		sb.append(" ) pri ON func.id = pri.function_id order by functionId  ");
+		sb.append(" ) pri ON func.id = pri.function_id order by func.sort  ");
 		return queryFieldsBySql(sb.toString(), params);
 	}
 

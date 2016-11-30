@@ -54,6 +54,10 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 			sb.append(" and model.userName like :userName ");
 			params.put("userName", "%" + orderCondition.getUserName() + "%");
 		}
+		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
+			sb.append(" and model.userName like :userName ");
+			params.put("userName", "%" + orderCondition.getUserName() + "%");
+		}
 		if (StringUtils.isNotBlank(orderCondition.getOrderCode())) {
 			sb.append(" and model.orderCode like :orderCode ");
 			params.put("orderCode", "%" + orderCondition.getOrderCode() + "%");
@@ -177,8 +181,24 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 			sb.append(" and model.orderStatus = :status ");
 			params.put("status", status);
 		}
-		
 		return countByJpql(sb.toString(), params).intValue();
+	}
+
+	@Override
+	public Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
+		StringBuffer sb = new StringBuffer("select model from Order model,WxUser user  where model.userId = user.id ");
+		sb.append(" and user.openid = :openid ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("openid", openid);
+		
+		if(orderCondition!=null){
+			if (orderCondition.getOrderStatus()!=null) {
+				sb.append(" and model.orderStatus = :status ");
+				params.put("status", orderCondition.getOrderStatus());
+			}
+		}
+		sb.append(" order by model.orderTime desc");
+		return queryByJpql(sb.toString(), params,pageable);
 	}
 
 }
