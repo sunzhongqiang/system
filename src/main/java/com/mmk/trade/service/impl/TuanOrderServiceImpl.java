@@ -9,11 +9,11 @@ import org.apache.commons.logging.LogFactory;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.trade.dao.OrderRepository;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.dao.TuanOrderRepository;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.service.OrderService;
-import com.mmk.trade.dao.OrderDao;
+import com.mmk.trade.service.TuanOrderService;
+import com.mmk.trade.dao.TuanOrderDao;
 /**
 * OrderServiceImpl: 订单管理 业务服务层实现
 * 2016-11-07 10:37:06
@@ -21,31 +21,31 @@ import com.mmk.trade.dao.OrderDao;
 * @version 1.0
 */
 @Service
-public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements OrderService {
+public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> implements TuanOrderService {
 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
-    private OrderDao orderDao;
+    private TuanOrderDao orderDao;
     
-    private OrderRepository orderRepository;
+    private TuanOrderRepository orderRepository;
     /**
     *构造方法
     * @param orderRepository 数据容器
     */
     @Autowired
-    public OrderServiceImpl( OrderRepository orderRepository) {
+    public TuanOrderServiceImpl( TuanOrderRepository orderRepository) {
         super(orderRepository);
         this.orderRepository = orderRepository;
     }
 
     @Override
-    public Page<Order> list(OrderCondition orderCondition, Pageable pageable) {
+    public Page<TuanOrder> list(OrderCondition orderCondition, Pageable pageable) {
         log.info("订单管理查询列表");
         return orderDao.list(orderCondition, pageable);
     }
     
     @Override
-    public List<Order> list(OrderCondition orderCondition) {
+    public List<TuanOrder> list(OrderCondition orderCondition) {
         log.info("订单管理查询列表无分页");
         return orderDao.list(orderCondition);
     }
@@ -56,7 +56,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的唯一对象
      */
     @Override
-    public Order findById(Long id){
+    public TuanOrder findById(Long id){
          return orderRepository.findFirstById(id);
     }
     /**
@@ -65,12 +65,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的所有对象
      */
     @Override
-    public List<Order>  findAllById(Long id){
+    public List<TuanOrder>  findAllById(Long id){
         return orderRepository.findAllById(id);
     }
     
      @Override
-    public Page<Order>  findAllById(Long id, Pageable pageable){
+    public Page<TuanOrder>  findAllById(Long id, Pageable pageable){
         return orderRepository.findAllById(id,pageable);
     }
     /**
@@ -79,7 +79,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的唯一对象
      */
     @Override
-    public Order findByTuanCode(String tuanCode){
+    public TuanOrder findByTuanCode(String tuanCode){
          return orderRepository.findFirstByTuanCode(tuanCode);
     }
     /**
@@ -88,22 +88,22 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
      * @return 符合条件的所有对象
      */
     @Override
-    public List<Order>  findAllByTuanCode(String tuanCode){
+    public List<TuanOrder>  findAllByTuanCode(String tuanCode){
         return orderRepository.findAllByTuanCode(tuanCode);
     }
     
      @Override
-    public Page<Order>  findAllByTuanCode(String tuanCode, Pageable pageable){
+    public Page<TuanOrder>  findAllByTuanCode(String tuanCode, Pageable pageable){
         return orderRepository.findAllByTuanCode(tuanCode,pageable);
     }
     @Override 
-    public Order findBy(String field,Object value){
+    public TuanOrder findBy(String field,Object value){
         log.info("订单管理根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return orderDao.findBy(field,value);
     }
     
     @Override 
-    public List<Order> findAllBy(String field,Object value){
+    public List<TuanOrder> findAllBy(String field,Object value){
         log.info("订单管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return orderDao.findAllBy(field,value);
     }
@@ -114,7 +114,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
 	}
 
 	@Override
-	public Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
+	public Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
 		return orderDao.listBy(openid,orderCondition,pageable);
 	}
 }

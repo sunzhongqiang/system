@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 *@version 1.0
 */
 @Entity
-@Table(name="trade_order")
-public class Order {
+@Table(name="trade_tuan_order")
+public class TuanOrder {
     /**
      * 团订单ID
      */

@@ -27,9 +27,9 @@ import com.mmk.business.service.UserAddressService;
 import com.mmk.business.service.WxUserService;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.model.Tuan;
-import com.mmk.trade.service.OrderService;
+import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.TuanService;
 
 @RestController
@@ -37,7 +37,7 @@ public class TuanApi {
 	@Resource
 	private TuanService tuanService;
 	@Resource
-	private OrderService orderService;
+	private TuanOrderService orderService;
 	@Resource
 	private GoodsGroupService groupService;
 	@Resource
@@ -80,7 +80,7 @@ public class TuanApi {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Tuan tu = tuanService.findById(tuan.getId());
 		// 团订单
-		List<Order> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
+		List<TuanOrder> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
 
 		// 成团状态设置
 		if (new Date().after(tuan.getTuanEndDate())) {
@@ -93,7 +93,7 @@ public class TuanApi {
 		// 设置抽中幸运者
 		if (TuanConstant.ONE_YUAN_TUAN.equals(tuan.getOrderSort())
 				&& TuanConstant.TUAN_STATUS_DONE.equals(tuan.getTuanStatus())) {
-			Order order = orderList.get(random.nextInt(orderList.size() - 1));
+			TuanOrder order = orderList.get(random.nextInt(orderList.size() - 1));
 			order.setLuckyOrder(TuanConstant.IS_LUCKER);
 			orderService.save(order);
 		}
@@ -134,7 +134,7 @@ public class TuanApi {
 		//用户地址
 		UserAddress address = addressService.find(addressId);
 		//生成团订单信息
-		Order order = new Order();
+		TuanOrder order = new TuanOrder();
 		order.setAddress(address.toString());
 		order.setColonel(user.getId());
 		order.setGoodsCode(goods.getGoodsCode());
@@ -214,7 +214,7 @@ public class TuanApi {
 	@ResponseBody
 	public ResultData info(Long id) {
 		Tuan tuan = tuanService.find(id);
-		List<Order> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
+		List<TuanOrder> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
 		ResultData result = new ResultData(true, "正在实现");
 		result.addData("tuan", tuan);
 		result.addData("orderList", orderList);

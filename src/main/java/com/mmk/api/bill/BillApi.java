@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mmk.business.constants.TuanConstant;
 import com.mmk.common.model.ResultData;
 import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.model.Order;
-import com.mmk.trade.service.OrderService;
+import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.service.TuanOrderService;
 
 @RestController
 public class BillApi {
 	
 	@Resource
-	private OrderService orderService;
+	private TuanOrderService orderService;
 
 	/**
 	 * 更改订单状态
@@ -31,9 +31,9 @@ public class BillApi {
 	@RequestMapping("/api/bill/update")
 	public Map<String,Object> updateStatus(Long id){
 		Map<String, Object> result = new HashMap<String,Object>();
-		Order order = orderService.findById(id);
+		TuanOrder order = orderService.findById(id);
 		order.setOrderStatus(0l);
-		Order save = orderService.save(order);
+		TuanOrder save = orderService.save(order);
 		result.put("success", true);
 		result.put("msg", "订单生成成功");
 		result.put("order", save);
@@ -68,7 +68,7 @@ public class BillApi {
 	@ResponseBody
 	public ResultData count(String openid,OrderCondition orderCondition,Pageable pageable) {
 		ResultData result = new ResultData(true, "用户订单列表");
-		Page<Order> page = orderService.listBy(openid,orderCondition,pageable);
+		Page<TuanOrder> page = orderService.listBy(openid,orderCondition,pageable);
 		result.addData("total", page.getTotalElements());
 		result.addData("list", page.getContent());
 		result.addData("totalPage", page.getTotalPages());

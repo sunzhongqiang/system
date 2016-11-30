@@ -10,13 +10,13 @@ import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.model.TuanOrder;
 /**
 * OrderDao:订单管理 数据持久层接口
 * @author huguangling 胡广玲
 * @version 1.0
 */
-public interface OrderDao extends SpringDataQueryDao<Order>{
+public interface TuanOrderDao extends SpringDataQueryDao<TuanOrder>{
     
     /**
      * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
@@ -27,7 +27,7 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * 
      * 
      */
-    Page<Order> list(OrderCondition order,Pageable pageable);
+    Page<TuanOrder> list(OrderCondition order,Pageable pageable);
     /**
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param order 查询类
@@ -35,7 +35,7 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * @author huguangling 胡广玲
      * 
      */
-    List<Order> list(OrderCondition order);
+    List<TuanOrder> list(OrderCondition order);
     /**
      * 使用sql查询，并以map和分页的形式进行返回数据结果
      * @param order Order类
@@ -55,7 +55,7 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * 
      * 
      */
-    Order findBy(String field,Object value);
+    TuanOrder findBy(String field,Object value);
     
     /**
      * 根据给定的字段和属性值，获得符合条件的所有结果
@@ -66,7 +66,7 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
      * 
      * 
      */
-    List<Order> findAllBy(String field,Object value);
+    List<TuanOrder> findAllBy(String field,Object value);
     /**
      * 统计订单数量
      * @param openid 用户的openid
@@ -81,6 +81,6 @@ public interface OrderDao extends SpringDataQueryDao<Order>{
 	 * @param pageable 分页参数
 	 * @return 订单列表
 	 */
-	Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
+	Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
 
 }

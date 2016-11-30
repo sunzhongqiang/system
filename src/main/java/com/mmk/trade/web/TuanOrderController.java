@@ -22,9 +22,9 @@ import com.mmk.common.model.ResultMsg;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
 import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.model.Shipping;
-import com.mmk.trade.service.OrderService;
+import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.ShippingService;
 
 /**
@@ -33,10 +33,10 @@ import com.mmk.trade.service.ShippingService;
 *@author huguangling 胡广玲
 */
 @RestController
-public class OrderController extends BaseController {
+public class TuanOrderController extends BaseController {
     
     @Resource 
-    private OrderService orderService;
+    private TuanOrderService orderService;
     @Resource 
     private ShippingService shippingService;
     @Resource 
@@ -63,10 +63,10 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/order/gridData")
     @ResponseBody
-    public GridData<Order> loadList(OrderCondition orderCondition, EasyPageable pageable){
+    public GridData<TuanOrder> loadList(OrderCondition orderCondition, EasyPageable pageable){
         log.info("获取订单管理列表数据");
-        Page<Order> orderPage = orderService.list(orderCondition,pageable.pageable());
-        GridData<Order> grid = new GridData<Order>(orderPage);
+        Page<TuanOrder> orderPage = orderService.list(orderCondition,pageable.pageable());
+        GridData<TuanOrder> grid = new GridData<TuanOrder>(orderPage);
         return grid;
     }
     
@@ -82,7 +82,7 @@ public class OrderController extends BaseController {
     @ResponseBody
     public ResultMsg addShipping(Long id,Long shippingId, String invoiceNo){
         log.info("更改物流状态");
-        Order order =  orderService.findById(id);
+        TuanOrder order =  orderService.findById(id);
 
         Shipping shipping = shippingService.findById(shippingId);
         order.setInvoiceNo(invoiceNo);
@@ -101,7 +101,7 @@ public class OrderController extends BaseController {
     @RequestMapping("/order/add")
     public ModelAndView addPage(){
         ModelAndView modelAndView = new ModelAndView("order/form");
-        modelAndView.addObject("order", new Order());
+        modelAndView.addObject("order", new TuanOrder());
         return modelAndView;
     } 
   
@@ -112,10 +112,10 @@ public class OrderController extends BaseController {
     @RequestMapping("/order/shippingpage")
     public ModelAndView shippingPage(Long id){
         log.info("发货页面");
-        Order order = orderService.findById(id);
+        TuanOrder order = orderService.findById(id);
         ModelAndView modelAndView = new ModelAndView("order/shipping");
         if(order == null){
-        	order = new Order();
+        	order = new TuanOrder();
         }
         modelAndView.addObject("order", order);
         modelAndView.addObject("id", id);
@@ -130,7 +130,7 @@ public class OrderController extends BaseController {
     public ModelAndView orderDetail(Long id){
         log.info("查看订单详情页面");
         ModelAndView modelAndView = new ModelAndView("order/orderDetail");
-        Order order = orderService.findById(id);
+        TuanOrder order = orderService.findById(id);
         User user = userService.find(order.getUserId());
         modelAndView.addObject("order", order);
         modelAndView.addObject("user", user);
@@ -142,7 +142,7 @@ public class OrderController extends BaseController {
      * @param order  跳转到编辑页面
      */ 
     @RequestMapping("/order/edit")
-    public ModelAndView editPage(Order order){
+    public ModelAndView editPage(TuanOrder order){
         log.info("订单管理编辑页面");
         order = orderService.find(order.getId());
         ModelAndView modelAndView = new ModelAndView("order/form");
@@ -158,7 +158,7 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/order/save")
     @ResponseBody
-    public ResultMsg save(Order order){
+    public ResultMsg save(TuanOrder order){
         log.info("订单管理保存");
         try {
             orderService.save(order);
@@ -175,7 +175,7 @@ public class OrderController extends BaseController {
      */ 
     @RequestMapping("/order/details")
     @ResponseBody
-    public Order details(Order order){
+    public TuanOrder details(TuanOrder order){
         log.info("订单管理详细信息");
         order = orderService.find(order.getId());
         return order;
@@ -187,7 +187,7 @@ public class OrderController extends BaseController {
      * @return
      */
     @RequestMapping("/order/delete")
-    public ResultMsg delete(Order order){
+    public ResultMsg delete(TuanOrder order){
         log.info("订单管理删除");
         try {
             orderService.delete(order);
@@ -204,7 +204,7 @@ public class OrderController extends BaseController {
      * @return ture or false 如果成功返回true ,出现错误返回false
      */
     @RequestMapping("/order/deleteAll")
-    public boolean delete(List<Order> orderList){
+    public boolean delete(List<TuanOrder> orderList){
         log.info("订单管理批量删除");
         try {
             orderService.delete(orderList);

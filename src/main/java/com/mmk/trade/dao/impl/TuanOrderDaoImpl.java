@@ -18,8 +18,8 @@ import org.springframework.stereotype.Repository;
 import com.mmk.business.constants.TuanConstant;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import com.mmk.trade.condition.OrderCondition;
-import com.mmk.trade.dao.OrderDao;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.dao.TuanOrderDao;
+import com.mmk.trade.model.TuanOrder;
 
 /**
  * OrderDaoImpl: 订单管理 数据持久层接口实现
@@ -29,12 +29,12 @@ import com.mmk.trade.model.Order;
  *
  */
 @Repository
-public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements OrderDao {
+public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implements TuanOrderDao {
 
 	private Log log = LogFactory.getLog(this.getClass());
 
-	public OrderDaoImpl() {
-		super(Order.class);
+	public TuanOrderDaoImpl() {
+		super(TuanOrder.class);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 	 * 
 	 */
 	@Override
-	public Page<Order> list(OrderCondition orderCondition, Pageable pageable) {
+	public Page<TuanOrder> list(OrderCondition orderCondition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from Order model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
@@ -86,7 +86,7 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 	}
 
 	@Override
-	public List<Order> list(OrderCondition orderCondition) {
+	public List<TuanOrder> list(OrderCondition orderCondition) {
 		StringBuffer sb = new StringBuffer("select model from Order model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
@@ -150,18 +150,18 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 	}
 
 	@Override
-	public Order findBy(String field, Object value) {
+	public TuanOrder findBy(String field, Object value) {
 		StringBuffer sb = new StringBuffer("select model from Order model  where model.");
 		sb.append(field);
 		sb.append(" = :value ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("value", value);
-		List<Order> result = queryByJpql(sb.toString(), params, 0l, 1l);
+		List<TuanOrder> result = queryByJpql(sb.toString(), params, 0l, 1l);
 		return result.isEmpty() ? null : result.get(0);
 	}
 
 	@Override
-	public List<Order> findAllBy(String field, Object value) {
+	public List<TuanOrder> findAllBy(String field, Object value) {
 		StringBuffer sb = new StringBuffer("select model from Order model  where model.");
 		sb.append(field);
 		sb.append(" = :value ");
@@ -185,7 +185,7 @@ public class OrderDaoImpl extends SpringDataQueryDaoImpl<Order> implements Order
 	}
 
 	@Override
-	public Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
+	public Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from Order model,WxUser user  where model.userId = user.id ");
 		sb.append(" and user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();

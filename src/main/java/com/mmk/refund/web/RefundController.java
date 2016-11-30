@@ -23,8 +23,8 @@ import com.mmk.refund.model.Refund;
 import com.mmk.refund.service.RefundService;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
-import com.mmk.trade.model.Order;
-import com.mmk.trade.service.OrderService;
+import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.service.TuanOrderService;
 
 /**
 *@Title: RefundController
@@ -37,7 +37,7 @@ public class RefundController extends BaseController {
     @Resource 
     private RefundService refundService;
     @Resource 
-    private OrderService orderService;
+    private TuanOrderService orderService;
     @Resource 
     private UserService userService;
 
@@ -125,7 +125,7 @@ public class RefundController extends BaseController {
     public ModelAndView refundDetail(Long id){
         log.info("查看订单详情页面");
         ModelAndView modelAndView = new ModelAndView("/refund/refundDetail");
-        Order order = orderService.findById(id);
+        TuanOrder order = orderService.findById(id);
         User user = userService.find(order.getUserId());
         Refund refund = refundService.find(id);
         modelAndView.addObject("order", order);

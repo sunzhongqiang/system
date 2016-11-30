@@ -4,7 +4,7 @@ import java.util.List;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.trade.model.Order;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.condition.OrderCondition;
 
 /**
@@ -13,7 +13,7 @@ import com.mmk.trade.condition.OrderCondition;
  * @author huguangling 胡广玲
  * @version 1.0
  */
-public interface OrderService extends BaseService<Order, Long> {
+public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	/**
 	 * 生成的列表分页查询方法
 	 * 
@@ -23,7 +23,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	Page<Order> list(OrderCondition orderCondition, Pageable pageable);
+	Page<TuanOrder> list(OrderCondition orderCondition, Pageable pageable);
 
 	/**
 	 * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
@@ -33,7 +33,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	public List<Order> list(OrderCondition order);
+	public List<TuanOrder> list(OrderCondition order);
 
 	/**
 	 * 根据给定的字段返回符合的对象
@@ -43,7 +43,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	Order findById(Long id);
+	TuanOrder findById(Long id);
 
 	/**
 	 * 根据字段获取所有符合的记录
@@ -53,7 +53,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	List<Order> findAllById(Long id);
+	List<TuanOrder> findAllById(Long id);
 
 	/**
 	 * 根据字段获取所有符合的记录
@@ -64,7 +64,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	Page<Order> findAllById(Long id, Pageable pageable);
+	Page<TuanOrder> findAllById(Long id, Pageable pageable);
 
 	/**
 	 * 根据给定的字段返回符合的对象
@@ -74,7 +74,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	Order findByTuanCode(String tuanCode);
+	TuanOrder findByTuanCode(String tuanCode);
 
 	/**
 	 * 根据字段获取所有符合的记录
@@ -84,7 +84,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	List<Order> findAllByTuanCode(String tuanCode);
+	List<TuanOrder> findAllByTuanCode(String tuanCode);
 
 	/**
 	 * 根据字段获取所有符合的记录
@@ -95,7 +95,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @author huguangling 胡广玲
 	 * 
 	 */
-	Page<Order> findAllByTuanCode(String tuanCode, Pageable pageable);
+	Page<TuanOrder> findAllByTuanCode(String tuanCode, Pageable pageable);
 
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的第一个结果
@@ -107,7 +107,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * 
 	 * 
 	 */
-	Order findBy(String field, Object value);
+	TuanOrder findBy(String field, Object value);
 
 	/**
 	 * 根据给定的字段和属性值，获得符合条件的所有结果
@@ -119,7 +119,7 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * 
 	 * 
 	 */
-	List<Order> findAllBy(String field, Object value);
+	List<TuanOrder> findAllBy(String field, Object value);
 
 	/**
 	 * 根据用户openid获取数据
@@ -136,5 +136,5 @@ public interface OrderService extends BaseService<Order, Long> {
 	 * @param pageable 分页参数
 	 * @return 符合条件的用户订单
 	 */
-	Page<Order> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
+	Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
 }
