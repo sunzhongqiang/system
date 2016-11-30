@@ -118,8 +118,8 @@ public class TuanApi {
 		//生成团信息
 		Tuan tuan = new Tuan();
 		tuan.setGroupId(goods.getId());
-		tuan.setGoodName(goods.getGoodsName());
-		tuan.setGoodImg(goods.getGoodsMainImg());
+		tuan.setGoodsName(goods.getGoodsName());
+		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
 		tuan.setOrderSort(goods.getGoodsCat());
@@ -175,8 +175,8 @@ public class TuanApi {
 		Goods goods = group.getGoods();
 		Tuan tuan = new Tuan();
 		tuan.setGroupId(goods.getId());
-		tuan.setGoodName(goods.getGoodsName());
-		tuan.setGoodImg(goods.getGoodsMainImg());
+		tuan.setGoodsName(goods.getGoodsName());
+		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
 		tuan.setOrderSort(goods.getGoodsCat());
