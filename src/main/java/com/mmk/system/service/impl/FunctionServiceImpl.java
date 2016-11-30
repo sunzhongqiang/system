@@ -111,9 +111,9 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> impleme
 			node.setId(String.valueOf(function.getId()));
 			Map<String,Object> attributes = new HashMap<String,Object>();
 			attributes.put("url", function.getUri());
-			attributes.put("url", function.getUri());
 			node.setIconCls(function.getIconCls());
 			node.setAttributes(attributes);
+			node.setState(function.getState());
 			node.setChildren(new ArrayList<Tree>());
 			node.setPid(String.valueOf(function.getParentId()));
 			temp.add(node);

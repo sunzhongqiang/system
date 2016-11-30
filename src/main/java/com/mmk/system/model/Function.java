@@ -45,6 +45,12 @@ public class Function {
      */
     @Column(name="icon_cls")
     private String iconCls;
+    
+    /**
+     * closed:关闭，open:打开
+     */
+    @Column(name="state")
+    private String state;
 
     /**
      * 资源类型：function:功能;menu:菜单;module:模块;system:系统;一个系统有多个模块，一个模块包含多个功能
@@ -121,6 +127,19 @@ public class Function {
     */
     public void setIconCls(String iconCls) {
         this.iconCls = iconCls;
+    }
+    
+    /** 
+	* @return state ：closed:关闭，open:打开
+	*/
+    public String getState() {
+        return state;
+    }
+    /** 
+    *@param state 设置closed:关闭，open:打开 
+    */
+    public void setState(String state) {
+        this.state = state;
     }
 
     /** 

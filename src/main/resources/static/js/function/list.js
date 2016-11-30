@@ -90,7 +90,7 @@
         parent.$.modalDialog({
             title : '添加',
             width : 500,
-            height : 300,
+            height : 500,
             href : '/function/add',
             buttons : [ {
                 text : '添加',
@@ -137,7 +137,7 @@
         parent.$.modalDialog({
             title : '编辑',
             width : 500,
-            height : 300,
+            height : 500,
             href : '/function/edit?id=' + id,
             buttons : [ {
                 text : '编辑',

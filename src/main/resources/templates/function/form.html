@@ -83,7 +83,17 @@
                         <input type="text"  name="iconCls"   class="easyui-validatebox" th:value="${function.iconCls}"/>
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <td class="tdTit"><label>是否打开</label></td>
+                        <td>
+                        <!-- <input type="text"  name="state"   class="easyui-validatebox" data-options="required:true" th:value="${function.state}"/> -->
+                        <select name="state" class="easyui-combobox"   data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                            <option th:selected="${function.state} == '' ? 'selected' "  value="">如果是子节点不要选择</option>
+                            <option th:selected="${function.state} == 'open' ? 'selected' "  value="open">打开</option>
+                            <option th:selected="${function.state} == 'closed' ? 'selected' " value="closed" >关闭</option>
+                       </select>
+                        </td>
+                    </tr> 
                     <tr>
                         <td class="tdTit"><label>描述：</label></td>
                         <td>

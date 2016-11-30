@@ -24,6 +24,7 @@ import com.mmk.business.model.WxUser;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsService;
 import com.mmk.business.service.UserAddressService;
+import com.mmk.business.service.WxUserService;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.trade.model.Order;
@@ -43,6 +44,8 @@ public class TuanApi {
 	private GoodsService goodsService;
 	@Resource
 	private UserAddressService addressService;
+	@Resource
+	private WxUserService userService;
 
 	/**
 	 * 团管理
@@ -102,15 +105,17 @@ public class TuanApi {
 
 	/**
 	 * 开团
-	 * @param user
-	 * @param goods
+	 * @param userId 用户id
+	 * @param groupId 团Id
+	 * @param addressId 地址ID
 	 * @return
 	 */
 	@RequestMapping("/api/tuan/open")
 	@ResponseBody
-	public ResultData open(WxUser user, GoodsGroup goodsGroup,UserAddress address) {
-		GoodsGroup group = groupService.find(goodsGroup.getId());
+	public ResultData open(Long userId, Long groupId,Long addressId) {
+		GoodsGroup group = groupService.find(groupId);
 		Goods goods = group.getGoods();
+		WxUser user = userService.find(userId);
 		//生成团信息
 		Tuan tuan = new Tuan();
 		tuan.setGroupId(goods.getId());
@@ -127,7 +132,7 @@ public class TuanApi {
 		Tuan bean = tuanService.save(tuan);
 		
 		//用户地址
-		address = addressService.find(address.getId());
+		UserAddress address = addressService.find(addressId);
 		//生成团订单信息
 		Order order = new Order();
 		order.setAddress(address.toString());
@@ -139,8 +144,8 @@ public class TuanApi {
 		order.setGoodsId(goods.getId());
 		order.setOrderCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		order.setOrderPhone(address.getMobile());
-		order.setOrderPrice(goodsGroup.getGroupPrice());
-		order.setOrderSort(goodsGroup.getType());
+		order.setOrderPrice(group.getGroupPrice());
+		order.setOrderSort(group.getType());
 		order.setOrderStatus(TuanConstant.TUAN_STATUS_WAIT);
 		order.setOrderTime(new Date());
 		order.setTuanCode(bean.getTuanCode());
@@ -152,7 +157,7 @@ public class TuanApi {
 		//开团数量加1
 		Long groupNum = group.getGroupNum() == null ? 1l : group.getGroupNum()+1;
 		group.setGroupNum(groupNum);
-		groupService.save(goodsGroup);
+		groupService.save(group);
 		
 		ResultData result = new ResultData(true, "完成");
 		return result;
