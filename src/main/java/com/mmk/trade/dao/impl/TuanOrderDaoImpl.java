@@ -15,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import com.mmk.business.constants.TuanConstant;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import com.mmk.trade.condition.OrderCondition;
 import com.mmk.trade.dao.TuanOrderDao;
@@ -109,8 +108,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and model.orderSort = :orderSort ");
 			params.put("orderSort", orderCondition.getOrderSort());
 		}
-		if (orderCondition.getOrderStatus() != null
-				|| !TuanConstant.TUAN_STATUS_ALL.equals(orderCondition.getOrderStatus())) {
+		if (StringUtils.isNotBlank(orderCondition.getOrderStatus())) {
 			sb.append(" and model.orderStatus = :orderStatus ");
 			params.put("orderStatus", orderCondition.getOrderStatus());
 		}
@@ -171,7 +169,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 	}
 
 	@Override
-	public Integer countByOpenid(String openid, Long status) {
+	public Integer countByOpenid(String openid, String status) {
 		StringBuffer sb = new StringBuffer("select model from TuanOrder model,WxUser user  where model.userId = user.id ");
 		sb.append(" and user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();

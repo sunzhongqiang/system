@@ -70,11 +70,11 @@ public interface TuanService extends BaseService<Tuan, Long> {
 
 	/**
 	 * 根据团和状态获取团的列表
-	 * @param groupId
-	 * @param tuanStatusWait
-	 * @param pageable
+	 * @param groupId 团订单详情
+	 * @param status 订单状态
+	 * @param pageable 分页
 	 * @return
 	 */
-	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long tuanStatusWait, Pageable pageable);
+	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable);
 
 }

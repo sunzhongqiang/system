@@ -196,7 +196,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
 	}
 
 	@Override
-	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long status, Pageable pageable) {
+	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable) {
 		StringBuffer sb=new StringBuffer("select model from Tuan model left join fetch model.commander  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
         if(groupId!=null){

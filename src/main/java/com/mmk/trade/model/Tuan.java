@@ -130,7 +130,7 @@ public class Tuan {
      * 团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败
      */
     @Column(name="tuan_status")
-    private Long tuanStatus;
+    private String tuanStatus;
 
 
     /** 
@@ -331,13 +331,13 @@ public class Tuan {
     /** 
 	* @return tuanStatus ：团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败
 	*/
-    public Long getTuanStatus() {
+    public String getTuanStatus() {
         return tuanStatus;
     }
     /** 
     *@param tuanStatus 设置团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败 
     */
-    public void setTuanStatus(Long tuanStatus) {
+    public void setTuanStatus(String tuanStatus) {
         this.tuanStatus = tuanStatus;
     }
 

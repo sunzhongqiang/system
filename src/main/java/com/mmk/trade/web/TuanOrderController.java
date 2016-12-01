@@ -22,6 +22,7 @@ import com.mmk.common.model.ResultMsg;
 import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
 import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.model.Shipping;
 import com.mmk.trade.service.TuanOrderService;
@@ -87,7 +88,7 @@ public class TuanOrderController extends BaseController {
         Shipping shipping = shippingService.findById(shippingId);
         order.setInvoiceNo(invoiceNo);
         order.setShippingName(shipping.getShippingName());
-        order.setOrderStatus(3l);
+        order.setOrderStatus(TuanOrderStatus.WAIT_RECEIVE.name());
         order.setShippingTime(new Date());
         order.setShippingId(shippingId);
         orderService.save(order);

@@ -9,14 +9,13 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.business.constants.TuanConstant;
+import com.mmk.business.condition.GroupType;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.UserAddress;
@@ -27,8 +26,10 @@ import com.mmk.business.service.UserAddressService;
 import com.mmk.business.service.WxUserService;
 import com.mmk.common.model.ResultData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.condition.TuanOrderStatus;
+import com.mmk.trade.condition.TuanStatus;
 import com.mmk.trade.model.Tuan;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.TuanService;
 
@@ -84,17 +85,17 @@ public class TuanApi {
 
 		// 成团状态设置
 		if (new Date().after(tuan.getTuanEndDate())) {
-			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_FAIL);
+//			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_FAIL);
 		} else if (orderList != null && !orderList.isEmpty() && tuan.getPeopleNum() == orderList.size()) {
-			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_DONE);
+			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
 		} else {
-			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
+			tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		}
 		// 设置抽中幸运者
-		if (TuanConstant.ONE_YUAN_TUAN.equals(tuan.getOrderSort())
-				&& TuanConstant.TUAN_STATUS_DONE.equals(tuan.getTuanStatus())) {
+		if (GroupType.ONE_YUAN_TUAN.equals(tuan.getOrderSort())
+				&& TuanStatus.SUCCESSED.name().equals(tuan.getTuanStatus())) {
 			TuanOrder order = orderList.get(random.nextInt(orderList.size() - 1));
-			order.setLuckyOrder(TuanConstant.IS_LUCKER);
+			order.setLuckyOrder(order.getId());
 			orderService.save(order);
 		}
 		tuan.setJoinNum(tuan.getJoinNum()+1);
@@ -122,7 +123,7 @@ public class TuanApi {
 		tuan.setGoodsName(goods.getGoodsName());
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
-		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
+		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		tuan.setOrderSort(goods.getGoodsCat());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
@@ -146,7 +147,7 @@ public class TuanApi {
 		order.setOrderPhone(address.getMobile());
 		order.setOrderPrice(group.getGroupPrice());
 		order.setOrderSort(group.getType());
-		order.setOrderStatus(TuanConstant.TUAN_STATUS_WAIT);
+		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		order.setOrderTime(new Date());
 		order.setTuanCode(bean.getTuanCode());
 		order.setUserId(user.getId());
@@ -181,7 +182,7 @@ public class TuanApi {
 		tuan.setGoodsName(goods.getGoodsName());
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
-		tuan.setTuanStatus(TuanConstant.TUAN_STATUS_WAIT);
+		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		tuan.setOrderSort(goods.getGoodsCat());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
@@ -199,7 +200,7 @@ public class TuanApi {
 	@RequestMapping("/api/tuan/listByGroup")
 	@ResponseBody
 	public ResultData list(Long groupId,Pageable pageable) {
-		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanConstant.TUAN_STATUS_WAIT,pageable);
+		Page<Tuan> tuanList = tuanService.findAllByGroupIdAndStatus(groupId,TuanStatus.WAIT_JOIN.name(),pageable);
 		ResultData result = new ResultData(true, "当前为开团的团但是未成团的团");
 		result.addData("tuanList", tuanList);
 		return result;

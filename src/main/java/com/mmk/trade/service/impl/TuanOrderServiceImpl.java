@@ -109,7 +109,7 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
     }
 
 	@Override
-	public Integer countByOpenid(String openid, Long status) {
+	public Integer countByOpenid(String openid, String status) {
 		return orderDao.countByOpenid(openid,status);
 	}
 

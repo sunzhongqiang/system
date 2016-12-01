@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.business.constants.TuanConstant;
 import com.mmk.common.model.ResultData;
 import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.TuanOrderService;
 
@@ -32,7 +32,7 @@ public class BillApi {
 	public Map<String,Object> updateStatus(Long id){
 		Map<String, Object> result = new HashMap<String,Object>();
 		TuanOrder order = orderService.findById(id);
-		order.setOrderStatus(0l);
+		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		TuanOrder save = orderService.save(order);
 		result.put("success", true);
 		result.put("msg", "订单生成成功");
@@ -49,9 +49,9 @@ public class BillApi {
 	@ResponseBody
 	public ResultData count(String openid) {
 		ResultData result = new ResultData(true, "用户订单统计");
-		Integer wait = orderService.countByOpenid(openid,TuanConstant.TUAN_STATUS_WAIT);
-		Integer fait = orderService.countByOpenid(openid,TuanConstant.TUAN_STATUS_FAIL);
-		Integer done = orderService.countByOpenid(openid,TuanConstant.TUAN_STATUS_DONE);
+		Integer wait = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_JOIN.name());
+		Integer fait = orderService.countByOpenid(openid,TuanOrderStatus.CLOSED.name());
+		Integer done = orderService.countByOpenid(openid,TuanOrderStatus.SUCCESSED.name());
 		result.addData("wait", wait);
 		result.addData("fait", fait);
 		result.addData("done", done);

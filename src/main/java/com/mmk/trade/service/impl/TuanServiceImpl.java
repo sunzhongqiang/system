@@ -77,7 +77,7 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
 
 
 	@Override
-	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, Long status, Pageable pageable) {
+	public Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable) {
 		return tuanDao.findAllByGroupIdAndStatus(groupId,status,pageable);
 	}
 }

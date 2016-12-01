@@ -13,5 +13,7 @@ import com.mmk.trade.model.Tuan;
 *
 */
 public class TuanCondition extends Tuan{
+	
+	
 
 }

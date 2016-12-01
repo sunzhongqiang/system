@@ -117,10 +117,20 @@ public class TuanOrder {
     private Double orderPrice;
 
     /**
-     * 订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭
+     * 订单状态：
+	*	wait_pay:待付款;
+	*	wait_join:待成团;
+	*	wait_shipping待发货;
+	*	wait_receive:待收货;
+	*	wait_comment:待评价;
+	*	successed:已完成;
+	*	wait_refund_goods:待退货
+	*	wait_refund_money:待退款
+	*	closed:已关闭; 
+     * 
      */
     @Column(name="order_status")
-    private Long orderStatus;
+    private String orderStatus;
 
     /**
      * 收获地址
@@ -349,15 +359,35 @@ public class TuanOrder {
     }
 
     /** 
-	* @return orderStatus ：订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭
+    * 订单状态：
+	*	wait_pay:待付款;
+	*	wait_join:待成团;
+	*	wait_shipping待发货;
+	*	wait_receive:待收货;
+	*	wait_comment:待评价;
+	*	successed:已完成;
+	*	wait_refund_goods:待退货
+	*	wait_refund_money:待退款
+	*	closed:已关闭;
+	* @return orderStatus ：订单状态
 	*/
-    public Long getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
-    /** 
+    /**
+    * 订单状态：
+	*	wait_pay:待付款;
+	*	wait_join:待成团;
+	*	wait_shipping待发货;
+	*	wait_receive:待收货;
+	*	wait_comment:待评价;
+	*	successed:已完成;
+	*	wait_refund_goods:待退货
+	*	wait_refund_money:待退款
+	*	closed:已关闭; 
     *@param orderStatus 设置订单状态：0，全部；1，待付款；2，拼团中；3，待发货；4，待收货；5，已成功；6，已关闭 
     */
-    public void setOrderStatus(Long orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 

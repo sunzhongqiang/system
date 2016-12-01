@@ -73,7 +73,7 @@ public interface TuanOrderDao extends SpringDataQueryDao<TuanOrder>{
      * @param status 订单状态
      * @return 订单的数量
      */
-	Integer countByOpenid(String openid, Long status);
+	Integer countByOpenid(String openid, String status);
 	/**
 	 * 用户订单列表
 	 * @param openid 用户的openid

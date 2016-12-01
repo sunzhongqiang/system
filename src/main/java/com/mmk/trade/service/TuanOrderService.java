@@ -127,7 +127,7 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @param status 订单状态
 	 * @return
 	 */
-	Integer countByOpenid(String openid, Long status);
+	Integer countByOpenid(String openid, String status);
 
 	/**
 	 * 根据openid和订单状态获取用户的订单列表
