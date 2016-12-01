@@ -63,7 +63,7 @@ public class AddressApi {
 		}
 		
 		if(!openid.equals(userAddress.getOpenid())){
-			ResultData result = new ResultData(false,"改地址不用户地址");
+			ResultData result = new ResultData(false,"该地址不属于该用户");
 			return result;
 		}
 		

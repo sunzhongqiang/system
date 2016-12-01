@@ -76,32 +76,51 @@ public class TuanApi {
 	 */
 	@RequestMapping("/api/tuan/join")
 	@ResponseBody
-	public ResultData join(Tuan tuan,WxUser user,UserAddress address) {
+	public ResultData join(Long tuanId,Long userId,Long addressId) {
 
-		Random random = new Random();
 		Map<String, Object> result = new HashMap<String, Object>();
-		Tuan tu = tuanService.findById(tuan.getId());
+		Tuan bean = tuanService.findById(tuanId);
+		WxUser user = userService.find(userId);
+		GoodsGroup group = groupService.find(bean.getGroupId());
+		Goods goods = group.getGoods();
 		// 团订单
-		List<TuanOrder> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
+		List<TuanOrder> orderList = orderService.findAllByTuanId(tuanId);
+		
+		if(orderList.size()>=bean.getPeopleNum()){
+			return new ResultData(false, "已经超过成团人数");
+		}
+		
+		
+		//用户地址
+		UserAddress address = addressService.find(addressId);
+		//生成团订单信息
+		TuanOrder order = new TuanOrder();
+		order.setAddress(address.toString());
+		order.setColonel(user.getId());
+		order.setGoodsCode(goods.getGoodsCode());
+		order.setGoodsImg(goods.getGoodsOriginalImg());
+		order.setGoodsName(goods.getGoodsName());
+		order.setGoodsPrice(goods.getPromotePrice());
+		order.setGoodsId(goods.getId());
+		order.setOrderCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+		order.setOrderPhone(address.getMobile());
+		order.setOrderPrice(group.getGroupPrice());
+		order.setOrderSort(group.getType());
+		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+		order.setOrderTime(new Date());
+		order.setTuanId(bean.getId());
+		order.setTuanCode(bean.getTuanCode());
+		order.setUser(user);
+		order.setUserName(user.getNickname());
+		order.setHeadimgurl(user.getHeadimgurl());
+		order = orderService.save(order);
 
 		// 成团状态设置
-		if (new Date().after(tuan.getTuanEndDate())) {
-//			tuan.setTuanStatus(TuanConstant.TUAN_STATUS_FAIL);
-		} else if (orderList != null && !orderList.isEmpty() && tuan.getPeopleNum() == orderList.size()) {
-			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
-		} else {
-			tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
-		}
-		// 设置抽中幸运者
-		if (GroupType.ONE_YUAN_TUAN.equals(tuan.getOrderSort())
-				&& TuanStatus.SUCCESSED.name().equals(tuan.getTuanStatus())) {
-			TuanOrder order = orderList.get(random.nextInt(orderList.size() - 1));
-			order.setLuckyOrder(order.getId());
-			orderService.save(order);
-		}
-		tuan.setJoinNum(tuan.getJoinNum()+1);
-		tuan = tuanService.save(tuan);
-		result.put("tuan", tuan);
+		if (bean.getPeopleNum() == orderList.size()) {
+			bean.setTuanStatus(TuanStatus.SUCCESSED.name());
+			tuanService.save(bean);
+		} 
+		
 		return new ResultData(true, "查找成功", result);
 	}
 
