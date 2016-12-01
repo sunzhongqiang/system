@@ -11,17 +11,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mmk.business.model.Goods;
+import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.model.WxUser;
+import com.mmk.business.service.GoodsGroupService;
+import com.mmk.business.service.WxUserService;
 import com.mmk.common.model.ResultData;
 import com.mmk.trade.condition.OrderCondition;
 import com.mmk.trade.condition.TuanOrderStatus;
+import com.mmk.trade.model.Tuan;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.TuanOrderService;
+import com.mmk.trade.service.TuanService;
 
 @RestController
 public class BillApi {
 	
 	@Resource
 	private TuanOrderService orderService;
+	@Resource
+	private GoodsGroupService groupService;
+	@Resource
+	private TuanService tuanService;
+	@Resource
+	private WxUserService userService;
 
 	/**
 	 * 更改订单状态
@@ -72,6 +85,31 @@ public class BillApi {
 		result.addData("total", page.getTotalElements());
 		result.addData("list", page.getContent());
 		result.addData("totalPage", page.getTotalPages());
+		return result;
+	}
+	
+	/**
+	 * 订单详情列表
+	 * @param openid 用户openid
+	 * @param id 订单详情
+	 * @return 订单详情
+	 */
+	@RequestMapping("/api/bill/info")
+	@ResponseBody
+	public ResultData info(String openid,Long id) {
+		ResultData result = new ResultData(true, "用户订单详情");
+		TuanOrder order = orderService.find(id);
+		WxUser user = userService.find(order.getUserId());
+		if(openid.equals(user.getOpenid())){
+			Tuan tuan = tuanService.findByCode(order.getTuanCode());
+			GoodsGroup group = groupService.find(tuan.getGroupId());
+			result.addData("order", order);
+			result.addData("tuan", tuan);
+			result.addData("group", group);
+			result.addData("user", user);
+		}else{
+			return new ResultData(false,"非该用户订单");
+		}
 		return result;
 	}
 }

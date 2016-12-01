@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
+import org.springframework.core.Ordered;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -149,6 +150,7 @@ public class TuanApi {
 		order.setOrderSort(group.getType());
 		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		order.setOrderTime(new Date());
+		order.setTuanId(bean.getId());
 		order.setTuanCode(bean.getTuanCode());
 		order.setUserId(user.getId());
 		order.setUserName(user.getNickname());
@@ -216,8 +218,9 @@ public class TuanApi {
 	public ResultData info(Long id) {
 		Tuan tuan = tuanService.find(id);
 		List<TuanOrder> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
-		ResultData result = new ResultData(true, "正在实现");
+		ResultData result = new ResultData(true, "团详情");
 		result.addData("tuan", tuan);
+		result.addData("commender", tuan.getCommander());
 		result.addData("orderList", orderList);
 		return result;
 	}

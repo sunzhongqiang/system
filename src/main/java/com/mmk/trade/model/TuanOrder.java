@@ -36,6 +36,12 @@ public class TuanOrder {
      */
     @Column(name="user_id")
     private Long userId;
+    
+    /**
+     * 团ID
+     */
+    @Column(name="tuan_id")
+    private Long tuanId;
 
     /**
      * 团编码
@@ -487,6 +493,12 @@ public class TuanOrder {
 	}
 	public void setOrderPhone(String orderPhone) {
 		this.orderPhone = orderPhone;
+	}
+	public Long getTuanId() {
+		return tuanId;
+	}
+	public void setTuanId(Long tuanId) {
+		this.tuanId = tuanId;
 	}
 
 }

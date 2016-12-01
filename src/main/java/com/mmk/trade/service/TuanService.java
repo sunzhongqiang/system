@@ -77,4 +77,11 @@ public interface TuanService extends BaseService<Tuan, Long> {
 	 */
 	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable);
 
+	/**
+	 * 根据团编码获取团详情
+	 * @param tuanCode
+	 * @return
+	 */
+	Tuan findByCode(String tuanCode);
+
 }
