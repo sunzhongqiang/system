@@ -154,7 +154,7 @@ public class TuanApi {
 		order.setTuanCode(bean.getTuanCode());
 		order.setUser(user);
 		order.setUserName(user.getNickname());
-		
+		order.setHeadimgurl(user.getHeadimgurl());
 		order = orderService.save(order);
 		
 		//开团数量加1
@@ -162,7 +162,8 @@ public class TuanApi {
 		group.setGroupNum(groupNum);
 		groupService.save(group);
 		
-		ResultData result = new ResultData(true, "完成");
+		ResultData result = new ResultData(true, "开团完成");
+		result.addData("tuan", bean);
 		return result;
 	}
 

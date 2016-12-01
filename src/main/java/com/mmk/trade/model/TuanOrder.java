@@ -69,6 +69,11 @@ public class TuanOrder {
      */
     @Column(name="user_name")
     private String userName;
+    /**
+     * 头像路径
+     */
+    @Column(name="headimgurl")
+    private String headimgurl;
 
     /**
      * 订单手机号
@@ -508,6 +513,12 @@ public class TuanOrder {
 	}
 	public void setTuanId(Long tuanId) {
 		this.tuanId = tuanId;
+	}
+	public String getHeadimgurl() {
+		return headimgurl;
+	}
+	public void setHeadimgurl(String headimgurl) {
+		this.headimgurl = headimgurl;
 	}
 
 }
