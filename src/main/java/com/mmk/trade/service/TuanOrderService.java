@@ -137,4 +137,11 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @return 符合条件的用户订单
 	 */
 	Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
+
+	/**
+	 * 根据团订单获取参团的所有订单
+	 * @param id 团订单id
+	 * @return 参团的所有订单
+	 */
+	List<TuanOrder> findAllByTuanId(Long id);
 }

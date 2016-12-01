@@ -99,7 +99,7 @@ public class BillApi {
 	public ResultData info(String openid,Long id) {
 		ResultData result = new ResultData(true, "用户订单详情");
 		TuanOrder order = orderService.find(id);
-		WxUser user = userService.find(order.getUserId());
+		WxUser user = order.getUser();
 		if(openid.equals(user.getOpenid())){
 			Tuan tuan = tuanService.findByCode(order.getTuanCode());
 			GoodsGroup group = groupService.find(tuan.getGroupId());

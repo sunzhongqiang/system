@@ -82,5 +82,12 @@ public interface TuanOrderDao extends SpringDataQueryDao<TuanOrder>{
 	 * @return 订单列表
 	 */
 	Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable);
+	
+	/**
+	 * 根据团订单获取所有参团订单
+	 * @param id 团订单ID
+	 * @return 所有参团订单
+	 */
+	List<TuanOrder> findAllByTuanId(Long id);
 
 }

@@ -8,11 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import com.mmk.business.model.WxUser;
 
 /**
 * TuanOrder: 广告 数据领域模型
@@ -34,8 +41,10 @@ public class TuanOrder {
     /**
      * 用户ID
      */
-    @Column(name="user_id")
-    private Long userId;
+    @NotFound(action=NotFoundAction.IGNORE)
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private WxUser user;
     
     /**
      * 团ID
@@ -198,14 +207,14 @@ public class TuanOrder {
     /** 
 	* @return userId ：用户ID
 	*/
-    public Long getUserId() {
-        return userId;
+    public WxUser getUser() {
+        return user;
     }
     /** 
     *@param userId 设置用户ID 
     */
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(WxUser user) {
+        this.user = user;
     }
 
     /** 

@@ -117,4 +117,9 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	public Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
 		return orderDao.listBy(openid,orderCondition,pageable);
 	}
+
+	@Override
+	public List<TuanOrder> findAllByTuanId(Long id) {
+		return orderDao.findAllByTuanId(id);
+	}
 }

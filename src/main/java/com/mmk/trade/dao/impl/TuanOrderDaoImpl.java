@@ -199,4 +199,12 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		return queryByJpql(sb.toString(), params,pageable);
 	}
 
+	@Override
+	public List<TuanOrder> findAllByTuanId(Long id) {
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuanId = :id");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		return queryByJpql(sb.toString(), params);
+	}
+
 }

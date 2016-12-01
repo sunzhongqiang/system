@@ -152,7 +152,7 @@ public class TuanApi {
 		order.setOrderTime(new Date());
 		order.setTuanId(bean.getId());
 		order.setTuanCode(bean.getTuanCode());
-		order.setUserId(user.getId());
+		order.setUser(user);
 		order.setUserName(user.getNickname());
 		
 		order = orderService.save(order);
@@ -217,10 +217,9 @@ public class TuanApi {
 	@ResponseBody
 	public ResultData info(Long id) {
 		Tuan tuan = tuanService.find(id);
-		List<TuanOrder> orderList = orderService.findAllByTuanCode(tuan.getTuanCode());
+		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
 		ResultData result = new ResultData(true, "团详情");
 		result.addData("tuan", tuan);
-		result.addData("commender", tuan.getCommander());
 		result.addData("orderList", orderList);
 		return result;
 	}

@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mmk.business.model.WxUser;
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.system.model.User;
 import com.mmk.system.service.UserService;
 import com.mmk.trade.condition.OrderCondition;
 import com.mmk.trade.condition.TuanOrderStatus;
-import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.model.Shipping;
-import com.mmk.trade.service.TuanOrderService;
+import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.ShippingService;
+import com.mmk.trade.service.TuanOrderService;
 
 /**
 *@Title: OrderController
@@ -132,7 +132,7 @@ public class TuanOrderController extends BaseController {
         log.info("查看订单详情页面");
         ModelAndView modelAndView = new ModelAndView("order/orderDetail");
         TuanOrder order = orderService.findById(id);
-        User user = userService.find(order.getUserId());
+        WxUser user = order.getUser();
         modelAndView.addObject("order", order);
         modelAndView.addObject("user", user);
         return modelAndView ;
