@@ -16,6 +16,9 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import com.mmk.business.model.WxUser;
 
 /**
@@ -44,6 +47,7 @@ public class Tuan {
     /**
      * 团长ID
      */
+    @NotFound(action=NotFoundAction.IGNORE)
     @ManyToOne
     @JoinColumn(name="commander_id")
     private WxUser commander;

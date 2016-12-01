@@ -38,6 +38,11 @@ public class GroupApiImpl {
 
 
 
+	/**
+	 * 推荐的团商品数据
+	 * @param code 推荐位置编码
+	 * @return 推荐的团商品
+	 */
 	@RequestMapping("/api/group/recommend")
 	@ResponseBody
 	public ResultData findRecommend(String code) {
@@ -51,6 +56,12 @@ public class GroupApiImpl {
 		return result;
 	}
 	
+	/**
+	 * 即将开始的团商品
+	 * @param type 类型，默认是全部的商品
+	 * @param pageable 分页参数
+	 * @return 即将开团的团商品数据
+	 */
 	@RequestMapping("/api/group/toBegin")
 	public ResultData toBegin(Long type,Pageable pageable) {
 		Page<GoodsGroup> goodsList = goodsGroupService.findBeginStart(type,pageable);
@@ -62,7 +73,11 @@ public class GroupApiImpl {
 		resultData.addData("numberOfElement", goodsList.getNumberOfElements());
 		return resultData;
 	}
-	
+	/**
+	 * 团详情
+	 * @param id 团商品的主键
+	 * @return 团商品的详细信息
+	 */
 	@RequestMapping("/api/group/detail")
 	public ResultData detail(Long id) {
 		if(id!=null){
