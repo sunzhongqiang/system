@@ -34,9 +34,9 @@
 .datagrid-btable .datagrid-cell .tree-expanded{vertical-align: sub;}
 
 
-.tree-lines li ul{ background:#374b5e;}
-.tree-lines li ul .tree-node-selected{ background:none;color:#fe7b7b;}
-.tree-lines li  .tree-node-selected{ background:none;color:#fe7b7b;}
+#index_layout .tree-lines li ul{ background:#374b5e;}
+#index_layout .tree-lines li ul .tree-node-selected{ background:none;color:#fe7b7b;}
+#index_layout .tree-lines li  .tree-node-selected{ background:none;color:#fe7b7b;}
 .well-small #layout_west_tree li >div{padding: 8px 5px 8px 10px;}
 
 
