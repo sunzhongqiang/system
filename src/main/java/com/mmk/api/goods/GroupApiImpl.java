@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mmk.business.model.Attention;
+import com.mmk.business.model.Favorite;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.GoodsSku;
+import com.mmk.business.service.AttentionService;
+import com.mmk.business.service.FavoriteService;
 import com.mmk.business.service.GoodsGroupService;
 import com.mmk.business.service.GoodsImgService;
 import com.mmk.business.service.GoodsService;
@@ -35,6 +39,11 @@ public class GroupApiImpl {
 
 	@Resource
 	private GoodsImgService goodsImgService;
+	
+	@Resource
+	private FavoriteService favoriteService;
+	@Resource
+	private AttentionService attentionService;
 
 
 
@@ -96,6 +105,56 @@ public class GroupApiImpl {
 			}
 		}else{
 			return new ResultData(false, "ID不可以为空");
+		}
+	}
+	
+	/**
+	 * 团商品收藏
+	 * @param userId 团商品的主键
+	 * @param groupId 团商品Id
+	 * @return 团商品的收藏结果
+	 */
+	@RequestMapping("/api/group/addFavorite")
+	public ResultData addFavorite(Long userId,Long groupId) {
+		if(userId!=null){
+			GoodsGroup goodsGroup = goodsGroupService.find(groupId);
+			if(goodsGroup!=null){
+				ResultData resultData = new ResultData(true, "团商品收藏成功");
+				Favorite favorite = new Favorite();
+				favorite.setGroupId(groupId);
+				favorite.setUserId(userId);
+				favoriteService.save(favorite);
+				return resultData;
+			}else{
+				return new ResultData(false, "没有找到对应的团商品");
+			}
+		}else{
+			return new ResultData(false, "USERID不可以为空");
+		}
+	}
+	
+	/**
+	 * 团商品关注
+	 * @param userId 团商品的主键
+	 * @param groupId 团id
+	 * @return 团商品的关注结果
+	 */
+	@RequestMapping("/api/group/addAttenion")
+	public ResultData addAttenion(Long userId,Long groupId) {
+		if(userId!=null){
+			GoodsGroup goodsGroup = goodsGroupService.find(groupId);
+			if(goodsGroup!=null){
+				ResultData resultData = new ResultData(true, "团商品收藏成功");
+				Attention attention = new Attention();
+				attention.setGroupId(groupId);
+				attention.setUserId(userId);
+				attentionService.save(attention);
+				return resultData;
+			}else{
+				return new ResultData(false, "没有找到对应的团商品");
+			}
+		}else{
+			return new ResultData(false, "USERID不可以为空");
 		}
 	}
 
