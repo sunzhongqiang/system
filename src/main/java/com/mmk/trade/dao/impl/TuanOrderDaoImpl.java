@@ -170,12 +170,11 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public Integer countByOpenid(String openid, String status) {
-		StringBuffer sb = new StringBuffer("select model from TuanOrder model,WxUser user  where model.userId = user.id ");
-		sb.append(" and user.openid = :openid ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where model.user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);
 		
-		if(status!=null){
+		if(StringUtils.isNotBlank(status)){
 			sb.append(" and model.orderStatus = :status ");
 			params.put("status", status);
 		}
@@ -184,8 +183,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public Page<TuanOrder> listBy(String openid, OrderCondition orderCondition, Pageable pageable) {
-		StringBuffer sb = new StringBuffer("select model from TuanOrder model,WxUser user  where model.userId = user.id ");
-		sb.append(" and user.openid = :openid ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model where model.user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);
 		

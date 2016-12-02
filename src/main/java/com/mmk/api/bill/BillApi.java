@@ -63,11 +63,18 @@ public class BillApi {
 	public ResultData count(String openid) {
 		ResultData result = new ResultData(true, "用户订单统计");
 		Integer wait = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_JOIN.name());
-		Integer fait = orderService.countByOpenid(openid,TuanOrderStatus.CLOSED.name());
-		Integer done = orderService.countByOpenid(openid,TuanOrderStatus.SUCCESSED.name());
-		result.addData("wait", wait);
-		result.addData("fait", fait);
-		result.addData("done", done);
+		Integer close = orderService.countByOpenid(openid,TuanOrderStatus.CLOSED.name());
+		Integer successed = orderService.countByOpenid(openid,TuanOrderStatus.SUCCESSED.name());
+		Integer comment = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_COMMENT.name());
+		Integer received = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_RECEIVE.name());
+		Integer refundGoods = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_REFUND_GOODS.name());
+		Integer refundMoney = orderService.countByOpenid(openid,TuanOrderStatus.WAIT_REFUND_MONEY.name());
+		result.addData(TuanOrderStatus.WAIT_JOIN.name(), wait);
+		result.addData(TuanOrderStatus.CLOSED.name(), close);
+		result.addData(TuanOrderStatus.SUCCESSED.name(), successed);
+		result.addData(TuanOrderStatus.WAIT_COMMENT.name(), comment);
+		result.addData(TuanOrderStatus.WAIT_RECEIVE.name(), received);
+		result.addData("refund", refundGoods+refundMoney);
 		return result;
 	}
 	

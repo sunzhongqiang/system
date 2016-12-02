@@ -14,3 +14,4 @@ public enum TuanStatus {
 	WAIT_JOIN,SUCCESSED,FAIL,CLOSED
 
 }
+

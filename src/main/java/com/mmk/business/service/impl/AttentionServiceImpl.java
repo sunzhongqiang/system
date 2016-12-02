@@ -106,4 +106,9 @@ public class AttentionServiceImpl extends BaseServiceImpl<Attention, Long> imple
         log.info("商品或者团的关注根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return attentionDao.findAllBy(field,value);
     }
+
+	@Override
+	public Page<Attention> findAllByUserId(Long userId, Pageable pageable) {
+		return attentionDao.findAllByUserId(userId,pageable);
+	}
 }

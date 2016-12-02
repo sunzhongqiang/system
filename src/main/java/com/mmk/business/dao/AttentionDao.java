@@ -67,6 +67,13 @@ public interface AttentionDao extends SpringDataQueryDao<Attention>{
      * 
      */
     List<Attention> findAllBy(String field,Object value);
+    /**
+     * 根据用户id获取用户关注列表
+     * @param userId 用户id
+     * @param pageable 分页
+     * @return 用户的关注列表
+     */
+	Page<Attention> findAllByUserId(Long userId, Pageable pageable);
     
     
 

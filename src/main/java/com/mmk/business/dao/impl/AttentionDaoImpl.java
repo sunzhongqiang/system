@@ -88,6 +88,14 @@ public class AttentionDaoImpl extends SpringDataQueryDaoImpl<Attention> implemen
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public Page<Attention> findAllByUserId(Long userId, Pageable pageable) {
+		StringBuffer sb=new StringBuffer("select model from Attention model  where model.userId = :userId  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("userId", userId);
+        return queryByJpql(sb.toString(), params, pageable);
+	}
     
     
 }
