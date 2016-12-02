@@ -17,6 +17,9 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 /**
 * GoodsGroup: 商品拼团管理 数据领域模型
 * 2016-11-17 11:42:27
@@ -37,6 +40,7 @@ public class GoodsGroup {
     /**
      * 商品主键
      */
+    @NotFound(action=NotFoundAction.IGNORE)
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="goods_id")
     private Goods goods;
