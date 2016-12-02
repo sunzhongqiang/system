@@ -110,7 +110,7 @@ public class GroupApiImpl {
 	
 	/**
 	 * 团商品收藏
-	 * @param userId 团商品的主键
+	 * @param userId 用户的主键
 	 * @param groupId 团商品Id
 	 * @return 团商品的收藏结果
 	 */
@@ -135,7 +135,7 @@ public class GroupApiImpl {
 	
 	/**
 	 * 团商品关注
-	 * @param userId 团商品的主键
+	 * @param userId 用户的主键
 	 * @param groupId 团id
 	 * @return 团商品的关注结果
 	 */

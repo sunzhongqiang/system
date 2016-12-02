@@ -83,11 +83,19 @@ public class FavoriteDaoImpl extends SpringDataQueryDaoImpl<Favorite> implements
     public List<Favorite> findAllBy(String field,Object value){
         StringBuffer sb=new StringBuffer("select model from Favorite model  where model.");
         sb.append(field);
-       sb.append(" = :value ");
+        sb.append(" = :value ");
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public Page<Favorite> findAllByUserId(Long userId, Pageable pageable) {
+		StringBuffer sb=new StringBuffer("select model from Favorite model  where model.userId= :userId  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("userId", userId);
+        return queryByJpql(sb.toString(), params, pageable);
+	}
     
     
 }

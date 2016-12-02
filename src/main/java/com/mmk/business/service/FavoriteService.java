@@ -94,4 +94,12 @@ public interface FavoriteService extends BaseService<Favorite, Long> {
      * 
      */
     List<Favorite> findAllBy(String field,Object value);
+    
+	/**
+	 * 根据用户id获取用户的所有
+	 * @param userId 用户主键
+	 * @param pageable  分页
+	 * @return 用户的分页的关注
+	 */
+	Page<Favorite> findAllByUserId(Long userId,Pageable pageable);
 }

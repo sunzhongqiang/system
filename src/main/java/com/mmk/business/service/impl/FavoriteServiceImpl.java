@@ -106,4 +106,9 @@ public class FavoriteServiceImpl extends BaseServiceImpl<Favorite, Long> impleme
         log.info("团收藏根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return favoriteDao.findAllBy(field,value);
     }
+
+	@Override
+	public Page<Favorite> findAllByUserId(Long userId, Pageable pageable) {
+		return favoriteDao.findAllByUserId(userId,pageable);
+	}
 }
