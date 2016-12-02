@@ -43,14 +43,6 @@ public interface FavoriteService extends BaseService<Favorite, Long> {
     Favorite findById(Long id);
     /**
      * 根据给定的字段返回符合的对象
-     * @param groupId 团id
-     * @return 符合条件的唯一对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    Favorite findByGroupId(Long groupId);
-    /**
-     * 根据给定的字段返回符合的对象
      * @param goodsId 商品主键
      * @return 符合条件的唯一对象
      * @author huguangling 胡广玲

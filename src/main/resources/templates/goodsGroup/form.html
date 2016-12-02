@@ -44,25 +44,25 @@
                         <span th:text="${goodsGroup.goods.goodsName}"></span>
                         </td>
                     </tr>
-                    <tr>
-                     <td class="tdTit">商品类型</td>
-                     <td>
-                     	<select  name="type" class="easyui-combobox"   data-options="required:true,width:140,height:29,editable:false,panelHeight:'auto'">
-	                            <option th:selected="${goodsGroup.type} == '0' ? 'selected' " value="0" >一元购</option>
-	                            <option th:selected="${goodsGroup.type} == '1' ? 'selected' "  value="1">拼团</option>
-	                       </select>
-                     </td>
-<!--                      <td th:switch="${goodsGroup.goods.goodsCat}"> -->
-<!--                         <span th:case="0">一元团</span> -->
-<!--                         <span th:case="1">拼团</span> -->
-<!--                      </td> -->
-                    </tr>
                       <tr>
                      <td class="tdTit">商品价格</td>
                      <td>
 				                        商品价格：<span th:text="${goodsGroup.goods.goodsOriginalPrice}"></span>
 				                        团购价：<span th:text="${goodsGroup.goods.promotePrice}">拼团</span>
                      </td>
+                    </tr>
+                     <tr>
+                     <td class="tdTit">商品类型</td>
+                     <td>
+                        <select  name="type" class="easyui-combobox"   data-options="required:true,width:140,height:29,editable:false,panelHeight:'auto'">
+                                <option th:selected="${goodsGroup.type} == '0' ? 'selected' " value="0" >一元购</option>
+                                <option th:selected="${goodsGroup.type} == '1' ? 'selected' "  value="1">拼团</option>
+                           </select>
+                     </td>
+<!--                      <td th:switch="${goodsGroup.goods.goodsCat}"> -->
+<!--                         <span th:case="0">一元团</span> -->
+<!--                         <span th:case="1">拼团</span> -->
+<!--                      </td> -->
                     </tr>
                     <tr>
                         <td class="tdTit"><strong class="red" >*</strong><label>成团人数设置：</label></td>

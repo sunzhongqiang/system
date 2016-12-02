@@ -16,24 +16,10 @@
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
                     {
-                width : '80',
+                width : '60',
                 title : '商品ID',
                 field : 'id',
                 align: 'center',
-            },
-           {
-                width : '80',
-                title : '商品分类',
-                field : 'goodsCat',
-                align: 'center',
-                formatter : function(value, row, index) {
-					switch (value) {
-					case 0:
-						return '一元购';
-					case 1:
-						return '拼团';
-					}
-				}
             },
 //            		{
 //                width : '80',
@@ -43,15 +29,9 @@
 //                {return '<img src='+value+'>';}
 //            },
                     {
-                width : '200',
+                width : '400',
                 title : '商品名称',
                 field : 'goodsName',
-            },
-                    {
-                width : '80',
-                title : '商品数量',
-                field : 'goodsNumber',
-                align: 'center',
             },
                     {
                 width : '80',
@@ -59,57 +39,17 @@
                 field : 'goodsOriginalPrice',
                 align: 'center',
             },
-//                    {
-//                width : '80',
-//                title : '团购价',
-//                field : 'promotePrice',
-//                align: 'center',
-//            },
-//                    {
-//                width : '150',
-//                title : '促销开始时间',
-//                field : 'promoteStartDate',
-//                formatter: formatDatebox,
-//                align: 'center',
-//            },
-//                    {
-//                width : '150',
-//                title : '促销结束时间',
-//                field : 'promoteEndDate',
-//                formatter: formatDatebox,
-//                align: 'center',
-//            },
-//                    {
-//                width : '80',
-//                title : '促销数量',
-//                field : 'promoteNumber',
-//            },
-//                    {
-//                width : '80',
-//                title : '已售数量',
-//                field : 'saledNumber',
-//            },
-//                    {
-//                width : '80',
-//                title : '商品相册',
-//                field : 'goodsThumb',
-//            },
-//                    {
-//                width : '80',
-//                title : '商品原图',
-//                field : 'goodsOriginalImg',
-//            },
                     {
                 width : '80',
-                title : '商品是否下架',
-                field : 'isDelete',
+                title : '商品是否在售',
+                field : 'isOnsale',
                 align: 'center',
                 formatter : function(value, row, index) {
 					switch (value) {
 					case 0:
-						return '上架';
+						return '销售中';
 					case 1:
-						return '下架';
+						return '仓库中';
 					}
 				}
             },
@@ -242,7 +182,7 @@
     function editGroupFun(id){
     	parent.$.modalDialog({
             title : '拼团设置',
-            width : 500,
+            width : 800,
             height : 500,
             href : '/goodsGroup/edit?id=' + id,
             buttons : [ {
@@ -260,7 +200,7 @@
     function groupSetting(id) {
         parent.$.modalDialog({
             title : '拼团设置',
-            width : 500,
+            width : 800,
             height : 500,
             href : '/goodsGroup/add?goodsId=' + id,
             buttons : [ {

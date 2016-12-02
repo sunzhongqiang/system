@@ -91,7 +91,7 @@ public class FavoriteDaoImpl extends SpringDataQueryDaoImpl<Favorite> implements
 
 	@Override
 	public Page<Favorite> findAllByUserId(Long userId, Pageable pageable) {
-		StringBuffer sb=new StringBuffer("select model from Favorite model  where model.userId= :userId  ");
+		StringBuffer sb=new StringBuffer("select model from Favorite model left join fetch model.groupGoods groupGoods left join fetch groupGoods.goods  where model.userId= :userId  ");
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userId", userId);
         return queryByJpql(sb.toString(), params, pageable);

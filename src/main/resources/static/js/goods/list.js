@@ -20,22 +20,7 @@
                 field : 'id',
                 align: 'center',
             },
-                    {
-                width : '80',
-                title : '商品分类',
-                field : 'goodsCat',
-                align: 'center',
-                formatter : function(value, row, index) {
-					switch (value) {
-					case 0:
-						return '一元购';
-					case 1:
-						return '拼团';
-					}
-				}
-                
-            },
-//            		{
+//          {
 //                width : '80',
 //                title : '商品主图',
 //                field : 'goodsMainImg',
@@ -43,7 +28,7 @@
 //                {return '<img src='+value+'>';}
 //            },
                     {
-                width : '200',
+                width : '600',
                 title : '商品名称',
                 field : 'goodsName',
             },
@@ -65,26 +50,7 @@
                 field : 'promotePrice',
                 align: 'center',
             },
-                    {
-                width : '150',
-                title : '促销开始时间',
-                field : 'promoteStartDate',
-                formatter: formatDatebox,
-                align: 'center',
-            },
-                    {
-                width : '150',
-                title : '促销结束时间',
-                field : 'promoteEndDate',
-                formatter: formatDatebox,
-                align: 'center',
-            },
-                    {
-                width : '80',
-                title : '促销数量',
-                field : 'promoteNumber',
-                align: 'center',
-            },
+               
 //                    {
 //                width : '80',
 //                title : '已售数量',
@@ -103,14 +69,13 @@
                     {
                 width : '80',
                 title : '商品是否下架',
-                field : 'isDelete',
+                field : 'isOnsale',
                 align: 'center',
                 formatter : function(value, row, index) {
-					switch (value) {
-					case 0:
-						return '上架';
-					case 1:
-						return '下架';
+					if (value) {
+						return '销售中';
+					}else{
+						return '仓库中';
 					}
 				}
             },
@@ -121,6 +86,13 @@
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
+                    if(row.isOnsale){
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_onsale" >上架</a>', row.id);
+                        str += '&nbsp;|&nbsp;';
+                    }else{
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_inventory" >下架</a>', row.id);
+                        str += '&nbsp;|&nbsp;';
+                    }
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
                     str += '&nbsp;|&nbsp;';
                     str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
@@ -131,11 +103,12 @@
 	            iconCls: 'icon-add',
 	            text:'发布商品',
 	            handler: function(){
-	            	
 	            	addFun();
-	            	}
+	            }
             }],
             onLoadSuccess : function(data){
+            	$('.btn_onsale').linkbutton({text:'上架',plain:true,iconCls:'icon-unlock'});
+            	$('.btn_inventory').linkbutton({text:'下架',plain:true,iconCls:'icon-lock'});
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
                 $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');

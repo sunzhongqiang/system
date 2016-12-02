@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
@@ -31,8 +33,9 @@ public class Favorite {
     /**
      * 团id
      */
-    @Column(name="group_id")
-    private Long groupId;
+    @ManyToOne
+    @JoinColumn(name="group_id")
+    private GoodsGroup groupGoods;
 
     /**
      * 商品主键
@@ -69,14 +72,14 @@ public class Favorite {
     /** 
 	* @return groupId ：团id
 	*/
-    public Long getGroupId() {
-        return groupId;
+    public GoodsGroup getGroupId() {
+        return groupGoods;
     }
     /** 
     *@param groupId 设置团id 
     */
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    public void setGroupId(GoodsGroup groupGoods) {
+        this.groupGoods = groupGoods;
     }
 
     /** 

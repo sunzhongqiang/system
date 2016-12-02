@@ -121,7 +121,7 @@ public class GroupApiImpl {
 			if(goodsGroup!=null){
 				ResultData resultData = new ResultData(true, "团商品收藏成功");
 				Favorite favorite = new Favorite();
-				favorite.setGroupId(groupId);
+				favorite.setGroupId(goodsGroupService.get(groupId));
 				favorite.setUserId(userId);
 				favoriteService.save(favorite);
 				return resultData;

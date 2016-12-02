@@ -27,7 +27,7 @@ public class FavoriteApi {
 	@RequestMapping("/api/favorite/list")
 	public ResultData findAllByUserId(Long userId,Pageable pageable){
 		Page<Favorite> favoritePage = favoriteService.findAllByUserId(userId,pageable);
-		ResultData resultData = new ResultData(true, "用户关注列表");
+		ResultData resultData = new ResultData(true, "用户收藏列表");
 		resultData.addData("list", favoritePage.getContent());
 		resultData.addData("total", favoritePage.getTotalElements());
 		resultData.addData("totalPage", favoritePage.getTotalPages());

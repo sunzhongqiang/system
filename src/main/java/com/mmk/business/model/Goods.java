@@ -100,7 +100,7 @@ public class Goods {
      * 商品是否下架
      */
     @Column(name="is_onsale")
-    private Long isOnsale;
+    private Boolean isOnsale;
 
 
     /** 
@@ -238,13 +238,13 @@ public class Goods {
     /** 
 	* @return isOnsale ：商品是否下架
 	*/
-    public Long getIsOnsale() {
+    public Boolean getIsOnsale() {
         return isOnsale;
     }
     /** 
     *@param isOnsale 设置商品是否下架 
     */
-    public void setIsOnsale(Long isOnsale) {
+    public void setIsOnsale(Boolean isOnsale) {
         this.isOnsale = isOnsale;
     }
     /**

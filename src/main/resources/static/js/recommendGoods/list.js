@@ -24,7 +24,7 @@
                 align: 'center',
             },
                     {
-                width : '200',
+                width : '400',
                 title : '商品名称',
                 field : 'goodsName',
             },

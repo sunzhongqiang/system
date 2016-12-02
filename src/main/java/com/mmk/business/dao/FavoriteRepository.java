@@ -26,14 +26,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long>{
      */
     Favorite findFirstById(Long id);
     /**
-     *  根据给定的字段：groupId 团id返回符合条件的第一个对象
-     * @param groupId 团id
-     * @return 符合条件的唯一对象
-     * @author huguangling 胡广玲
-     * 
-     */
-    Favorite findFirstByGroupId(Long groupId);
-    /**
      *  根据给定的字段：goodsId 商品主键返回符合条件的第一个对象
      * @param goodsId 商品主键
      * @return 符合条件的唯一对象

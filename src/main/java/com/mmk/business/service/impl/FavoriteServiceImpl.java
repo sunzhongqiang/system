@@ -61,15 +61,6 @@ public class FavoriteServiceImpl extends BaseServiceImpl<Favorite, Long> impleme
     }
     /**
      * 根据给定的字段返回符合的对象
-     * @param groupId 团id
-     * @return 符合条件的唯一对象
-     */
-    @Override
-    public Favorite findByGroupId(Long groupId){
-         return favoriteRepository.findFirstByGroupId(groupId);
-    }
-    /**
-     * 根据给定的字段返回符合的对象
      * @param goodsId 商品主键
      * @return 符合条件的唯一对象
      */

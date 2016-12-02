@@ -50,14 +50,15 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
 	public Page<Goods> list(GoodsCondition goodsCondition, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from Goods model  where 1=1  ");
 		Map<String, Object> params = new HashMap<String, Object>();
-	    if(goodsCondition.getId()!=null){
-            sb.append(" and model.id = :id ");
-            params.put("id",goodsCondition.getId());
+	    if(goodsCondition.getIsOnsale()!=null){
+            sb.append(" and model.isOnsale = :isOnsale ");
+            params.put("isOnsale",goodsCondition.getIsOnsale());
         }
         if(StringUtils.isNotBlank(goodsCondition.getGoodsName())){
             sb.append(" and model.goodsName like :goodsName ");
             params.put("goodsName","%"+goodsCondition.getGoodsName()+"%");
         }
+        
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 

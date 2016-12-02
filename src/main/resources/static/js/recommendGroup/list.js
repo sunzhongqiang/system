@@ -25,7 +25,7 @@
                 align: 'center',
             },
                     {
-                width : '200',
+                width : '400',
                 title : '商品名称',
                 field : 'goods.goodsName',
                 formatter : function(value, row, index) {
@@ -276,7 +276,7 @@
                 }
             },
                     {
-                width : '180',
+                width : '380',
                 title : '商品名称',
                 field : 'goodsName',
                 formatter : function(value, row, index) {
@@ -310,9 +310,9 @@
                 formatter : function(value, row, index) {
                 	console.log(row);
                     var str = '';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >编辑排序</a>', row.recommend.id);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >排序</a>', row.recommend.id);
                     str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消推荐</a>', row.recommend.groupId);
+                    str += $.formatString('<a href="javascript:void(0)" onclick="cancleTui(\'{0}\');" class="btn_edit" >取消</a>', row.recommend.groupId);
 //                  
 //                   
                     return str;
@@ -324,8 +324,8 @@
 //	            handler: function(){addFun();}
 //            }],
             onLoadSuccess : function(data){
-            	$('.btn_delete').linkbutton({text:'编辑排序',plain:true,iconCls:'icon-edit'});
-                $('.btn_edit').linkbutton({text:'取消推荐',plain:true,iconCls:'icon-edit'});
+            	$('.btn_delete').linkbutton({text:'排序',plain:true,iconCls:'icon-edit'});
+                $('.btn_edit').linkbutton({text:'取消',plain:true,iconCls:'icon-remove'});
                
                 $(this).datagrid('fixRowHeight');
             }

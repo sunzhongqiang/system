@@ -83,10 +83,11 @@
                     <tr>
                         <td class="tdTit"><label>商品是否下架：</label></td>
                         <td>
-                        <select name="isOnsale" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                       <!--  <select name="isOnsale" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
 	                            <option th:selected="${goods.isOnsale} == '0' ? 'selected' " value="0" >上架</option>
 	                            <option th:selected="${goods.isOnsale} == '1' ? 'selected' "  value="1">下架</option>
-	                       </select>
+	                       </select> -->
+	                       <input class="easyui-switchbutton" name="isOnsale" th:checked="${goods.isOnsale}" required="required" data-options="onText:'上架',offText:'下架',value:true" />
 <!--                         <input type="text"  name="isOnsale"   class="easyui-validatebox" data-options="required:true" th:value="${goods.isOnsale}"/> -->
                         </td>
                     </tr>
