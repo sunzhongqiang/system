@@ -32,10 +32,10 @@ public class Goods {
     private Long id;
 
     /**
-     * 商品分类：1，一元购；2，拼团
+     * 商品分类id
      */
-    @Column(name="goods_cat")
-    private Long goodsCat;
+    @Column(name="category_id")
+    private Long categoryId;
 
     /**
      * 商品名称
@@ -71,25 +71,6 @@ public class Goods {
     @Column(name="promote_price")
     private Double promotePrice;
 
-    /**
-     * 促销开始时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)   
-    @Column(name="promote_start_date")
-    private Date promoteStartDate;
-
-    /**
-     * 促销结束时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)   
-    @Column(name="promote_end_date")
-    private Date promoteEndDate;
-
-    /**
-     * 促销数量
-     */
-    @Column(name="promote_number")
-    private Long promoteNumber;
 
     /**
      * 已售数量
@@ -118,8 +99,8 @@ public class Goods {
     /**
      * 商品是否下架
      */
-    @Column(name="is_delete")
-    private Long isDelete;
+    @Column(name="is_onsale")
+    private Long isOnsale;
 
 
     /** 
@@ -135,18 +116,6 @@ public class Goods {
         this.id = id;
     }
 
-    /** 
-	* @return goodsCat ：商品分类：1，一元购；2，拼团
-	*/
-    public Long getGoodsCat() {
-        return goodsCat;
-    }
-    /** 
-    *@param goodsCat 设置商品分类：1，一元购；2，拼团 
-    */
-    public void setGoodsCat(Long goodsCat) {
-        this.goodsCat = goodsCat;
-    }
 
     /** 
 	* @return goodsName ：商品名称
@@ -213,44 +182,6 @@ public class Goods {
         this.promotePrice = promotePrice;
     }
 
-    /** 
-	* @return promoteStartDate ：促销开始时间
-	*/
-    public Date getPromoteStartDate() {
-        return promoteStartDate;
-    }
-    /** 
-    *@param promoteStartDate 设置促销开始时间 
-    */
-    public void setPromoteStartDate(Date promoteStartDate) {
-        this.promoteStartDate = promoteStartDate;
-    }
-
-    /** 
-	* @return promoteEndDate ：促销结束时间
-	*/
-    public Date getPromoteEndDate() {
-        return promoteEndDate;
-    }
-    /** 
-    *@param promoteEndDate 设置促销结束时间 
-    */
-    public void setPromoteEndDate(Date promoteEndDate) {
-        this.promoteEndDate = promoteEndDate;
-    }
-
-    /** 
-	* @return promoteNumber ：促销数量
-	*/
-    public Long getPromoteNumber() {
-        return promoteNumber;
-    }
-    /** 
-    *@param promoteNumber 设置促销数量 
-    */
-    public void setPromoteNumber(Long promoteNumber) {
-        this.promoteNumber = promoteNumber;
-    }
 
     /** 
 	* @return saledNumber ：已售数量
@@ -305,16 +236,16 @@ public class Goods {
     }
 
     /** 
-	* @return isDelete ：商品是否下架
+	* @return isOnsale ：商品是否下架
 	*/
-    public Long getIsDelete() {
-        return isDelete;
+    public Long getIsOnsale() {
+        return isOnsale;
     }
     /** 
-    *@param isDelete 设置商品是否下架 
+    *@param isOnsale 设置商品是否下架 
     */
-    public void setIsDelete(Long isDelete) {
-        this.isDelete = isDelete;
+    public void setIsOnsale(Long isOnsale) {
+        this.isOnsale = isOnsale;
     }
     /**
 	 * 获取商品描述
@@ -327,6 +258,12 @@ public class Goods {
 	 */
 	public void setGoodsDesc(String goodsDesc) {
 		this.goodsDesc = goodsDesc;
+	}
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

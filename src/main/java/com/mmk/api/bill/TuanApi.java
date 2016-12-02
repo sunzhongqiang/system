@@ -144,7 +144,7 @@ public class TuanApi {
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
-		tuan.setOrderSort(goods.getGoodsCat());
+		tuan.setOrderSort(group.getType());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
 		tuan.setCommander(user);
@@ -205,7 +205,6 @@ public class TuanApi {
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
-		tuan.setOrderSort(goods.getGoodsCat());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
 		ResultData result = new ResultData(false, "正在实现");

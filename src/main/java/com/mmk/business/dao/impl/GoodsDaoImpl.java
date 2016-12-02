@@ -58,14 +58,6 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
             sb.append(" and model.goodsName like :goodsName ");
             params.put("goodsName","%"+goodsCondition.getGoodsName()+"%");
         }
-		if(goodsCondition.getPromoteStartDate()!=null){
-            sb.append(" and model.promoteStartDate = :promoteStartDate ");
-            params.put("promoteStartDate",goodsCondition.getPromoteStartDate());
-        }
-		if(goodsCondition.getPromoteEndDate()!=null){
-            sb.append(" and model.promoteEndDate = :promoteEndDate ");
-            params.put("promoteEndDate",goodsCondition.getPromoteEndDate());
-        }
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 

@@ -37,18 +37,14 @@ public class GoodsApiImpl implements GoodsApi {
 			goodsServiceImpl.save(good);
 			return new ResultMsg(true, "商品新增成功");
 		} else {
-			goods.setGoodsCat(good.getGoodsCat());
 			goods.setGoodsMainImg(good.getGoodsMainImg());
 			goods.setGoodsName(good.getGoodsName());
 			goods.setGoodsNumber(good.getGoodsNumber());
 			goods.setGoodsOriginalImg(good.getGoodsOriginalImg());
 			goods.setGoodsOriginalPrice(good.getGoodsOriginalPrice());
 			goods.setGoodsThumb(good.getGoodsThumb());
-			goods.setIsDelete(good.getIsDelete());
-			goods.setPromoteEndDate(good.getPromoteEndDate());
-			goods.setPromoteNumber(goods.getPromoteNumber());
+			goods.setIsOnsale(good.getIsOnsale());
 			goods.setPromotePrice(good.getPromotePrice());
-			goods.setPromoteStartDate(good.getPromoteStartDate());
 			goods.setGoodsOriginalPrice(good.getGoodsOriginalPrice());
 		}
 		return new ResultMsg(false, "商品已经存在！");
