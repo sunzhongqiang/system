@@ -87,7 +87,7 @@
 	                            <option th:selected="${goods.isOnsale} == '0' ? 'selected' " value="0" >上架</option>
 	                            <option th:selected="${goods.isOnsale} == '1' ? 'selected' "  value="1">下架</option>
 	                       </select> -->
-	                       <input class="easyui-switchbutton" name="isOnsale" th:checked="${goods.isOnsale}" required="required" data-options="onText:'上架',offText:'下架',value:true" />
+	                       <input class="easyui-switchbutton" name="isOnsale" th:checked="${goods.isOnsale} == null ? true : ${goods.isOnsale} " required="required" data-options="onText:'上架',offText:'下架',value:true" />
 <!--                         <input type="text"  name="isOnsale"   class="easyui-validatebox" data-options="required:true" th:value="${goods.isOnsale}"/> -->
                         </td>
                     </tr>
