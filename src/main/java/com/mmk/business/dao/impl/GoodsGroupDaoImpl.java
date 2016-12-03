@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
@@ -47,7 +48,7 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
      */
     @Override 
     public Page<GoodsGroup> list(GoodsGroupCondition goodsGroupCondition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select model from GoodsGroup model  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select model from GoodsGroup model left join fetch model.goods  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
         if(goodsGroupCondition.getGroupPrice()!=null){
             sb.append(" and model.groupPrice = :groupPrice ");
@@ -61,12 +62,19 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
             sb.append(" and model.endTime = :endTime ");
             params.put("endTime",goodsGroupCondition.getEndTime());
         }
+        
+        if(goodsGroupCondition.getGoods()!=null){
+        	if(StringUtils.isNotBlank(goodsGroupCondition.getGoods().getGoodsName())){
+        		 sb.append(" and model.goods.goodsName like :goodsName ");
+                 params.put("goodsName","%"+goodsGroupCondition.getGoods().getGoodsName()+"%");
+        	}
+        }
         return queryByJpql(sb.toString(), params, pageable);
     }
 
     @Override 
     public List<GoodsGroup> list(GoodsGroupCondition goodsGroupCondition){
-        StringBuffer sb=new StringBuffer("select model from GoodsGroup model  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select model from GoodsGroup model left join fetch model.goods  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
         if(goodsGroupCondition.getGroupPrice()!=null){
             sb.append(" and model.groupPrice = :groupPrice ");

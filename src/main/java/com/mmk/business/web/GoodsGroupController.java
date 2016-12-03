@@ -183,8 +183,9 @@ public class GoodsGroupController extends BaseController {
      * @return 跳转到商品拼团管理新增页面
      */
     @RequestMapping("/goodsGroup/goodsList")
-    public Iterable<GoodsGroup> goodsList(EasyPageable pageable){
-        Iterable<GoodsGroup> goodsGroupList = goodsGroupService.findAll(pageable.pageable());
+    public GridData<GoodsGroup> goodsList(GoodsGroupCondition goodsGroupCondition,EasyPageable pageable){
+    	 Page<GoodsGroup> page = goodsGroupService.list(goodsGroupCondition, pageable.pageable());
+    	 GridData<GoodsGroup> goodsGroupList = new GridData<GoodsGroup>(page);
         return goodsGroupList;
     }
 }

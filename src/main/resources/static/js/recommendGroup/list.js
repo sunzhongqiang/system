@@ -35,12 +35,9 @@
             },
                     {
                 width : '80',
-                title : '商品原价',
-                field : 'goods.OriginalPrice',
-                align: 'center',
-                formatter : function(value, row, index) {
-                	return row.goods.goodsOriginalPrice;
-                }
+                title : '拼团价',
+                field : 'groupPrice',
+                align: 'center'
             },
             {
                 field : 'action',
@@ -283,13 +280,16 @@
                     return row.goods.goodsName;
                 }
             },
-                    {
+            {
                 width : '80',
-                title : '该商原价',
-                field : 'goodsOriginalPrice',
-                formatter : function(value, row, index) {
-                    return row.goods.goodsOriginalPrice;
-                }
+                title : '拼团价',
+                field : 'groupPrice',
+                align: 'center'
+            },{
+                width : '80',
+                title : '拼团价',
+                field : 'groupPrice',
+                align: 'center'
             },
 
 		            {
