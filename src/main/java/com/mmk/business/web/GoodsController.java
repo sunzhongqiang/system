@@ -121,11 +121,11 @@ public class GoodsController extends BaseController {
     
     /**
      * 切换商品上下架状态
-     * @param goods 
-     * return 
+     * @param goods 商品信息
+     * return  更改结果
      */ 
     @RequestMapping("/goods/toggleOnSale")
-    public ResultMsg toggleGoods(Goods goods){
+    public ResultMsg toggleOnSale(Goods goods){
         log.info("商品活动编辑页面");
         goods = goodsService.find(goods.getId());
         if(goods.getIsOnsale()){
