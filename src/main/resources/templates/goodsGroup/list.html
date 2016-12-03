@@ -33,14 +33,6 @@
                     <td>
                     <input type="text" class="easyui-textbox" name="goodsName" th:value="${goodsCondition} ? ${goodsCondition.goodsName} :''"/>
                     </td>
-                    <th>促销开始时间：</th>
-                    <td>
-                    <input type="text" class="easyui-datebox" name="promoteStartDate" th:value="${goodsCondition} ? ${goodsCondition.promoteStartDate} :''"/>
-                    </td>
-                    <th>促销结束时间：</th>
-                    <td>
-                    <input type="text" class="easyui-datebox" name="promoteEndDate" th:value="${goodsCondition} ? ${goodsCondition.promoteEndDate} :''"/>
-                    </td>
                       <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a>
                         <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a>

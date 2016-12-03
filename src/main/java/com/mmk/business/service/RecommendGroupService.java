@@ -83,4 +83,12 @@ public interface RecommendGroupService extends BaseService<RecommendGroup, Long>
        * 
        */
 	List<RecommendGroup> findByPosition(Long positionId);
+
+	/**
+	 * 推荐的团商品
+	 * @param positionId 推荐位置
+	 * @param pageable 分页参数
+	 * @return 查询结果
+	 */
+	List<Object[]> recommendGroups(Long positionId, Pageable pageable);
 }

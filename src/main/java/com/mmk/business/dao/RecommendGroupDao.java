@@ -85,4 +85,12 @@ public interface RecommendGroupDao extends SpringDataQueryDao<RecommendGroup>{
      * @author huguangling 胡广玲
      */
 	List<RecommendGroup> findByPosition(Long positionId);
+	
+	/**
+	 * 根据推荐位置查找推荐的团商品
+	 * @param positionId
+	 * @param pageable
+	 * @return
+	 */
+	List<Object[]> findGroupsByPositionId(Long positionId, Pageable pageable);
 }

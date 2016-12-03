@@ -4,7 +4,10 @@
  */
 package com.mmk.business.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -220,5 +223,26 @@ public class RecommendGroupController extends BaseController {
         recomm.setOrderby(orderby);
         recommendGroupService.save(recomm);
         return new ResultMsg(true,"推荐商品的排序保存成功");
+    }
+    
+    /**
+     * 查询商品分组里所有的商品信息
+     * 
+     * @param goodsGroupCondition 用户查询参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/recommendGroup/groupsGrid")
+    @ResponseBody
+    public List<Map<String, Object>> groupsGrid(Long positionId,EasyPageable pageable){
+    	log.info("查询指定位置下的推荐团里的所有的商品信息");
+        List<Object[]> groupGrid = recommendGroupService.recommendGroups(positionId,pageable.pageable());
+    	List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        for (Object[] array : groupGrid) {
+			Map<String, Object> element = new HashMap<String,Object>();
+			element.put("group", array[0]);
+			element.put("recommend", array[1]);
+			result.add(element );
+		}
+        return result;
     }
 }

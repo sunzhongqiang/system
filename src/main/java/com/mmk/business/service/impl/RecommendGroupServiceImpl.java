@@ -1,5 +1,6 @@
 package com.mmk.business.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -85,5 +86,14 @@ public class RecommendGroupServiceImpl extends BaseServiceImpl<RecommendGroup, L
 	public List<RecommendGroup> findByPosition(Long positionId) {
         log.info("查找对应位置下的推荐团 ");
         return recommendGroupDao.findByPosition(positionId);
+	}
+
+	@Override
+	public List<Object[]> recommendGroups(Long positionId, Pageable pageable) {
+		log.info("返回对应位置下的所有商品");
+        if(positionId == null){
+        	return new ArrayList();
+        }
+        return recommendGroupDao.findGroupsByPositionId(positionId , pageable);
 	}
 }

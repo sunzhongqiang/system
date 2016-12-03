@@ -45,11 +45,10 @@
                 field : 'isOnsale',
                 align: 'center',
                 formatter : function(value, row, index) {
-					switch (value) {
-					case 0:
-						return '销售中';
-					case 1:
-						return '仓库中';
+					if(value) {
+						return '上架中';
+					}else{
+						return '已下架';
 					}
 				}
             },

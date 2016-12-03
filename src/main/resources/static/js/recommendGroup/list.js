@@ -257,7 +257,7 @@
     
     $(function() {
     	tuiList = $('#tuiList').datagrid({
-            url : '/goods/groupsGrid',
+            url : '/recommendGroup/groupsGrid',
             //推荐商品business_recommend_group
             fit : true,
             striped : true,
@@ -271,10 +271,10 @@
             columns : [ [ 
                     {
                 width : '80',
-                title : '商品id',
+                title : '团商品主键',
                 field : 'id',
                 formatter : function(value, row, index) {
-                    return row.goods.id;
+                    return row.group.id;
                 }
             },
                     {
@@ -282,19 +282,25 @@
                 title : '商品名称',
                 field : 'goodsName',
                 formatter : function(value, row, index) {
-                    return row.goods.goodsName;
+                    return row.group.goods.goodsName;
                 }
             },
             {
                 width : '80',
                 title : '拼团价',
                 field : 'groupPrice',
-                align: 'center'
+                align: 'center',
+                formatter : function(value, row, index) {
+                	return row.group.groupPrice;
+                }
             },{
                 width : '80',
                 title : '成团人数',
                 field : 'num',
-                align: 'center'
+                align: 'center',
+                formatter : function(value, row, index) {
+                	return row.group.num;
+                }
             },
 
 		            {
@@ -313,7 +319,6 @@
                 width : 200,
                 align : 'center',
                 formatter : function(value, row, index) {
-                	console.log(row);
                     var str = '';
                     str += $.formatString('<a href="javascript:void(0)" onclick="editOrder(\'{0}\');" class="btn_delete" >排序</a>', row.recommend.id);
                     str += '&nbsp;|&nbsp;';
