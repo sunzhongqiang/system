@@ -159,16 +159,15 @@ public class GoodsController extends BaseController {
     	    goods.setId(good.getId());
     	}
 	    goodsService.save(goods); 
-	    List<GoodsSku>  goodSkuList = goodsSkuService.findAllByGoodsId(goods.getId());	    
+	    //商品
 		List<GoodsImg>  goodImgList = goodsImgService.findByGoodsId(goods.getId());
 	    
-    	GoodsImg goodImg = new GoodsImg();
     	int imgLength = 0;
 	    if(originalImg != null){
 	    	imgLength = originalImg.length;
 	        // 商品相册的保存
 		    for(int i=0; i<originalImg.length; i++){
-		    	goodImg = new GoodsImg();
+		    	GoodsImg goodImg = new GoodsImg();
 			    if(goodImgList.size() != 0 && goodImgList.size() >= i+1){	
 		    		goodImg = goodImgList.get(i);	    	
 			    }
@@ -179,6 +178,7 @@ public class GoodsController extends BaseController {
 			    goodsImgService.save(goodImg);
 		    }
 	    }
+	    
 	    if(goodImgList.size() > imgLength){
 	    	for(int j =imgLength; j< goodImgList.size(); j++){
 	    		goodsImgService.delete(goodImgList.get(j));
@@ -186,7 +186,6 @@ public class GoodsController extends BaseController {
 	    }
           
         modelAndView.addObject("goods", goods);
-        modelAndView.addObject("goodImg", goodImg);
         return goods ;
     }
     
@@ -306,25 +305,5 @@ public class GoodsController extends BaseController {
 	
 		return result;   
         
-    }
-    /**
-     * 查询商品分组里所有的商品信息
-     * 
-     * @param goodsGroupCondition 用户查询参数
-     * @return 查询所得数据
-     */
-    @RequestMapping("/goods/groupsGrid")
-    @ResponseBody
-    public List<Map<String, Object>> groupsGrid(Long positionId,EasyPageable pageable){
-    	log.info("查询指定位置下的推荐团里的所有的商品信息");
-        List<Object[]> goodsGrid = goodsService.groupsGrid(positionId,pageable.pageable());
-    	List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
-        for (Object[] array : goodsGrid) {
-			Map<String, Object> element = new HashMap<String,Object>();
-			element.put("goods", array[0]);
-			element.put("recommend", array[1]);
-			result.add(element );
-		}
-        return result;
     }
 }

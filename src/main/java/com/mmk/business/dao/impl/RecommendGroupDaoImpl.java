@@ -138,4 +138,21 @@ public class RecommendGroupDaoImpl extends SpringDataQueryDaoImpl<RecommendGroup
         }
         return queryByJpql(sb.toString(), params);
 	}
+
+	@Override
+	public List<Object[]> findGroupsByPositionId(Long positionId, Pageable pageable) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("select goodsGroup,recommendGroup ");
+		sb.append(" from RecommendGroup recommendGroup ,  ");
+		sb.append(" GoodsGroup goodsGroup left join fetch goodsGroup.goods");
+		sb.append(" where  ");
+		sb.append(" goodsGroup.id = recommendGroup.groupId ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		sb.append(" and recommendGroup.positionId = :positionId ");
+		params.put("positionId", positionId);
+		sb.append(" order by recommendGroup.orderby asc ");
+		Page page = queryArrayByJpql(sb.toString(), params,pageable);
+		return page.getContent();
+	}
+	
 }
