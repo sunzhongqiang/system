@@ -19,6 +19,7 @@
                 title : '商品ID',
                 field : 'id',
                 align: 'center',
+                sortable:true
             },
 //          {
 //                width : '80',
@@ -73,9 +74,9 @@
                 align: 'center',
                 formatter : function(value, row, index) {
 					if (value) {
-						return '销售中';
+						return '上架中';
 					}else{
-						return '仓库中';
+						return '已下架';
 					}
 				}
             },
@@ -87,15 +88,15 @@
                 formatter : function(value, row, index) {
                     var str = '';
                     if(row.isOnsale){
-                    	str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_onsale" >上架</a>', row.id);
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="sale(\'{0}\');" class="btn_onsale" >下架</a>', row.id);
                         str += '&nbsp;|&nbsp;';
                     }else{
-                    	str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_inventory" >下架</a>', row.id);
+                    	str += $.formatString('<a href="javascript:void(0)" onclick="sale(\'{0}\');" class="btn_inventory" >上架</a>', row.id);
                         str += '&nbsp;|&nbsp;';
                     }
                     str += $.formatString('<a href="javascript:void(0)" onclick="editFun(\'{0}\');" class="btn_edit" >编辑</a>', row.id);
-                    str += '&nbsp;|&nbsp;';
-                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
+//                    str += '&nbsp;|&nbsp;';
+//                    str += $.formatString('<a href="javascript:void(0)" onclick="deleteFun(\'{0}\');" class="btn_delete" >删除</a>', row.id);
                     return str;
                 }
             }] ],
@@ -107,10 +108,10 @@
 	            }
             }],
             onLoadSuccess : function(data){
-            	$('.btn_onsale').linkbutton({text:'上架',plain:true,iconCls:'icon-unlock'});
-            	$('.btn_inventory').linkbutton({text:'下架',plain:true,iconCls:'icon-lock'});
+            	$('.btn_onsale').linkbutton({text:'下架',plain:true,iconCls:'icon-unlock'});
+            	$('.btn_inventory').linkbutton({text:'上架',plain:true,iconCls:'icon-lock'});
                 $('.btn_edit').linkbutton({text:'编辑',plain:true,iconCls:'icon-edit'});
-                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
+//                $('.btn_delete').linkbutton({text:'删除',plain:true,iconCls:'icon-del'});
                 $(this).datagrid('fixRowHeight');
             }
         });
@@ -169,5 +170,32 @@
         $('#searchForm input').val('');
         //重新加载数据，无填写数据，向后台传递值则为空
         dataGrid.datagrid('load', {});
+    }
+    
+    
+    
+    
+    
+    // 商品上下架
+    function sale(id) {
+    	  if (id == undefined) {//点击右键菜单才会触发这个
+              var rows = dataGrid.datagrid('getSelections');
+              id = rows[0].id;
+          } else {//点击操作里面的删除图标会触发这个
+              dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+          }
+    	  parent.$.messager.confirm('询问', '确认改动商品上下架？', function(b) {
+              if (b) {
+                  progressLoad();
+                      $.post('/goods/toggleOnSale', {
+                          id : id
+                      }, function(result) {
+                          if (result.success) {
+                              dataGrid.datagrid('reload');
+                          }
+                          progressClose();
+                      }, 'JSON');
+                  }
+          });
     }
     
