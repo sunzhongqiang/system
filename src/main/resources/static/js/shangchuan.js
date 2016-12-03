@@ -7,7 +7,7 @@
      swf: 'Uploader.swf',
      // 文件接收服务端。
      server: '/goods/upload',
-     fileNumLimit :4,
+     fileNumLimit :5,
      // 选择文件的按钮。可选。
      // 内部根据当前运行是创建，可能是input元素，也可能是flash.
      pick: '#filePicker',
@@ -96,11 +96,12 @@ uploader.on( 'uploadComplete', function( file ) {
 //商品上传图片点击删除
 $(document).ready(function(){
 
-	$(".file-item").live('mouseover', function() {
+	
+	$("body").on('mouseover',".file-item", function() {
 		$(this).addClass("hover");
  })
 
- $(".file-item").live('mouseout', function() {
+$("body").on('mouseout',".file-item", function() {
 		 $(this).removeClass("hover");
  })
  })
@@ -110,9 +111,10 @@ var delThumb = "";
 
  //商品上传图片点击删除
   $(document).ready(function(){
-	  $(".diyCancel").live('click', function() {
+	  $("body").on('click',".diyCancel", function() {
 		var imgDiv = $(this).parent();
 		var imgId = imgDiv.find("[ name=\"imgIdArr\" ]").val();
+		var fileId = $(imgDiv).attr("id");
 		if (typeof(imgId) != "undefined") {
 			if (delThumb == "") {
 				delThumb = imgId;
@@ -122,13 +124,25 @@ var delThumb = "";
 			
 			$("#delThumbId").val(delThumb);
 		}
+		
+	
+	
 		// 如果删除的是主图
 		if ($(this).parent().parent().attr("id") == 'mainfile') {
+			
+			if(fileId){
+				mainUploader.removeFile( fileId,true );
+			}
 			var mainDiv = $('#mainfile');
-			mainDiv.find("[ name = 'goodsImg' ]").attr("value", null);
-			mainDiv.find("[ name = 'goodsThumb' ]").attr("value", null);
-			mainDiv.find("[ name = 'originalImg' ]").attr("value", null);
+			mainDiv.find("[ name = 'goodsMainImg' ]").attr("value", null);
+//			mainDiv.find("[ name = 'goodsThumb' ]").attr("value", null);
+//			mainDiv.find("[ name = 'originalImg' ]").attr("value", null);
+		}else{
+			if(fileId){
+				uploader.removeFile( fileId,true );
+			}
 		}
+		
 		$(this).parent().remove();
 	  })
   });
@@ -157,6 +171,7 @@ var delThumb = "";
  $mainFile = $("#mainfile");
 //当有文件添加进来的时候
 mainUploader.on( 'fileQueued', function( file ) {
+	$("#mainfile .file-item").remove();
     var $li = $(
             '<div id="' + file.id + '"  class="file-item">' +
                 '<img>'+
@@ -185,8 +200,8 @@ mainUploader.on( 'uploadSuccess', function(file, response) {
 	 var mainDiv = $('#mainfile');
 	if (response.success) {
 		mainDiv.find("[ name = 'goodsMainImg' ]").attr("value", response.goodsImgArr);
-		mainDiv.find("[ name = 'goodsOriginalImg' ]").attr("value", response.originalImgArr);
-		mainDiv.find("[ name = 'goodsThumbimg' ]").attr("value", response.thumbimg);
+//		mainDiv.find("[ name = 'goodsOriginalImg' ]").attr("value", response.originalImgArr);
+//		mainDiv.find("[ name = 'goodsThumbimg' ]").attr("value", response.thumbimg);
 	    li.addClass('upload-state-done');
 	} else {
 		li.append("<p>上传失败</p>");

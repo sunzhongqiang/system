@@ -99,9 +99,15 @@
 							    <!--用来存放item-->
 							    <div id="mainfile" class="uploader-list">
 							    	<div id="mainPicker">选择主图</div>
-							    	<input type="hidden" value="" name="goodsOriginalImg"></input>
+							    	
+							    	<div  th:if="${goods.goodsMainImg}" class="file-item upload-state-done">
+							    	<img th:src="${goods.goodsMainImg}" />
+							    	<div class="diyCancel"></div>
+							    	</div>
+							    
+<!-- 							    	<input type="hidden" value="" name="goodsOriginalImg"></input> -->
 							    	<input type="hidden" value="" name="goodsMainImg"></input>
-							    	<input type="hidden" value="" name="goodsThumb"></input>
+<!-- 							    	<input type="hidden" value="" name="goodsThumb"></input> -->
 							    </div>
 							 	<dl>
 									<dt>提示：</dt>
