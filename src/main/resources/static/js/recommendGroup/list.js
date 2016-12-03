@@ -38,6 +38,11 @@
                 title : '拼团价',
                 field : 'groupPrice',
                 align: 'center'
+            },{
+                width : '80',
+                title : '成团人数',
+                field : 'num',
+                align: 'center'
             },
             {
                 field : 'action',
@@ -287,8 +292,8 @@
                 align: 'center'
             },{
                 width : '80',
-                title : '拼团价',
-                field : 'groupPrice',
+                title : '成团人数',
+                field : 'num',
                 align: 'center'
             },
 
