@@ -14,6 +14,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Repository;
 
 import com.mmk.business.condition.GoodsCondition;
@@ -58,7 +60,16 @@ public class GoodsDaoImpl extends SpringDataQueryDaoImpl<Goods> implements Goods
             sb.append(" and model.goodsName like :goodsName ");
             params.put("goodsName","%"+goodsCondition.getGoodsName()+"%");
         }
-        
+        Sort sort = pageable.getSort();
+		if (sort != null) {
+			sb.append(" order by ");
+			for (Order order : sort) {
+				sb.append(" model.".concat(order.getProperty()));
+				sb.append(" ".concat(order.getDirection().toString()));
+			}
+		} else {
+			 sb.append(" order by model.id desc ");
+		}
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 
