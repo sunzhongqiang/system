@@ -21,13 +21,13 @@
                 align: 'center',
                 sortable:true
             },
-//          {
-//                width : '80',
-//                title : '商品主图',
-//                field : 'goodsMainImg',
-//                formatter:function(value,row,index)
-//                {return '<img src='+value+'>';}
-//            },
+          {
+                width : '80',
+                title : '商品主图',
+                field : 'goodsMainImg',
+                formatter:function(value,row,index)
+                {return '<img src='+value+'>';}
+            },
                     {
                 width : '600',
                 title : '商品名称',
