@@ -4,7 +4,6 @@
  */
 package com.mmk.business.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -179,7 +178,7 @@ public class GoodsGroupController extends BaseController {
     }
     
     /**
-     * 新增页面
+     * 拼团商品推荐
      * @return 跳转到商品拼团管理新增页面
      */
     @RequestMapping("/goodsGroup/goodsList")

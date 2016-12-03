@@ -120,6 +120,30 @@ public class GoodsController extends BaseController {
     
     
     /**
+     * 切换商品上下架状态
+     * @param goods 
+     * return 
+     */ 
+    @RequestMapping("/goods/toggleOnSale")
+    public ResultMsg toggleGoods(Goods goods){
+        log.info("商品活动编辑页面");
+        goods = goodsService.find(goods.getId());
+        if(goods.getIsOnsale()){
+    	   goods.setIsOnsale(false);
+        }else{
+        	goods.setIsOnsale(true);
+        }
+        goodsService.save(goods);
+        
+        ResultMsg result = new ResultMsg(true,"状态更改完毕");
+		return result ;
+    }
+    
+    
+    
+    
+    
+    /**
      * 商品活动数据保存方法
      * @param goods 要保存的数据
      * @return goods 保存后的数据

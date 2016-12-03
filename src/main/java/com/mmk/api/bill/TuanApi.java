@@ -68,11 +68,11 @@ public class TuanApi {
 	}
 
 	/**
-	 * 团订单
-	 * 
-	 * @return
-	 * @date 2016年11月8日 下午2:47:43
-	 * @author hu
+	 * 用户参团
+	 * @param tuanId 团id
+	 * @param userId 用户id
+	 * @param addressId 地址id
+	 * @return 参团结果
 	 */
 	@RequestMapping("/api/tuan/join")
 	@ResponseBody
@@ -80,9 +80,21 @@ public class TuanApi {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		Tuan bean = tuanService.findById(tuanId);
+		if(bean==null){
+			return new ResultData(false, "团不存在");
+		}
 		WxUser user = userService.find(userId);
+		if(user==null){
+			return new ResultData(false, "用户不存在");
+		}
 		GoodsGroup group = groupService.find(bean.getGroupId());
+		if(group==null){
+			return new ResultData(false, "团商品不存在");
+		}
 		Goods goods = group.getGoods();
+		if(goods==null){
+			return new ResultData(false, "商品不存在");
+		}
 		// 团订单
 		List<TuanOrder> orderList = orderService.findAllByTuanId(tuanId);
 		
