@@ -119,4 +119,29 @@ public class BillApi {
 		}
 		return result;
 	}
+	
+	/**
+	 * 用户订单取消
+	 * @param openid 用户openid
+	 * @param id 订单id
+	 * @return 操作结果
+	 */
+	@RequestMapping("/api/bill/cancle")
+	@ResponseBody
+	public ResultData cancle(String openid,Long id){
+		ResultData result = new ResultData(true, "用户订单取消成功");
+		TuanOrder order = orderService.find(id);
+		WxUser user = order.getUser();
+		if(openid.equals(user.getOpenid())){
+			Tuan tuan = tuanService.find(order.getTuanId());
+			order.setOrderStatus(TuanOrderStatus.CLOSED.name());
+			tuan.setJoinNum(tuan.getJoinNum()-1);
+			
+			orderService.save(order);
+			tuanService.save(tuan);
+		}else{
+			return new ResultData(false,"非该用户订单");
+		}
+		return result;
+	}
 }

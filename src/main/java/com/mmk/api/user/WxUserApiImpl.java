@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.api.WxUserApi;
@@ -19,6 +20,7 @@ public class WxUserApiImpl implements WxUserApi {
 	@Resource
 	private WxUserService wxUserService;
 
+	@ResponseBody
 	@RequestMapping("/api/user/save")
 	@Override
 	public ResultMsg save(WxUser user) {
@@ -45,6 +47,7 @@ public class WxUserApiImpl implements WxUserApi {
 	}
 
 
+	@ResponseBody
 	@RequestMapping("/api/user/findUser")
 	@Override
 	public ResultMsg findUser(String openid) {
