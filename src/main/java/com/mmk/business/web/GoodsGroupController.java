@@ -179,11 +179,12 @@ public class GoodsGroupController extends BaseController {
     
     /**
      * 拼团商品推荐
+     * @param pageable pageable
      * @return 跳转到商品拼团管理新增页面
      */
     @RequestMapping("/goodsGroup/goodsList")
-    public Iterable<GoodsGroup> goodsList(){
-        Iterable<GoodsGroup> goodsGroupList = goodsGroupService.findAll();
+    public Iterable<GoodsGroup> goodsList(EasyPageable pageable){
+        Iterable<GoodsGroup> goodsGroupList = goodsGroupService.findAll(pageable.pageable());
         return goodsGroupList;
     }
 }
