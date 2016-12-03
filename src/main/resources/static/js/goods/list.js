@@ -32,24 +32,28 @@
                 width : '600',
                 title : '商品名称',
                 field : 'goodsName',
+                sortable:true
             },
                     {
                 width : '80',
                 title : '商品数量',
                 field : 'goodsNumber',
                 align: 'center',
+                sortable:true
             },
                     {
                 width : '80',
                 title : '商品原价',
                 field : 'goodsOriginalPrice',
                 align: 'center',
+                sortable:true
             },
                     {
                 width : '80',
                 title : '团购价',
                 field : 'promotePrice',
                 align: 'center',
+                sortable:true
             },
                
 //                    {
