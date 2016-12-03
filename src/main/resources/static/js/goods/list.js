@@ -76,6 +76,7 @@
                 title : '商品是否下架',
                 field : 'isOnsale',
                 align: 'center',
+                sortable:true,
                 formatter : function(value, row, index) {
 					if (value) {
 						return '上架中';
