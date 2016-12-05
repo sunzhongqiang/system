@@ -4,6 +4,7 @@
  */
 package com.mmk.payment.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +67,20 @@ public class PaymentConfigController extends BaseController {
         Page<PaymentConfig> paymentConfigPage = paymentConfigService.list(paymentConfigCondition,pageable.pageable());   
         GridData<PaymentConfig> grid = new GridData<PaymentConfig>(paymentConfigPage);
         return grid;
+    }
+    
+    /**
+     * 根据支付方式的Id获取下面的配置方式
+     * @param paymentId 支付Id
+     * @return 支付配置
+     */
+    @RequestMapping("/paymentConfig/loadByPaymentId")
+    @ResponseBody
+    public List<PaymentConfig> loadByPayment(Long paymentId){
+    	if(paymentId==null){
+    		return new ArrayList<PaymentConfig>();
+    	}
+    	return paymentConfigService.findAllBy("paymentId", paymentId);
     }
     
     /**
