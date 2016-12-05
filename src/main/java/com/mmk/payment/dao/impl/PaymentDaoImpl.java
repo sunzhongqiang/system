@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Repository;
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import org.apache.commons.logging.Log;
@@ -50,6 +52,16 @@ public class PaymentDaoImpl extends SpringDataQueryDaoImpl<Payment> implements P
     public Page<Payment> list(PaymentCondition paymentCondition,Pageable pageable){
         StringBuffer sb=new StringBuffer("select model from Payment model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
+        Sort sort = pageable.getSort();
+		if (sort != null) {
+			sb.append(" order by ");
+			for (Order order : sort) {
+				sb.append(" model.".concat(order.getProperty()));
+				sb.append(" ".concat(order.getDirection().toString()));
+			}
+		} else {
+			sb.append(" order by model.orderSort ");
+		}
         return queryByJpql(sb.toString(), params, pageable);
     }
 
