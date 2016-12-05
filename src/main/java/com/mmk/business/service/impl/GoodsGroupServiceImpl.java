@@ -1,10 +1,12 @@
 package com.mmk.business.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -108,7 +110,7 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 	public Page<GoodsGroup> findBeginStart(Long type ,Pageable pageable) {
 		DateTime now = DateTime.now();
 		DateTime tomorrow = now.plusDays(1);
-		return goodsGroupDao.findAllByStart(now.toDate(),tomorrow.toDate(),type,pageable);
+		return goodsGroupDao.findAllByStart(DateUtils.ceiling(now.toDate(), Calendar.DATE),DateUtils.ceiling(tomorrow.toDate(), Calendar.DATE),type,pageable);
 	}
 
 }
