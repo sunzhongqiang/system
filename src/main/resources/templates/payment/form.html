@@ -37,10 +37,17 @@
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
         <form id="modelForm" method="post">
             <table class="grid">
+            		
+					<tr>
+                        <td class="tdTit"><label>支付编码：</label></td>
+                        <td>
+                        <input type="text"  name="code"   class="easyui-validatebox" data-options="required:true" th:value="${payment.code}"/>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="tdTit"><label>支付名称：</label></td>
                         <td>
-                        <input type="text"  name="name"   class="easyui-textbox" data-options="required:true" th:value="${payment.name}"/>
+                        <input type="text"  name="name"  class="easyui-textbox" data-options="required:true" th:value="${payment.name}"/>
                         </td>
                     </tr>
                     <tr>
