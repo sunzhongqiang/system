@@ -88,9 +88,11 @@ public class PaymentConfigController extends BaseController {
      * @return 跳转到支付配置参数新增页面
      */
     @RequestMapping("/paymentConfig/add")
-    public ModelAndView addPage(){
+    public ModelAndView addPage(Long paymentId){
         ModelAndView modelAndView = new ModelAndView("paymentConfig/form");
-        modelAndView.addObject("paymentConfig", new PaymentConfig());
+        PaymentConfig paymentConfig = new PaymentConfig();
+        paymentConfig.setPaymentId(paymentId);
+		modelAndView.addObject("paymentConfig", paymentConfig);
         return modelAndView;
     }
     
