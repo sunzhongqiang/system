@@ -37,28 +37,23 @@
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
         <form id="modelForm" method="post">
             <table class="grid">
-                    <tr>
-                        <td class="tdTit"><label>支付主键：</label></td>
-                        <td>
-                        <input type="text"  name="paymentId"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.paymentId}"/>
-                        </td>
-                    </tr>
+            
                     <tr>
                         <td class="tdTit"><label>参数名：</label></td>
                         <td>
-                        <input type="text"  name="code"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.code}"/>
+                        <input type="text"  name="code"   class="easyui-textbox" data-options="required:true" th:value="${paymentConfig.code}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>参数值：</label></td>
                         <td>
-                        <input type="text"  name="value"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.value}"/>
+                        <input type="text"  name="value"   class="easyui-textbox" data-options="required:true" th:value="${paymentConfig.value}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>参数说明：</label></td>
                         <td>
-                        <input type="text"  name="remark"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.remark}"/>
+                        <input type="text"  name="remark"   class="easyui-textbox" data-options="required:true" th:value="${paymentConfig.remark}"/>
                         </td>
                     </tr>
                     <tr>
@@ -68,6 +63,7 @@
                         </td>
                     </tr>
             </table>
+            <input type="hidden"  name="paymentId"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.paymentId}"/>
             <input type="hidden" name="id" th:value="${paymentConfig.id}"/>
         </form>
     </div>

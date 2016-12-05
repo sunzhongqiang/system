@@ -1,7 +1,7 @@
 //代码生成工具自动生成，请在此处填写 查询页面使用的js代码
-    var dataGrid;
+    var configGrid;
     $(function() {
-        dataGrid = $('#dataGrid').datagrid({
+    	configGrid = $('#configGrid').datagrid({
             url : '/paymentConfig/gridData',
             fit : true,
             striped : true,
@@ -77,7 +77,7 @@
             buttons : [ {
                 text : '添加',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = configGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }
@@ -87,10 +87,10 @@
     
     function deleteFun(id) {
         if (id == undefined) {//点击右键菜单才会触发这个
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = configGrid.datagrid('getSelections');
             id = rows[0].id;
         } else {//点击操作里面的删除图标会触发这个
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	configGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.messager.confirm('询问', '您是否要删除支付配置参数？', function(b) {
             if (b) {
@@ -110,10 +110,10 @@
     
     function editFun(id) {
         if (id == undefined) {
-            var rows = dataGrid.datagrid('getSelections');
+            var rows = configGrid.datagrid('getSelections');
             id = rows[0].id;
         } else {
-            dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        	configGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.$.modalDialog({
             title : '编辑',
@@ -123,7 +123,7 @@
             buttons : [ {
                 text : '编辑',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                    parent.$.modalDialog.openner_dataGrid = configGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#modelForm');
                     f.submit();
                 }

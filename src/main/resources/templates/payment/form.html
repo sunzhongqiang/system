@@ -18,7 +18,7 @@
                 success: function(result){
                     progressClose();
                     if (result.success) {
-                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.openner_payGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
                         parent.$.modalDialog.handler.dialog('close');
                     } else {
                         parent.$.messager.alert('提示', result.msg, 'warning');
@@ -40,7 +40,7 @@
                     <tr>
                         <td class="tdTit"><label>支付名称：</label></td>
                         <td>
-                        <input type="text"  name="name"   class="easyui-validatebox" data-options="required:true" th:value="${payment.name}"/>
+                        <input type="text"  name="name"   class="easyui-textbox" data-options="required:true" th:value="${payment.name}"/>
                         </td>
                     </tr>
                     <tr>
@@ -63,7 +63,7 @@
                     <tr>
                         <td class="tdTit"><label>备注：</label></td>
                         <td>
-                        <input type="text"  name="remark"   class="easyui-validatebox" th:value="${payment.remark}"/>
+                        <input type="text"  name="remark"   class="easyui-textbox" th:value="${payment.remark}"/>
                         </td>
                     </tr>
             </table>
