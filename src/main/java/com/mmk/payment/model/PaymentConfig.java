@@ -1,6 +1,6 @@
 /*
  * 
- *  PaymentConfig 创建于 2016-12-05 11:46:36 版权归作者和作者当前组织所有
+ *  PaymentConfig 创建于 2016-12-05 11:57:19 版权归作者和作者当前组织所有
  */
 package com.mmk.payment.model;
 
@@ -13,7 +13,7 @@ import javax.persistence.Column;
 
 /**
 * PaymentConfig: 支付配置参数 数据领域模型
-* 2016-12-05 11:46:36
+* 2016-12-05 11:57:19
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */
@@ -51,6 +51,12 @@ public class PaymentConfig {
      */
     @Column(name="remark")
     private String remark;
+
+    /**
+     * 排序
+     */
+    @Column(name="order_sort")
+    private Long orderSort;
 
 
     /** 
@@ -116,6 +122,19 @@ public class PaymentConfig {
     */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /** 
+	* @return orderSort ：排序
+	*/
+    public Long getOrderSort() {
+        return orderSort;
+    }
+    /** 
+    *@param orderSort 设置排序 
+    */
+    public void setOrderSort(Long orderSort) {
+        this.orderSort = orderSort;
     }
 
 

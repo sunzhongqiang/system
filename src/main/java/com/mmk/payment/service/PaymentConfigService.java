@@ -9,7 +9,7 @@ import com.mmk.payment.condition.PaymentConfigCondition;
 
 /**
 * PaymentConfigService: 支付配置参数 业务服务层接口
-*2016-12-05 11:46:37
+*2016-12-05 11:57:19
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */

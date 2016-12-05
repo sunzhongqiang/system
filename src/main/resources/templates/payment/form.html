@@ -44,15 +44,26 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdTit"><label>支付类型：online,offline,bank,cod：</label></td>
+                        <td class="tdTit"><label>支付类型：</label></td>
                         <td>
-                        <input type="text"  name="type"   class="easyui-validatebox" data-options="required:true" th:value="${payment.type}"/>
+                         <select name="type" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                            <option th:selected="${payment.type} == 'online' ? 'selected' "  value="online">线上</option>
+                            <option th:selected="${payment.type} == 'offline' ? 'selected' "  value="offline">线下</option>
+                            <option th:selected="${payment.type} == 'bank' ? 'selected' " value="bank" >银行卡</option>
+                            <option th:selected="${payment.type} == 'cod' ? 'selected' " value="cod" >货到付款</option>
+                       </select>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>排序：</label></td>
+                        <td>
+                        <input type="text"  name="orderSort"   class="easyui-numberspinner" data-options="required:true" th:value="${payment.orderSort}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="tdTit"><label>备注：</label></td>
                         <td>
-                        <input type="text"  name="remark"   class="easyui-validatebox" data-options="required:true" th:value="${payment.remark}"/>
+                        <input type="text"  name="remark"   class="easyui-validatebox" th:value="${payment.remark}"/>
                         </td>
                     </tr>
             </table>

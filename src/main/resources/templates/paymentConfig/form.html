@@ -61,6 +61,12 @@
                         <input type="text"  name="remark"   class="easyui-validatebox" data-options="required:true" th:value="${paymentConfig.remark}"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="tdTit"><strong class="red" >*</strong><label>排序：</label></td>
+                        <td>
+                        <input type="text"  name="orderSort"   class="easyui-numberspinner" data-options="required:true" th:value="${paymentConfig.orderSort}"/>
+                        </td>
+                    </tr>
             </table>
             <input type="hidden" name="id" th:value="${paymentConfig.id}"/>
         </form>

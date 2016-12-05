@@ -1,6 +1,6 @@
 /*
  * 
- *  PaymentDaoImpl 创建于 2016-12-05 11:28:29 版权归作者和作者当前组织所有
+ *  PaymentDaoImpl 创建于 2016-12-05 11:56:57 版权归作者和作者当前组织所有
  */
 package com.mmk.payment.dao.impl;
 
@@ -63,7 +63,7 @@ public class PaymentDaoImpl extends SpringDataQueryDaoImpl<Payment> implements P
     
     @Override 
     public Page< Map<String,Object>> listBySql(PaymentCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,name,type,remark from pay_payment  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,name,type,remark,order_sort from pay_payment  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         return queryFieldsBySql(sb.toString(), params, pageable);
     }

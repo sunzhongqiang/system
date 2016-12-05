@@ -1,6 +1,6 @@
 /*
  * 
- *  Payment 创建于 2016-12-05 11:28:29 版权归作者和作者当前组织所有
+ *  Payment 创建于 2016-12-05 11:56:57 版权归作者和作者当前组织所有
  */
 package com.mmk.payment.model;
 
@@ -13,7 +13,7 @@ import javax.persistence.Column;
 
 /**
 * Payment: 支付方式 数据领域模型
-* 2016-12-05 11:28:29
+* 2016-12-05 11:56:57
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */
@@ -45,6 +45,12 @@ public class Payment {
      */
     @Column(name="remark")
     private String remark;
+
+    /**
+     * 排序
+     */
+    @Column(name="order_sort")
+    private Long orderSort;
 
 
     /** 
@@ -97,6 +103,19 @@ public class Payment {
     */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /** 
+	* @return orderSort ：排序
+	*/
+    public Long getOrderSort() {
+        return orderSort;
+    }
+    /** 
+    *@param orderSort 设置排序 
+    */
+    public void setOrderSort(Long orderSort) {
+        this.orderSort = orderSort;
     }
 
 

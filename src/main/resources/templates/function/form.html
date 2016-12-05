@@ -59,9 +59,9 @@
                         <td>
 <!--                         <input type="text"  name="type"   class="easyui-validatebox" data-options="required:true" th:value="${function.type}"/> -->
                          <select name="type" class="easyui-combobox"    required="required"  data-options="width:140,height:29,editable:false,panelHeight:'auto'">
-                            <option th:selected="${function.type} == 'function' ? 'selected' " value="function" >功能</option>
-                            <option th:selected="${function.type} == 'menu' ? 'selected' "  value="menu">菜单</option>
                             <option th:selected="${function.type} == 'module' ? 'selected' "  value="module">模块</option>
+                            <option th:selected="${function.type} == 'menu' ? 'selected' "  value="menu">菜单</option>
+                            <option th:selected="${function.type} == 'function' ? 'selected' " value="function" >功能</option>
                        </select>
                         </td>
                     </tr>
@@ -103,7 +103,7 @@
                     <tr>
                         <td class="tdTit"><label>排序：</label></td>
                         <td>
-                        <input type="number"  name="sort"   class="easyui-validatebox" th:value="${function.sort}"/>
+                        <input type="number"  name="sort"   class="easyui-numberspinner" th:value="${function.sort}"/>
                         </td>
                     </tr>
             </table>

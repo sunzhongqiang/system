@@ -38,6 +38,11 @@
                 field : 'remark',
             },
             {
+                width : '80',
+                title : '排序',
+                field : 'orderSort',
+            },
+            {
                 field : 'action',
                 title : '操作',
                 width : 140,

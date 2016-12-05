@@ -16,7 +16,7 @@ import com.mmk.payment.service.PaymentConfigService;
 import com.mmk.payment.dao.PaymentConfigDao;
 /**
 * PaymentConfigServiceImpl: 支付配置参数 业务服务层实现
-* 2016-12-05 11:46:37
+* 2016-12-05 11:57:19
 * @author 孙中强 sunzhongqiang
 * @version 1.0
 */

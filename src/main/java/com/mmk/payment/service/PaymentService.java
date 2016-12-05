@@ -9,7 +9,7 @@ import com.mmk.payment.condition.PaymentCondition;
 
 /**
 * PaymentService: 支付方式 业务服务层接口
-*2016-12-05 11:28:29
+*2016-12-05 11:56:57
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */

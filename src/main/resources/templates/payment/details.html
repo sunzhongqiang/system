@@ -32,6 +32,10 @@
                         <td th:text="${payment.remark}"></td>
                     </tr>
                     <tr>
+                        <td class="tdTit"><label>排序：</label></td>
+                        <td th:text="${payment.orderSort}"></td>
+                    </tr>
+                    <tr>
                         <td class="tdTit"></td>
                         <td class="top60">
                             <input type="hidden" name="id" th:field="${payment.id}"/>

@@ -16,7 +16,7 @@ import com.mmk.payment.service.PaymentService;
 import com.mmk.payment.dao.PaymentDao;
 /**
 * PaymentServiceImpl: 支付方式 业务服务层实现
-* 2016-12-05 11:28:29
+* 2016-12-05 11:56:57
 * @author 孙中强 sunzhongqiang
 * @version 1.0
 */
