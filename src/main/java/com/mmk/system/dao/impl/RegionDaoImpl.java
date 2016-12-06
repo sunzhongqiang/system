@@ -135,5 +135,18 @@ public class RegionDaoImpl extends SpringDataQueryDaoImpl<Region> implements Reg
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Region> loadByParentId(Long parentId) {
+		StringBuffer sb=new StringBuffer("select model from Region model  where 1=1  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(parentId!=null){
+            sb.append(" and model.parentId = :parentId ");
+            params.put("parentId",parentId);
+        }else{
+        	  sb.append(" and model.parentId = 0 ");
+        }
+        return queryByJpql(sb.toString(), params);
+	}
        
 }

@@ -68,4 +68,6 @@ public interface RegionDao extends SpringDataQueryDao<Region>{
      */
     List<Region> findAllBy(String field,Object value);
     
+	List<Region> loadByParentId(Long parentId);
+    
 }

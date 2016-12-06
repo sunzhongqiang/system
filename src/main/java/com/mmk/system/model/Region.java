@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.Column;
 
 /**
@@ -39,6 +43,12 @@ public class Region {
      */
     @Column(name="region_name")
     private String regionName;
+    
+    /**
+     * 地区类型
+     */
+    @Column(name="region_type")
+    private Long regionType;
 
     /**
      * 是否显示1-显示
@@ -57,6 +67,9 @@ public class Region {
      */
     @Column(name="full_region_name")
     private String fullRegionName;
+    
+    @Transient
+    private String state;
 
 
     /** 
@@ -136,6 +149,22 @@ public class Region {
     public void setFullRegionName(String fullRegionName) {
         this.fullRegionName = fullRegionName;
     }
+	public String getState() {
+		if(regionType==null||regionType!=3){
+			return "closed";
+		}else{
+			return null;
+		}
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public Long getRegionType() {
+		return regionType;
+	}
+	public void setRegionType(Long regionType) {
+		this.regionType = regionType;
+	}
 
 
 }

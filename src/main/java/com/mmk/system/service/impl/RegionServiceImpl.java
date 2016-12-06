@@ -84,4 +84,9 @@ public class RegionServiceImpl extends BaseServiceImpl<Region, Long> implements 
 	public List<Region> findAllByParentId(Long parentId) {
 		return regionRepository.findAllByParentId(parentId);
 	}
+
+	@Override
+	public List<Region> loadByParentId(Long parentId) {
+		return regionDao.loadByParentId(parentId);
+	}
 }

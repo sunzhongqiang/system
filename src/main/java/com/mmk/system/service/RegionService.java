@@ -77,4 +77,12 @@ public interface RegionService extends BaseService<Region, Long> {
      * @return
      */
 	List<Region> findAllByParentId(Long parentId);
+
+	/**
+	 * 根据parentId加载所有地区
+	 * @param parentId 父Id
+	 * @return 地区列表
+	 * 
+	 */
+	List<Region> loadByParentId(Long parentId);
 }

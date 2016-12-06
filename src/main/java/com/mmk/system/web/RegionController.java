@@ -62,6 +62,38 @@ public class RegionController extends BaseController {
     }
     
     /**
+     * 加载表格数据 用户
+     * 
+     * @param regionCondition 用户查询参数
+     * @param pageable 分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/region/allRegion")
+    @ResponseBody
+    public List<Region> allRegion(RegionCondition regionCondition){
+        log.info("获取区域管理列表数据");
+        List<Region> regions = regionService.list(regionCondition);   
+        return regions;
+    }
+    
+    
+    /**
+     * 加载表格数据 用户
+     * 
+     * @param regionCondition 用户查询参数
+     * @param pageable 分页参数
+     * @return 查询所得数据
+     */
+    @RequestMapping("/region/loadRegionByParentId")
+    @ResponseBody
+    public List<Region> loadRegionByParentId(Long parentId){
+        log.info("获取区域管理列表数据");
+        List<Region> regions = regionService.loadByParentId(parentId);
+        return regions;
+    }
+    
+    
+    /**
      * 新增页面
      * @return 跳转到区域管理新增页面
      */
