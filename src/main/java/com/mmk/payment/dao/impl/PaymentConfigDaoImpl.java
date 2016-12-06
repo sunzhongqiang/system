@@ -88,6 +88,14 @@ public class PaymentConfigDaoImpl extends SpringDataQueryDaoImpl<PaymentConfig> 
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<PaymentConfig> loadByPaymentId(Long paymentId) {
+		StringBuffer sb = new StringBuffer("select model from PaymentConfig model  where model.paymentId = :paymentId  order by model.orderSort ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("paymentId", paymentId);
+		return queryByJpql(sb.toString(), params);
+	}
     
     
 }

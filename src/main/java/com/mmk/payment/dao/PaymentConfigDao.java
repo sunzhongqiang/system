@@ -67,6 +67,12 @@ public interface PaymentConfigDao extends SpringDataQueryDao<PaymentConfig>{
      * 
      */
     List<PaymentConfig> findAllBy(String field,Object value);
+    /**
+     * 根据支付id获取支付配置列表
+     * @param paymentId 支付id
+     * @return 支付配置
+     */
+	List<PaymentConfig> loadByPaymentId(Long paymentId);
     
     
 

@@ -61,4 +61,10 @@ public class PaymentConfigServiceImpl extends BaseServiceImpl<PaymentConfig, Lon
         log.info("支付配置参数根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return paymentConfigDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<PaymentConfig> loadByPaymentId(Long paymentId) {
+		log.info("根据支付ID获取支付配置参数查询列表");
+        return paymentConfigDao.loadByPaymentId(paymentId);
+	}
 }

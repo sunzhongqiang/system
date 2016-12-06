@@ -54,4 +54,11 @@ public interface PaymentConfigService extends BaseService<PaymentConfig, Long> {
      * 
      */
     List<PaymentConfig> findAllBy(String field,Object value);
+
+    /**
+     * 根据支付Id获取对应的支付参数
+     * @param paymentId 支付Id
+     * @return 支付配置参数列表
+     */
+	List<PaymentConfig> loadByPaymentId(Long paymentId);
 }

@@ -77,10 +77,7 @@ public class PaymentConfigController extends BaseController {
     @RequestMapping("/paymentConfig/loadByPaymentId")
     @ResponseBody
     public List<PaymentConfig> loadByPayment(Long paymentId){
-    	if(paymentId==null){
-    		return new ArrayList<PaymentConfig>();
-    	}
-    	return paymentConfigService.findAllBy("paymentId", paymentId);
+    	return paymentConfigService.loadByPaymentId(paymentId);
     }
     
     /**

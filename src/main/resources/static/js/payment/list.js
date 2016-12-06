@@ -17,6 +17,11 @@
             columns : [ [ 
             {
                 width : '100',
+                title : '编码',
+                field : 'code',
+            },
+            {
+                width : '100',
                 title : '支付名称',
                 field : 'name',
             },
@@ -159,34 +164,25 @@
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ 
             {
-                width : '80',
-                title : '主键',
-                field : 'id',
-            },
-            {
-                width : '80',
-                title : '支付主键',
-                field : 'paymentId',
-            },
-            {
-                width : '80',
+                width : '100',
                 title : '参数名',
                 field : 'code',
             },
             {
-                width : '80',
+                width : '380',
                 title : '参数值',
                 field : 'value',
             },
             {
-                width : '80',
+                width : '380',
                 title : '参数说明',
                 field : 'remark',
             },
             {
-                width : '80',
+                width : '40',
                 title : '排序',
                 field : 'orderSort',
+                align : 'center',
             },
             {
                 field : 'action',
@@ -250,7 +246,7 @@
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
-                            dataGrid.datagrid('reload');
+                            configGrid.datagrid('reload');
                         }
                         progressClose();
                     }, 'JSON');
