@@ -53,6 +53,7 @@
                         <td class="tdTit"><label>是否显示1-显示：</label></td>
                         <td>
                         <input type="text"  name="isDisplay"   class="easyui-validatebox" data-options="required:true" th:value="${region.isDisplay}"/>
+                        <input class="easyui-switchbutton" name="isOnsale" th:checked="${goods.isOnsale} == null ? true : ${goods.isOnsale} " required="required" data-options="onText:'上架',offText:'下架',value:true" />
                         </td>
                     </tr>
                     <tr>

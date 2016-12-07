@@ -20,12 +20,7 @@
                 }
             },	
             columns : [ [ 
-                    {
-                width : '80',
-                title : '所属区域id',
-                field : 'parentId',
-            },
-                    {
+            {
                 width : '220',
                 title : '区域名称',
                 field : 'regionName',
