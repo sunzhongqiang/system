@@ -102,4 +102,9 @@ public class FavoriteServiceImpl extends BaseServiceImpl<Favorite, Long> impleme
 	public Page<Favorite> findAllByUserId(Long userId, Pageable pageable) {
 		return favoriteDao.findAllByUserId(userId,pageable);
 	}
+
+	@Override
+	public Favorite findByUserIdAndGroupId(Long userId, Long groupId) {
+		return favoriteDao.findByUserIdAndGroupId(userId, groupId);
+	}
 }

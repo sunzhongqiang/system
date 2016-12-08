@@ -120,6 +120,10 @@ public class GroupApiImpl {
 			GoodsGroup goodsGroup = goodsGroupService.find(groupId);
 			if(goodsGroup!=null){
 				ResultData resultData = new ResultData(true, "团商品收藏成功");
+				Favorite fa = favoriteService.findByUserIdAndGroupId(userId, groupId);
+				if(fa != null){
+					return new ResultData(false, "团商品已被收藏");
+				}
 				Favorite favorite = new Favorite();
 				favorite.setGroupId(goodsGroupService.get(groupId));
 				favorite.setUserId(userId);

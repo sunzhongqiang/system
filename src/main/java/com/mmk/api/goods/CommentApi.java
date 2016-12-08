@@ -17,8 +17,8 @@ public class CommentApi {
 	private CommentService commentService;
 	/**
 	 * 获取评论数据
-	 * @param comment Comment
-	 * @return 商品的评论
+	 * @param comment 推荐位置编码
+	 * @return 商品 
 	 */
 	@RequestMapping("/api/goods/comment")
 	@ResponseBody

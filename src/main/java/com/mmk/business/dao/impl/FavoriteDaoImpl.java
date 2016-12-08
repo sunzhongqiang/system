@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.mmk.business.model.Favorite;
+import com.mmk.business.model.Goods;
 import com.mmk.business.dao.FavoriteDao;
 
 import com.mmk.business.condition.FavoriteCondition;
@@ -95,6 +96,23 @@ public class FavoriteDaoImpl extends SpringDataQueryDaoImpl<Favorite> implements
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userId", userId);
         return queryByJpql(sb.toString(), params, pageable);
+	}
+
+	@Override
+	public Favorite findByUserIdAndGroupId(Long userId, Long groupId) {
+		StringBuffer sb = new StringBuffer("select model from Favorite model  where 1=1  ");
+		Map<String, Object> params = new HashMap<String, Object>();
+	    if(userId != null){
+            sb.append(" and model.userId = :userId ");
+            params.put("userId", userId);
+        }
+	    if(groupId != null){
+            sb.append(" and model.groupId = :groupId ");
+            params.put("groupId", groupId);
+        }
+
+		List<Favorite> result = queryByJpql(sb.toString(), params, 0l, 1l);
+		return result.isEmpty() ? null : result.get(0);
 	}
     
     
