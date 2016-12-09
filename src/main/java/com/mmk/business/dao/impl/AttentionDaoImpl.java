@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.mmk.business.model.Attention;
+import com.mmk.business.model.Favorite;
 import com.mmk.business.dao.AttentionDao;
 
 import com.mmk.business.condition.AttentionCondition;
@@ -96,6 +97,22 @@ public class AttentionDaoImpl extends SpringDataQueryDaoImpl<Attention> implemen
         params.put("userId", userId);
         return queryByJpql(sb.toString(), params, pageable);
 	}
-    
-    
+
+	@Override
+	public Attention findByUserIdAndGroupId(Long userId, Long groupId) {
+		StringBuffer sb = new StringBuffer("select model from Attention model  where 1=1  ");
+		Map<String, Object> params = new HashMap<String, Object>();
+	    if(userId != null){
+            sb.append(" and model.userId = :userId ");
+            params.put("userId", userId);
+        }
+	    if(groupId != null){
+            sb.append(" and model.groupId = :groupId ");
+            params.put("groupId", groupId);
+        }
+
+		List<Attention> result = queryByJpql(sb.toString(), params, 0l, 1l);
+		return result.isEmpty() ? null : result.get(0);
+	}
+       
 }

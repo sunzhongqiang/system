@@ -111,4 +111,9 @@ public class AttentionServiceImpl extends BaseServiceImpl<Attention, Long> imple
 	public Page<Attention> findAllByUserId(Long userId, Pageable pageable) {
 		return attentionDao.findAllByUserId(userId,pageable);
 	}
+
+	@Override
+	public Attention findByUserIdAndGroupId(Long userId, Long groupId) {
+		return attentionDao.findByUserIdAndGroupId(userId, groupId);
+	}
 }
