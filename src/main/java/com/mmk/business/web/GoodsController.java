@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.echin.api.tool.ThumbTool;
 import com.mmk.business.condition.GoodsCondition;
 import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsImg;
@@ -37,6 +36,7 @@ import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.common.tool.FileClient;
+import com.mmk.tool.ThumbTool;
 
 /**
 *@Title: GoodsController
