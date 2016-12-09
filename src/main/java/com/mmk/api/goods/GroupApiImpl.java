@@ -138,6 +138,30 @@ public class GroupApiImpl {
 	}
 	
 	/**
+	 * 团商品是否已被收藏
+	 * @param userId 用户的主键
+	 * @param groupId 团商品Id
+	 * @return 团商品的收藏结果判断
+	 */
+	@RequestMapping("/api/group/isFavorited")
+	public ResultData isFavorited(Long userId,Long groupId) {
+		if(userId!=null){
+			GoodsGroup goodsGroup = goodsGroupService.find(groupId);
+			if(goodsGroup!=null){
+				Favorite fa = favoriteService.findByUserIdAndGroupId(userId, groupId);
+				if(fa != null){
+					return new ResultData(false, "团商品已被收藏");
+				}
+				return new ResultData(true, "团商品未被收藏");
+			}else{
+				return new ResultData(false, "没有找到对应的团商品");
+			}
+		}else{
+			return new ResultData(false, "USERID不可以为空");
+		}
+	}
+	
+	/**
 	 * 团商品关注
 	 * @param userId 用户的主键
 	 * @param groupId 团id
