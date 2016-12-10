@@ -40,15 +40,15 @@ public class FavoriteApi {
 	/**
 	 * 取消关注
 	 * @param userId 用户id
-	 * @param favoriteId 要取消的收藏
+	 * @param groupId 推荐团商品
 	 * @return 操作结果
 	 */
 	@ResponseBody
 	@RequestMapping("/api/favorite/delete")
-	public ResultData delete(Long userId,Long favoriteId){
-		Favorite favorite = favoriteService.find(favoriteId);
+	public ResultData delete(Long userId,Long groupId){
+		Favorite favorite = favoriteService.findByUserIdAndGroupId(userId, groupId);
 		ResultData resultData = new ResultData(true, "取消关注收藏");
-		if(favorite.getUserId()==userId){
+		if(favorite!=null){
 			favoriteService.delete(favorite);
 		}else{
 			return new ResultData(false, "非法用户操作"); 

@@ -38,15 +38,15 @@ public class AttentionApi {
 	/**
 	 * 取消关注
 	 * @param userId 用户id
-	 * @param attentionId 要取消的关注
+	 * @param groupId 团商品信息
 	 * @return 操作结果
 	 */
 	@ResponseBody
 	@RequestMapping("/api/attention/delete")
-	public ResultData delete(Long userId,Long attentionId){
-		Attention attion = attentionService.find(userId);
+	public ResultData delete(Long userId,Long groupId){
+		Attention attion = attentionService.findByUserIdAndGroupId(userId, groupId);
 		ResultData resultData = new ResultData(true, "取消关注成功");
-		if(attion.getUserId()==userId){
+		if(attion!=null){
 			attentionService.delete(attion);
 		}else{
 			return new ResultData(false, "非法用户操作"); 
