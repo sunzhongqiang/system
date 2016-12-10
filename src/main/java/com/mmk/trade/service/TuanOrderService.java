@@ -144,4 +144,10 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @return 参团的所有订单
 	 */
 	List<TuanOrder> findAllByTuanId(Long id);
+
+	/**
+	 * 根据团订单获取参团的所有订单
+	 * @param tuanStatus 团状态
+	 */
+	List<TuanOrder> findTuanOrder(String openid,String tuanStatus);
 }

@@ -2,6 +2,7 @@ package com.mmk.api.bill;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -94,6 +95,21 @@ public class BillApi {
 		result.addData("total", page.getTotalElements());
 		result.addData("list", page.getContent());
 		result.addData("totalPage", page.getTotalPages());
+		return result;
+	}
+	
+	/**
+	 * 用户订单列表
+	 * @param openid 用户openid
+	 * @param tuanStatus 团订单状态
+	 * @return 订单列表
+	 */
+	@RequestMapping("/api/bill/findTuanOrder")
+	@ResponseBody
+	public ResultData findTuanOrder(String openid, String tuanStatus) {
+		ResultData result = new ResultData(true, "用户订单列表");
+		List<TuanOrder> tuanOrderList = orderService.findTuanOrder(openid, tuanStatus);
+		result.addData("tuanOrderList", tuanOrderList);
 		return result;
 	}
 	

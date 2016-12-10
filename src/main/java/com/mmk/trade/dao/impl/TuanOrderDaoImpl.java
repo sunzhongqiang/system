@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mmk.gene.dao.impl.SpringDataQueryDaoImpl;
 import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.condition.TuanOrderStatus;
+import com.mmk.trade.condition.TuanStatus;
 import com.mmk.trade.dao.TuanOrderDao;
 import com.mmk.trade.model.TuanOrder;
 
@@ -202,6 +204,39 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuanId = :id");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
+		return queryByJpql(sb.toString(), params);
+	}
+
+	@Override
+	public List<TuanOrder> findTuanOrder(String openid, String tuanStatus) {
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model where model.user.openid = :openid ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("openid", openid);
+		if(TuanStatus.WAIT_JOIN.name().equals(tuanStatus)){
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_PAY.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_JOIN.name());
+			
+		} else if(TuanStatus.SUCCESSED.name().equals(tuanStatus)){
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_SHIPPING.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_RECEIVE.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_COMMENT.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.SUCCESSED.name());
+			
+		} else if(TuanStatus.FAIL.name().equals(tuanStatus)){
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_REFUND_GOODS.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.WAIT_REFUND_MONEY.name());
+			sb.append(" or model.orderStatus = :status ");
+			params.put("status", TuanOrderStatus.CLOSED.name());
+			
+		}
 		return queryByJpql(sb.toString(), params);
 	}
 

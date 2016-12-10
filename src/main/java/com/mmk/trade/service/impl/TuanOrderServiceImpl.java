@@ -122,4 +122,9 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	public List<TuanOrder> findAllByTuanId(Long id) {
 		return orderDao.findAllByTuanId(id);
 	}
+
+	@Override
+	public List<TuanOrder> findTuanOrder(String openid, String tuanStatus) {
+		return orderDao.findTuanOrder(openid, tuanStatus);
+	}
 }
