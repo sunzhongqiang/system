@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.FavoriteCondition;
 import com.mmk.business.model.Favorite;
+import com.mmk.business.model.GoodsGroup;
 /**
 * FavoriteDao:团收藏 数据持久层接口
 * @author huguangling 胡广玲

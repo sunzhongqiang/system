@@ -100,8 +100,8 @@ public class AttentionDaoImpl extends SpringDataQueryDaoImpl<Attention> implemen
 
 	@Override
 	public Attention findByUserIdAndGroupId(Long userId, Long groupId) {
-		StringBuffer sb = new StringBuffer("select model from Attention model  where 1=1  ");
-		Map<String, Object> params = new HashMap<String, Object>();
+		StringBuffer sb=new StringBuffer("select model from Attention model where 1=1  ");
+        Map<String, Object> params = new HashMap<String, Object>();
 	    if(userId != null){
             sb.append(" and model.userId = :userId ");
             params.put("userId", userId);
@@ -111,8 +111,7 @@ public class AttentionDaoImpl extends SpringDataQueryDaoImpl<Attention> implemen
             params.put("groupId", groupId);
         }
 
-		List<Attention> result = queryByJpql(sb.toString(), params, 0l, 1l);
-		return result.isEmpty() ? null : result.get(0);
+		return getOne(sb.toString(), params);
 	}
        
 }

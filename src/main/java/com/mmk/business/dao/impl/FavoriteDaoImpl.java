@@ -100,19 +100,20 @@ public class FavoriteDaoImpl extends SpringDataQueryDaoImpl<Favorite> implements
 
 	@Override
 	public Favorite findByUserIdAndGroupId(Long userId, Long groupId) {
-		StringBuffer sb = new StringBuffer("select model from Favorite model  where 1=1  ");
+
+        StringBuffer sb=new StringBuffer("select model from Favorite  model where 1=1  ");
+        
 		Map<String, Object> params = new HashMap<String, Object>();
 	    if(userId != null){
             sb.append(" and model.userId = :userId ");
             params.put("userId", userId);
         }
 	    if(groupId != null){
-            sb.append(" and model.groupId = :groupId ");
+            sb.append(" and model.groupGoods.id = :groupId ");
             params.put("groupId", groupId);
         }
 
-		List<Favorite> result = queryByJpql(sb.toString(), params, 0l, 1l);
-		return result.isEmpty() ? null : result.get(0);
+		return getOne(sb.toString(),params);
 	}
     
     

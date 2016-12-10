@@ -121,7 +121,7 @@ public class GroupApiImpl {
 			if(goodsGroup!=null){
 				ResultData resultData = new ResultData(true, "团商品收藏成功");
 				Favorite fa = favoriteService.findByUserIdAndGroupId(userId, groupId);
-				if(fa != null){
+				if(fa!=null){
 					return new ResultData(false, "团商品已被收藏");
 				}
 				Favorite favorite = new Favorite();
@@ -149,10 +149,12 @@ public class GroupApiImpl {
 			GoodsGroup goodsGroup = goodsGroupService.find(groupId);
 			if(goodsGroup!=null){
 				Favorite fa = favoriteService.findByUserIdAndGroupId(userId, groupId);
-				if(fa != null){
-					return new ResultData(false, "团商品已被收藏");
+				if(fa!=null){
+					ResultData resultData = new ResultData(true, "团商品已被收藏");
+					resultData.addData("favorite", fa);
+					return resultData;
 				}
-				return new ResultData(true, "团商品未被收藏");
+				return new ResultData(false, "团商品未被收藏");
 			}else{
 				return new ResultData(false, "没有找到对应的团商品");
 			}
@@ -174,7 +176,7 @@ public class GroupApiImpl {
 			if(goodsGroup!=null){
 				ResultData resultData = new ResultData(true, "团商品收藏成功");
 				Attention at = attentionService.findByUserIdAndGroupId(userId, groupId);
-				if(at != null){
+				if(at!=null){
 					return new ResultData(false, "团商品已被预约关注");
 				}
 				Attention attention = new Attention();

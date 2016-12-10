@@ -155,12 +155,15 @@ public class TuanApi {
 		tuan.setGoodsName(goods.getGoodsName());
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
-		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
+//		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
+		tuan.setTuanStatus(TuanOrderStatus.WAIT_PAY.name());
 		tuan.setOrderSort(group.getType());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
 		tuan.setCommander(user);
 		tuan.setJoinNum(1l);
+		tuan.setGoodsPrice(group.getGroupPrice());
+		tuan.setTuanEndDate(new Date(tuan.getTuanStartDate().getTime()+ group.getDuration()* 24 * 60 * 60 * 1000));
 		
 		Tuan bean = tuanService.save(tuan);
 		

@@ -101,5 +101,5 @@ public interface FavoriteService extends BaseService<Favorite, Long> {
 	 * @param groupId  分页
 	 * @return 用户的分页的关注
 	 */
-    Favorite findByUserIdAndGroupId(Long userId, Long groupId);
+	Favorite findByUserIdAndGroupId(Long userId, Long groupId);
 }
