@@ -124,16 +124,21 @@ public class BillApi {
 	public ResultData info(String openid,Long id) {
 		ResultData result = new ResultData(true, "用户订单详情");
 		TuanOrder order = orderService.find(id);
-		WxUser user = order.getUser();
-		if(openid.equals(user.getOpenid())){
-			Tuan tuan = tuanService.findByCode(order.getTuanCode());
-			GoodsGroup group = groupService.find(tuan.getGroupId());
-			result.addData("order", order);
-			result.addData("tuan", tuan);
-			result.addData("group", group);
-			result.addData("user", user);
+		if(order!=null){
+			WxUser user = order.getUser();
+			if(openid.equals(user.getOpenid())){
+				Tuan tuan = tuanService.findByCode(order.getTuanCode());
+				GoodsGroup group = groupService.find(tuan.getGroupId());
+				result.addData("order", order);
+				result.addData("tuan", tuan);
+				result.addData("group", group);
+				result.addData("user", user);
+				result.addData("order", order);
+			}else{
+				return new ResultData(false,"非该用户订单");
+			}
 		}else{
-			return new ResultData(false,"非该用户订单");
+			return new ResultData(false,"未找到用户订单");
 		}
 		return result;
 	}

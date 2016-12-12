@@ -368,26 +368,31 @@ public class UserAddress {
         this.mobile = mobile;
     }
 
-
-    @Override
-    public String toString() {
-    	StringBuilder address = new StringBuilder();
-    	address.append("收货人：");
-    	address.append(StringUtils.trimToEmpty(consignee));
-    	address.append(" 联系电话：");
-    	address.append(StringUtils.trimToEmpty(tel));
-    	address.append(" ");
-    	address.append(StringUtils.trimToEmpty(mobile));
-    	address.append(" 地址：");
-    	address.append( StringUtils.trimToEmpty(provinceName));
-    	address.append(" ");
-    	address.append( StringUtils.trimToEmpty(cityName));
-    	address.append(" ");
-    	address.append( StringUtils.trimToEmpty(districtName));
-    	address.append(" ");
-    	address.append( StringUtils.trimToEmpty(addressName));
-    	address.append(" 邮编：");
-    	address.append(zipcode);
-    	return address.toString();
+    /***
+     * 
+     * @param split
+     * @return 姓名|电话|手机|省|市|县|详细地址|邮编
+     */
+    public String toString(String split) {
+    	StringBuilder addressDetail = new StringBuilder();
+    	addressDetail.append(StringUtils.trimToEmpty(consignee));
+    	addressDetail.append(split);
+    	addressDetail.append(StringUtils.trimToEmpty(tel));
+    	addressDetail.append(split);
+    	addressDetail.append(StringUtils.trimToEmpty(mobile));
+    	addressDetail.append(split);
+    	addressDetail.append( StringUtils.trimToEmpty(provinceName));
+    	addressDetail.append(split);
+    	addressDetail.append( StringUtils.trimToEmpty(cityName));
+    	addressDetail.append(split);
+    	addressDetail.append( StringUtils.trimToEmpty(districtName));
+    	addressDetail.append(split);
+    	addressDetail.append( StringUtils.trimToEmpty(address));
+    	addressDetail.append(split);
+    	addressDetail.append(zipcode);
+    	return addressDetail.toString();
     }
+
+
+
 }
