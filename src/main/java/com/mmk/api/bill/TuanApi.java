@@ -107,7 +107,7 @@ public class TuanApi {
 		UserAddress address = addressService.find(addressId);
 		//生成团订单信息
 		TuanOrder order = new TuanOrder();
-		order.setAddress(address.toString("*"));
+		order.setAddress(address.toString());
 		order.setColonel(user.getId());
 		order.setGoodsCode(goods.getGoodsCode());
 		order.setGoodsImg(goods.getGoodsOriginalImg());
@@ -156,7 +156,6 @@ public class TuanApi {
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 //		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
-		tuan.setTuanStatus(TuanOrderStatus.WAIT_PAY.name());
 		tuan.setOrderSort(group.getType());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setTuanStartDate(new Date());
@@ -182,7 +181,9 @@ public class TuanApi {
 		order.setOrderPhone(address.getMobile());
 		order.setOrderPrice(group.getGroupPrice());
 		order.setOrderSort(group.getType());
-		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+//		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+		order.setOrderStatus(TuanOrderStatus.WAIT_PAY.name());
+		
 		order.setOrderTime(new Date());
 		order.setTuanId(bean.getId());
 		order.setTuanCode(bean.getTuanCode());
@@ -201,8 +202,138 @@ public class TuanApi {
 		return result;
 	}
 
+	/**
+	 * 待成团
+	 * @param id 团订单id
+	 * @return tuanOrder
+	 */
+	@RequestMapping("/api/tuan/waitjoin")
+	@ResponseBody
+	public ResultData orderStatusToWaitJoin(Long id,String orderPayCode) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderPayCode(orderPayCode);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
+		tuanService.save(tuan);
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待成团状态！");
+		result.addData("tuan", tuan);
+		result.addData("tuanOrder", tuanOrder);
+		return result;
+	}
 	
+	/**
+	 * 代发货
+	 * @param id 团订单id
+	 * @return tuanOrder tuan
+	 */
+	@RequestMapping("/api/tuan/waitreceive")
+	@ResponseBody
+	public ResultData orderStatusTowaitReceive(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_RECEIVE.name());
+		orderService.save(tuanOrder);
+		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
+		tuanService.save(tuan);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待发货状态！");
+		result.addData("tuanOrder", tuanOrder);
+		result.addData("tuan", tuan);
+		return result;
+	}
+	
+	/**
+	 * 代评价
+	 * @param id 团订单id
+	 * @return tuanOrder
+	 */
+	@RequestMapping("/api/tuan/waitcomment")
+	@ResponseBody
+	public ResultData orderStatusTowaitComment(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_COMMENT.name());
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待评价状态！");
+		result.addData("tuanOrder", tuanOrder);
+		return result;
+	}
+	
+	/**
+	 * 代收获
+	 * @param id 团订单id
+	 * @return tuan tuanOrder
+	 */
+	@RequestMapping("/api/tuan/waitshipping")
+	@ResponseBody
+	public ResultData orderStatusTowaitShipping(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_SHIPPING.name());
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待发货状态！");
+		result.addData("tuanOrder", tuanOrder);
+		return result;
+	}
+	
+	/**
+	 * 购买成功
+	 * @param id 团订单id
+	 * @return tuanOrder
+	 */
+	@RequestMapping("/api/tuan/successed")
+	@ResponseBody
+	public ResultData orderStatusToSuccessed(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.SUCCESSED.name());
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成购买成功状态！");
+		result.addData("tuanOrder", tuanOrder);
+		return result;
+	}
 
+	/**
+	 * 待退货
+	 * @param id 团订单id
+	 * @return tuanOrder tuan
+	 */
+	@RequestMapping("/api/tuan/waitrefundgoods")
+	@ResponseBody
+	public ResultData orderStatusToWaitRefundGoods(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_REFUND_GOODS.name());
+		orderService.save(tuanOrder);
+		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		tuan.setTuanStatus(TuanStatus.FAIL.name());
+		tuanService.save(tuan);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待退货状态！");
+		result.addData("tuanOrder", tuanOrder);
+		result.addData("tuan", tuan);
+		return result;
+	}
+
+	/**
+	 * 待退款
+	 * @param id 团订单id
+	 * @return tuanOrder
+	 */
+	@RequestMapping("/api/tuan/waitrefundmoney")
+	@ResponseBody
+	public ResultData orderStatusToWaitRefundMoney(Long id) {
+		TuanOrder tuanOrder = orderService.findById(id);
+		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_REFUND_MONEY.name());
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待退款状态！");
+		result.addData("tuanOrder", tuanOrder);
+		return result;
+	}
+	
 	/**
 	 * 构建团订单
 	 * @param user 用户信息

@@ -80,13 +80,20 @@ public class TuanOrder {
      */
     @Column(name="order_phone")
     private String orderPhone;
+    
 	/**
+     * 交易编号
+     */
+    @Column(name="order_pay_code")
+    private String orderPayCode;
+    
+    /**
      * 订单编号
      */
     @Column(name="order_code")
     private String orderCode;
-
-    /**
+    
+	/**
      * 下单时间
      */
     @Temporal(TemporalType.TIMESTAMP)   
@@ -519,6 +526,12 @@ public class TuanOrder {
 	}
 	public void setHeadimgurl(String headimgurl) {
 		this.headimgurl = headimgurl;
+	}
+    public String getOrderPayCode() {
+		return orderPayCode;
+	}
+	public void setOrderPayCode(String orderPayCode) {
+		this.orderPayCode = orderPayCode;
 	}
 
 }
