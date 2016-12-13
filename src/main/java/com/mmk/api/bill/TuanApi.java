@@ -163,6 +163,7 @@ public class TuanApi {
 		tuan.setJoinNum(1l);
 		tuan.setGoodsPrice(group.getGroupPrice());
 		tuan.setTuanEndDate(new Date(tuan.getTuanStartDate().getTime()+ group.getDuration()* 24 * 60 * 60 * 1000));
+		tuan.setGoodsImg(goods.getGoodsMainImg());
 		
 		Tuan bean = tuanService.save(tuan);
 		
