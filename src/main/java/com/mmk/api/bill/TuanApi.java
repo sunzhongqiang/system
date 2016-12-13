@@ -125,6 +125,7 @@ public class TuanApi {
 		order.setUser(user);
 		order.setUserName(user.getNickname());
 		order.setHeadimgurl(user.getHeadimgurl());
+		order.setGoodsImg(goods.getGoodsMainImg());
 		order = orderService.save(order);
 
 		// 成团状态设置
@@ -163,7 +164,6 @@ public class TuanApi {
 		tuan.setJoinNum(1l);
 		tuan.setGoodsPrice(group.getGroupPrice());
 		tuan.setTuanEndDate(new Date(tuan.getTuanStartDate().getTime()+ group.getDuration()* 24 * 60 * 60 * 1000));
-		tuan.setGoodsImg(goods.getGoodsMainImg());
 		
 		Tuan bean = tuanService.save(tuan);
 		
@@ -182,8 +182,8 @@ public class TuanApi {
 		order.setOrderPhone(address.getMobile());
 		order.setOrderPrice(group.getGroupPrice());
 		order.setOrderSort(group.getType());
-//		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		order.setOrderStatus(TuanOrderStatus.WAIT_PAY.name());
+		order.setGoodsImg(goods.getGoodsMainImg());
 		
 		order.setOrderTime(new Date());
 		order.setTuanId(bean.getId());
