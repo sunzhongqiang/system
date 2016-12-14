@@ -150,4 +150,17 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @param tuanStatus 团状态
 	 */
 	List<TuanOrder> findTuanOrder(String openid,String tuanStatus);
+
+	/**
+	 * 根据团更改团订单的状态
+	 * @param id 团订单id
+	 * @param status  团状态
+	 */
+	void changeTuanStatusByTuanId(Long id,String status);
+
+	/**
+	 * 选择幸运者
+	 * @param id
+	 */
+	void chooseLucker(Long id);
 }

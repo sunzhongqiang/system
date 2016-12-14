@@ -1,7 +1,11 @@
 package com.mmk.trade.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
@@ -12,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import com.mmk.trade.dao.TuanOrderRepository;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.condition.OrderCondition;
+import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.dao.TuanOrderDao;
 /**
@@ -126,5 +131,30 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	@Override
 	public List<TuanOrder> findTuanOrder(String openid, String tuanStatus) {
 		return orderDao.findTuanOrder(openid, tuanStatus);
+	}
+
+	@Override
+	public void changeTuanStatusByTuanId(Long id , String status) {
+		
+		//根据团更改团订单的状态
+		List<TuanOrder> tuanOrders = findAllByTuanId(id);
+		for (TuanOrder tuanOrder : tuanOrders) {
+			tuanOrder.setOrderStatus(status);
+		}
+		save(tuanOrders);
+	}
+
+	@Override
+	public void chooseLucker(Long id) {
+		List<TuanOrder> tuanOrders = findAllByTuanId(id);
+		Random random = new Random();
+		int nextInt = random.nextInt(tuanOrders.size());
+		for (int i = 0; i < tuanOrders.size(); i++) {
+			if(nextInt==i){
+				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.SUCCESSED.name());
+			}else{
+				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.CLOSED.name());
+			}
+		}
 	}
 }

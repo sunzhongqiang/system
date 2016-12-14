@@ -130,6 +130,13 @@ public class TuanApi {
 
 		// 成团状态设置
 		if (bean.getPeopleNum() == orderList.size()) {
+			
+			if(bean.getOrderSort()==1l){
+				orderService.chooseLucker(bean.getId());
+			}else {
+				orderService.changeTuanStatusByTuanId(bean.getId(),TuanOrderStatus.SUCCESSED.name());
+			}
+			
 			bean.setTuanStatus(TuanStatus.SUCCESSED.name());
 			tuanService.save(bean);
 		} 
