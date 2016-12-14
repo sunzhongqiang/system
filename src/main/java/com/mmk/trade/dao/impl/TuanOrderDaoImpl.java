@@ -83,6 +83,8 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and model.orderStatus = :orderStatus ");
 			params.put("orderStatus", orderCondition.getOrderStatus());
 		}
+		
+		sb.append(" order by model.id desc");
 		return queryByJpql(sb.toString(), params, pageable);
 	}
 
@@ -114,6 +116,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and model.orderStatus = :orderStatus ");
 			params.put("orderStatus", orderCondition.getOrderStatus());
 		}
+		sb.append(" order by model.id desc");
 		return queryByJpql(sb.toString(), params);
 	}
 
@@ -146,6 +149,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and order_status = ?15 ");
 			params.put(15, condition.getOrderStatus());
 		}
+		sb.append(" order by  id desc");
 		return queryFieldsBySql(sb.toString(), params, pageable);
 	}
 
