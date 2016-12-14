@@ -163,4 +163,11 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @param id
 	 */
 	void chooseLucker(Long id);
+
+	/**
+	 * 根据团订单获取参团的所有订单
+	 * @param orderCode 团订单编号
+	 * @return 参团的订单
+	 */
+	TuanOrder findByOrderCode(String orderCode);
 }

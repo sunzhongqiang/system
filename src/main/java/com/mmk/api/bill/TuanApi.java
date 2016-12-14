@@ -206,6 +206,7 @@ public class TuanApi {
 		
 		ResultData result = new ResultData(true, "开团完成");
 		result.addData("tuan", bean);
+		result.addData("order", order);
 		return result;
 	}
 
@@ -216,8 +217,8 @@ public class TuanApi {
 	 */
 	@RequestMapping("/api/tuan/waitjoin")
 	@ResponseBody
-	public ResultData orderStatusToWaitJoin(Long id,String orderPayCode) {
-		TuanOrder tuanOrder = orderService.findById(id);
+	public ResultData orderStatusToWaitJoin(String orderCode,String orderPayCode) {
+		TuanOrder tuanOrder = orderService.findByOrderCode(orderCode);
 		tuanOrder.setOrderPayCode(orderPayCode);
 		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());

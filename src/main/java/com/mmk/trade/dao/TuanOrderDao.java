@@ -96,5 +96,12 @@ public interface TuanOrderDao extends SpringDataQueryDao<TuanOrder>{
 	 * @return 所有参团订单
 	 */
 	List<TuanOrder> findTuanOrder(String openid, String tuanStatus);
+	
+	/**
+	 * 根据团订单获取所有参团订单
+	 * @param orderCode 团订单的编号
+	 * @return 参团订单
+	 */
+	TuanOrder findByOrderCode(String orderCode);
 
 }

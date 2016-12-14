@@ -157,4 +157,9 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 			}
 		}
 	}
+
+	@Override
+	public TuanOrder findByOrderCode(String orderCode) {
+		return orderDao.findByOrderCode(orderCode);
+	}
 }

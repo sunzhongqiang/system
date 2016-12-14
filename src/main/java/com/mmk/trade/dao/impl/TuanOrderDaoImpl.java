@@ -244,4 +244,17 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		return queryByJpql(sb.toString(), params);
 	}
 
+	@Override
+	public TuanOrder findByOrderCode(String orderCode) {
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model  where 1=1");
+		Map<String, Object> params = new HashMap<String, Object>();
+		if (orderCode !=null) {
+			sb.append(" and model.orderCode = :orderCode ");
+			params.put("orderCode", orderCode);
+		}
+
+		List<TuanOrder> result = queryByJpql(sb.toString(), params, 0l, 1l);
+		return result.isEmpty() ? null : result.get(0);
+	}
+
 }
