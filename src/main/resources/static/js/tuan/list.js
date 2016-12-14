@@ -65,12 +65,14 @@
                 align : 'center',
                 formatter : function(value, row, index) {
 					switch (value) {
-					case 1:
+					case 'WAIT_JOIN':
 						return '待成团';
-					case 2:
-						return '已成团';
-					case 3:
+					case 'SUCCESSED':
+						return '完成';
+					case 'FAIL':
 						return '拼团失败';
+					case 'CLOSED':
+						return '已关闭';
 						
 					}
 				}
@@ -134,24 +136,24 @@
                     {
                 width : '100',
                 title : '商品图片',
-                field : 'goodImg',
+                field : 'goodsImg',
                 formatter:function(value,row,index)
                 {return '<img src='+value+'  />';}
             },
                     {
                 width : '300',
                 title : '商品名称',
-                field : 'goodName',
+                field : 'goodsName',
             },
 //                    {
 //                width : '80',
 //                title : '商品编码',
-//                field : 'goodCode',
+//                field : 'goodsCode',
 //            },
                     {
                 width : '80',
                 title : '商品金额',
-                field : 'goodPrice',
+                field : 'goodsPrice',
             },
                     {
                 width : '180',
