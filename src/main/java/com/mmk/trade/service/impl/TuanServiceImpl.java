@@ -1,5 +1,6 @@
 package com.mmk.trade.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -84,5 +85,10 @@ public class TuanServiceImpl extends BaseServiceImpl<Tuan, Long> implements Tuan
 	@Override
 	public Tuan findByCode(String tuanCode) {
 		return findBy("tuanCode", tuanCode);
+	}
+
+	@Override
+	public Page<Tuan> findAllOvertime(String status, Pageable pageable) {
+		return tuanDao.findAllOvertime(status,pageable);
 	}
 }

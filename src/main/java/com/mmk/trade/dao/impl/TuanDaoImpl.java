@@ -4,6 +4,7 @@
  */
 package com.mmk.trade.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,6 +204,18 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.groupId = :groupId ");
             params.put("groupId",groupId);
         }
+        if(status!=null){
+            sb.append(" and model.tuanStatus = :tuanStatus ");
+            params.put("tuanStatus",status);
+        }
+        return queryByJpql(sb.toString(), params, pageable);
+	}
+
+	@Override
+	public Page<Tuan> findAllOvertime(String status, Pageable pageable) {
+		StringBuffer sb=new StringBuffer("select model from Tuan model  where model.tuanEndDate <= now()  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        
         if(status!=null){
             sb.append(" and model.tuanStatus = :tuanStatus ");
             params.put("tuanStatus",status);

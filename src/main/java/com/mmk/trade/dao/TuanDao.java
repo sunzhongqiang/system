@@ -4,6 +4,7 @@
  */
 package com.mmk.trade.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
@@ -85,6 +86,13 @@ public interface TuanDao extends SpringDataQueryDao<Tuan>{
 	 * @param pageable
 	 * @return
 	 */
-	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable);    
+	Page<Tuan> findAllByGroupIdAndStatus(Long groupId, String status, Pageable pageable);
+	/**
+	 * 根据状态获取所有超时订单
+	 * @param status 订单状态
+	 * @param pageable 分页
+	 * @return
+	 */
+	Page<Tuan> findAllOvertime(String status, Pageable pageable);    
 
 }

@@ -1,5 +1,6 @@
 package com.mmk.trade.service;
 
+import java.util.Date;
 import java.util.List;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
@@ -83,5 +84,13 @@ public interface TuanService extends BaseService<Tuan, Long> {
 	 * @return
 	 */
 	Tuan findByCode(String tuanCode);
+
+	/**
+	 * 根据状态获取所有超时订单
+	 * @param status 订单状态
+	 * @param pageable 分页
+	 * @return
+	 */
+	Page<Tuan> findAllOvertime(String status, Pageable pageable);
 
 }

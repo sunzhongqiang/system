@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.AuthenticatedVoter;
@@ -29,6 +30,7 @@ import com.mmk.security.service.impl.DbVoter;
 @Configuration
 @EnableWebSecurity
 @EnableCaching
+@EnableScheduling
 public class CommonWebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Resource
