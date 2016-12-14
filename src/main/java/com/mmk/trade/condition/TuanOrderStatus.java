@@ -13,7 +13,7 @@ public enum TuanOrderStatus {
 	*	wait_refund_goods:待退货
 	*	wait_refund_money:待退款
 	*	closed:已关闭; 
-     * 
-     */
+    * 
+    */
 	WAIT_PAY,WAIT_JOIN,WAIT_SHIPPING,WAIT_RECEIVE,WAIT_COMMENT,SUCCESSED,WAIT_REFUND_GOODS,WAIT_REFUND_MONEY,CLOSED
 }
