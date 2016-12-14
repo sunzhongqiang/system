@@ -392,6 +392,11 @@ public class UserAddress {
     	addressDetail.append(zipcode);
     	return addressDetail.toString();
     }
+    
+    @Override
+    public String toString() {
+    	return this.toString("*");
+    }
 
 
 
