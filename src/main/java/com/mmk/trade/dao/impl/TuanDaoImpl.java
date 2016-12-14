@@ -82,6 +82,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.tuanStatus = :tuanStatus ");
             params.put("tuanStatus",tuanCondition.getTuanStatus());
         }
+        sb.append(" order by model.id desc ");
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -121,6 +122,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and model.tuanStatus = :tuanStatus ");
             params.put("tuanStatus",tuanCondition.getTuanStatus());
         }
+        sb.append(" order by model.id desc ");
         return queryByJpql(sb.toString(), params);
     }
     
@@ -161,6 +163,7 @@ public class TuanDaoImpl extends SpringDataQueryDaoImpl<Tuan> implements TuanDao
             sb.append(" and tuan_status = ?14 ");
             params.put(14,condition.getTuanStatus());
         }
+        sb.append(" order by id desc ");
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     
