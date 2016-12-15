@@ -79,4 +79,15 @@ public interface CommentService extends BaseService<Comment, Long> {
      * 
      */
     List<Comment> findAllBy(String field,Object value);
+
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field Comment中的某个字段
+     * @param value 字段的值
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+	List<Comment> findCommentByGoodsId(Long goodsId);
 }

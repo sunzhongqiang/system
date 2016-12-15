@@ -67,5 +67,16 @@ public interface CommentDao extends SpringDataQueryDao<Comment>{
      * 
      */
     List<Comment> findAllBy(String field,Object value);
+    
+    /**
+     * 根据给定的字段和属性值，获得符合条件的所有结果
+     * @param field Comment 中的某个字段
+     * @param value 字段对应的值
+     * @return 返回符合条件的所有结果
+     * @author huguangling 胡广玲
+     * 
+     * 
+     */
+	List<Comment> findCommentByGoodsId(Long goodsId);
 
 }

@@ -84,4 +84,10 @@ public class CommentServiceImpl extends BaseServiceImpl<Comment, Long> implement
         log.info("评价管理根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return commentDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<Comment> findCommentByGoodsId(Long goodsId) {
+        log.info("评价管理根据商品ID进行查询符合条件的所有记录");
+        return commentDao.findCommentByGoodsId(goodsId);
+	}
 }
