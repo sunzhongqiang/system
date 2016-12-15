@@ -221,6 +221,7 @@ public class TuanApi {
 		TuanOrder tuanOrder = orderService.findByOrderCode(orderCode);
 		tuanOrder.setOrderPayCode(orderPayCode);
 		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+		tuanOrder.setPayTime(new Date());
 		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		tuanService.save(tuan);
@@ -229,6 +230,21 @@ public class TuanApi {
 		ResultData result = new ResultData(true, "团订单已修改成待成团状态！");
 		result.addData("tuan", tuan);
 		result.addData("tuanOrder", tuanOrder);
+		
+		// 团订单
+		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
+		// 成团状态设置
+		if (tuan.getPeopleNum() == orderList.size()) {
+			
+			if(tuan.getOrderSort()==1l){
+				orderService.chooseLucker(tuan.getId());
+			}else {
+				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.SUCCESSED.name());
+			}
+			
+			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
+			tuanService.save(tuan);
+		} 
 		return result;
 	}
 	
