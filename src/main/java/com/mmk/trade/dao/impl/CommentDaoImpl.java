@@ -111,5 +111,16 @@ public class CommentDaoImpl extends SpringDataQueryDaoImpl<Comment> implements C
         params.put("value",value);
         return queryByJpql(sb.toString(), params);
     }
+
+	@Override
+	public List<Comment> findCommentByGoodsId(Long goodsId) {
+        StringBuffer sb=new StringBuffer("select model from Comment model  where 1=1  ");
+        Map<String,Object> params = new HashMap<String,Object>();
+        if(goodsId!=null){
+            sb.append(" and model.goodsId = :goodsId ");
+            params.put("goodsId", goodsId);
+        }
+        return queryByJpql(sb.toString(), params);
+	}
     
 }
