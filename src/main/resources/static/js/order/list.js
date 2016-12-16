@@ -210,8 +210,20 @@
                 if(rowData.orderStatus == 'WAIT_RECEIVE'){
                 	cc.push('<p class="green bold">已发货</p>');
             	}
+                if(rowData.orderStatus == 'WAIT_COMMENT'){
+                	cc.push('<p class="red bold">等待买家评价</p>');
+                }
                 if(rowData.orderStatus == 'SUCCESSED'){
                 	cc.push('<a class="green" >已成功</a>');
+            	}
+                if(rowData.orderStatus == 'WAIT_REFUND_GOODS'){
+                	cc.push('<a class="green" >等待买家退货</a>');
+            	}
+                if(rowData.orderStatus == 'WAIT_REFUND_MONEY'){
+                	cc.push('<a class="green" >等待卖家退款</a>');
+            	}
+                if(rowData.orderStatus == 'CLOSED'){
+                	cc.push('<a class="green" >交易已关闭</a>');
             	}
 
                 cc.push('</td>');

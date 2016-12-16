@@ -14,7 +14,7 @@ $(function() {
 			{
 				fit : true,
 				border : false,
-				tabHeight : 35,
+				tabHeight : 30,
 				tools : [
 						{
 							iconCls : 'icon-home',
