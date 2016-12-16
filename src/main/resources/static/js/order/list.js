@@ -200,17 +200,17 @@
                 cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodsPrice+'元</span></td>');
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.orderPrice+'元</span>');
                 cc.push('<p><a class="blue" onclick="orderDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
-                cc.push(' <td rowspan="1" colspan="1" width="13%">');
-                if(rowData.orderStatus == 1){
+                cc.push('<td rowspan="1" colspan="1" width="13%">');
+                if(rowData.orderStatus == 'WAIT_JOIN'){
                 	cc.push('<p class="red bold">待成团</p>');
                 }
-                if(rowData.orderStatus == 2){
+                if(rowData.orderStatus == 'WAIT_SHIPPING'){
                 	cc.push('<p class="red bold">待发货</p><a  class="btn_send1" onclick="addFun(\''+rowData.id+'\')">发货</a>');
             	}
-                if(rowData.orderStatus == 3){
+                if(rowData.orderStatus == 'WAIT_RECEIVE'){
                 	cc.push('<p class="green bold">已发货</p>');
             	}
-                if(rowData.orderStatus == 4){
+                if(rowData.orderStatus == 'SUCCESSED'){
                 	cc.push('<a class="green" >已成功</a>');
             	}
 

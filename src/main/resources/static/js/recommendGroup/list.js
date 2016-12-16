@@ -25,7 +25,7 @@
                 align: 'center',
             },
                     {
-                width : '400',
+                width : '200',
                 title : '商品名称',
                 field : 'goods.goodsName',
                 formatter : function(value, row, index) {
@@ -278,7 +278,7 @@
                 }
             },
                     {
-                width : '380',
+                width : '250',
                 title : '商品名称',
                 field : 'goodsName',
                 formatter : function(value, row, index) {
@@ -316,7 +316,7 @@
             {
                 field : 'action',
                 title : '操作',
-                width : 200,
+                width : 150,
                 align : 'center',
                 formatter : function(value, row, index) {
                     var str = '';
@@ -386,7 +386,6 @@
     
     
 //取消推荐
-    
     function cancleTui(id){
     	if(id == undefined){
     		alert("错误！");
