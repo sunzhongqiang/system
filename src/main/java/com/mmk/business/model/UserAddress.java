@@ -395,7 +395,7 @@ public class UserAddress {
     
     @Override
     public String toString() {
-    	return this.toString(" ");
+    	return this.toString("*");
     }
 
 
