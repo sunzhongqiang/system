@@ -78,7 +78,6 @@ public class TuanApi {
 	@ResponseBody
 	public ResultData join(Long tuanId,Long userId,Long addressId) {
 
-		Map<String, Object> result = new HashMap<String, Object>();
 		Tuan bean = tuanService.findById(tuanId);
 		if(bean==null){
 			return new ResultData(false, "团不存在");
@@ -140,8 +139,11 @@ public class TuanApi {
 			bean.setTuanStatus(TuanStatus.SUCCESSED.name());
 			tuanService.save(bean);
 		} 
+		ResultData result = new ResultData(true, "查找成功完成");
+		result.addData("tuan", bean);
+		result.addData("order", order);
 		
-		return new ResultData(true, "查找成功", result);
+		return result;
 	}
 
 	/**
@@ -159,7 +161,8 @@ public class TuanApi {
 		WxUser user = userService.find(userId);
 		//生成团信息
 		Tuan tuan = new Tuan();
-		tuan.setGroupId(goods.getId());
+//		tuan.setGroupId(goods.getId());
+		tuan.setGroupId(groupId);
 		tuan.setGoodsName(goods.getGoodsName());
 		tuan.setGoodsImg(goods.getGoodsMainImg());
 		tuan.setTuanCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
