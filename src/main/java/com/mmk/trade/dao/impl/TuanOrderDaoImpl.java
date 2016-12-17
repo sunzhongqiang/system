@@ -220,29 +220,29 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		if(TuanStatus.WAIT_JOIN.name().equals(tuanStatus)){
 //			sb.append(" or model.orderStatus = :status ");
 //			params.put("status", TuanOrderStatus.WAIT_PAY.name());
-			sb.append(" or model.orderStatus = :status ");
+			sb.append(" and model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_JOIN.name());
 			
 		} else if(TuanStatus.SUCCESSED.name().equals(tuanStatus)){
-			sb.append(" or model.orderStatus = :status ");
+			sb.append(" and ( model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_SHIPPING.name());
 			sb.append(" or model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_RECEIVE.name());
 			sb.append(" or model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_COMMENT.name());
-			sb.append(" or model.orderStatus = :status ");
+			sb.append(" or model.orderStatus = :status  )" );
 			params.put("status", TuanOrderStatus.SUCCESSED.name());
 			
 		} else if(TuanStatus.FAIL.name().equals(tuanStatus)){
-			sb.append(" or model.orderStatus = :status ");
+			sb.append(" and ( model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_REFUND_GOODS.name());
 			sb.append(" or model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_REFUND_MONEY.name());
-			sb.append(" or model.orderStatus = :status ");
+			sb.append(" or model.orderStatus = :status )");
 			params.put("status", TuanOrderStatus.CLOSED.name());
 			
 		} else{
-			sb.append(" or model.orderStatus != :status ");
+			sb.append(" and model.orderStatus != :status ");
 			params.put("status", TuanOrderStatus.WAIT_PAY.name());
 		}
 		return queryByJpql(sb.toString(), params);
