@@ -151,7 +151,7 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 		int nextInt = random.nextInt(tuanOrders.size());
 		for (int i = 0; i < tuanOrders.size(); i++) {
 			if(nextInt==i){
-				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.SUCCESSED.name());
+				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.WAIT_RECEIVE.name());
 			}else{
 				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.CLOSED.name());
 			}
