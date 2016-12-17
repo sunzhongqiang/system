@@ -169,7 +169,7 @@ public class TuanApi {
 		tuan.setOrderSort(group.getType());
 		tuan.setPeopleNum(group.getNum());
 		tuan.setCommander(user);
-		tuan.setJoinNum(1l);
+		tuan.setJoinNum(0l);
 		tuan.setGoodsPrice(group.getGroupPrice());
 		tuan.setTuanStartDate(new Date());
 		tuan.setTuanEndDate(new Date(tuan.getTuanStartDate().getTime()+ group.getDuration()* 24 * 60 * 60 * 1000));
@@ -227,12 +227,7 @@ public class TuanApi {
 		tuanOrder.setPayTime(new Date());
 		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
-		tuanService.save(tuan);
-		orderService.save(tuanOrder);
-		
-		ResultData result = new ResultData(true, "团订单已修改成待成团状态！");
-		result.addData("tuan", tuan);
-		result.addData("tuanOrder", tuanOrder);
+		tuan.setJoinNum(tuan.getJoinNum() + 1l);
 		
 		// 团订单
 		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
@@ -242,12 +237,16 @@ public class TuanApi {
 			if(tuan.getOrderSort()==1l){
 				orderService.chooseLucker(tuan.getId());
 			}else {
-				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.SUCCESSED.name());
+				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_RECEIVE.name());
 			}
-			
 			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
-			tuanService.save(tuan);
-		} 
+		}
+		tuanService.save(tuan);
+		orderService.save(tuanOrder);
+		
+		ResultData result = new ResultData(true, "团订单已修改成待成团或待发货状态！");
+		result.addData("tuan", tuan);
+		result.addData("tuanOrder", tuanOrder);
 		return result;
 	}
 	
