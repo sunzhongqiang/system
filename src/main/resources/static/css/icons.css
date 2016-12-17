@@ -122,3 +122,195 @@
 .icon-large-chart{
     background:url('icons/large_chart.png') no-repeat center center;
 }
+.icon-goods{
+    background:url('icons/goods.png') no-repeat center center;
+}
+.tree-node-selected .icon-goods{
+    background:url('icons/goods1.png') no-repeat center center;
+}
+.icon-user{
+    background:url('icons/user.png') no-repeat center center;
+}
+.tree-node-selected .icon-user{
+    background:url('icons/user1.png') no-repeat center center;
+}
+.icon-order{
+    background:url('icons/order.png') no-repeat center center;
+}
+.tree-node-selected .icon-order{
+    background:url('icons/order1.png') no-repeat center center;
+}
+.icon-ad{
+    background:url('icons/ad.png') no-repeat center center;
+}
+.tree-node-selected .icon-ad{
+    background:url('icons/ad1.png') no-repeat center center;
+}
+.icon-data{
+    background:url('icons/data.png') no-repeat center center;
+}
+.tree-node-selected .icon-data{
+    background:url('icons/data1.png') no-repeat center center;
+}
+.icon-system{
+    background:url('icons/system.png') no-repeat center center;
+}
+.tree-node-selected .icon-system{
+    background:url('icons/system1.png') no-repeat center center;
+}
+
+
+/**/
+.icon-classify{
+    background:url('icons/classify.png') no-repeat center center;
+}
+.tree-node-selected .icon-classify{
+    background:url('icons/classify1.png') no-repeat center center;
+}
+.icon-list{
+    background:url('icons/list.png') no-repeat center center;
+}
+.tree-node-selected .icon-list{
+    background:url('icons/list1.png') no-repeat center center;
+}
+.icon-recommend{
+    background:url('icons/recommend.png') no-repeat center center;
+}
+.tree-node-selected .icon-recommend{
+    background:url('icons/recommend1.png') no-repeat center center;
+}
+.icon-setuan{
+    background:url('icons/setuan.png') no-repeat center center;
+}
+.tree-node-selected .icon-setuan{
+    background:url('icons/setuan1.png') no-repeat center center;
+}
+.icon-tuan{
+    background:url('icons/tuan.png') no-repeat center center;
+}
+.tree-node-selected .icon-tuan{
+    background:url('icons/tuan1.png') no-repeat center center;
+}
+
+/**/
+.icon-wxuser{
+    background:url('icons/wxuser.png') no-repeat center center;
+}
+.tree-node-selected .icon-wxuser{
+    background:url('icons/wxuser1.png') no-repeat center center;
+}
+.icon-address{
+    background:url('icons/address.png') no-repeat center center;
+}
+.tree-node-selected .icon-address{
+    background:url('icons/address1.png') no-repeat center center;
+}
+.icon-attention{
+    background:url('icons/attention.png') no-repeat center center;
+}
+.tree-node-selected .icon-attention{
+    background:url('icons/attention1.png') no-repeat center center;
+}
+.icon-keep{
+    background:url('icons/keep.png') no-repeat center center;
+}
+.tree-node-selected .icon-keep{
+    background:url('icons/keep1.png') no-repeat center center;
+}
+
+/**/
+.icon-tunamanage{
+    background:url('icons/tunamanage.png') no-repeat center center;
+}
+.tree-node-selected .icon-tunamanage{
+    background:url('icons/tunamanage1.png') no-repeat center center;
+}
+.icon-ordermanage{
+    background:url('icons/ordermanage.png') no-repeat center center;
+}
+.tree-node-selected .icon-ordermanage{
+    background:url('icons/ordermanage1.png') no-repeat center center;
+}
+.icon-commentmanage{
+    background:url('icons/commentmanage.png') no-repeat center center;
+}
+.tree-node-selected .icon-commentmanage{
+    background:url('icons/commentmanage1.png') no-repeat center center;
+}
+.icon-refundmanage{
+    background:url('icons/refundmanage.png') no-repeat center center;
+}
+.tree-node-selected .icon-refundmanage{
+    background:url('icons/refundmanage1.png') no-repeat center center;
+}
+
+/**/
+.icon-shipping{
+    background:url('icons/shipping.png') no-repeat center center;
+}
+.tree-node-selected .icon-shipping{
+    background:url('icons/shipping1.png') no-repeat center center;
+}
+.icon-area{
+    background:url('icons/area.png') no-repeat center center;
+}
+.tree-node-selected .icon-area{
+    background:url('icons/area1.png') no-repeat center center;
+}
+.icon-pay{
+    background:url('icons/pay.png') no-repeat center center;
+}
+.tree-node-selected .icon-pay{
+    background:url('icons/pay1.png') no-repeat center center;
+}
+/**/
+.icon-organize{
+    background:url('icons/organize.png') no-repeat center center;
+}
+.tree-node-selected .icon-organize{
+    background:url('icons/organize1.png') no-repeat center center;
+}
+.icon-user{
+    background:url('icons/user.png') no-repeat center center;
+}
+.tree-node-selected .icon-user{
+    background:url('icons/user1.png') no-repeat center center;
+}
+.icon-role{
+    background:url('icons/role.png') no-repeat center center;
+}
+.tree-node-selected .icon-role{
+    background:url('icons/role1.png') no-repeat center center;
+}
+.icon-function{
+    background:url('icons/function.png') no-repeat center center;
+}
+.tree-node-selected .icon-function{
+    background:url('icons/function.png') no-repeat center center;
+}
+.icon-assignments{
+    background:url('icons/assignments.png') no-repeat center center;
+}
+.tree-node-selected .icon-assignments{
+    background:url('icons/assignments1.png') no-repeat center center;
+}
+.icon-authority{
+    background:url('icons/authority.png') no-repeat center center;
+}
+.tree-node-selected .icon-authority{
+    background:url('icons/authority1.png') no-repeat center center;
+}
+.icon-api{
+    background:url('icons/api.png') no-repeat center center;
+}
+.tree-node-selected .icon-api{
+    background:url('icons/api1.png') no-repeat center center;
+}
+.icon-loginlog{
+    background:url('icons/loginlog.png') no-repeat center center;
+}
+.tree-node-selected .icon-loginlog{
+    background:url('icons/loginlog1.png') no-repeat center center;
+}
+
+
