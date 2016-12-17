@@ -117,7 +117,7 @@ public class TuanApi {
 		order.setOrderPhone(address.getMobile());
 		order.setOrderPrice(group.getGroupPrice());
 		order.setOrderSort(group.getType());
-		order.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
+		order.setOrderStatus(TuanOrderStatus.WAIT_PAY.name());
 		order.setOrderTime(new Date());
 		order.setTuanId(bean.getId());
 		order.setTuanCode(bean.getTuanCode());
@@ -127,18 +127,7 @@ public class TuanApi {
 		order.setGoodsImg(goods.getGoodsMainImg());
 		order = orderService.save(order);
 
-		// 成团状态设置
-		if (bean.getPeopleNum() == orderList.size()) {
-			
-			if(bean.getOrderSort()==1l){
-				orderService.chooseLucker(bean.getId());
-			}else {
-				orderService.changeTuanStatusByTuanId(bean.getId(),TuanOrderStatus.SUCCESSED.name());
-			}
-			
-			bean.setTuanStatus(TuanStatus.SUCCESSED.name());
-			tuanService.save(bean);
-		} 
+		tuanService.save(bean);
 		ResultData result = new ResultData(true, "查找成功完成");
 		result.addData("tuan", bean);
 		result.addData("order", order);
