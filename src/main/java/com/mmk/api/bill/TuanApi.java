@@ -217,6 +217,8 @@ public class TuanApi {
 		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		tuan.setJoinNum(tuan.getJoinNum() + 1l);
+		orderService.save(tuanOrder);
+		tuanService.save(tuan);
 		
 		// 团订单
 		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
@@ -229,9 +231,9 @@ public class TuanApi {
 				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_SHIPPING.name());
 			}
 			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
+			tuanService.save(tuan);
+			orderService.save(tuanOrder);
 		}
-		tuanService.save(tuan);
-		orderService.save(tuanOrder);
 		
 		ResultData result = new ResultData(true, "团订单已修改成待成团或待发货状态！");
 		result.addData("tuan", tuan);
