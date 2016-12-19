@@ -1,11 +1,19 @@
 package com.mmk.refund.service.impl;
 
 import javax.annotation.Resource;
+
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
+
+import com.mmk.common.tool.ApiClient;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +21,9 @@ import com.mmk.refund.dao.RefundRepository;
 import com.mmk.refund.model.Refund;
 import com.mmk.refund.condition.RefundCondition;
 import com.mmk.refund.service.RefundService;
+import com.mmk.trade.condition.TuanOrderStatus;
+import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.service.TuanOrderService;
 import com.mmk.refund.dao.RefundDao;
 /**
 * RefundServiceImpl: 退款表 业务服务层实现
@@ -26,6 +37,9 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private RefundDao refundDao;
+    
+    @Resource
+    private TuanOrderService orderService;
     
     private RefundRepository refundRepository;
     /**
@@ -66,5 +80,42 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 	public Refund findByOrderID(Long id) {
         log.info("根据订单ID查找对应的退款详情");
         return refundDao.findByOrderID(id);
+	}
+
+	@Override
+	public boolean refundByOrderId(Long id) {
+		TuanOrder tuanOrder = orderService.find(id);
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("tradeNo", tuanOrder.getTuanCode());
+		params.put("refundFee ", tuanOrder.getOrderPrice());
+		params.put("totalFee ", tuanOrder.getOrderPrice());
+		String refundNo = "REFUND"+DateTime.now().toString("yyyyMMddHHmmssSSS"); 
+		params.put("refundNo", refundNo);
+		
+		Refund refund = new Refund();
+		refund.setOrderSn(tuanOrder.getTuanCode());
+		refund.setRefundNo(refundNo);
+		refund.setApplyRefundFee(tuanOrder.getOrderPrice());
+		refund.setGoodsId(tuanOrder.getGoodsId());
+		refund.setGoodsPrice(tuanOrder.getGoodsPrice());
+		refund.setHasGoodsReturn("0");
+		//refund.setOrderStatus(tuanOrder.getOrderStatus());
+		refund.setRealRefundFee(tuanOrder.getOrderPrice());
+		refund.setRefundCreateTime(new Date());
+		refund.setUserId(tuanOrder.getUser().getId());
+		refund.setUsername(tuanOrder.getUserName());
+		
+		
+
+		String result = ApiClient.post("http://wx.yiqingo.net/Api/WxPay/Refund", params);
+		
+		save(refund);
+		
+		tuanOrder.setOrderStatus(TuanOrderStatus.CLOSED.name());
+		
+		orderService.save(tuanOrder);
+		
+		log.debug(result);
+		return false;
 	}
 }

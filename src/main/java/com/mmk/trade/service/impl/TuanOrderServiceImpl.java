@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.refund.service.RefundService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.mmk.trade.dao.TuanOrderRepository;
@@ -31,6 +33,9 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private TuanOrderDao orderDao;
+    
+    @Resource
+    private RefundService refundService;
     
     private TuanOrderRepository orderRepository;
     /**
@@ -153,10 +158,10 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 			TuanOrder tuanOrder = tuanOrders.get(i);
 			if(nextInt==i){
 				tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_SHIPPING.name());
+				save(tuanOrder);
 			}else{
-				tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_REFUND_MONEY.name());
+				refundService.refundByOrderId(tuanOrder.getId());
 			}
-			save(tuanOrder);
 		}
 	}
 
