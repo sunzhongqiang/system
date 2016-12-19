@@ -119,7 +119,7 @@ public class TuanApi {
 		order.setOrderSort(group.getType());
 		order.setOrderStatus(TuanOrderStatus.WAIT_PAY.name());
 		order.setOrderTime(new Date());
-		order.setTuanId(bean.getId());
+		order.setTuan(bean);
 		order.setTuanCode(bean.getTuanCode());
 		order.setUser(user);
 		order.setUserName(user.getNickname());
@@ -184,7 +184,7 @@ public class TuanApi {
 		order.setGoodsImg(goods.getGoodsMainImg());
 		
 		order.setOrderTime(new Date());
-		order.setTuanId(bean.getId());
+		order.setTuan(bean);
 		order.setTuanCode(bean.getTuanCode());
 		order.setUser(user);
 		order.setUserName(user.getNickname());
@@ -214,7 +214,7 @@ public class TuanApi {
 		tuanOrder.setOrderPayCode(orderPayCode);
 		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_JOIN.name());
 		tuanOrder.setPayTime(new Date());
-		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		Tuan tuan = tuanService.findById(tuanOrder.getTuan().getId());
 		tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
 		tuan.setJoinNum(tuan.getJoinNum() + 1l);
 		orderService.save(tuanOrder);
@@ -252,7 +252,7 @@ public class TuanApi {
 		TuanOrder tuanOrder = orderService.findById(id);
 		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_RECEIVE.name());
 		orderService.save(tuanOrder);
-		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		Tuan tuan = tuanService.findById(tuanOrder.getTuan().getId());
 		tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
 		tuanService.save(tuan);
 		
@@ -324,7 +324,7 @@ public class TuanApi {
 		TuanOrder tuanOrder = orderService.findById(id);
 		tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_REFUND_GOODS.name());
 		orderService.save(tuanOrder);
-		Tuan tuan = tuanService.findById(tuanOrder.getTuanId());
+		Tuan tuan = tuanService.findById(tuanOrder.getTuan().getId());
 		tuan.setTuanStatus(TuanStatus.FAIL.name());
 		tuanService.save(tuan);
 		

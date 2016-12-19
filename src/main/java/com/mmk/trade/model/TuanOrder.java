@@ -49,8 +49,10 @@ public class TuanOrder {
     /**
      * 团ID
      */
-    @Column(name="tuan_id")
-    private Long tuanId;
+    @NotFound(action=NotFoundAction.IGNORE)
+    @ManyToOne
+    @JoinColumn(name="tuan_id")
+    private Tuan tuan;
 
     /**
      * 团编码
@@ -515,11 +517,11 @@ public class TuanOrder {
 	public void setOrderPhone(String orderPhone) {
 		this.orderPhone = orderPhone;
 	}
-	public Long getTuanId() {
-		return tuanId;
+	public Tuan getTuan() {
+		return tuan;
 	}
-	public void setTuanId(Long tuanId) {
-		this.tuanId = tuanId;
+	public void setTuan(Tuan tuan) {
+		this.tuan = tuan;
 	}
 	public String getHeadimgurl() {
 		return headimgurl;

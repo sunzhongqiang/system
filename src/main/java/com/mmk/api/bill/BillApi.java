@@ -109,7 +109,7 @@ public class BillApi {
 	public ResultData findTuanOrder(String openid, String tuanStatus) {
 		ResultData result = new ResultData(true, "用户订单列表");
 		List<TuanOrder> tuanOrderList = orderService.findTuanOrder(openid, tuanStatus);
-		Tuan tuan = tuanService.findById(tuanOrderList.get(0).getTuanId());
+		Tuan tuan = tuanService.findById(tuanOrderList.get(0).getTuan().getId());
 		result.addData("tuanOrderList", tuanOrderList);
 		result.addData("tuan", tuan);
 		return result;
@@ -158,7 +158,7 @@ public class BillApi {
 		TuanOrder order = orderService.find(id);
 		WxUser user = order.getUser();
 		if(openid.equals(user.getOpenid())){
-			Tuan tuan = tuanService.find(order.getTuanId());
+			Tuan tuan = tuanService.find(order.getTuan().getId());
 			order.setOrderStatus(TuanOrderStatus.CLOSED.name());
 			tuan.setJoinNum(tuan.getJoinNum()-1);
 			

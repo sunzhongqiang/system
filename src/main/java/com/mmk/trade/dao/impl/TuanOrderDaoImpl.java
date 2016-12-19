@@ -216,7 +216,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public List<TuanOrder> findTuanOrder(String openid, String tuanStatus) {
-		StringBuffer sb = new StringBuffer("select model from TuanOrder model where model.user.openid = :openid ");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.tuan where model.user.openid = :openid ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);
 		if(TuanStatus.WAIT_JOIN.name().equals(tuanStatus)){
