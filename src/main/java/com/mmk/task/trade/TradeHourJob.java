@@ -1,6 +1,5 @@
 package com.mmk.task.trade;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,8 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.condition.TuanStatus;
 import com.mmk.trade.model.Tuan;
+import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.TuanService;
 
 @Service
@@ -25,6 +27,8 @@ public class TradeHourJob {
 
 	@Resource
 	private TuanService tuanService;
+	@Resource
+	private TuanOrderService orderService;
 
 	/**
 	 * 定时检查团订单是否到期
@@ -40,8 +44,13 @@ public class TradeHourJob {
 			List<Tuan> content = tuanPage.getContent();
 			for (Tuan tuan : content) {
 				tuan.setTuanStatus(TuanStatus.FAIL.name());
+				List<TuanOrder> orders = orderService.findAllByTuanId(tuan.getId());
+				for (TuanOrder tuanOrder : orders) {
+					tuanOrder.setOrderStatus(TuanOrderStatus.CLOSED.name());
+					orderService.save(tuanOrder);
+				}
+				tuanService.save(tuan);
 			}
-			tuanService.save(content);
 			if (!tuanPage.hasNext()) {
 				break;
 			}
