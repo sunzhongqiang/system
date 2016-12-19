@@ -109,7 +109,9 @@ public class BillApi {
 	public ResultData findTuanOrder(String openid, String tuanStatus) {
 		ResultData result = new ResultData(true, "用户订单列表");
 		List<TuanOrder> tuanOrderList = orderService.findTuanOrder(openid, tuanStatus);
+		Tuan tuan = tuanService.findById(tuanOrderList.get(0).getTuanId());
 		result.addData("tuanOrderList", tuanOrderList);
+		result.addData("tuan", tuan);
 		return result;
 	}
 	
