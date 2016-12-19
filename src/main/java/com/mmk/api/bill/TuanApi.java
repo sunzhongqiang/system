@@ -226,7 +226,7 @@ public class TuanApi {
 			if(tuan.getOrderSort()==1l){
 				orderService.chooseLucker(tuan.getId());
 			}else {
-				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_RECEIVE.name());
+				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_SHIPPING.name());
 			}
 			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
 		}

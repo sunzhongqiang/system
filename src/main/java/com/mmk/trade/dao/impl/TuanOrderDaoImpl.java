@@ -220,8 +220,6 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openid", openid);
 		if(TuanStatus.WAIT_JOIN.name().equals(tuanStatus)){
-//			sb.append(" or model.orderStatus = :status ");
-//			params.put("status", TuanOrderStatus.WAIT_PAY.name());
 			sb.append(" and model.orderStatus = :status ");
 			params.put("status", TuanOrderStatus.WAIT_JOIN.name());
 			
