@@ -108,7 +108,7 @@ public class TuanOrder {
     private Date payTime;
 
     /**
-     * 订单分类：1，一元购；2，拼团
+     * 订单分类：0，一元购；1，拼团
      */
     @Column(name="order_sort")
     private Long orderSort;

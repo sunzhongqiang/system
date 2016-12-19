@@ -238,13 +238,13 @@ public class Tuan {
     }
 
     /** 
-	* @return orderSort ：订单分类：1，一元购；2，拼团
+	* @return orderSort ：订单分类：0，一元购；1，拼团
 	*/
     public Long getOrderSort() {
         return orderSort;
     }
     /** 
-    *@param orderSort 设置订单分类：1，一元购；2，拼团 
+    *@param orderSort 设置订单分类：0，一元购；1，拼团 
     */
     public void setOrderSort(Long orderSort) {
         this.orderSort = orderSort;

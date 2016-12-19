@@ -225,7 +225,7 @@ public class TuanApi {
 		// 成团状态设置
 		if (tuan.getPeopleNum() == orderList.size()) {
 			
-			if(tuan.getOrderSort()==1l){
+			if(tuan.getOrderSort()==0l){
 				orderService.chooseLucker(tuan.getId());
 			}else {
 				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_SHIPPING.name());
