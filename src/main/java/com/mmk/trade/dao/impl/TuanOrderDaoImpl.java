@@ -205,7 +205,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 
 	@Override
 	public List<TuanOrder> findAllByTuanId(Long id) {
-		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuanId = :id");
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuan.id = :id");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		sb.append(" and model.orderStatus != :status ");
