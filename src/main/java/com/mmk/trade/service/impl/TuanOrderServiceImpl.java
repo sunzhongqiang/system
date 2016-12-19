@@ -153,7 +153,7 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 			if(nextInt==i){
 				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.WAIT_SHIPPING.name());
 			}else{
-				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.CLOSED.name());
+				tuanOrders.get(i).setOrderStatus(TuanOrderStatus.WAIT_REFUND_MONEY.name());
 			}
 		}
 	}
