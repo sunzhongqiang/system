@@ -54,6 +54,18 @@ public class AuthorizationController {
 		preAuthCode = json.getString("pre_auth_code");
 		return preAuthCode;
 	}
+	
+	@RequestMapping("/weixin/authCode")
+	public String authCode(String auth_code,String expires_in) {
+		JSONObject object = new JSONObject();
+		object.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+		object.put("authorization_code", auth_code);
+		String preAuthCode = ApiClient.postJson("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token="
+				+ WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, object);
+		JSONObject json = new JSONObject(preAuthCode);
+		preAuthCode = json.getString("pre_auth_code");
+		return preAuthCode;
+	}
 
 	/**
 	 * 获取token ,这个可以手动获取，这个也设置了定时任务进行自动获取

@@ -18,7 +18,7 @@ public class TokenTask {
 	/**
 	 * 定时检查团订单是否到期
 	 */
-	@Scheduled(cron = "*/10 * * * * ?")
+	@Scheduled(cron = "0 0/10 * * * ?")
 	public void checkOvertime() {
 		log.info("当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
 
