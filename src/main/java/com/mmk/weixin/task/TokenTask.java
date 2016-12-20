@@ -25,7 +25,7 @@ public class TokenTask {
 		JSONObject params = new JSONObject();
 		params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
 		params.put("component_appsecret", WeiXinOpenParams.COMPONENT_APPSECRET);
-		params.put("component_verify_ticket", WeiXinOpenParams.TICKET);
+		params.put("component_verify_ticket", WeiXinOpenParams.COMPONENT_VERIFY_TICKET);
 		String token = ApiClient.postJson(WeiXinOpenParams.COMPONENT_ACCESS_TOKEN_URL, params);
 		log.debug("服务器返回："+token);
 		JSONObject json = new JSONObject(token);
