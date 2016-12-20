@@ -1,8 +1,5 @@
 package com.mmk.weixin.web;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +12,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,19 +20,58 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
+import com.qq.weixin.mp.aes.AesException;
+import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
 @RestController
 public class AuthorizationController {
 
 	protected Log log = LogFactory.getLog(this.getClass());
 	private String authorizationUrl = WeiXinOpenParams.AUTHORIZATION_URL + "?component_appid="
-			+ WeiXinOpenParams.COMPONENT_APPID + "&pre_auth_code=" + WeiXinOpenParams.PRE_AUTH_CODE + "&redirect_uri="
-			+ WeiXinOpenParams.REDIRECT_URI;
+			+ WeiXinOpenParams.COMPONENT_APPID + "&redirect_uri=" + WeiXinOpenParams.REDIRECT_URI + "&pre_auth_code=";
 
 	@RequestMapping("/weixin/auth")
-	public ModelAndView preAuthCode() {
-		return new ModelAndView(new RedirectView(authorizationUrl));
+	public ModelAndView auth() {
+		JSONObject object = new JSONObject();
+		object.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+		String preAuthCode = ApiClient.postJson(WeiXinOpenParams.PRE_AUTH_CODE_URL + "?component_access_token="
+				+ WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, object);
+		JSONObject json = new JSONObject(preAuthCode);
+		preAuthCode = json.getString("pre_auth_code");
+
+		return new ModelAndView(new RedirectView(authorizationUrl + preAuthCode));
+	}
+
+	@RequestMapping("/weixin/preAuthCode")
+	public String preAuthCode() {
+		JSONObject object = new JSONObject();
+		object.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+		String preAuthCode = ApiClient.postJson(WeiXinOpenParams.PRE_AUTH_CODE_URL + "?component_access_token="
+				+ WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, object);
+		JSONObject json = new JSONObject(preAuthCode);
+		preAuthCode = json.getString("pre_auth_code");
+		return preAuthCode;
+	}
+
+	/**
+	 * 获取token ,这个可以手动获取，这个也设置了定时任务进行自动获取
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/weixin/token")
+	public String token() {
+		JSONObject params = new JSONObject();
+		params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+		params.put("component_appsecret", WeiXinOpenParams.COMPONENT_APPSECRET);
+		params.put("component_verify_ticket", WeiXinOpenParams.COMPONENT_VERIFY_TICKET);
+		log.info("ticket:" + WeiXinOpenParams.COMPONENT_VERIFY_TICKET);
+		String token = ApiClient.postJson(WeiXinOpenParams.COMPONENT_ACCESS_TOKEN_URL, params);
+		JSONObject json = new JSONObject(token);
+		WeiXinOpenParams.COMPONENT_ACCESS_TOKEN = json.getString("component_access_token");
+		log.debug("token:" + token);
+		return token;
 	}
 
 	@RequestMapping("/weixin/callback")
@@ -44,101 +81,32 @@ public class AuthorizationController {
 		String timestamp = request.getParameter("timestamp");
 		String signature = request.getParameter("signature");
 		String msgSignature = request.getParameter("msg_signature");
-		log.info("nonce:"+nonce);
-		log.info("timestamp:"+timestamp);
-		log.info("signature:"+signature);
-		log.info("msgSignature:"+msgSignature);
-		log.info("xml:"+xml);
-		Map<String, String> result = getAuthorizerAppidFromXml(xml);
-		for (String key : result.keySet()) {
-			log.info(key+":"+result.get(key));
+		log.info("nonce:" + nonce);
+		log.info("timestamp:" + timestamp);
+		log.info("signature:" + signature);
+		log.info("msgSignature:" + msgSignature);
+		log.info("xml:" + xml);
+		try {
+			WXBizMsgCrypt pc = new WXBizMsgCrypt(WeiXinOpenParams.COMPONENT_TOKEN, WeiXinOpenParams.ENCODEING_KEY,
+					WeiXinOpenParams.COMPONENT_APPID);
+			String decryptMsg = pc.decryptMsg(msgSignature, timestamp, nonce, xml);
+			Map<String, String> map = getMapFromXml(decryptMsg);
+			WeiXinOpenParams.COMPONENT_VERIFY_TICKET = map.get("ComponentVerifyTicket");
+			log.debug("获得ticket:" + WeiXinOpenParams.COMPONENT_VERIFY_TICKET);
+		} catch (AesException e) {
+			log.error(e.getMessage());
+			e.printStackTrace();
 		}
 		return "success";
 	}
 
-//	/**
-//	 * 处理授权事件的推送
-//	 * 
-//	 * @param request
-//	 * @throws IOException
-//	 * @throws AesException
-//	 * @throws DocumentException
-//	 */
-//	public void processAuthorizeEvent(HttpServletRequest request) throws IOException, DocumentException {
-//		String nonce = request.getParameter("nonce");
-//		String timestamp = request.getParameter("timestamp");
-//		String signature = request.getParameter("signature");
-//		String msgSignature = request.getParameter("msg_signature");
-//
-//		if (!StringUtils.isNotBlank(msgSignature))
-//			return;// 微信推送给第三方开放平台的消息一定是加过密的，无消息加密无法解密消息
-//		boolean isValid = checkSignature(COMPONENT_TOKEN, signature, timestamp, nonce);
-//		if (isValid) {
-//			StringBuilder sb = new StringBuilder();
-//			BufferedReader in = request.getReader();
-//			String line;
-//			while ((line = in.readLine()) != null) {
-//				sb.append(line);
-//			}
-//			String xml = sb.toString();
-//			// LogUtil.info("第三方平台全网发布-----------------------原始 Xml="+xml);
-//			String encodingAesKey = COMPONENT_ENCODINGAESKEY;// 第三方平台组件加密密钥
-//			String appId = getAuthorizerAppidFromXml(xml);// 此时加密的xml数据中ToUserName是非加密的，解析xml获取即可
-//			// LogUtil.info("第三方平台全网发布-------------appid----------getAuthorizerAppidFromXml(xml)-----------appId="+appId);
-//			WXBizMsgCrypt pc = new WXBizMsgCrypt(COMPONENT_TOKEN, encodingAesKey, COMPONENT_APPID);
-//			xml = pc.decryptMsg(msgSignature, timestamp, nonce, xml);
-//			// LogUtil.info("第三方平台全网发布-----------------------解密后 Xml="+xml);
-//			processAuthorizationEvent(xml);
-//		}
-//	}
-
-	/**
-	 * 判断是否加密
-	 * 
-	 * @param token
-	 * @param signature
-	 * @param timestamp
-	 * @param nonce
-	 * @return
-	 */
-	public static boolean checkSignature(String token, String signature, String timestamp, String nonce) {
-		System.out.println(
-				"###token:" + token + ";signature:" + signature + ";timestamp:" + timestamp + "nonce:" + nonce);
-		boolean flag = false;
-		if (signature != null && !signature.equals("") && timestamp != null && !timestamp.equals("") && nonce != null
-				&& !nonce.equals("")) {
-			String sha1 = "";
-			String[] ss = new String[] { token, timestamp, nonce };
-			Arrays.sort(ss);
-			for (String s : ss) {
-				sha1 += s;
-			}
-
-			MessageDigest md;
-			try {
-				md = MessageDigest.getInstance("SHA-1");
-				// 选择SHA-1，也可以选择MD5
-				byte[] digest = md.digest(sha1.getBytes()); // 返回的是byet[]，要转化为String存储比较方便
-				sha1 = new String(digest);
-				if (sha1.equals(signature)) {
-					flag = true;
-				}
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			}
-		}
-		return flag;
-	}
-
-	
-	public Map<String,String> getAuthorizerAppidFromXml(String xml){
-		
+	public Map<String, String> getMapFromXml(String xml) {
 		try {
 			Document doc = DocumentHelper.parseText(xml);
 			Element rootElt = doc.getRootElement();
-			String toUserName = rootElt.elementText("ToUserName");
+			@SuppressWarnings("unchecked")
 			List<Element> elements = rootElt.elements();
-			Map<String,String> result = new HashMap<String,String>();
+			Map<String, String> result = new HashMap<String, String>();
 			for (Element element : elements) {
 				result.put(element.getName(), element.getText());
 			}
@@ -147,6 +115,6 @@ public class AuthorizationController {
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
 }
