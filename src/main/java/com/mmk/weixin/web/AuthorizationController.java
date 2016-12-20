@@ -3,9 +3,18 @@ package com.mmk.weixin.web;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +27,7 @@ import com.mmk.weixin.constants.WeiXinOpenParams;
 @RestController
 public class AuthorizationController {
 
+	protected Log log = LogFactory.getLog(this.getClass());
 	private String authorizationUrl = WeiXinOpenParams.AUTHORIZATION_URL + "?component_appid="
 			+ WeiXinOpenParams.COMPONENT_APPID + "&pre_auth_code=" + WeiXinOpenParams.PRE_AUTH_CODE + "&redirect_uri="
 			+ WeiXinOpenParams.REDIRECT_URI;
@@ -34,7 +44,15 @@ public class AuthorizationController {
 		String timestamp = request.getParameter("timestamp");
 		String signature = request.getParameter("signature");
 		String msgSignature = request.getParameter("msg_signature");
-		System.out.println("xml:" + xml);
+		log.info("nonce:"+nonce);
+		log.info("timestamp:"+timestamp);
+		log.info("signature:"+signature);
+		log.info("msgSignature:"+msgSignature);
+		log.info("xml:"+xml);
+		Map<String, String> result = getAuthorizerAppidFromXml(xml);
+		for (String key : result.keySet()) {
+			log.info(key+":"+result.get(key));
+		}
 		return "success";
 	}
 
@@ -112,4 +130,23 @@ public class AuthorizationController {
 		return flag;
 	}
 
+	
+	public Map<String,String> getAuthorizerAppidFromXml(String xml){
+		
+		try {
+			Document doc = DocumentHelper.parseText(xml);
+			Element rootElt = doc.getRootElement();
+			String toUserName = rootElt.elementText("ToUserName");
+			List<Element> elements = rootElt.elements();
+			Map<String,String> result = new HashMap<String,String>();
+			for (Element element : elements) {
+				result.put(element.getName(), element.getText());
+			}
+			return result;
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }
