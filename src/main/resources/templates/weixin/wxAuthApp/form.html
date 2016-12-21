@@ -1,0 +1,126 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript">
+
+    $(function() {
+        $('#modelForm').on('submit', function(event){
+            var $form = $(this);
+            progressLoad();
+            var isValid = $form.form('validate');
+            if (!isValid) {
+                progressClose();
+                return isValid;
+            }
+            $.ajax({
+                url: '/weixin/wxAuthApp/save',
+                data: $form.serialize(),
+                success: function(result){
+                    progressClose();
+                    if (result.success) {
+                        parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                        parent.$.modalDialog.handler.dialog('close');
+                    } else {
+                        parent.$.messager.alert('提示', result.msg, 'warning');
+                    }
+                },
+                error: function(){
+                    progressClose();
+                    alert("系统错误");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="modelForm" method="post">
+            <table class="grid">
+                    <tr>
+                        <td class="tdTit"><label>授权方appid：</label></td>
+                        <td>
+                        <input type="text"  name="authorizerAppid"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.authorizerAppid}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>令牌：</label></td>
+                        <td>
+                        <input type="text"  name="authorizerAccessToken"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.authorizerAccessToken}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>据刷新令牌：</label></td>
+                        <td>
+                        <input type="text"  name="authorizerRefreshToken"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.authorizerRefreshToken}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>有效期：</label></td>
+                        <td>
+                        <input type="text"  name="expiresIn"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.expiresIn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>更新时间：</label></td>
+                        <td><input id="" name="modified" type="text" placeholder="点击选择时间" readonly="readonly" onfocus="WdatePicker();" th:value="${wxAuthApp.modified}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>昵称：</label></td>
+                        <td>
+                        <input type="text"  name="nickName"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.nickName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>授权方头像：</label></td>
+                        <td>
+                        <input type="text"  name="headImg"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.headImg}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>原始ID：</label></td>
+                        <td>
+                        <input type="text"  name="userName"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.userName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>主体名称：</label></td>
+                        <td>
+                        <input type="text"  name="principalName"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.principalName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>所设置的微信号：</label></td>
+                        <td>
+                        <input type="text"  name="alias"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.alias}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>功能的开通状况：</label></td>
+                        <td>
+                        <input type="text"  name="businessInfo"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.businessInfo}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>二维码图片的URL：</label></td>
+                        <td>
+                        <input type="text"  name="qrcodeUrl"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.qrcodeUrl}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>权限集列表：</label></td>
+                        <td>
+                        <input type="text"  name="funcInfo"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.funcInfo}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTit"><label>授权信息：</label></td>
+                        <td>
+                        <input type="text"  name="authorizationInfo"   class="easyui-validatebox" data-options="required:true" th:value="${wxAuthApp.authorizationInfo}"/>
+                        </td>
+                    </tr>
+            </table>
+            <input type="hidden" name="id" th:value="${wxAuthApp.id}"/>
+        </form>
+    </div>
+</div>
