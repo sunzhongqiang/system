@@ -12,7 +12,7 @@ public class WeiXinOpenParams {
 	public static final String COMPONENT_APPSECRET = "ea02a402750df01eeeb7b1c019797d38" ;
 	public static final String COMPONENT_TOKEN = "ttttt";
 	public static final String ENCODEING_KEY = "helloPinTuan2thisisatestAndpintuanisverygoo";
-	public static final String REDIRECT_URI = "153159.com/weixin/authCode";
+	public static final String REDIRECT_URI = "http://153159.com/weixin/authCode";
 	public static String COMPONENT_VERIFY_TICKET = "" ;
 	public static String TICKET = "";
 	public static String COMPONENT_ACCESS_TOKEN ="";

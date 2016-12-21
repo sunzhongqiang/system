@@ -51,7 +51,7 @@ public class AuthorizationController {
 		String preAuthCode = ApiClient.postJson(WeiXinOpenParams.PRE_AUTH_CODE_URL + "?component_access_token="
 				+ WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, object);
 		JSONObject json = new JSONObject(preAuthCode);
-		preAuthCode = json.getString("pre_auth_code");
+		preAuthCode = json.getString("authorization_info");
 		return preAuthCode;
 	}
 	
@@ -60,11 +60,16 @@ public class AuthorizationController {
 		JSONObject object = new JSONObject();
 		object.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
 		object.put("authorization_code", auth_code);
-		String preAuthCode = ApiClient.postJson("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token="
+		String result = ApiClient.postJson("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token="
 				+ WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, object);
-		JSONObject json = new JSONObject(preAuthCode);
-		preAuthCode = json.getString("pre_auth_code");
-		return preAuthCode;
+		log.info(result);
+		JSONObject json = new JSONObject(result);
+		JSONObject info = json.getJSONObject("authorization_info");
+		String authorizerAppid = info.getString("authorizer_appid");
+		String authorizerAccessToken = info.getString("authorizer_access_token");
+		Integer expiresIn = info.getInt("expires_in");
+		String authorizerRefreshToken = info.getString("authorizer_refresh_token");
+		return result;
 	}
 
 	/**
