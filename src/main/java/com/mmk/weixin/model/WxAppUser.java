@@ -62,7 +62,7 @@ public class WxAppUser {
      * 性别
      */
     @Column(name="sex",columnDefinition="COMMENT '性别'")
-    private String sex;
+    private Integer sex;
 
     /**
      * 语言
@@ -182,13 +182,13 @@ public class WxAppUser {
     /** 
 	* @return sex ：性别
 	*/
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
     /** 
     *@param sex 设置性别 
     */
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

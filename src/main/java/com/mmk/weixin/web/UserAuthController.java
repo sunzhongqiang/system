@@ -68,7 +68,7 @@ public class UserAuthController extends BaseController{
 			user.setAppid(appid);
 			user.setOpenid(userJson.getString("openid"));
 			user.setNickname(userJson.getString("nickname"));
-			user.setSex(userJson.getString("sex"));
+			user.setSex(userJson.getInt("sex"));
 			user.setLanguage(userJson.getString("language"));
 			user.setCity(userJson.getString("city"));
 			user.setCountry(userJson.getString("country"));
