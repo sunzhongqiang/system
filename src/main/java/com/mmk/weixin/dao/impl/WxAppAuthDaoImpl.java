@@ -1,6 +1,6 @@
 /*
  * 
- *  WxAuthAppDaoImpl 创建于 2016-12-21 11:14:34 版权归作者和作者当前组织所有
+ *  WxAppAuthDaoImpl 创建于 2016-12-21 11:14:34 版权归作者和作者当前组织所有
  */
 package com.mmk.weixin.dao.impl;
 
@@ -22,7 +22,7 @@ import com.mmk.weixin.model.WxAppAuth;
 
 
 /**
-* WxAuthAppDaoImpl: 微信授权APP 数据持久层接口实现
+* WxAppAuthDaoImpl: 微信授权APP 数据持久层接口实现
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 *
@@ -46,14 +46,14 @@ public class WxAppAuthDaoImpl extends SpringDataQueryDaoImpl<WxAppAuth> implemen
      */
     @Override 
     public Page<WxAppAuth> list(WxAppAuthCondition wxAuthAppCondition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select model from WxAuthApp model  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select model from WxAppAuth model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
         return queryByJpql(sb.toString(), params, pageable);
     }
 
     @Override 
-    public List<WxAppAuth> list(WxAppAuthCondition wxAuthAppCondition){
-        StringBuffer sb=new StringBuffer("select model from WxAuthApp model  where 1=1  ");
+    public List<WxAppAuth> list(WxAppAuthCondition WxAppAuthCondition){
+        StringBuffer sb=new StringBuffer("select model from WxAppAuth model  where 1=1  ");
         Map<String,Object> params = new HashMap<String,Object>();
         return queryByJpql(sb.toString(), params);
     }
@@ -61,14 +61,14 @@ public class WxAppAuthDaoImpl extends SpringDataQueryDaoImpl<WxAppAuth> implemen
     
     @Override 
     public Page< Map<String,Object>> listBySql(WxAppAuthCondition condition,Pageable pageable){
-        StringBuffer sb=new StringBuffer("select id,authorizer_appid,authorizer_access_token,authorizer_refresh_token,expires_in,modified,nick_name,head_img,user_name,principal_name,alias,business_info,qrcode_url,func_info,authorization_info from wx_auth_app  where 1=1  ");
+        StringBuffer sb=new StringBuffer("select id,authorizer_appid,authorizer_access_token,authorizer_refresh_token,expires_in,modified,nick_name,head_img,user_name,principal_name,alias,business_info,qrcode_url,func_info,authorization_info from wx_app_auth  where 1=1  ");
         Map<Integer,Object> params = new HashMap<Integer,Object>();
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     
     @Override 
     public WxAppAuth findBy(String field,Object value){
-        StringBuffer sb=new StringBuffer("select model from WxAuthApp model  where model.");
+        StringBuffer sb=new StringBuffer("select model from WxAppAuth model  where model.");
         sb.append(field);
         sb.append(" = :value ");
         Map<String,Object> params = new HashMap<String,Object>();
@@ -79,7 +79,7 @@ public class WxAppAuthDaoImpl extends SpringDataQueryDaoImpl<WxAppAuth> implemen
     
     @Override 
     public List<WxAppAuth> findAllBy(String field,Object value){
-        StringBuffer sb=new StringBuffer("select model from WxAuthApp model  where model.");
+        StringBuffer sb=new StringBuffer("select model from WxAppAuth model  where model.");
         sb.append(field);
        sb.append(" = :value ");
         Map<String,Object> params = new HashMap<String,Object>();
