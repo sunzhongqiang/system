@@ -51,17 +51,19 @@ public class UserAuthController extends BaseController{
 		Map<String, Object> params2 = new HashMap<String,Object>();
 		String accessToken = json.getString("access_token");
 		String openid = json.getString("openid");
-		WxAppUser user = userService.findByAppIdAndOpenId(appid,openid);
 		log.debug(accessToken);
 		log.debug(openid);
-		params2.put("access_token", accessToken);
-		params2.put("openid", openid);
-		params2.put("lang", "zh_CN");
-		String encodeUrl = ApiClient.encodeUrl(userUrl, params2);
-		result = ApiClient.get(encodeUrl);
-		JSONObject userJson = new JSONObject(result);
 		
+		WxAppUser user = userService.findByAppIdAndOpenId(appid,openid);
+		//用户不存在，获取用户信息
 		if(user==null){
+			params2.put("access_token", accessToken);
+			params2.put("openid", openid);
+			params2.put("lang", "zh_CN");
+			String encodeUrl = ApiClient.encodeUrl(userUrl, params2);
+			result = ApiClient.get(encodeUrl);
+			JSONObject userJson = new JSONObject(result);
+			
 			user = new WxAppUser();
 			user.setAppid(appid);
 			user.setOpenid(userJson.getString("openid"));
@@ -74,6 +76,7 @@ public class UserAuthController extends BaseController{
 			user.setProvince(userJson.getString("province"));
 			userService.save(user);
 		}
+		
         return  result;
     }
 }
