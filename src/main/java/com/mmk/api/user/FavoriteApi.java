@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.business.model.Attention;
 import com.mmk.business.model.Favorite;
 import com.mmk.business.service.FavoriteService;
 import com.mmk.common.model.ResultData;

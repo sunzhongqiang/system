@@ -1,26 +1,25 @@
 package com.mmk.trade.service.impl;
 
-import javax.annotation.Resource;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
-import com.mmk.refund.service.RefundService;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.trade.dao.TuanOrderRepository;
-import com.mmk.trade.model.TuanOrder;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.refund.service.RefundService;
 import com.mmk.trade.condition.OrderCondition;
 import com.mmk.trade.condition.TuanOrderStatus;
-import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.dao.TuanOrderDao;
+import com.mmk.trade.dao.TuanOrderRepository;
+import com.mmk.trade.model.TuanOrder;
+import com.mmk.trade.service.TuanOrderService;
 /**
 * OrderServiceImpl: 订单管理 业务服务层实现
 * 2016-11-07 10:37:06

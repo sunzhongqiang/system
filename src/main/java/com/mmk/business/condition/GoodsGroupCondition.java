@@ -4,6 +4,7 @@
  */
 package com.mmk.business.condition;
 import java.util.Date;
+
 import com.mmk.business.model.GoodsGroup;
 
 /**

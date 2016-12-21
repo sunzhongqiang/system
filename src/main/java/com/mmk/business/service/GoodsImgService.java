@@ -1,11 +1,13 @@
 package com.mmk.business.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.business.model.GoodsImg;
+
 import com.mmk.business.condition.GoodsImgCondition;
+import com.mmk.business.model.GoodsImg;
+import com.mmk.gene.service.BaseService;
 
 /**
  * GoodsImgService: 商品相册 业务服务层接口 2016-11-01 09:00:03

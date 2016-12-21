@@ -4,12 +4,12 @@
  */
 package com.mmk.payment.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
 
 /**
 * PaymentConfig: 支付配置参数 数据领域模型

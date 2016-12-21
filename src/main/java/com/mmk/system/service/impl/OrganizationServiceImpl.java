@@ -1,26 +1,26 @@
 package com.mmk.system.service.impl;
 
-import javax.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.mmk.common.model.Tree;
 import com.mmk.gene.service.impl.BaseServiceImpl;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.mmk.system.condition.OrganizationCondition;
+import com.mmk.system.dao.OrganizationDao;
 import com.mmk.system.dao.OrganizationRepository;
 import com.mmk.system.model.Organization;
-import com.mmk.system.condition.OrganizationCondition;
 import com.mmk.system.service.OrganizationService;
-import com.mmk.system.dao.OrganizationDao;
 /**
 * OrganizationServiceImpl: 组织机构 业务服务层实现
 * 2016-10-24 10:07:36

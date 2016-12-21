@@ -4,12 +4,13 @@
  */
 package com.mmk.trade.dao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.mmk.gene.dao.SpringDataQueryDao;
 import com.mmk.trade.condition.TuanCondition;
 import com.mmk.trade.model.Tuan;
 /**

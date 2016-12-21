@@ -4,16 +4,13 @@
  */
 package com.mmk.system.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import javax.persistence.Column;
 
 /**
 * Region: 区域管理 数据领域模型

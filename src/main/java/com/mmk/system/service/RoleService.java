@@ -1,11 +1,13 @@
 package com.mmk.system.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.system.model.Role;
+
+import com.mmk.gene.service.BaseService;
 import com.mmk.system.condition.RoleCondition;
+import com.mmk.system.model.Role;
 
 /**
 * RoleService: 系统角色 业务服务层接口

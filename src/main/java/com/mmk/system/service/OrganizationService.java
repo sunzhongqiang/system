@@ -2,12 +2,13 @@ package com.mmk.system.service;
 
 import java.util.List;
 
-import com.mmk.common.model.Tree;
-import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.system.model.Organization;
+
+import com.mmk.common.model.Tree;
+import com.mmk.gene.service.BaseService;
 import com.mmk.system.condition.OrganizationCondition;
+import com.mmk.system.model.Organization;
 
 /**
 * OrganizationService: 组织机构 业务服务层接口

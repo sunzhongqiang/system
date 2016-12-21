@@ -3,7 +3,6 @@
  *  PaymentConfigCondition 创建于 2016-12-05 11:57:19 版权归作者和作者当前组织所有
  */
 package com.mmk.payment.condition;
-import java.util.Date;
 import com.mmk.payment.model.PaymentConfig;
 
 /**

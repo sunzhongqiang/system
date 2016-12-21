@@ -1,11 +1,13 @@
 package com.mmk.business.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.business.model.WxUser;
+
 import com.mmk.business.condition.WxUserCondition;
+import com.mmk.business.model.WxUser;
+import com.mmk.gene.service.BaseService;
 
 /**
  * WxUserService: 微信用户 业务服务层接口 2016-10-28 14:50:57

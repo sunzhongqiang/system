@@ -4,12 +4,12 @@
  */
 package com.mmk.business.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
 
 /**
  * GoodsImg: 商品相册 数据领域模型 2016-11-01 09:00:03

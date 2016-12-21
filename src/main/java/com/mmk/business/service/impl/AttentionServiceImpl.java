@@ -1,19 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.AttentionCondition;
+import com.mmk.business.dao.AttentionDao;
 import com.mmk.business.dao.AttentionRepository;
 import com.mmk.business.model.Attention;
-import com.mmk.business.condition.AttentionCondition;
 import com.mmk.business.service.AttentionService;
-import com.mmk.business.dao.AttentionDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * AttentionServiceImpl: 商品或者团的关注 业务服务层实现
 * 2016-11-30 09:25:29

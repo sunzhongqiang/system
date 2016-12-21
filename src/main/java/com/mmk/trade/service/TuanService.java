@@ -1,12 +1,13 @@
 package com.mmk.trade.service;
 
-import java.util.Date;
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.trade.model.Tuan;
+
+import com.mmk.gene.service.BaseService;
 import com.mmk.trade.condition.TuanCondition;
+import com.mmk.trade.model.Tuan;
 
 /**
 * TuanService: 团管理 业务服务层接口

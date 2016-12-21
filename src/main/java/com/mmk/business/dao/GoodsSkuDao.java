@@ -6,11 +6,13 @@ package com.mmk.business.dao;
 
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.condition.GoodsSkuCondition;
 import com.mmk.business.model.GoodsSku;
+import com.mmk.gene.dao.SpringDataQueryDao;
 /**
 * GoodsSkuDao:商品SKU 数据持久层接口
 * @author sunzhongqiang 孙中强

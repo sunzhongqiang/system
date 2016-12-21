@@ -6,12 +6,13 @@ package com.mmk.business.dao;
 
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.condition.FavoriteCondition;
 import com.mmk.business.model.Favorite;
-import com.mmk.business.model.GoodsGroup;
+import com.mmk.gene.dao.SpringDataQueryDao;
 /**
 * FavoriteDao:团收藏 数据持久层接口
 * @author huguangling 胡广玲

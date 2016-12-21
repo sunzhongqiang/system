@@ -3,7 +3,6 @@ package com.mmk.api.goods;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.management.AttributeList;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.business.model.Attention;
 import com.mmk.business.model.Favorite;
-import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.GoodsImg;
 import com.mmk.business.model.GoodsSku;

@@ -1,19 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.AdCondition;
+import com.mmk.business.dao.AdDao;
 import com.mmk.business.dao.AdRepository;
 import com.mmk.business.model.Ad;
-import com.mmk.business.condition.AdCondition;
 import com.mmk.business.service.AdService;
-import com.mmk.business.dao.AdDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * AdServiceImpl: 广告 业务服务层实现
 * 2016-11-03 11:37:27

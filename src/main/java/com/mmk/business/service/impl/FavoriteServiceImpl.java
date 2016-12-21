@@ -1,19 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.FavoriteCondition;
+import com.mmk.business.dao.FavoriteDao;
 import com.mmk.business.dao.FavoriteRepository;
 import com.mmk.business.model.Favorite;
-import com.mmk.business.condition.FavoriteCondition;
 import com.mmk.business.service.FavoriteService;
-import com.mmk.business.dao.FavoriteDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * FavoriteServiceImpl: 团收藏 业务服务层实现
 * 2016-11-30 09:24:22

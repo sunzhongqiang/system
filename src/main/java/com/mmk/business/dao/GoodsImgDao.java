@@ -6,11 +6,13 @@ package com.mmk.business.dao;
 
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.condition.GoodsImgCondition;
 import com.mmk.business.model.GoodsImg;
+import com.mmk.gene.dao.SpringDataQueryDao;
 
 /**
  * GoodsImgDao:商品相册 数据持久层接口

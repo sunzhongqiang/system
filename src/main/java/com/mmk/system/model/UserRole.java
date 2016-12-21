@@ -4,12 +4,12 @@
  */
 package com.mmk.system.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
 
 /**
  * UserRole: 系统用户角色 数据领域模型 2016-10-27 08:21:19

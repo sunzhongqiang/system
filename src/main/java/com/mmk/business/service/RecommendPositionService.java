@@ -1,11 +1,13 @@
 package com.mmk.business.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.business.model.RecommendPosition;
+
 import com.mmk.business.condition.RecommendPositionCondition;
+import com.mmk.business.model.RecommendPosition;
+import com.mmk.gene.service.BaseService;
 
 /**
  * RecommendPositionService: 位置表 业务服务层接口 2016-11-14 13:56:04

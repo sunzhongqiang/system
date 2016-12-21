@@ -1,19 +1,22 @@
 package com.mmk.system.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.system.condition.UserCondition;
+import com.mmk.system.dao.UserDao;
 import com.mmk.system.dao.UserRepository;
 import com.mmk.system.model.User;
-import com.mmk.system.condition.UserCondition;
 import com.mmk.system.service.UserService;
-import com.mmk.system.dao.UserDao;
 
 /**
  * 系统用户 业务服务层实现

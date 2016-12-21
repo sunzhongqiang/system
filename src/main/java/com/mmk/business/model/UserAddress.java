@@ -4,6 +4,7 @@
  */
 package com.mmk.business.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
-
-import javax.persistence.Column;
 
 /**
 * UserAddress: 会员地址 数据领域模型

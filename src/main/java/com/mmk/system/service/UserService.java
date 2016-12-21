@@ -1,11 +1,13 @@
 package com.mmk.system.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.system.model.User;
+
+import com.mmk.gene.service.BaseService;
 import com.mmk.system.condition.UserCondition;
+import com.mmk.system.model.User;
 
 /**
 * UserService: 系统用户 业务服务层接口

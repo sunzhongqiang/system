@@ -1,29 +1,27 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
-import com.mmk.system.condition.FunctionCondition;
-import com.mmk.system.model.Function;
-
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.CategoryCondition;
+import com.mmk.business.dao.CategoryDao;
 import com.mmk.business.dao.CategoryRepository;
 import com.mmk.business.model.Category;
-import com.mmk.business.condition.CategoryCondition;
 import com.mmk.business.service.CategoryService;
 import com.mmk.common.model.Tree;
-import com.mmk.business.dao.CategoryDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * CategoryServiceImpl: 商品分类 业务服务层实现
 * 2016-11-29 13:54:25

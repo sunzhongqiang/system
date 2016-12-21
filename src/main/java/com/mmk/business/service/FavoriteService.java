@@ -1,11 +1,13 @@
 package com.mmk.business.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.business.model.Favorite;
+
 import com.mmk.business.condition.FavoriteCondition;
+import com.mmk.business.model.Favorite;
+import com.mmk.gene.service.BaseService;
 
 /**
 * FavoriteService: 团收藏 业务服务层接口

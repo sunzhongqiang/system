@@ -6,11 +6,13 @@ package com.mmk.business.dao;
 
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.condition.AdCondition;
 import com.mmk.business.model.Ad;
+import com.mmk.gene.dao.SpringDataQueryDao;
 /**
 * AdDao:广告 数据持久层接口
 * @author huguangling 胡广玲

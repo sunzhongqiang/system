@@ -1,19 +1,22 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.GoodsImgCondition;
+import com.mmk.business.dao.GoodsImgDao;
 import com.mmk.business.dao.GoodsImgRepository;
 import com.mmk.business.model.GoodsImg;
-import com.mmk.business.condition.GoodsImgCondition;
 import com.mmk.business.service.GoodsImgService;
-import com.mmk.business.dao.GoodsImgDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 /**
 * GoodsImgServiceImpl: 商品相册 业务服务层实现
 * 2016-11-01 09:00:03

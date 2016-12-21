@@ -1,23 +1,24 @@
 package com.mmk.business.service.impl;
 
-import javax.annotation.Resource;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.business.condition.UserAddressCondition;
+import com.mmk.business.dao.UserAddressDao;
 import com.mmk.business.dao.UserAddressRepository;
 import com.mmk.business.model.UserAddress;
-import com.mmk.business.condition.UserAddressCondition;
 import com.mmk.business.service.UserAddressService;
-import com.mmk.business.dao.UserAddressDao;
+import com.mmk.gene.service.impl.BaseServiceImpl;
 
 /**
  * UserAddressServiceImpl: 会员地址 业务服务层实现 2016-11-16 09:37:58

@@ -4,12 +4,12 @@
  */
 package com.mmk.business.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
 
 /**
 * RecommendGoods: 商品 位置 关系表 数据领域模型

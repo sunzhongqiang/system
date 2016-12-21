@@ -1,19 +1,22 @@
 package com.mmk.trade.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.trade.condition.ShippingFeeCondition;
+import com.mmk.trade.dao.ShippingFeeDao;
 import com.mmk.trade.dao.ShippingFeeRepository;
 import com.mmk.trade.model.ShippingFee;
-import com.mmk.trade.condition.ShippingFeeCondition;
 import com.mmk.trade.service.ShippingFeeService;
-import com.mmk.trade.dao.ShippingFeeDao;
 /**
 * ShippingFeeServiceImpl: 快递地区运费 业务服务层实现
 * 2016-11-26 11:33:42

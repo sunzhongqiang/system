@@ -1,19 +1,22 @@
 package com.mmk.system.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.system.condition.RoleCondition;
+import com.mmk.system.dao.RoleDao;
 import com.mmk.system.dao.RoleRepository;
 import com.mmk.system.model.Role;
-import com.mmk.system.condition.RoleCondition;
 import com.mmk.system.service.RoleService;
-import com.mmk.system.dao.RoleDao;
 
 /**
  * RoleServiceImpl: 系统角色 业务服务层实现 2016-10-24 14:26:41

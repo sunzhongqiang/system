@@ -1,8 +1,8 @@
 package com.mmk.api.bill;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
 import com.mmk.business.model.WxUser;
 import com.mmk.business.service.GoodsGroupService;

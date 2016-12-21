@@ -1,19 +1,22 @@
 package com.mmk.system.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.system.condition.RegionCondition;
+import com.mmk.system.dao.RegionDao;
 import com.mmk.system.dao.RegionRepository;
 import com.mmk.system.model.Region;
-import com.mmk.system.condition.RegionCondition;
 import com.mmk.system.service.RegionService;
-import com.mmk.system.dao.RegionDao;
 /**
 * RegionServiceImpl: 区域管理 业务服务层实现
 * 2016-11-14 13:31:38

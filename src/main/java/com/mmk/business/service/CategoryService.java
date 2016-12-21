@@ -1,12 +1,14 @@
 package com.mmk.business.service;
 
 import java.util.List;
-import com.mmk.gene.service.BaseService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.mmk.business.condition.CategoryCondition;
 import com.mmk.business.model.Category;
 import com.mmk.common.model.Tree;
-import com.mmk.business.condition.CategoryCondition;
+import com.mmk.gene.service.BaseService;
 
 /**
 * CategoryService: 商品分类 业务服务层接口

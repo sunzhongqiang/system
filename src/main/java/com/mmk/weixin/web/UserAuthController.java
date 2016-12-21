@@ -3,6 +3,8 @@ package com.mmk.weixin.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,10 +14,15 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.mmk.common.BaseController;
 import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
+import com.mmk.weixin.model.WxAppUser;
+import com.mmk.weixin.service.WxAppUserService;
 @RestController
 public class UserAuthController extends BaseController{
 	
 	private String REDIRECT_URI = "http://153159.com/weixin/user/info";
+	
+	@Resource
+	private WxAppUserService userService;
 	/**
      * 跳转至列表页面
      * @return 返回页面以及页面模型
@@ -44,6 +51,7 @@ public class UserAuthController extends BaseController{
 		Map<String, Object> params2 = new HashMap<String,Object>();
 		String accessToken = json.getString("access_token");
 		String openid = json.getString("openid");
+		WxAppUser user = userService.findByAppIdAndOpenId(appid,openid);
 		log.debug(accessToken);
 		log.debug(openid);
 		params2.put("access_token", accessToken);
@@ -51,6 +59,21 @@ public class UserAuthController extends BaseController{
 		params2.put("lang", "zh_CN");
 		String encodeUrl = ApiClient.encodeUrl(userUrl, params2);
 		result = ApiClient.get(encodeUrl);
+		JSONObject userJson = new JSONObject(result);
+		
+		if(user==null){
+			user = new WxAppUser();
+			user.setAppid(appid);
+			user.setOpenid(userJson.getString("openid"));
+			user.setNickname(userJson.getString("nickname"));
+			user.setSex(userJson.getString("sex"));
+			user.setLanguage(userJson.getString("language"));
+			user.setCity(userJson.getString("city"));
+			user.setCountry(userJson.getString("country"));
+			user.setHeadimgurl(userJson.getString("headimgurl"));
+			user.setProvince(userJson.getString("province"));
+			userService.save(user);
+		}
         return  result;
     }
 }

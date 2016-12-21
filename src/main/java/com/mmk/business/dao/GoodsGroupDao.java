@@ -7,14 +7,13 @@ package com.mmk.business.dao;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import com.mmk.gene.dao.SpringDataQueryDao;
-import com.mmk.trade.model.Tuan;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import com.mmk.business.condition.GoodsGroupCondition;
-import com.mmk.business.model.Goods;
 import com.mmk.business.model.GoodsGroup;
+import com.mmk.gene.dao.SpringDataQueryDao;
 /**
 * GoodsGroupDao:商品拼团管理 数据持久层接口
 * @author 孙中强 sunzhongqiang

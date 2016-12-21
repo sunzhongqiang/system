@@ -1,19 +1,22 @@
 package com.mmk.trade.service.impl;
 
-import javax.annotation.Resource;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.mmk.gene.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.trade.condition.ShippingCondition;
+import com.mmk.trade.dao.ShippingDao;
 import com.mmk.trade.dao.ShippingRepository;
 import com.mmk.trade.model.Shipping;
-import com.mmk.trade.condition.ShippingCondition;
 import com.mmk.trade.service.ShippingService;
-import com.mmk.trade.dao.ShippingDao;
 /**
 * ShippingServiceImpl: 物流管理 业务服务层实现
 * 2016-11-10 09:13:33
