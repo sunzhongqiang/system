@@ -62,10 +62,38 @@ public class ApiClient {
 		CloseableHttpClient createDefault = getClient();
 		CloseableHttpResponse response = null;
 		try {
-			url.concat("?");
-			for (String key : params.keySet()) {
-				url.concat("&").concat(key).concat("=").concat(String.valueOf(params.get(key)));
+			url = encodeUrl(url, params);
+			HttpGet get = new HttpGet(url);
+			// 执行请求
+			response = createDefault.execute(get);
+			// 处理返回结果
+			String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+			return result;
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (null != response) {
+					response.close();
+				}
+				if (null != createDefault) {
+					createDefault.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+		}
+		return null;
+	}
+	
+	public static String get(String url) {
+		CloseableHttpClient createDefault = getClient();
+		CloseableHttpResponse response = null;
+		try {
 			HttpGet get = new HttpGet(url);
 			// 执行请求
 			response = createDefault.execute(get);
@@ -162,5 +190,21 @@ public class ApiClient {
 			}
 		}
 		return null;
+	}
+	
+	
+	public static String encodeUrl(String uri,Map<String,Object> params){
+		StringBuffer url = new StringBuffer(uri);
+		if(params==null||params.isEmpty()){
+			return uri;
+		}
+		url.append("?");
+		for (String key : params.keySet()) {
+			url.append("&");
+			url.append(key);
+			url.append("=");
+			url.append(String.valueOf(params.get(key)));
+		}
+		return url.toString();
 	}
 }

@@ -4,28 +4,23 @@
  */
 package com.mmk.weixin.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.mmk.weixin.service.WxAuthAppService;
-import com.mmk.weixin.model.WxAuthApp;
 import com.mmk.weixin.condition.WxAuthAppCondition;
+import com.mmk.weixin.model.WxAuthApp;
+import com.mmk.weixin.service.WxAuthAppService;
 
 /**
 *@Title: WxAuthAppController

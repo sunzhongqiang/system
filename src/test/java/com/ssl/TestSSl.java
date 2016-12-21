@@ -25,11 +25,12 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
 
 public class TestSSl {
 
-	@Test
+//	@Test
 	public void test() {
 		
 		ConnectionSocketFactory plainsf = PlainConnectionSocketFactory.getSocketFactory();
@@ -84,6 +85,16 @@ public class TestSSl {
 		jsonParam.put("title", "121");// 标题  
 		jsonParam.put("content", 123);// 资讯内容  
 		System.out.println(jsonParam.toString());
+	}
+	
+	@Test
+	public void testUrl(){
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+		params.put("component_appsecret", WeiXinOpenParams.COMPONENT_APPSECRET);
+		params.put("component_verify_ticket", "abc");
+		String encodeUrl = ApiClient.encodeUrl("https://weixin.com", params);
+		System.out.println(encodeUrl);
 	}
 	
 	
