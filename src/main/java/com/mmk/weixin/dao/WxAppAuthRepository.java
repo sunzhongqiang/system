@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.mmk.weixin.model.WxAuthApp;
+import com.mmk.weixin.model.WxAppAuth;
 
 /**
 * WxAuthAppRepository: 微信授权APP 数据资源层
@@ -16,7 +16,7 @@ import com.mmk.weixin.model.WxAuthApp;
 * @author 孙中强 sunzhongqiang
 * @version 1.0
 */
-public interface WxAuthAppRepository extends JpaRepository<WxAuthApp, Long>{
+public interface WxAppAuthRepository extends JpaRepository<WxAppAuth, Long>{
 
     /**
      *  根据给定的字段：authorizerAppid 授权方appid返回符合条件的第一个对象
@@ -25,7 +25,7 @@ public interface WxAuthAppRepository extends JpaRepository<WxAuthApp, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    WxAuthApp findFirstByAuthorizerAppid(String authorizerAppid);
+    WxAppAuth findFirstByAuthorizerAppid(String authorizerAppid);
     /**
      *  根据给定的字段：modified 更新时间获取所有符合的记录
      * @param modified 更新时间
@@ -33,7 +33,7 @@ public interface WxAuthAppRepository extends JpaRepository<WxAuthApp, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    List<WxAuthApp> findAllByModified(Date modified);
+    List<WxAppAuth> findAllByModified(Date modified);
     /**
      *  根据给定的字段：modified 更新时间所有符合的记录
      * @param modified 更新时间
@@ -42,7 +42,7 @@ public interface WxAuthAppRepository extends JpaRepository<WxAuthApp, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    Page<WxAuthApp> findAllByModified(Date modified,Pageable pageable);
+    Page<WxAppAuth> findAllByModified(Date modified,Pageable pageable);
     /**
      *  根据给定的字段：nickName 昵称返回符合条件的第一个对象
      * @param nickName 昵称
@@ -50,6 +50,6 @@ public interface WxAuthAppRepository extends JpaRepository<WxAuthApp, Long>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    WxAuthApp findFirstByNickName(String nickName);
+    WxAppAuth findFirstByNickName(String nickName);
 
 }

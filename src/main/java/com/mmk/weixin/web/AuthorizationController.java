@@ -24,8 +24,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
-import com.mmk.weixin.model.WxAuthApp;
-import com.mmk.weixin.service.WxAuthAppService;
+import com.mmk.weixin.model.WxAppAuth;
+import com.mmk.weixin.service.WxAppAuthService;
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
@@ -37,7 +37,7 @@ public class AuthorizationController {
 			+ WeiXinOpenParams.COMPONENT_APPID + "&redirect_uri=" + WeiXinOpenParams.REDIRECT_URI + "&pre_auth_code=";
 	
 	@Resource
-	private WxAuthAppService wxAuthAppService;
+	private WxAppAuthService wxAuthAppService;
 
 	@RequestMapping("/weixin/auth")
 	public ModelAndView auth() {
@@ -76,9 +76,9 @@ public class AuthorizationController {
 		String authorizerAccessToken = info.getString("authorizer_access_token");
 		Integer expiresIn = info.getInt("expires_in");
 		String authorizerRefreshToken = info.getString("authorizer_refresh_token");
-		WxAuthApp authApp = wxAuthAppService.findByAuthorizerAppid(authorizerAppid);
+		WxAppAuth authApp = wxAuthAppService.findByAuthorizerAppid(authorizerAppid);
 		if(authApp==null){
-			authApp = new WxAuthApp();
+			authApp = new WxAppAuth();
 			authApp.setAuthorizerAppid(authorizerAppid);
 		}
 		authApp.setAuthorizerAccessToken(authorizerAccessToken);

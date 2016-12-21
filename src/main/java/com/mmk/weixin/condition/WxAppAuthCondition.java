@@ -4,7 +4,7 @@
  */
 package com.mmk.weixin.condition;
 import java.util.Date;
-import com.mmk.weixin.model.WxAuthApp;
+import com.mmk.weixin.model.WxAppAuth;
 
 /**
 * WxAuthAppCondition ： 微信授权APP 扩展查询模型
@@ -13,7 +13,7 @@ import com.mmk.weixin.model.WxAuthApp;
 *@version 1.0
 *
 */
-public class WxAuthAppCondition extends WxAuthApp{
+public class WxAppAuthCondition extends WxAppAuth{
 
 
 

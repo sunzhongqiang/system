@@ -9,14 +9,14 @@ import java.util.Map;
 import com.mmk.gene.dao.SpringDataQueryDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.weixin.condition.WxAuthAppCondition;
-import com.mmk.weixin.model.WxAuthApp;
+import com.mmk.weixin.condition.WxAppAuthCondition;
+import com.mmk.weixin.model.WxAppAuth;
 /**
 * WxAuthAppDao:微信授权APP 数据持久层接口
 * @author 孙中强 sunzhongqiang
 * @version 1.0
 */
-public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
+public interface WxAppAuthDao extends SpringDataQueryDao<WxAppAuth>{
     
     /**
      * 分页查询相关信息，根据传入的bean类对象和分页对象page取得查询结果集List
@@ -27,7 +27,7 @@ public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
      * 
      * 
      */
-    Page<WxAuthApp> list(WxAuthAppCondition wxAuthApp,Pageable pageable);
+    Page<WxAppAuth> list(WxAppAuthCondition wxAuthApp,Pageable pageable);
     /**
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
      * @param wxAuthApp 查询类
@@ -35,7 +35,7 @@ public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
      * @author 孙中强 sunzhongqiang
      * 
      */
-    List<WxAuthApp> list(WxAuthAppCondition wxAuthApp);
+    List<WxAppAuth> list(WxAppAuthCondition wxAuthApp);
     /**
      * 使用sql查询，并以map和分页的形式进行返回数据结果
      * @param wxAuthApp WxAuthApp类
@@ -45,7 +45,7 @@ public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
      * 
      * 
      */
-    Page<Map<String,Object>> listBySql(WxAuthAppCondition wxAuthApp,Pageable pageable);
+    Page<Map<String,Object>> listBySql(WxAppAuthCondition wxAuthApp,Pageable pageable);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field WxAuthApp 中的某个字段
@@ -55,7 +55,7 @@ public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
      * 
      * 
      */
-    WxAuthApp findBy(String field,Object value);
+    WxAppAuth findBy(String field,Object value);
     
     /**
      * 根据给定的字段和属性值，获得符合条件的所有结果
@@ -66,7 +66,7 @@ public interface WxAuthAppDao extends SpringDataQueryDao<WxAuthApp>{
      * 
      * 
      */
-    List<WxAuthApp> findAllBy(String field,Object value);
+    List<WxAppAuth> findAllBy(String field,Object value);
     
     
 

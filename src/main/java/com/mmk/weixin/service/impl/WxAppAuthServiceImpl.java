@@ -11,11 +11,11 @@ import org.apache.commons.logging.LogFactory;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.weixin.dao.WxAuthAppRepository;
-import com.mmk.weixin.model.WxAuthApp;
-import com.mmk.weixin.condition.WxAuthAppCondition;
-import com.mmk.weixin.service.WxAuthAppService;
-import com.mmk.weixin.dao.WxAuthAppDao;
+import com.mmk.weixin.dao.WxAppAuthRepository;
+import com.mmk.weixin.model.WxAppAuth;
+import com.mmk.weixin.condition.WxAppAuthCondition;
+import com.mmk.weixin.service.WxAppAuthService;
+import com.mmk.weixin.dao.WxAppAuthDao;
 /**
 * WxAuthAppServiceImpl: 微信授权APP 业务服务层实现
 * 2016-12-21 11:14:34
@@ -23,31 +23,31 @@ import com.mmk.weixin.dao.WxAuthAppDao;
 * @version 1.0
 */
 @Service
-public class WxAuthAppServiceImpl extends BaseServiceImpl<WxAuthApp, Long> implements WxAuthAppService {
+public class WxAppAuthServiceImpl extends BaseServiceImpl<WxAppAuth, Long> implements WxAppAuthService {
 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
-    private WxAuthAppDao wxAuthAppDao;
+    private WxAppAuthDao wxAuthAppDao;
     
-    private WxAuthAppRepository wxAuthAppRepository;
+    private WxAppAuthRepository wxAuthAppRepository;
     /**
     *构造方法
     * @param wxAuthAppRepository 数据容器
     */
     @Autowired
-    public WxAuthAppServiceImpl( WxAuthAppRepository wxAuthAppRepository) {
+    public WxAppAuthServiceImpl( WxAppAuthRepository wxAuthAppRepository) {
         super(wxAuthAppRepository);
         this.wxAuthAppRepository = wxAuthAppRepository;
     }
 
     @Override
-    public Page<WxAuthApp> list(WxAuthAppCondition wxAuthAppCondition, Pageable pageable) {
+    public Page<WxAppAuth> list(WxAppAuthCondition wxAuthAppCondition, Pageable pageable) {
         log.info("微信授权APP查询列表");
         return wxAuthAppDao.list(wxAuthAppCondition, pageable);
     }
     
     @Override
-    public List<WxAuthApp> list(WxAuthAppCondition wxAuthAppCondition) {
+    public List<WxAppAuth> list(WxAppAuthCondition wxAuthAppCondition) {
         log.info("微信授权APP查询列表无分页");
         return wxAuthAppDao.list(wxAuthAppCondition);
     }
@@ -58,7 +58,7 @@ public class WxAuthAppServiceImpl extends BaseServiceImpl<WxAuthApp, Long> imple
      * @return 符合条件的唯一对象
      */
     @Override
-    public WxAuthApp findByAuthorizerAppid(String authorizerAppid){
+    public WxAppAuth findByAuthorizerAppid(String authorizerAppid){
          return wxAuthAppRepository.findFirstByAuthorizerAppid(authorizerAppid);
     }
     /**
@@ -67,12 +67,12 @@ public class WxAuthAppServiceImpl extends BaseServiceImpl<WxAuthApp, Long> imple
      * @return 符合条件的所有对象
      */
     @Override
-    public List<WxAuthApp>  findAllByModified(Date modified){
+    public List<WxAppAuth>  findAllByModified(Date modified){
         return wxAuthAppRepository.findAllByModified(modified);
     }
     
      @Override
-    public Page<WxAuthApp>  findAllByModified(Date modified, Pageable pageable){
+    public Page<WxAppAuth>  findAllByModified(Date modified, Pageable pageable){
         return wxAuthAppRepository.findAllByModified(modified,pageable);
     }
     /**
@@ -81,17 +81,17 @@ public class WxAuthAppServiceImpl extends BaseServiceImpl<WxAuthApp, Long> imple
      * @return 符合条件的唯一对象
      */
     @Override
-    public WxAuthApp findByNickName(String nickName){
+    public WxAppAuth findByNickName(String nickName){
          return wxAuthAppRepository.findFirstByNickName(nickName);
     }
     @Override 
-    public WxAuthApp findBy(String field,Object value){
+    public WxAppAuth findBy(String field,Object value){
         log.info("微信授权APP根据字["+field+"="+value+"] 进行查询符合条件的唯一值");
         return wxAuthAppDao.findBy(field,value);
     }
     
     @Override 
-    public List<WxAuthApp> findAllBy(String field,Object value){
+    public List<WxAppAuth> findAllBy(String field,Object value){
         log.info("微信授权APP根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return wxAuthAppDao.findAllBy(field,value);
     }

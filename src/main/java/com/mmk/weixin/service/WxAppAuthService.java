@@ -5,8 +5,8 @@ import java.util.List;
 import com.mmk.gene.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.mmk.weixin.model.WxAuthApp;
-import com.mmk.weixin.condition.WxAuthAppCondition;
+import com.mmk.weixin.model.WxAppAuth;
+import com.mmk.weixin.condition.WxAppAuthCondition;
 
 /**
 * WxAuthAppService: 微信授权APP 业务服务层接口
@@ -14,7 +14,7 @@ import com.mmk.weixin.condition.WxAuthAppCondition;
 *@author 孙中强 sunzhongqiang
 *@version 1.0
 */
-public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
+public interface WxAppAuthService extends BaseService<WxAppAuth, Long> {
     /**
      * 生成的列表分页查询方法
      * @param wxAuthAppCondition  查询条件
@@ -23,7 +23,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    Page<WxAuthApp> list(WxAuthAppCondition wxAuthAppCondition, Pageable pageable);
+    Page<WxAppAuth> list(WxAppAuthCondition wxAuthAppCondition, Pageable pageable);
     
     /**
      * 不分页查询相关信息，根据传入的model类对象取得查询结果集List
@@ -32,7 +32,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    public List<WxAuthApp> list(WxAuthAppCondition wxAuthApp);
+    public List<WxAppAuth> list(WxAppAuthCondition wxAuthApp);
 
     /**
      * 根据给定的字段返回符合的对象
@@ -41,7 +41,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    WxAuthApp findByAuthorizerAppid(String authorizerAppid);
+    WxAppAuth findByAuthorizerAppid(String authorizerAppid);
     /**
      * 根据字段获取所有符合的记录
      * @param modified 更新时间
@@ -49,7 +49,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    List<WxAuthApp> findAllByModified(Date modified);
+    List<WxAppAuth> findAllByModified(Date modified);
     /**
      * 根据字段获取所有符合的记录
      * @param modified 更新时间
@@ -58,7 +58,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    Page<WxAuthApp> findAllByModified(Date modified, Pageable pageable);
+    Page<WxAppAuth> findAllByModified(Date modified, Pageable pageable);
     /**
      * 根据给定的字段返回符合的对象
      * @param nickName 昵称
@@ -66,7 +66,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * @author 孙中强 sunzhongqiang
      * 
      */
-    WxAuthApp findByNickName(String nickName);
+    WxAppAuth findByNickName(String nickName);
     /**
      * 根据给定的字段和属性值，获得符合条件的第一个结果
      * @param field WxAuthApp 中的某个字段
@@ -76,7 +76,7 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * 
      * 
      */
-    WxAuthApp findBy(String field,Object value);
+    WxAppAuth findBy(String field,Object value);
     
     /**
      * 根据给定的字段和属性值，获得符合条件的所有结果
@@ -87,5 +87,5 @@ public interface WxAuthAppService extends BaseService<WxAuthApp, Long> {
      * 
      * 
      */
-    List<WxAuthApp> findAllBy(String field,Object value);
+    List<WxAppAuth> findAllBy(String field,Object value);
 }

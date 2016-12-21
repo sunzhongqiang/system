@@ -18,9 +18,9 @@ import com.mmk.common.BaseController;
 import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
-import com.mmk.weixin.condition.WxAuthAppCondition;
-import com.mmk.weixin.model.WxAuthApp;
-import com.mmk.weixin.service.WxAuthAppService;
+import com.mmk.weixin.condition.WxAppAuthCondition;
+import com.mmk.weixin.model.WxAppAuth;
+import com.mmk.weixin.service.WxAppAuthService;
 
 /**
 *@Title: WxAuthAppController
@@ -28,10 +28,10 @@ import com.mmk.weixin.service.WxAuthAppService;
 *@author 孙中强 sunzhongqiang
 */
 @RestController
-public class WxAuthAppController extends BaseController {
+public class WxAppAuthController extends BaseController {
     
     @Resource 
-    private WxAuthAppService wxAuthAppService;
+    private WxAppAuthService wxAuthAppService;
 
     /**
      * 跳转至列表页面
@@ -56,10 +56,10 @@ public class WxAuthAppController extends BaseController {
      */
     @RequestMapping("/weixin/wxAuthApp/gridData")
     @ResponseBody
-    public GridData<WxAuthApp> loadList(WxAuthAppCondition wxAuthAppCondition, EasyPageable pageable){
+    public GridData<WxAppAuth> loadList(WxAppAuthCondition wxAuthAppCondition, EasyPageable pageable){
         log.info("获取微信授权APP列表数据");
-        Page<WxAuthApp> wxAuthAppPage = wxAuthAppService.list(wxAuthAppCondition,pageable.pageable());   
-        GridData<WxAuthApp> grid = new GridData<WxAuthApp>(wxAuthAppPage);
+        Page<WxAppAuth> wxAuthAppPage = wxAuthAppService.list(wxAuthAppCondition,pageable.pageable());   
+        GridData<WxAppAuth> grid = new GridData<WxAppAuth>(wxAuthAppPage);
         return grid;
     }
     
@@ -70,7 +70,7 @@ public class WxAuthAppController extends BaseController {
     @RequestMapping("/weixin/wxAuthApp/add")
     public ModelAndView addPage(){
         ModelAndView modelAndView = new ModelAndView("weixin/wxAuthApp/form");
-        modelAndView.addObject("wxAuthApp", new WxAuthApp());
+        modelAndView.addObject("wxAuthApp", new WxAppAuth());
         return modelAndView;
     }
     
@@ -79,7 +79,7 @@ public class WxAuthAppController extends BaseController {
      * @param wxAuthApp  跳转到编辑页面
      */ 
     @RequestMapping("/weixin/wxAuthApp/edit")
-    public ModelAndView editPage(WxAuthApp wxAuthApp){
+    public ModelAndView editPage(WxAppAuth wxAuthApp){
         log.info("微信授权APP编辑页面");
         wxAuthApp = wxAuthAppService.find(wxAuthApp.getId());
         ModelAndView modelAndView = new ModelAndView("weixin/wxAuthApp/form");
@@ -95,7 +95,7 @@ public class WxAuthAppController extends BaseController {
      */
     @RequestMapping("/weixin/wxAuthApp/save")
     @ResponseBody
-    public ResultMsg save(WxAuthApp wxAuthApp){
+    public ResultMsg save(WxAppAuth wxAuthApp){
         log.info("微信授权APP保存");
         try {
             wxAuthAppService.save(wxAuthApp);
@@ -114,7 +114,7 @@ public class WxAuthAppController extends BaseController {
      */ 
     @RequestMapping("/weixin/wxAuthApp/details")
     @ResponseBody
-    public WxAuthApp details(WxAuthApp wxAuthApp){
+    public WxAppAuth details(WxAppAuth wxAuthApp){
         log.info("微信授权APP详细信息");
         wxAuthApp = wxAuthAppService.find(wxAuthApp.getId());
         return wxAuthApp;
@@ -126,7 +126,7 @@ public class WxAuthAppController extends BaseController {
      * @return
      */
     @RequestMapping("/weixin/wxAuthApp/delete")
-    public ResultMsg delete(WxAuthApp wxAuthApp){
+    public ResultMsg delete(WxAppAuth wxAuthApp){
         log.info("微信授权APP删除");
         try {
             wxAuthAppService.delete(wxAuthApp);
@@ -143,7 +143,7 @@ public class WxAuthAppController extends BaseController {
      * @return ture or false 如果成功返回true ,出现错误返回false
      */
     @RequestMapping("/weixin/wxAuthApp/deleteAll")
-    public boolean delete(List<WxAuthApp> wxAuthAppList){
+    public boolean delete(List<WxAppAuth> wxAuthAppList){
         log.info("微信授权APP批量删除");
         try {
             wxAuthAppService.delete(wxAuthAppList);

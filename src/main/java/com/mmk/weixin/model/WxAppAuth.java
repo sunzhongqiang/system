@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 *@version 1.0
 */
 @Entity
-@Table(name="wx_auth_app")
-public class WxAuthApp {
+@Table(name="wx_app_auth")
+public class WxAppAuth {
     /**
      * 
      */
