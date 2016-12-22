@@ -97,4 +97,9 @@ public class WxAppAuthServiceImpl extends BaseServiceImpl<WxAppAuth, Long> imple
         log.info("微信授权APP根据字["+field+"="+value+"] 进行查询符合条件的所有记录");
         return wxAuthAppDao.findAllBy(field,value);
     }
+
+	@Override
+	public List<WxAppAuth> findAllAuthTimeout(Integer timeout) {
+		return wxAuthAppDao.findAllAuthTimeout(timeout);
+	}
 }

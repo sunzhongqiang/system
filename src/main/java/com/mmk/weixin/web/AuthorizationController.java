@@ -26,6 +26,7 @@ import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
 import com.mmk.weixin.model.WxAppAuth;
 import com.mmk.weixin.service.WxAppAuthService;
+import com.mmk.weixin.service.WxAppConfigService;
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 
@@ -38,6 +39,8 @@ public class AuthorizationController {
 	
 	@Resource
 	private WxAppAuthService wxAuthAppService;
+	@Resource
+	private WxAppConfigService configService;
 
 	@RequestMapping("/weixin/auth")
 	public ModelAndView auth() {
@@ -105,6 +108,7 @@ public class AuthorizationController {
 		JSONObject json = new JSONObject(token);
 		WeiXinOpenParams.COMPONENT_ACCESS_TOKEN = json.getString("component_access_token");
 		log.debug("token:" + token);
+		configService.refresh("COMPONENT_ACCESS_TOKEN",WeiXinOpenParams.COMPONENT_ACCESS_TOKEN,"COMPONENT_ACCESS_TOKEN");
 		return token;
 	}
 

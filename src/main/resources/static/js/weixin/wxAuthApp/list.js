@@ -41,6 +41,7 @@
                 width : '80',
                 title : '更新时间',
                 field : 'modified',
+                formatter: formatDatebox,
             },
             {
                 width : '80',

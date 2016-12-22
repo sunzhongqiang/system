@@ -28,9 +28,9 @@ public class UserAuthController extends BaseController{
      * @return 返回页面以及页面模型
      */
     @RequestMapping("/weixin/user/login")
-    public ModelAndView login(){
+    public ModelAndView login(String appid){
         log.info("代公众号实现业务，获取用户授权");
-        String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4eea902ba31461ff&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_userinfo&state=wx4eea902ba31461ff&component_appid="+WeiXinOpenParams.COMPONENT_APPID+"#wechat_redirect";
+        String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+REDIRECT_URI+"&response_type=code&scope=snsapi_userinfo&state=&component_appid="+WeiXinOpenParams.COMPONENT_APPID+"#wechat_redirect";
         ModelAndView modelAndView = new ModelAndView(new RedirectView(url));
         return  modelAndView;
     }

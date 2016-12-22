@@ -1,5 +1,7 @@
 package com.mmk.weixin.task;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
+import com.mmk.weixin.model.WxAppAuth;
 import com.mmk.weixin.model.WxAppConfig;
+import com.mmk.weixin.service.WxAppAuthService;
 import com.mmk.weixin.service.WxAppConfigService;
 
 @Service
@@ -21,6 +25,8 @@ public class TokenTask {
 	
 	@Resource
 	private WxAppConfigService configService;
+	@Resource
+	private WxAppAuthService appService;
 
 	/**
 	 * 定时检查团订单是否到期
@@ -39,6 +45,32 @@ public class TokenTask {
 		WeiXinOpenParams.COMPONENT_ACCESS_TOKEN = json.getString("component_access_token");
 		log.debug("token:"+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN);
 		configService.refresh("COMPONENT_ACCESS_TOKEN",WeiXinOpenParams.COMPONENT_ACCESS_TOKEN,"COMPONENT_ACCESS_TOKEN");
+		
+	}
+	
+	/**
+	 * 定时检查团订单是否到期
+	 */
+	@Scheduled(cron = "0 0 * * * ?")
+	public void refreshAppToken() {
+		log.info("刷新公众号的授权>>>当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
+
+		List<WxAppAuth> authTimeouts = appService.findAllAuthTimeout(600);
+		for (WxAppAuth wxAppAuth : authTimeouts) {
+			JSONObject params = new JSONObject();
+			params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
+			params.put("authorizer_appid", wxAppAuth.getAuthorizerAppid());
+			params.put("authorizer_refresh_token", wxAppAuth.getAuthorizerRefreshToken());
+			String result = ApiClient.postJson("https:// api.weixin.qq.com /cgi-bin/component/api_authorizer_token?component_access_token="+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, params);
+			log.debug("服务器返回："+result);
+			JSONObject json = new JSONObject(result);
+			String accessToken = json.getString("authorizer_access_token");
+			String authorizerRefreshToken = json.getString("authorizer_refresh_token");
+			wxAppAuth.setAuthorizerAccessToken(accessToken);
+			wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
+			appService.save(wxAppAuth);
+		}
+		
 		
 	}
 }

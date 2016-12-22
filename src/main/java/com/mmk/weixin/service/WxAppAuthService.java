@@ -90,4 +90,11 @@ public interface WxAppAuthService extends BaseService<WxAppAuth, Long> {
      * 
      */
     List<WxAppAuth> findAllBy(String field,Object value);
+
+    /**
+     * 获取临近过期的公众号
+     * @param timeout 临期时间秒
+     * @return
+     */
+	List<WxAppAuth> findAllAuthTimeout(Integer timeout);
 }
