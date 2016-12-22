@@ -1,6 +1,8 @@
 package com.mmk.task.trade;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,6 +21,7 @@ import com.mmk.trade.model.Tuan;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.TuanService;
+import com.mmk.weixin.service.MessageTemplateService;
 
 @Service
 public class TradeHourJob {
@@ -29,6 +32,8 @@ public class TradeHourJob {
 	private TuanService tuanService;
 	@Resource
 	private TuanOrderService orderService;
+	@Resource
+	private MessageTemplateService templateService;
 
 	/**
 	 * 定时检查团订单是否到期

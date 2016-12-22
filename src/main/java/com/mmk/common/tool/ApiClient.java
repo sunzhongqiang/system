@@ -1,19 +1,21 @@
 package com.mmk.common.tool;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.EntityBuilder;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.HttpClientConnectionManager;
@@ -117,12 +119,14 @@ public class ApiClient {
 			HttpPost post = new HttpPost(url);
 			List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 			for (String key : params.keySet()) {
-				NameValuePair value = new BasicNameValuePair(key, String.valueOf(params.get(key)));
+				String value2 = String.valueOf(params.get(key));
+				NameValuePair value = new BasicNameValuePair(key, value2);
 				parameters.add(value);
 			}
 
-			HttpEntity entity = EntityBuilder.create().setParameters(parameters).build();
-			post.setEntity(entity);
+			UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(parameters,"UTF-8");
+//			HttpEntity entity = EntityBuilder.create().setParameters(parameters).build();
+			post.setEntity(urlEncodedFormEntity);
 			// 执行请求
 			response = createDefault.execute(post);
 			// 处理返回结果
@@ -194,6 +198,11 @@ public class ApiClient {
 			url.append("=");
 			url.append(String.valueOf(params.get(key)));
 		}
-		return url.toString();
+		try {
+			return  URLEncoder.encode(url.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }

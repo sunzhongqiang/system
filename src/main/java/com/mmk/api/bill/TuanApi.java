@@ -30,6 +30,7 @@ import com.mmk.trade.model.Tuan;
 import com.mmk.trade.model.TuanOrder;
 import com.mmk.trade.service.TuanOrderService;
 import com.mmk.trade.service.TuanService;
+import com.mmk.weixin.service.MessageTemplateService;
 
 @RestController
 public class TuanApi {
@@ -45,6 +46,9 @@ public class TuanApi {
 	private UserAddressService addressService;
 	@Resource
 	private WxUserService userService;
+	
+	@Resource
+	private MessageTemplateService templateService;
 
 	/**
 	 * 团管理
@@ -123,6 +127,13 @@ public class TuanApi {
 		order.setHeadimgurl(user.getHeadimgurl());
 		order.setGoodsImg(goods.getGoodsMainImg());
 		order = orderService.save(order);
+		
+		Map<String, Object> data = new HashMap<String,Object>();
+		data.put("openid", order.getUser().getOpenid());
+		data.put("first", goods.getGoodsName());
+		data.put("leadername", bean.getCommander().getNickname());
+		data.put("remark", "参团成功");
+		templateService.sendMessage("", data );
 
 		tuanService.save(bean);
 		ResultData result = new ResultData(true, "查找成功完成");
@@ -193,6 +204,13 @@ public class TuanApi {
 		group.setGroupNum(groupNum);
 		groupService.save(group);
 		
+		Map<String, Object> data = new HashMap<String,Object>();
+		data.put("openid", order.getUser().getOpenid());
+		data.put("first", goods.getGoodsName());
+		data.put("leadername", bean.getCommander().getNickname());
+		data.put("remark", "参团成功");
+		templateService.sendMessage("", data );
+		
 		ResultData result = new ResultData(true, "开团完成");
 		result.addData("tuan", bean);
 		result.addData("order", order);
@@ -231,6 +249,8 @@ public class TuanApi {
 			tuanService.save(tuan);
 			orderService.save(tuanOrder);
 		}
+		
+		
 		
 		ResultData result = new ResultData(true, "团订单已修改成待成团或待发货状态！");
 		result.addData("tuan", tuan);
