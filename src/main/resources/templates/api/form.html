@@ -51,6 +51,8 @@
 						    <option th:unless="${api.apiGroup} eq '付款API'">付款API</option>
 						    <option selected="selected" th:if="${api.apiGroup} eq '付款API'">广告API</option>
 						    <option th:unless="${api.apiGroup} eq '付款API'">广告API</option>
+						    <option selected="selected" th:if="${api.apiGroup} eq '微信API'">微信API</option>
+						    <option th:unless="${api.apiGroup} eq '微信API'">微信API</option>
 						</select>
                         </td>
                     </tr>
