@@ -130,6 +130,7 @@ public class AuthorizationController {
 			String decryptMsg = pc.decryptMsg(msgSignature, timestamp, nonce, xml);
 			Map<String, String> map = getMapFromXml(decryptMsg);
 			WeiXinOpenParams.COMPONENT_VERIFY_TICKET = map.get("ComponentVerifyTicket");
+			configService.refresh("ComponentVerifyTicket", WeiXinOpenParams.COMPONENT_VERIFY_TICKET, "组件票据");
 			log.debug("获得ticket:" + WeiXinOpenParams.COMPONENT_VERIFY_TICKET);
 		} catch (AesException e) {
 			log.error(e.getMessage());

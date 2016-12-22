@@ -91,9 +91,8 @@ public class WxAppAuthDaoImpl extends SpringDataQueryDaoImpl<WxAppAuth> implemen
 
 	@Override
 	public List<WxAppAuth> findAllAuthTimeout(Integer timeout) {
-		StringBuffer sb = new StringBuffer("select model from WxAppAuth model  where model.modified + model. expiresIn < now() + :timeout");
+		StringBuffer sb = new StringBuffer("select model from WxAppAuth model  where model.modified + model. expiresIn < now() + " + timeout);
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("timeout", timeout);
 		return queryByJpql(sb.toString(), params);
 	}
 
