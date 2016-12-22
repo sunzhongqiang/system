@@ -18,17 +18,23 @@
                 field : 'id',
             },
             {
-                width : '80',
+                width : '180',
                 title : '配置名称',
                 field : 'code',
             },
             {
-                width : '80',
+                width : '280',
                 title : '配置值',
                 field : 'value',
             },
             {
-                width : '80',
+                width : '120',
+                title : '更新时间',
+                field : 'modified',
+                formatter: formatDatebox,
+            },
+            {
+                width : '380',
                 title : '备注',
                 field : 'remark',
             },

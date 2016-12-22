@@ -1,6 +1,6 @@
 /*
  * 
- *  WxAppConfig 创建于 2016-12-22 08:39:57 版权归作者和作者当前组织所有
+ *  WxAppConfig 创建于 2016-12-22 10:17:54 版权归作者和作者当前组织所有
  */
 package com.mmk.weixin.model;
 
@@ -10,11 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
 * WxAppConfig: 微信开发者账号配置 数据领域模型
-* 2016-12-22 08:39:57
-*@author 孙中强 sunzhongqiang
+* 2016-12-22 10:17:54
+*@author 
 *@version 1.0
 */
 @Entity
@@ -45,6 +48,13 @@ public class WxAppConfig {
      */
     @Column(name="remark",columnDefinition="COMMENT '备注'")
     private String remark;
+
+    /**
+     * 过期时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)   
+    @Column(name="modified",columnDefinition="COMMENT '过期时间'")
+    private Date modified;
 
 
     /** 
@@ -97,6 +107,19 @@ public class WxAppConfig {
     */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /** 
+	* @return modified ：过期时间
+	*/
+    public Date getModified() {
+        return modified;
+    }
+    /** 
+    *@param modified 设置过期时间 
+    */
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
 

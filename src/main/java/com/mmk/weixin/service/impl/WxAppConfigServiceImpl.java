@@ -90,6 +90,7 @@ public class WxAppConfigServiceImpl extends BaseServiceImpl<WxAppConfig, Long> i
 			config.setCode(code);
 			config.setRemark(remark);
 		}
+		config.setModified(new Date());
 		config.setValue(value);
 		save(config);
 	}
