@@ -53,6 +53,15 @@ public class TradeHourJob {
 				for (TuanOrder tuanOrder : orders) {
 					tuanOrder.setOrderStatus(TuanOrderStatus.CLOSED.name());
 					orderService.save(tuanOrder);
+					Map<String, Object> data = new HashMap<String,Object>();
+					data.put("openid", tuanOrder.getUser().getOpenid());
+					data.put("first", "你有一个团超时关闭了");
+					data.put("keyword1", tuanOrder.getOrderPrice());
+					data.put("keyword2", tuan.getGoodsName());
+					data.put("keyword3", tuanOrder.getAddress().replaceAll("*", " "));
+					data.put("keyword4", tuanOrder.getOrderCode());
+					data.put("remark", "订单关闭");
+					templateService.closeMessage(data );
 				}
 				tuanService.save(tuan);
 			}

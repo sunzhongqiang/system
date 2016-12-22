@@ -23,4 +23,11 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
 		log.debug(result);
 	}
 
+	@Override
+	public void closeMessage(Map<String, Object> data) {
+		String url = "http://wx.yiqingo.net/Api/Team/CloseOrder";
+		String result = ApiClient.post(url , data);
+		log.debug(result);
+	}
+
 }
