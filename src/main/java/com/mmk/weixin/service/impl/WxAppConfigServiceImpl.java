@@ -84,7 +84,7 @@ public class WxAppConfigServiceImpl extends BaseServiceImpl<WxAppConfig, Long> i
 
 	@Override
 	public void refresh(String code, String value, String remark) {
-		WxAppConfig config = findByCode("COMPONENT_ACCESS_TOKEN");
+		WxAppConfig config = findByCode(code);
 		if(config==null){
 			config = new WxAppConfig();
 			config.setCode(code);
