@@ -224,15 +224,12 @@ public class TuanApi {
 		orderService.save(tuanOrder);
 		tuanService.save(tuan);
 		
-		Map<String, Object> data = new HashMap<String,Object>();
-		data.put("openid", tuanOrder.getUser().getOpenid());
-		data.put("first", tuan.getGoodsName());
-		data.put("leadername", tuan.getCommander().getNickname());
-		data.put("remark", "参团成功");
-		templateService.sendMessage("", data );
+		
 		
 		// 团订单
 		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
+		
+		
 		// 成团状态设置
 		if (tuan.getPeopleNum() == orderList.size()) {
 			
@@ -246,6 +243,13 @@ public class TuanApi {
 			orderService.save(tuanOrder);
 		}
 		
+		Map<String, Object> data = new HashMap<String,Object>();
+		data.put("openid", tuanOrder.getUser().getOpenid());
+		data.put("first", tuan.getGoodsName());
+		data.put("leadername", tuan.getCommander().getNickname());
+		data.put("number", tuan.getPeopleNum() - orderList.size());
+		data.put("remark", "参团成功");
+		templateService.sendMessage("", data );
 		
 		
 		ResultData result = new ResultData(true, "团订单已修改成待成团或待发货状态！");
