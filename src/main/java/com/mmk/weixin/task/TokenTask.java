@@ -1,5 +1,6 @@
 package com.mmk.weixin.task;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -68,6 +69,7 @@ public class TokenTask {
 			String authorizerRefreshToken = json.getString("authorizer_refresh_token");
 			wxAppAuth.setAuthorizerAccessToken(accessToken);
 			wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
+			wxAppAuth.setModified(new Date());
 			appService.save(wxAppAuth);
 		}
 		
