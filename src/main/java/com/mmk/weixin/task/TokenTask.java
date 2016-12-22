@@ -1,5 +1,7 @@
 package com.mmk.weixin.task;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -9,16 +11,21 @@ import org.springframework.stereotype.Service;
 
 import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
+import com.mmk.weixin.model.WxAppConfig;
+import com.mmk.weixin.service.WxAppConfigService;
 
 @Service
 public class TokenTask {
 
 	protected Log log = LogFactory.getLog(this.getClass());
+	
+	@Resource
+	private WxAppConfigService configService;
 
 	/**
 	 * 定时检查团订单是否到期
 	 */
-	@Scheduled(cron = "0 0/10 * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
 	public void checkOvertime() {
 		log.info("当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
 
@@ -31,5 +38,7 @@ public class TokenTask {
 		JSONObject json = new JSONObject(token);
 		WeiXinOpenParams.COMPONENT_ACCESS_TOKEN = json.getString("component_access_token");
 		log.debug("token:"+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN);
+		configService.refresh("COMPONENT_ACCESS_TOKEN",WeiXinOpenParams.COMPONENT_ACCESS_TOKEN,"COMPONENT_ACCESS_TOKEN");
+		
 	}
 }
