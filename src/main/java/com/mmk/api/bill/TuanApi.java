@@ -128,12 +128,6 @@ public class TuanApi {
 		order.setGoodsImg(goods.getGoodsMainImg());
 		order = orderService.save(order);
 		
-		Map<String, Object> data = new HashMap<String,Object>();
-		data.put("openid", order.getUser().getOpenid());
-		data.put("first", goods.getGoodsName());
-		data.put("leadername", bean.getCommander().getNickname());
-		data.put("remark", "参团成功");
-		templateService.sendMessage("", data );
 
 		tuanService.save(bean);
 		ResultData result = new ResultData(true, "查找成功完成");
@@ -204,12 +198,7 @@ public class TuanApi {
 		group.setGroupNum(groupNum);
 		groupService.save(group);
 		
-		Map<String, Object> data = new HashMap<String,Object>();
-		data.put("openid", order.getUser().getOpenid());
-		data.put("first", goods.getGoodsName());
-		data.put("leadername", bean.getCommander().getNickname());
-		data.put("remark", "参团成功");
-		templateService.sendMessage("", data );
+		
 		
 		ResultData result = new ResultData(true, "开团完成");
 		result.addData("tuan", bean);
@@ -234,6 +223,13 @@ public class TuanApi {
 		tuan.setJoinNum(tuan.getJoinNum() + 1l);
 		orderService.save(tuanOrder);
 		tuanService.save(tuan);
+		
+		Map<String, Object> data = new HashMap<String,Object>();
+		data.put("openid", tuanOrder.getUser().getOpenid());
+		data.put("first", tuan.getGoodsName());
+		data.put("leadername", tuan.getCommander().getNickname());
+		data.put("remark", "参团成功");
+		templateService.sendMessage("", data );
 		
 		// 团订单
 		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
