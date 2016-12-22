@@ -51,11 +51,11 @@ public class TokenTask {
 	/**
 	 * 定时检查团订单是否到期
 	 */
-	@Scheduled(cron = "0 0 * * * ?")
+	@Scheduled(cron = "0 0/5 * * * ?")
 	public void refreshAppToken() {
 		log.info("刷新公众号的授权>>>当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
 
-		List<WxAppAuth> authTimeouts = appService.findAllAuthTimeout(600);
+		List<WxAppAuth> authTimeouts = appService.findAllAuthTimeout(660);
 		for (WxAppAuth wxAppAuth : authTimeouts) {
 			JSONObject params = new JSONObject();
 			params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
