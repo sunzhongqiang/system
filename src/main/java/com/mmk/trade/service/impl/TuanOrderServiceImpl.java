@@ -164,6 +164,28 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 		}
 	}
 
+    public static int[] GetRandomSequence2(int total)
+      {
+    	  int[] sequence = new int[total];
+          int[] output = new int[total];
+
+          for (int i = 0; i < total; i++){
+              sequence[i] = i;
+          }
+
+          Random random = new Random();
+          int end = total - 1;
+
+          for (int i = 0; i < total; i++){
+              int num = random.nextInt(total);
+              output[i] = sequence[num];
+              sequence[num] = sequence[end];
+              end--;
+          }
+
+          return output;
+      }
+	  
 	@Override
 	public TuanOrder findByOrderCode(String orderCode) {
 		return orderDao.findByOrderCode(orderCode);
