@@ -153,12 +153,13 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 	@Override
 	public Page<GoodsGroup> findAllByStart(Date begin, Date end,Long type,Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from GoodsGroup model ");
-		sb.append(" where model.startTime between DATE(:start) and DATE(:end) ");
+//		sb.append(" where model.startTime between DATE(:start) and DATE(:end) ");
+		sb.append(" where model.startTime > DATE(:start) ");
 
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("start", begin);
-		params.put("end", end);
+//		params.put("end", end);
 		if(type!=null){
 			sb.append(" and model.type = :type ");
 			params.put("type", type);
