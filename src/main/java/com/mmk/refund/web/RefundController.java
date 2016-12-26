@@ -125,12 +125,15 @@ public class RefundController extends BaseController {
     public ModelAndView refundDetail(Long id){
         log.info("查看订单详情页面");
         ModelAndView modelAndView = new ModelAndView("/refund/refundDetail");
-        TuanOrder order = orderService.findById(id);
-        WxUser user = order.getUser();
+        
         Refund refund = refundService.find(id);
-        modelAndView.addObject("order", order);
         modelAndView.addObject("refund", refund);
-        modelAndView.addObject("user", user);
+        TuanOrder order = orderService.findByOrderCode(refund.getOrderSn());
+        modelAndView.addObject("order", order);
+       if(order!=null){
+    	   WxUser user = order.getUser();
+           modelAndView.addObject("user", user);
+       }
         
         return modelAndView ;
     } 
