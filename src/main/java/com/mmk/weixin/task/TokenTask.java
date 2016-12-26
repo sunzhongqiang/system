@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.mmk.common.tool.ApiClient;
 import com.mmk.weixin.constants.WeiXinOpenParams;
 import com.mmk.weixin.model.WxAppAuth;
-import com.mmk.weixin.model.WxAppConfig;
 import com.mmk.weixin.service.WxAppAuthService;
 import com.mmk.weixin.service.WxAppConfigService;
 
