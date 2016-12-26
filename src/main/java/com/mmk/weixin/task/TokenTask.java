@@ -66,12 +66,14 @@ public class TokenTask {
 			log.debug("服务器返回："+result);
 			if(StringUtils.isNotBlank(result)){
 				JSONObject json = new JSONObject(result);
-				String accessToken = json.getString("authorizer_access_token");
-				String authorizerRefreshToken = json.getString("authorizer_refresh_token");
-				wxAppAuth.setAuthorizerAccessToken(accessToken);
-				wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
-				wxAppAuth.setModified(new Date());
-				appService.save(wxAppAuth);
+				if(json.has("authorizer_access_token")){
+					String accessToken = json.getString("authorizer_access_token");
+					String authorizerRefreshToken = json.getString("authorizer_refresh_token");
+					wxAppAuth.setAuthorizerAccessToken(accessToken);
+					wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
+					wxAppAuth.setModified(new Date());
+					appService.save(wxAppAuth);
+				}
 			}
 		}
 		
