@@ -99,6 +99,8 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setApplyRefundFee(tuanOrder.getOrderPrice());
 		refund.setGoodsId(tuanOrder.getGoodsId());
 		refund.setGoodsPrice(tuanOrder.getGoodsPrice());
+		refund.setGoodsImg(tuanOrder.getGoodsImg());
+		refund.setGoodsName(tuanOrder.getGoodsName());
 		refund.setHasGoodsReturn("0");
 		refund.setOrderStatus(tuanOrder.getOrderStatus());
 		refund.setRefundStatus(RefundStatus.WAIT_REFUND_MONEY.name());
@@ -106,14 +108,14 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setRefundCreateTime(new Date());
 		refund.setUserId(tuanOrder.getUser().getId());
 		refund.setUserName(tuanOrder.getUserName());
-		refund.setGoodsImg(tuanOrder.getGoodsImg());
-		refund.setGoodsName(tuanOrder.getGoodsName());
+		
 		
 		copyAddress(tuanOrder,refund);
 		
 		
 
 		String result = ApiClient.post("http://wx.yiqingo.net/Api/WxPay/Refund", params);
+		log.debug("退款接口调用结果："+result);
 		
 		save(refund);
 		
@@ -121,7 +123,6 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		
 		orderService.save(tuanOrder);
 		
-		log.debug(result);
 		return false;
 	}
 
