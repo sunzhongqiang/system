@@ -88,8 +88,8 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		TuanOrder tuanOrder = orderService.find(id);
 		Map<String, Object> params = new HashMap<String,Object>();
 		params.put("tradeNo", tuanOrder.getTuanCode());
-		params.put("refundFee ", tuanOrder.getOrderPrice());
-		params.put("totalFee ", tuanOrder.getOrderPrice());
+		params.put("refundFee", tuanOrder.getOrderPrice());
+		params.put("totalFee", tuanOrder.getOrderPrice());
 		String refundNo = "REFUND"+DateTime.now().toString("yyyyMMddHHmmssSSS"); 
 		params.put("refundNo", refundNo);
 		
