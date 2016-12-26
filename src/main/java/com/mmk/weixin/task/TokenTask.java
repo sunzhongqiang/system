@@ -62,7 +62,7 @@ public class TokenTask {
 			params.put("component_appid", WeiXinOpenParams.COMPONENT_APPID);
 			params.put("authorizer_appid", wxAppAuth.getAuthorizerAppid());
 			params.put("authorizer_refresh_token", wxAppAuth.getAuthorizerRefreshToken());
-			String result = ApiClient.postJson("https:// api.weixin.qq.com /cgi-bin/component/api_authorizer_token?component_access_token="+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, params);
+			String result = ApiClient.postJson("https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token="+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, params);
 			log.debug("服务器返回："+result);
 			JSONObject json = new JSONObject(result);
 			String accessToken = json.getString("authorizer_access_token");
