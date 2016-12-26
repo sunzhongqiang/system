@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -64,13 +65,15 @@ public class TokenTask {
 			params.put("authorizer_refresh_token", wxAppAuth.getAuthorizerRefreshToken());
 			String result = ApiClient.postJson("https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token="+WeiXinOpenParams.COMPONENT_ACCESS_TOKEN, params);
 			log.debug("服务器返回："+result);
-			JSONObject json = new JSONObject(result);
-			String accessToken = json.getString("authorizer_access_token");
-			String authorizerRefreshToken = json.getString("authorizer_refresh_token");
-			wxAppAuth.setAuthorizerAccessToken(accessToken);
-			wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
-			wxAppAuth.setModified(new Date());
-			appService.save(wxAppAuth);
+			if(StringUtils.isNotBlank(result)){
+				JSONObject json = new JSONObject(result);
+				String accessToken = json.getString("authorizer_access_token");
+				String authorizerRefreshToken = json.getString("authorizer_refresh_token");
+				wxAppAuth.setAuthorizerAccessToken(accessToken);
+				wxAppAuth.setAuthorizerRefreshToken(authorizerRefreshToken);
+				wxAppAuth.setModified(new Date());
+				appService.save(wxAppAuth);
+			}
 		}
 		
 		
