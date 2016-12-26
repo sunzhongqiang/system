@@ -285,9 +285,9 @@
     
         function formatType(type){
     	switch(type){
-		    case   '0':
+		    case 'WAIT_REFUND_MONEY':
 		    	return '仅退款';
-	    	case   '1':
+	    	case 'WAIT_REFUND_GOODS':
 	    		return '退款退货';
     	}
     }
@@ -300,25 +300,26 @@
             var cc = [];
             cc.push('<td colspan=' + fields.length + ' style="padding:10px 5px;border:0;">');
             if (!frozen) {
+            	console.log(rowData);
                 cc.push('<div class="order_detail">');
                 cc.push('<ul class="order-sn">');	
                 cc.push('<li class="us_name"><span>用户名：</span><p>'+rowData.userName+'</p></li>');
                 cc.push('<li><span>退款编号：</span><p>'+rowData.refundNo+'</p></li>')
                 cc.push('<li><span>申请退货时间：</span><p>'+dateFormat(rowData.refundCreateTime,'yyyy-MM-dd hh:mm:ss')+'</p></li>');
                 cc.push('<li><span>订单编号：</span><p>'+rowData.orderSn+'</p></li>');
-                cc.push('<li><span>联系方式：</span><p>'+rowData.orderSn+'</p></li>');
+                cc.push('<li><span>联系方式：</span><p>'+rowData.mobile+'</p></li>');
                 cc.push('</ul>');
                 cc.push('<table width="100%" cellspacing="0" cellpadding="5" border="0" bgcolor=""><tbody>');
                 cc.push('<tr class="orders">');
                 cc.push('<td rowspan="1" colspan="1" width="25%"><div class="goods-form">');
-                cc.push('<a><img name="goodImg" src="'+rowData.photo1+'"></a>');
-                cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodName+'</p></div>');
+                cc.push('<a><img name="goodImg" src="'+rowData.goodsImg+'"></a>');
+                cc.push('<div class="goods-all"><p class="goods-name">'+rowData.goodsName+'</p></div>');
                 cc.push('</div></td>');
                 
                 cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodsPrice+'元</span></td>');
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.realRefundFee+'元</span>');
                 cc.push('<p><a class="blue" onclick="refundDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
-                cc.push('<td class="order-one"  width="10%"><span class="blue bold">'+formatType(rowData.hasGoodsReturn)+'</span></td>');
+                cc.push('<td class="order-one"  width="10%"><span class="blue bold">'+formatType(rowData.refundStatus)+'</span></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.refundStatus == 1){
                 	cc.push('<p class="red bold">待处理</p><p class="order_close blue bold">');
@@ -355,7 +356,7 @@
                 cc.push('</div></td></tr>');
                 
                 cc.push('<tr class="orders_info"><td colspan="8" rowspan="1">');
-                cc.push('<span class="order_address">收货地址：'+rowData.refundAddress+'</span></td></tr>');
+                cc.push('<span class="order_address">收货地址：'+rowData.provinceName+rowData.cityName+rowData.districtName+rowData.address+'</span></td></tr>');
 
                         
                     
