@@ -39,7 +39,13 @@
 					<p th:text="${refund.orderSn}"></p>
 				</li>
 				<li><span>地址：</span>
-					<p  th:text="${order.address}"></p>
+					<p>
+						<span th:text="${refund.provinceName}"></span>
+						<span th:text="${refund.cityName}"></span>
+						<span th:text="${refund.districtName}"></span>
+						<span th:text="${refund.address}"></span>
+						
+					</p>
 				</li>
 			</ul>
 
@@ -61,16 +67,16 @@
             	<td rowspan="1" colspan="1">
                 	<div class="goods-form">
                                 <a shape="rect" >
-	                                <img name="goodsImg" th:src="${order.goodsImg}" />
+	                                <img name="goodsImg" th:src="${refund.goodsImg}" />
 	                            </a>
                                 <div class="goods-all">
-                                     <p class="goods-name" th:text="${order.goodsName}"></p>
+                                     <p class="goods-name" th:text="${refund.goodsName}"></p>
                                 </div>
                             </div>
                 </td>
                 
                 <td rowspan="1" colspan="1">
-                	<span th:text="${order.goodsPrice}">99.00</span>
+                	<span th:text="${refund.goodsPrice}">99.00</span>
                 </td>
                 <td rowspan="1" colspan="1">
                 	<span>1</span>
@@ -90,10 +96,6 @@
                         	 <span th:if="${refund.refundStatus=='2'}"><p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >直接确认收货</a></p></span>
                         	 <span th:if="${refund.refundStatus=='3'}"><p class="green bold">待确认收货</p></span>
                         	 <span th:if="${refund.refundStatus=='4'}"><p class="red" >待退款</p><p class="order_close blue bold"><a class="btn_send1" shape="rect">确认退款</a></p></span>
-                        	 <span th:if="${refund.refundStatus=='5'}"><a class="red" >已拒绝</a></span>
-                        	 <span th:if="${refund.refundStatus=='6'}"><a class="red" >已关闭</a></span>
-                        	 <span th:if="${refund.refundStatus=='7'}"><a class="green" >已成功</a></span>
-                        	 <span th:if="${refund.refundStatus=='8'}"><p class="red" >退款失败</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >再次退款</a></p></span>
                         </div>
                   </td>
             </tr>

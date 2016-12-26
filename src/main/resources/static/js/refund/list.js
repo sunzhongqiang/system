@@ -384,7 +384,7 @@
             dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
         }
         parent.addTab({
-			url : '/refund/refundDetail?id=' + id,
+			url : '/refund/refundDetail?id='+id,
 			title : '退款退货详情'
 		});
     }
