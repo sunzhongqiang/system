@@ -70,7 +70,10 @@ public class GroupApiImpl {
 	 * @return 即将开团的团商品数据
 	 */
 	@RequestMapping("/api/group/toBegin")
-	public ResultData toBegin(Long type,Pageable pageable) {
+	public ResultData toBegin(Long type) {
+		
+		Pageable pageable = new PageRequest(0, 50);
+		
 		Page<GoodsGroup> goodsList = goodsGroupService.findBeginStart(type,pageable);
 		ResultData resultData = new ResultData(true, "查找成功");
 		resultData.addData("groupList", goodsList.getContent());
