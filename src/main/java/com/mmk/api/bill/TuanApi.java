@@ -107,7 +107,7 @@ public class TuanApi {
 		UserAddress address = addressService.find(addressId);
 		//生成团订单信息
 		TuanOrder order = new TuanOrder();
-		order.setAddress(address.toString());
+		addressService.copyAddress(order, address);
 		order.setColonel(user.getId());
 		order.setGoodsCode(goods.getGoodsCode());
 		order.setGoodsImg(goods.getGoodsOriginalImg());
@@ -171,7 +171,7 @@ public class TuanApi {
 		UserAddress address = addressService.find(addressId);
 		//生成团订单信息
 		TuanOrder order = new TuanOrder();
-		order.setAddress(address.toString());
+		order = addressService.copyAddress(order,address);
 		order.setColonel(user.getId());
 		order.setGoodsCode(goods.getGoodsCode());
 		order.setGoodsImg(goods.getGoodsOriginalImg());

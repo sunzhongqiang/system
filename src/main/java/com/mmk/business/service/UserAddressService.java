@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import com.mmk.business.condition.UserAddressCondition;
 import com.mmk.business.model.UserAddress;
 import com.mmk.gene.service.BaseService;
+import com.mmk.trade.model.TuanOrder;
 
 /**
  * UserAddressService: 会员地址 业务服务层接口 2016-11-16 09:37:58
@@ -109,4 +110,12 @@ public interface UserAddressService extends BaseService<UserAddress, Long> {
 	 * @return
 	 */
 	UserAddress findDefaultByOpenid(String openid);
+
+	/**
+	 * 复制用户地址到团订单地址
+	 * @param order
+	 * @param address
+	 * @return
+	 */
+	TuanOrder copyAddress(TuanOrder order, UserAddress address);
 }

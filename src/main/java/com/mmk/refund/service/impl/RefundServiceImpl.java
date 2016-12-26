@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.mmk.common.tool.ApiClient;
 import com.mmk.gene.service.impl.BaseServiceImpl;
 import com.mmk.refund.condition.RefundCondition;
+import com.mmk.refund.constants.RefundStatus;
 import com.mmk.refund.dao.RefundDao;
 import com.mmk.refund.dao.RefundRepository;
 import com.mmk.refund.model.Refund;
@@ -99,11 +100,16 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setGoodsId(tuanOrder.getGoodsId());
 		refund.setGoodsPrice(tuanOrder.getGoodsPrice());
 		refund.setHasGoodsReturn("0");
-		//refund.setOrderStatus(tuanOrder.getOrderStatus());
+		refund.setOrderStatus(tuanOrder.getOrderStatus());
+		refund.setRefundStatus(RefundStatus.WAIT_REFUND_MONEY.name());
 		refund.setRealRefundFee(tuanOrder.getOrderPrice());
 		refund.setRefundCreateTime(new Date());
 		refund.setUserId(tuanOrder.getUser().getId());
-		refund.setUsername(tuanOrder.getUserName());
+		refund.setUserName(tuanOrder.getUserName());
+		refund.setGoodsImg(tuanOrder.getGoodsImg());
+		refund.setGoodsName(tuanOrder.getGoodsName());
+		
+		copyAddress(tuanOrder,refund);
 		
 		
 
@@ -117,5 +123,23 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		
 		log.debug(result);
 		return false;
+	}
+
+	private Refund copyAddress(TuanOrder address, Refund refund) {
+		refund.setAddress(address.getAddress());
+		refund.setCity(address.getCity());
+		refund.setConsignee(address.getConsignee());
+		refund.setCountry(address.getCountry());
+		refund.setCountyName(address.getCountyName());
+		refund.setProvince(address.getProvince());
+		refund.setProvinceName(address.getProvinceName());
+		refund.setCityName(address.getCityName());
+		refund.setDistrict(address.getDistrict());
+		refund.setDistrictName(address.getDistrictName());
+		refund.setZipcode(address.getZipcode());
+		refund.setTel(address.getTel());
+		refund.setMobile(address.getMobile());
+		return refund;
+		
 	}
 }

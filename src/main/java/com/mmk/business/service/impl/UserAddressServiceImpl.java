@@ -19,6 +19,7 @@ import com.mmk.business.dao.UserAddressRepository;
 import com.mmk.business.model.UserAddress;
 import com.mmk.business.service.UserAddressService;
 import com.mmk.gene.service.impl.BaseServiceImpl;
+import com.mmk.trade.model.TuanOrder;
 
 /**
  * UserAddressServiceImpl: 会员地址 业务服务层实现 2016-11-16 09:37:58
@@ -106,5 +107,23 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddress, Long> i
 	public UserAddress findDefaultByOpenid(String openid) {
 		Map<String, Object> params = new HashMap<String,Object>();
 		return userAddressDao.findBy(params );
+	}
+
+	@Override
+	public TuanOrder copyAddress(TuanOrder order, UserAddress address) {
+		order.setAddress(address.getAddress());
+		order.setCity(address.getCity());
+		order.setConsignee(address.getConsignee());
+		order.setCountry(address.getCountry());
+		order.setCountyName(address.getCountyName());
+		order.setProvince(address.getProvince());
+		order.setProvinceName(address.getProvinceName());
+		order.setCityName(address.getCityName());
+		order.setDistrict(address.getDistrict());
+		order.setDistrictName(address.getDistrictName());
+		order.setZipcode(address.getZipcode());
+		order.setTel(address.getTel());
+		order.setMobile(address.getMobile());
+		return order;
 	}
 }
