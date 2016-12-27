@@ -145,7 +145,7 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 		StringBuffer sb = new StringBuffer("select model from RecommendPosition position , RecommendGroup recommendGroup, GoodsGroup model join fetch model.goods ");
 		sb.append("   where position.id = recommendGroup.positionId and  model.id =  recommendGroup.groupId  ");
 		sb.append(" and position.code = :code ");
-		sb.append(" order by model.orderby ");
+		sb.append(" order by recommendGroup.orderby ");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("code", code);
 		return queryByJpql(sb.toString(), params, pageable);

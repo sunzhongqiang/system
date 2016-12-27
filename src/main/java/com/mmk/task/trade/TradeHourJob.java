@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.mmk.refund.service.RefundService;
 import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.condition.TuanStatus;
 import com.mmk.trade.model.Tuan;
@@ -34,6 +35,8 @@ public class TradeHourJob {
 	private TuanOrderService orderService;
 	@Resource
 	private MessageTemplateService templateService;
+	@Resource
+	private RefundService refundService;
 
 	/**
 	 * 定时检查团订单是否到期
@@ -42,6 +45,13 @@ public class TradeHourJob {
 	public void checkOvertime() {
 		log.info("当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
 
+		//关闭未成团的订单
+		closeTimeoutOrder();
+		
+		//关闭超时
+	}
+
+	private void closeTimeoutOrder() {
 		for (int i = 0;; i++) {
 			Pageable pageable = new PageRequest(i, 500);
 			Page<Tuan> tuanPage = tuanService.findAllOvertime(TuanStatus.WAIT_JOIN.name(), pageable);
@@ -61,7 +71,9 @@ public class TradeHourJob {
 					data.put("keyword3", tuanOrder.getAddress().replaceAll("*", " "));
 					data.put("keyword4", tuanOrder.getOrderCode());
 					data.put("remark", "订单关闭");
-					templateService.closeMessage(data );
+					templateService.closeMessage(data);
+					refundService.refundByOrderId(tuanOrder.getId());
+					
 				}
 				tuanService.save(tuan);
 			}
