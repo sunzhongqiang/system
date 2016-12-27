@@ -285,9 +285,9 @@
     
         function formatType(type){
     	switch(type){
-		    case 'WAIT_REFUND_MONEY':
+		    case '0':
 		    	return '仅退款';
-	    	case 'WAIT_REFUND_GOODS':
+	    	case '1':
 	    		return '退款退货';
     	}
     }
@@ -300,6 +300,7 @@
             var cc = [];
             cc.push('<td colspan=' + fields.length + ' style="padding:10px 5px;border:0;">');
             if (!frozen) {
+            	console.log(rowData);
                 cc.push('<div class="order_detail">');
                 cc.push('<ul class="order-sn">');	
                 cc.push('<li class="us_name"><span>用户名：</span><p>'+rowData.userName+'</p></li>');
@@ -318,7 +319,7 @@
                 cc.push('<td class="order-one"  width="10%">商品原价：<span class="red bold">'+rowData.goodsPrice+'元</span></td>');
                 cc.push(' <td class="order-one" rowspan="1" colspan="1" width="8%">订单金额：<span class="red bold">'+rowData.realRefundFee+'元</span>');
                 cc.push('<p><a class="blue" onclick="refundDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
-                cc.push('<td class="order-one"  width="10%"><span class="blue bold">'+formatType(rowData.refundStatus)+'</span></td>');
+                cc.push('<td class="order-one"  width="10%"><span class="blue bold">'+formatType(rowData.hasGoodsReturn)+'</span></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
                 if(rowData.refundStatus == 'WAIT_SELLER_AGREE'){
                 	cc.push('<p class="red bold">是否同意退款</p><p class="order_close blue bold">');
