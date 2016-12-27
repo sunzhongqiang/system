@@ -92,14 +92,8 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 	public boolean refundByOrderId(Long id) {
 		TuanOrder tuanOrder = orderService.find(id);
 		String refundNo = "REFUND"+DateTime.now().toString("yyyyMMddHHmmssSSS"); 
-		Map<String, Object> params = new HashMap<String,Object>();
-		params.put("tradeNo", tuanOrder.getTuanCode());
-		params.put("refundFee", tuanOrder.getOrderPrice());
-		params.put("totalFee", tuanOrder.getOrderPrice());
-		params.put("refundNo", refundNo);
 		
 		Refund refund = new Refund();
-		refund.setOrderSn(tuanOrder.getTuanCode());
 		refund.setRefundNo(refundNo);
 		refund.setApplyRefundFee(tuanOrder.getOrderPrice());
 		refund.setGoodsId(tuanOrder.getGoodsId());
@@ -114,6 +108,7 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setUserId(tuanOrder.getUser().getId());
 		refund.setUserName(tuanOrder.getUserName());
 		refund.setTotalFee(tuanOrder.getOrderPrice());
+		refund.setOrderSn(tuanOrder.getOrderCode());
 		
 		copyAddress(tuanOrder,refund);
 		
