@@ -73,6 +73,7 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and model.hasGoodsReturn like :hasGoodsReturn ");
             params.put("hasGoodsReturn","%"+refundCondition.getHasGoodsReturn()+"%");
         }
+        sb.append(" order by model.id desc ");
         return queryByJpql(sb.toString(), params, pageable);
     }
 
@@ -104,6 +105,7 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and model.hasGoodsReturn like :hasGoodsReturn ");
             params.put("hasGoodsReturn","%"+refundCondition.getHasGoodsReturn()+"%");
         }
+        sb.append(" order by model.id desc ");
         return queryByJpql(sb.toString(), params);
     }
     
@@ -136,6 +138,7 @@ public class RefundDaoImpl extends SpringDataQueryDaoImpl<Refund> implements Ref
             sb.append(" and has_goods_return like ?17 ");
             params.put(17,"%"+condition.getHasGoodsReturn()+"%");
         }
+        sb.append(" order by id desc ");
         return queryFieldsBySql(sb.toString(), params, pageable);
     }
     
