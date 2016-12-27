@@ -156,7 +156,7 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		params.put("refundNo", refund.getRefundNo());
 		String result = ApiClient.post("http://wx.yiqingo.net/Api/WxPay/Refund", params);
 		log.debug("退款接口调用结果："+result);
-		if(StringUtils.isNotBlank(result)&&StringUtils.contains(result, "true")){
+		if(StringUtils.contains(result, "<return_msg><![CDATA[OK]]></return_msg>")){
 			return true;
 		}else{
 			return false;
