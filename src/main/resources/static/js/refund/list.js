@@ -300,7 +300,6 @@
             var cc = [];
             cc.push('<td colspan=' + fields.length + ' style="padding:10px 5px;border:0;">');
             if (!frozen) {
-            	console.log(rowData);
                 cc.push('<div class="order_detail">');
                 cc.push('<ul class="order-sn">');	
                 cc.push('<li class="us_name"><span>用户名：</span><p>'+rowData.userName+'</p></li>');
@@ -321,36 +320,23 @@
                 cc.push('<p><a class="blue" onclick="refundDetail(\''+rowData.id+'\')">查看详情&gt;&gt;</a> </p></td>');
                 cc.push('<td class="order-one"  width="10%"><span class="blue bold">'+formatType(rowData.refundStatus)+'</span></td>');
                 cc.push(' <td rowspan="1" colspan="1" width="13%">');
-                if(rowData.refundStatus == 1){
-                	cc.push('<p class="red bold">待处理</p><p class="order_close blue bold">');
+                if(rowData.refundStatus == 'WAIT_SELLER_AGREE'){
+                	cc.push('<p class="red bold">是否同意退款</p><p class="order_close blue bold">');
                 	cc.push('<a class="btn_send1" shape="rect" onclick="refundAgree(\''+rowData.id+'\')">同意</a>');
                 	cc.push('<a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
                 }
-                if(rowData.refundStatus == 2){
-                	cc.push('<p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" shape="rect" >直接确认收货</a></p>');
+                if(rowData.refundStatus == "WAIT_REFUND_GOODS"){
+                	cc.push('<p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" >直接确认收货</a><a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
             	}
-                if(rowData.refundStatus == 3){
-                	cc.push('<p class="green bold">待确认收货</p>');
+                if(rowData.refundStatus == "WAIT_REFUND_MONEY"){
+                	cc.push('<a class="btn_send1" onclick="refundMoney(\''+rowData.id+'\')">手动退款</a>');
             	}
-                if(rowData.refundStatus == 4){
-                	cc.push('<p class="red" >待退款</p><p class="order_close blue bold">');
-                	cc.push('<a class="btn_send1" shape="rect" onclick="Agree(\''+rowData.id+'\')">确认退款</a>');
-                	
-            	}
-                if(rowData.refundStatus == 5){
-                	cc.push('<a class="red" >已拒绝</a>');
-            	}
-                if(rowData.refundStatus == 6){
-                	cc.push('<a class="red" >已关闭</a>');
-            	}
-                if(rowData.refundStatus == 7){
+                if(rowData.refundStatus == "SUCCESSED"){
                 	cc.push('<a class="green" >已成功</a>');
             	}
-                if(rowData.refundStatus == 8){
-                	cc.push('<p class="red" >退款失败</p><p class="order_close blue bold">');
-                	cc.push('<a class="btn_send1" shape="rect" >再次退款</a></p>');
-                }
-                
+                if(rowData.refundStatus == "CLOSED"){
+                	cc.push('<a class="green" >已成功</a>');
+            	}
 
                 cc.push('</td>');
                 cc.push('</div></td></tr>');
@@ -410,10 +396,10 @@
     }
     
     
-    
     //同意退款、退款退货
     function refundAgree(id){
-    	$.post('/refund/refuseAgree ', {
+    	if(confirm("确认退款吗？")){
+    	$.post('/refund/refundAgree', {
             id : id
         }, function(result) {
             if (result.success) {
@@ -422,11 +408,39 @@
             }
             progressClose();
         }, 'JSON');
-    }
-    //自动退款
-    function Agree(){
-    	
+    	}
     }
     
+    
+  //手动确认退款
+    function refundMoney(id){
+    	if(confirm("确认退款吗？")){
+    	$.post('/refund/refundMoney', {
+            id : id
+        }, function(result) {
+            if (result.success) {
+                parent.$.messager.alert('提示', result.msg, 'info');
+                dataGrid.datagrid('reload');
+            }
+            progressClose();
+        }, 'JSON');
+    	}
+    }
+    
+    
+    //自动退款
+    function refundMoney(id){
+    	if(confirm("确认收货，并退款？？")){
+    	$.post('/refund/confirmGoods', {
+            id : id
+        }, function(result) {
+            if (result.success) {
+                parent.$.messager.alert('提示', result.msg, 'info');
+                dataGrid.datagrid('reload');
+            }
+            progressClose();
+        }, 'JSON');
+    	}
+    }    
   
     
