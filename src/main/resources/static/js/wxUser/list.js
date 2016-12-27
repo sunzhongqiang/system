@@ -33,6 +33,14 @@
             },
                     {
                 width : '100',
+                title : '头像路径',
+                field : 'headimgurl',
+                align: 'center',
+                formatter:function(value,row,index){
+                	return '<img src='+value+' width="70px">';}
+            },
+                    {
+                width : '100',
                 title : '真实姓名',
                 field : 'realname',
                 align: 'center',
@@ -69,12 +77,6 @@
                 width : '120',
                 title : '城市',
                 field : 'city',
-                align: 'center',
-            },
-                    {
-                width : '80',
-                title : '头像路径',
-                field : 'headimgurl',
                 align: 'center',
             }] ],
         });
