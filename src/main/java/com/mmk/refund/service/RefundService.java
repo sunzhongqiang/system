@@ -74,4 +74,10 @@ public interface RefundService extends BaseService<Refund, Long> {
      * @return 成功和失败
      */
 	boolean refundByOrderId(Long id);
+
+	/**
+	 * 退款
+	 * @param refund
+	 */
+	boolean refundMoney(Refund refund);
 }

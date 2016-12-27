@@ -4,6 +4,7 @@
  */
 package com.mmk.refund.web;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import com.mmk.common.model.EasyPageable;
 import com.mmk.common.model.GridData;
 import com.mmk.common.model.ResultMsg;
 import com.mmk.refund.condition.RefundCondition;
+import com.mmk.refund.constants.RefundStatus;
 import com.mmk.refund.model.Refund;
 import com.mmk.refund.service.RefundService;
 import com.mmk.system.service.UserService;
@@ -95,7 +97,7 @@ public class RefundController extends BaseController {
         log.info("拒绝退款退货的理由");
         Refund refund = refundService.find(id);
         refund.setRefuseReason(refuseReason);
-        refund.setRefundStatus("5");
+        refund.setRefundStatus(RefundStatus.SELLER_REFUSE_BUYER.name());
         refundService.save(refund);
         return  new ResultMsg(true,"拒绝退款退货成功");
     } 
@@ -104,17 +106,40 @@ public class RefundController extends BaseController {
      * 同意退款退货
      * @param id 退款退货ID
      */ 
-    @RequestMapping("/refund/refuseAgree")
-    public ResultMsg refuseAgree(Long id){
+    @RequestMapping("/refund/refundAgree")
+    public ResultMsg refundAgree(Long id){
         log.info("同意退款退货");
         Refund refund = refundService.find(id);
         if("0".equals(refund.getHasGoodsReturn())){
-            refund.setRefundStatus("4");     	
+            if(refundService.refundMoney(refund)){
+            	refund.setRefundStatus(RefundStatus.SUCCESSED.name());
+            	refund.setRefundCompleteTime(new Date());
+            }else{
+            	refund.setRefundStatus(RefundStatus.WAIT_REFUND_MONEY.name());
+            } 	
         } else {
-            refund.setRefundStatus("2");
+        	refund.setRefundStatus(RefundStatus.WAIT_REFUND_GOODS.name());
         }
         refundService.save(refund);
         return  new ResultMsg(true,"同意退款退货成功");
+    } 
+    
+    /**
+     * 再次进行退款
+     * @param id 退款退货ID
+     */ 
+    @RequestMapping("/refund/refundMoney")
+    public ResultMsg refundMoney(Long id){
+        log.info("同意退款退货");
+        Refund refund = refundService.find(id);
+        ResultMsg resultMsg = new ResultMsg(true,"再次进行退款");
+        if(refundService.refundMoney(refund)){
+        	refund.setRefundStatus(RefundStatus.SUCCESSED.name());
+        	refund.setRefundCompleteTime(new Date());
+        	resultMsg = new ResultMsg(true,"再次进行退款成功");
+        	refundService.save(refund);
+        }
+		return  resultMsg;
     } 
     
     /**

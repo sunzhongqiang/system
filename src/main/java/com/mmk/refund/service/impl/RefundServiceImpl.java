@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -86,11 +87,11 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 	@Override
 	public boolean refundByOrderId(Long id) {
 		TuanOrder tuanOrder = orderService.find(id);
+		String refundNo = "REFUND"+DateTime.now().toString("yyyyMMddHHmmssSSS"); 
 		Map<String, Object> params = new HashMap<String,Object>();
 		params.put("tradeNo", tuanOrder.getTuanCode());
 		params.put("refundFee", tuanOrder.getOrderPrice());
 		params.put("totalFee", tuanOrder.getOrderPrice());
-		String refundNo = "REFUND"+DateTime.now().toString("yyyyMMddHHmmssSSS"); 
 		params.put("refundNo", refundNo);
 		
 		Refund refund = new Refund();
@@ -114,12 +115,15 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		
 		
 
-		String result = ApiClient.post("http://wx.yiqingo.net/Api/WxPay/Refund", params);
-		log.debug("退款接口调用结果："+result);
+		if(refundMoney(refund)){
+			refund.setRefundStatus(RefundStatus.SUCCESSED.name());
+			tuanOrder.setOrderStatus(TuanOrderStatus.CLOSED.name());
+		}else{
+			refund.setRefundStatus(RefundStatus.WAIT_REFUND_MONEY.name());
+		}
 		
 		save(refund);
 		
-		tuanOrder.setOrderStatus(TuanOrderStatus.CLOSED.name());
 		
 		orderService.save(tuanOrder);
 		
@@ -142,5 +146,21 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setMobile(address.getMobile());
 		return refund;
 		
+	}
+
+	@Override
+	public boolean refundMoney(Refund refund) {
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("tradeNo", refund.getOrderSn());
+		params.put("refundFee", refund.getRealRefundFee());
+		params.put("totalFee", refund.getTotalFee());
+		params.put("refundNo", refund.getRefundNo());
+		String result = ApiClient.post("http://wx.yiqingo.net/Api/WxPay/Refund", params);
+		log.debug("退款接口调用结果："+result);
+		if(StringUtils.isNotBlank(result)&&StringUtils.contains(result, "true")){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
