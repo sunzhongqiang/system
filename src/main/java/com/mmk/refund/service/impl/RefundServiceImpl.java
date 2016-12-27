@@ -23,6 +23,7 @@ import com.mmk.refund.constants.RefundStatus;
 import com.mmk.refund.dao.RefundDao;
 import com.mmk.refund.dao.RefundRepository;
 import com.mmk.refund.model.Refund;
+import com.mmk.refund.service.RefundActionService;
 import com.mmk.refund.service.RefundService;
 import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.model.TuanOrder;
@@ -39,6 +40,9 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
     private Log log = LogFactory.getLog(this.getClass());
     @Resource
     private RefundDao refundDao;
+    
+    @Resource
+    private RefundActionService refundActionService;
     
     @Resource
     private TuanOrderService orderService;
@@ -109,7 +113,7 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setRefundCreateTime(new Date());
 		refund.setUserId(tuanOrder.getUser().getId());
 		refund.setUserName(tuanOrder.getUserName());
-		
+		refund.setTotalFee(tuanOrder.getOrderPrice());
 		
 		copyAddress(tuanOrder,refund);
 		

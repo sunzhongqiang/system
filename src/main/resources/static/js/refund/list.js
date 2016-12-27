@@ -326,7 +326,7 @@
                 	cc.push('<a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
                 }
                 if(rowData.refundStatus == "WAIT_REFUND_GOODS"){
-                	cc.push('<p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" >直接确认收货</a><a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
+                	cc.push('<p class="red bold">等待买家退货</p><p class="order_close blue bold"><a class="btn_send1" onclick="confirmGoods(\''+rowData.id+'\')">直接确认收货</a><a class="btn_send1" shape="rect" onclick="refundReason(\''+rowData.id+'\')">拒绝</a></p>');
             	}
                 if(rowData.refundStatus == "WAIT_REFUND_MONEY"){
                 	cc.push('<a class="btn_send1" onclick="refundMoney(\''+rowData.id+'\')">手动退款</a>');
@@ -337,17 +337,10 @@
                 if(rowData.refundStatus == "CLOSED"){
                 	cc.push('<a class="green" >已成功</a>');
             	}
-
                 cc.push('</td>');
                 cc.push('</div></td></tr>');
-                
                 cc.push('<tr class="orders_info"><td colspan="8" rowspan="1">');
                 cc.push('<span class="order_address">收货地址：'+rowData.provinceName+rowData.cityName+rowData.districtName+rowData.address+'</span></td></tr>');
-
-                        
-                    
-                
-                
                 cc.push('</tbody></table>');
                 
                 cc.push('</div>');
@@ -428,8 +421,8 @@
     }
     
     
-    //自动退款
-    function refundMoney(id){
+    //确认收货并退款
+    function confirmGoods(id){
     	if(confirm("确认收货，并退款？？")){
     	$.post('/refund/confirmGoods', {
             id : id
