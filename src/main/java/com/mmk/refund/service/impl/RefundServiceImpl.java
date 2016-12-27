@@ -109,6 +109,7 @@ public class RefundServiceImpl extends BaseServiceImpl<Refund, Long> implements 
 		refund.setUserName(tuanOrder.getUserName());
 		refund.setTotalFee(tuanOrder.getOrderPrice());
 		refund.setOrderSn(tuanOrder.getOrderCode());
+		refund.setHasGoodsReturn("0");
 		
 		copyAddress(tuanOrder,refund);
 		
