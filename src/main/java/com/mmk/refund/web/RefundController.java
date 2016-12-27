@@ -172,7 +172,7 @@ public class RefundController extends BaseController {
 	public ResultMsg refundMoney(Long id) {
 		log.info("同意退款退货");
 		Refund refund = refundService.find(id);
-		ResultMsg resultMsg = new ResultMsg(true, "再次进行退款");
+		ResultMsg resultMsg = new ResultMsg(false, "再次进行退款失败");
 		if (refundService.refundMoney(refund)) {
 			refund.setRefundStatus(RefundStatus.SUCCESSED.name());
 			refund.setRefundCompleteTime(new Date());
@@ -185,8 +185,7 @@ public class RefundController extends BaseController {
 	/**
 	 * 查看退款详情页面
 	 * 
-	 * @param id
-	 *            订单ID
+	 * @param id 订单ID
 	 */
 	@RequestMapping("/refund/refundDetail")
 	public ModelAndView refundDetail(Long id) {
