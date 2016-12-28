@@ -208,8 +208,8 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuan.id = :id");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
-		sb.append(" and model.orderStatus != :status ");
-		params.put("status", TuanOrderStatus.WAIT_PAY.name());
+//		sb.append(" and model.orderStatus != :status ");
+//		params.put("status", TuanOrderStatus.WAIT_PAY.name());
 		sb.append(" order by model.orderTime desc");
 		return queryByJpql(sb.toString(), params);
 	}
