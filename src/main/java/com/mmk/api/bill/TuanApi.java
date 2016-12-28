@@ -415,11 +415,13 @@ public class TuanApi {
 	@RequestMapping("/api/tuan/info")
 	@ResponseBody
 	public ResultData info(Long id) {
-		Tuan tuan = tuanService.find(id);
-		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
 		ResultData result = new ResultData(true, "团详情");
-		result.addData("tuan", tuan);
-		result.addData("orderList", orderList);
+		Tuan tuan = tuanService.find(id);
+		if(tuan!=null){
+			List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
+			result.addData("tuan", tuan);
+			result.addData("orderList", orderList);
+		}
 		return result;
 	}
 	
