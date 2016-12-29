@@ -169,7 +169,7 @@ public class GoodsGroupDaoImpl extends SpringDataQueryDaoImpl<GoodsGroup> implem
 	}
 
 	@Override
-	public Page<GoodsGroup> findAllOverTime(int type, String status, Pageable pageable) {
+	public Page<GoodsGroup> findAllOverTime(long type, String status, Pageable pageable) {
 		StringBuffer sb = new StringBuffer("select model from GoodsGroup model   where model.status = :status ");
 		sb.append(" and model.type = :type ");
 		Map<String, Object> params = new HashMap<String, Object>();

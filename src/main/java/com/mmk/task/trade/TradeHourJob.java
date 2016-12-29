@@ -75,7 +75,7 @@ public class TradeHourJob {
 					data.put("first", "你有一个团超时关闭了");
 					data.put("keyword1", tuanOrder.getOrderPrice());
 					data.put("keyword2", tuan.getGoodsName());
-//					data.put("keyword3", tuanOrder.getAddress().replaceAll("\\*", " "));
+					data.put("keyword3", tuanOrder.getAddress());
 					data.put("keyword4", tuanOrder.getOrderCode());
 					data.put("remark", "订单关闭");
 					templateService.closeMessage(data);
@@ -94,7 +94,7 @@ public class TradeHourJob {
 		log.info("定时进行抽奖");
 		for (int i = 0;; i++) {
 			Pageable pageable = new PageRequest(i, 500);
-			Page<GoodsGroup> page = goodsGroupService.findAllOverTime(2,GroupGoods.WAIT_CHOOSE.name(),pageable);
+			Page<GoodsGroup> page = goodsGroupService.findAllOverTime(2l,GroupGoods.WAIT_CHOOSE.name(),pageable);
 			log.info("获取未成团到期团订单：" + page.getNumberOfElements() + "总计条数：" + page.getTotalElements());
 			
 			for (GoodsGroup goodsGroup : page) {

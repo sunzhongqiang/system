@@ -99,7 +99,7 @@ public interface GoodsGroupDao extends SpringDataQueryDao<GoodsGroup>{
 	 * @param pageable
 	 * @return 返回到期结束的商品
 	 */
-	Page<GoodsGroup> findAllOverTime(int type, String status, Pageable pageable);
+	Page<GoodsGroup> findAllOverTime(long type, String status, Pageable pageable);
 	
     
     

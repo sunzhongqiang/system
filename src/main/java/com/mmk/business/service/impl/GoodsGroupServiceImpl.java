@@ -114,7 +114,7 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 	}
 
 	@Override
-	public Page<GoodsGroup> findAllOverTime(int type, String status, Pageable pageable) {
+	public Page<GoodsGroup> findAllOverTime(long type, String status, Pageable pageable) {
 		return goodsGroupDao.findAllOverTime(type,status,pageable);
 	}
 
