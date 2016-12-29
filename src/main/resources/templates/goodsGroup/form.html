@@ -57,6 +57,7 @@
                         <select  name="type" class="easyui-combobox"   data-options="required:true,width:140,height:29,editable:false,panelHeight:'auto'">
                                 <option th:selected="${goodsGroup.type} == '0' ? 'selected' " value="0" >一元购</option>
                                 <option th:selected="${goodsGroup.type} == '1' ? 'selected' "  value="1">拼团</option>
+                                <option th:selected="${goodsGroup.type} == '2' ? 'selected' "  value="2">抽奖</option>
                            </select>
                      </td>
 <!--                      <td th:switch="${goodsGroup.goods.goodsCat}"> -->

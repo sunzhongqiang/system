@@ -4,7 +4,6 @@
         dataGrid = $('#dataGrid').datagrid({
             url : '/wxUser/gridData',
             fit : true,
-            fitColumns: true,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -19,12 +18,6 @@
                 field : 'id',
                 align: 'center',
             },
-//                    {
-//                width : '100',
-//                title : '窗口id',
-//                field : 'openid',
-//                align: 'center',
-//            },
                     {
                 width : '200',
                 title : '昵称',
@@ -37,7 +30,7 @@
                 field : 'headimgurl',
                 align: 'center',
                 formatter:function(value,row,index){
-                	return '<img src='+value+' width="70px">';}
+                	return '<img src="'+value+'" width="70px">';}
             },
                     {
                 width : '100',
