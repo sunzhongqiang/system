@@ -172,6 +172,8 @@
 		    	return '一元购';
 	    	case   1:
 	    		return '拼团';
+	    	case   2:
+	    		return '抽奖';
     	}
     }
     
