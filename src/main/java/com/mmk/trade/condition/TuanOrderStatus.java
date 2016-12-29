@@ -6,6 +6,7 @@ public enum TuanOrderStatus {
      * 订单状态：
 	*	wait_pay:待付款;
 	*	wait_join:待成团;
+	*   WAIT_CHOOSE:待开奖;
 	*	wait_shipping待发货;
 	*	wait_receive:待收货;
 	*	wait_comment:待评价;
@@ -15,5 +16,5 @@ public enum TuanOrderStatus {
 	*	closed:已关闭; 
     * 
     */
-	WAIT_PAY,WAIT_JOIN,WAIT_SHIPPING,WAIT_RECEIVE,WAIT_COMMENT,SUCCESSED,WAIT_REFUND_GOODS,WAIT_REFUND_MONEY,CLOSED
+	WAIT_PAY,WAIT_JOIN,WAIT_CHOOSE,WAIT_SHIPPING,WAIT_RECEIVE,WAIT_COMMENT,SUCCESSED,WAIT_REFUND_GOODS,WAIT_REFUND_MONEY,CLOSED
 }

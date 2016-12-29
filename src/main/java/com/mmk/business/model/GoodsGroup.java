@@ -90,6 +90,8 @@ public class GoodsGroup {
      */
     @Column(name="group_num")
     private Long groupNum;
+    
+    private String status;
 
 
 
@@ -198,6 +200,12 @@ public class GoodsGroup {
 	}
 	public void setGroupNum(Long groupNum) {
 		this.groupNum = groupNum;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

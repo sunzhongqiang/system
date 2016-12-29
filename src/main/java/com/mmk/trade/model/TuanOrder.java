@@ -54,6 +54,12 @@ public class TuanOrder {
     @ManyToOne
     @JoinColumn(name="tuan_id")
     private Tuan tuan;
+    
+    /**
+     * 团商品ID
+     */
+    @JoinColumn(name="group_id")
+    private Long groupId;
 
     /**
      * 团编码
@@ -765,6 +771,12 @@ public class TuanOrder {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+	public Long getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
 
 
 

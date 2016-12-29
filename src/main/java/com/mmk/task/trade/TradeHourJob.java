@@ -15,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.mmk.business.constants.GroupGoods;
+import com.mmk.business.model.GoodsGroup;
+import com.mmk.business.service.GoodsGroupService;
 import com.mmk.refund.service.RefundService;
 import com.mmk.trade.condition.TuanOrderStatus;
 import com.mmk.trade.condition.TuanStatus;
@@ -37,18 +40,21 @@ public class TradeHourJob {
 	private MessageTemplateService templateService;
 	@Resource
 	private RefundService refundService;
+	@Resource
+	private GoodsGroupService goodsGroupService;
 
 	/**
 	 * 定时检查团订单是否到期
 	 */
-	@Scheduled(cron = "1 0 * * * ?")
+	@Scheduled(cron = "1 0/10 * * * ?")
 	public void checkOvertime() {
 		log.info("当前时间：" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
 
 		//关闭未成团的订单
 		closeTimeoutOrder();
 		
-		//关闭超时
+		//到期抽取
+		
 	}
 
 	private void closeTimeoutOrder() {
@@ -78,6 +84,23 @@ public class TradeHourJob {
 				tuanService.save(tuan);
 			}
 			if (!tuanPage.hasNext()) {
+				break;
+			}
+		}
+	}
+	
+	public void chooseLucker(){
+		for (int i = 0;; i++) {
+			Pageable pageable = new PageRequest(i, 500);
+			Page<GoodsGroup> page = goodsGroupService.findAllOverTime(2,GroupGoods.WAIT_CHOOSE.name(),pageable);
+			log.info("获取未成团到期团订单：" + page.getNumberOfElements() + "总计条数：" + page.getTotalElements());
+			
+			for (GoodsGroup goodsGroup : page) {
+				orderService.chooseLucker(goodsGroup.getId());
+				goodsGroup.setStatus(GroupGoods.FINISHED.name());
+				goodsGroupService.save(goodsGroup);
+			}
+			if (!page.hasNext()) {
 				break;
 			}
 		}

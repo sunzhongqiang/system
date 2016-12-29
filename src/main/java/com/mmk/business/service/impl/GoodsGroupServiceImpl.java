@@ -113,4 +113,10 @@ public class GoodsGroupServiceImpl extends BaseServiceImpl<GoodsGroup, Long> imp
 		return goodsGroupDao.findAllByStart(DateUtils.ceiling(now.toDate(), Calendar.DATE),DateUtils.ceiling(tomorrow.toDate(), Calendar.DATE),type,pageable);
 	}
 
+	@Override
+	public Page<GoodsGroup> findAllOverTime(int type, String status, Pageable pageable) {
+		return goodsGroupDao.findAllOverTime(type,status,pageable);
+	}
+
+
 }

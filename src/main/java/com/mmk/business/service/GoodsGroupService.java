@@ -97,4 +97,14 @@ public interface GoodsGroupService extends BaseService<GoodsGroup, Long> {
 	 * @return
 	 */
 	Page<GoodsGroup> findBeginStart(Long type ,Pageable pageable);
+
+	/**
+	 * 根据类型和状态进行返回到期结束的商品
+	 * @param type
+	 * @param status
+	 * @param pageable
+	 * @return 返回到期结束的商品
+	 */
+	Page<GoodsGroup> findAllOverTime(int type, String status, Pageable pageable);
+
 }
