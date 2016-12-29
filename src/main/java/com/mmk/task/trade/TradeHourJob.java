@@ -54,7 +54,7 @@ public class TradeHourJob {
 		closeTimeoutOrder();
 		
 		//到期抽取
-		
+		chooseLucker();
 	}
 
 	private void closeTimeoutOrder() {
@@ -96,7 +96,7 @@ public class TradeHourJob {
 			log.info("获取未成团到期团订单：" + page.getNumberOfElements() + "总计条数：" + page.getTotalElements());
 			
 			for (GoodsGroup goodsGroup : page) {
-				orderService.chooseLucker(goodsGroup.getId());
+				orderService.chooseLuckerByGroupId(goodsGroup.getId());
 				goodsGroup.setStatus(GroupGoods.FINISHED.name());
 				goodsGroupService.save(goodsGroup);
 			}

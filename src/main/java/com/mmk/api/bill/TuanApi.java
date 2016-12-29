@@ -234,7 +234,7 @@ public class TuanApi {
 		if (tuan.getPeopleNum() == orderList.size()) {
 			
 			if(tuan.getOrderSort()==0l){
-				orderService.chooseLucker(tuan.getId());
+				orderService.chooseLuckerByTuanId(tuan.getId());
 			}
 			else if(tuan.getOrderSort()==2l){
 				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_CHOOSE.name());

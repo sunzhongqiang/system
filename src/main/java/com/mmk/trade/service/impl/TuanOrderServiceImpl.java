@@ -149,8 +149,8 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	}
 
 	@Override
-	public void chooseLucker(Long id) {
-		List<TuanOrder> tuanOrders = findAllByTuanId(id);
+	public void chooseLuckerByTuanId(Long tuanid) {
+		List<TuanOrder> tuanOrders = findAllByTuanId(tuanid);
 		Random random = new Random();
 		int nextInt = random.nextInt(tuanOrders.size());
 		for (int i = 0; i < tuanOrders.size(); i++) {
@@ -189,5 +189,21 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	@Override
 	public TuanOrder findByOrderCode(String orderCode) {
 		return orderDao.findByOrderCode(orderCode);
+	}
+
+	@Override
+	public void chooseLuckerByGroupId(Long id) {
+		List<TuanOrder> tuanOrders = findAllBy("groupId", id);
+		Random random = new Random();
+		int nextInt = random.nextInt(tuanOrders.size());
+		for (int i = 0; i < tuanOrders.size(); i++) {
+			TuanOrder tuanOrder = tuanOrders.get(i);
+			if(nextInt==i){
+				tuanOrder.setOrderStatus(TuanOrderStatus.WAIT_SHIPPING.name());
+				save(tuanOrder);
+			}else{
+				refundService.refundByOrderId(tuanOrder.getId());
+			}
+		}
 	}
 }

@@ -164,7 +164,7 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * 选择幸运者
 	 * @param id
 	 */
-	void chooseLucker(Long id);
+	void chooseLuckerByTuanId(Long tuanid);
 
 	/**
 	 * 根据团订单获取参团的所有订单
@@ -172,4 +172,10 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @return 参团的订单
 	 */
 	TuanOrder findByOrderCode(String orderCode);
+
+	/**
+	 * 根据团商品选择中奖者
+	 * @param id 团商品
+	 */
+	void chooseLuckerByGroupId(Long id);
 }
