@@ -261,4 +261,15 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 		return result.isEmpty() ? null : result.get(0);
 	}
 
+	@Override
+	public List<TuanOrder> findAllPayedByTuanId(Long id) {
+		StringBuffer sb = new StringBuffer("select model from TuanOrder model left join fetch model.user  where model.tuan.id = :id");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		sb.append(" and model.orderStatus = :status ");
+		params.put("status", TuanOrderStatus.WAIT_JOIN.name());
+		sb.append(" order by model.orderTime desc");
+		return queryByJpql(sb.toString(), params);
+	}
+
 }

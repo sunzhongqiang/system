@@ -164,6 +164,7 @@ public class TuanApi {
 		tuan.setGoodsPrice(group.getGroupPrice());
 		tuan.setTuanStartDate(new Date());
 		tuan.setTuanEndDate(new Date(tuan.getTuanStartDate().getTime()+ group.getDuration()* 24 * 60 * 60 * 1000));
+		tuan.setTuanStatus(TuanStatus.WAIT_PAY.name());
 		
 		Tuan bean = tuanService.save(tuan);
 		
@@ -226,13 +227,12 @@ public class TuanApi {
 		
 		
 		
-		// 团订单
-		List<TuanOrder> orderList = orderService.findAllByTuanId(tuan.getId());
+		
 		
 		
 		// 成团状态设置
-		if (tuan.getPeopleNum() == orderList.size()) {
-			
+		if (tuan.getPeopleNum() == tuan.getJoinNum()) {
+			// 团订单
 			if(tuan.getOrderSort()==0l){
 				orderService.chooseLuckerByTuanId(tuan.getId());
 			}
@@ -245,13 +245,17 @@ public class TuanApi {
 			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
 			tuanService.save(tuan);
 			orderService.save(tuanOrder);
+		}else{
+			if(TuanStatus.WAIT_PAY.name().equals(tuan.getTuanStatus())){
+				tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
+			}
 		}
 		
 		Map<String, Object> data = new HashMap<String,Object>();
 		data.put("openid", tuanOrder.getUser().getOpenid());
 		data.put("first", tuan.getGoodsName());
 		data.put("leadername", tuan.getCommander().getNickname());
-		data.put("number", tuan.getPeopleNum() - orderList.size());
+		data.put("number", tuan.getPeopleNum() - tuan.getJoinNum());
 		data.put("remark", "参团成功");
 		templateService.sendMessage("", data );
 		
