@@ -40,7 +40,20 @@
                     <tr>
                         <td class="tdTit"><label>所属区域id：</label></td>
                         <td>
-                        <input type="text"  name="parentId"   class="easyui-validatebox" data-options="required:true" th:value="${region.parentId}"/>
+                        <select id="cc" class="easyui-combotree" name="parentId" style="width:200px;"
+						        data-options="url:'/region/loadRegionByParentId',idField:'regionId',treeField:'regionName',parentField:'parentId',required:true">
+						</select>
+						
+						<input class="easyui-combotreegrid" name="parentId"  data-options="
+						        width:'200',
+						        panelWidth:200,
+						        url:'/region/loadRegionByParentId',
+						        idField:'regionId',
+						        treeField:'name',
+						        columns:[[
+						            {field:'regionName',title:'地区',width:180},
+						        ]]" />
+						        
                         </td>
                     </tr>
                     <tr>
@@ -52,8 +65,7 @@
                     <tr>
                         <td class="tdTit"><label>是否显示1-显示：</label></td>
                         <td>
-                        <input type="text"  name="isDisplay"   class="easyui-validatebox" data-options="required:true" th:value="${region.isDisplay}"/>
-                        <input class="easyui-switchbutton" name="isOnsale" th:checked="${goods.isOnsale} == null ? true : ${goods.isOnsale} " required="required" data-options="onText:'上架',offText:'下架',value:true" />
+                        <input class="easyui-switchbutton" name="isDisplay" th:checked="${region.isDisplay} == null ? true : ${region.isDisplay} " required="required" data-options="onText:'显示',offText:'隐藏',value:true" />
                         </td>
                     </tr>
                     <tr>
