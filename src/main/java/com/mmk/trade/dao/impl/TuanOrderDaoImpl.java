@@ -55,10 +55,6 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and model.userName like :userName ");
 			params.put("userName", "%" + orderCondition.getUserName() + "%");
 		}
-		if (StringUtils.isNotBlank(orderCondition.getUserName())) {
-			sb.append(" and model.userName like :userName ");
-			params.put("userName", "%" + orderCondition.getUserName() + "%");
-		}
 		if (StringUtils.isNotBlank(orderCondition.getOrderCode())) {
 			sb.append(" and model.orderCode like :orderCode ");
 			params.put("orderCode", "%" + orderCondition.getOrderCode() + "%");
