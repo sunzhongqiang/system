@@ -206,4 +206,9 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 			}
 		}
 	}
+
+	@Override
+	public List<TuanOrder> findAllPayedByTuanId(Long id) {
+		return orderDao.findAllPayedByTuanId(id);
+	}
 }

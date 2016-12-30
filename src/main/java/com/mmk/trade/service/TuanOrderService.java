@@ -178,4 +178,11 @@ public interface TuanOrderService extends BaseService<TuanOrder, Long> {
 	 * @param id 团商品
 	 */
 	void chooseLuckerByGroupId(Long id);
+
+	/**
+	 * 根据团主键获取所有已经支付的团订单
+	 * @param id 团主键
+	 * @return 支付的团订单列表
+	 */
+	List<TuanOrder> findAllPayedByTuanId(Long id);
 }
