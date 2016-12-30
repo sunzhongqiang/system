@@ -67,6 +67,8 @@
                 align : 'center',
                 formatter : function(value, row, index) {
 					switch (value) {
+					case 'WAIT_PAY':
+						return '待付款';
 					case 'WAIT_JOIN':
 						return '待成团';
 					case 'SUCCESSED':
