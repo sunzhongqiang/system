@@ -141,7 +141,7 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 	public void changeTuanStatusByTuanId(Long id , String status) {
 		
 		//根据团更改团订单的状态
-		List<TuanOrder> tuanOrders = findAllByTuanId(id);
+		List<TuanOrder> tuanOrders = findAllPayedByTuanId(id);
 		for (TuanOrder tuanOrder : tuanOrders) {
 			tuanOrder.setOrderStatus(status);
 		}
@@ -150,7 +150,7 @@ public class TuanOrderServiceImpl extends BaseServiceImpl<TuanOrder, Long> imple
 
 	@Override
 	public void chooseLuckerByTuanId(Long tuanid) {
-		List<TuanOrder> tuanOrders = findAllByTuanId(tuanid);
+		List<TuanOrder> tuanOrders = findAllPayedByTuanId(tuanid);
 		Random random = new Random();
 		int nextInt = random.nextInt(tuanOrders.size());
 		for (int i = 0; i < tuanOrders.size(); i++) {

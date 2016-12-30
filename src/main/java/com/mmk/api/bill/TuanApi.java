@@ -232,19 +232,18 @@ public class TuanApi {
 		
 		// 成团状态设置
 		if (tuan.getPeopleNum() == tuan.getJoinNum()) {
-			// 团订单
+			// 一元拼团的订单挑选本团的幸运者
 			if(tuan.getOrderSort()==0l){
 				orderService.chooseLuckerByTuanId(tuan.getId());
-			}
+			}//抽奖团，将用户移交到待抽奖状态
 			else if(tuan.getOrderSort()==2l){
 				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_CHOOSE.name());
-			}
+			}//拼团的团将团订单改变为收货状态
 			else {
 				orderService.changeTuanStatusByTuanId(tuan.getId(),TuanOrderStatus.WAIT_SHIPPING.name());
 			}
 			tuan.setTuanStatus(TuanStatus.SUCCESSED.name());
 			tuanService.save(tuan);
-			orderService.save(tuanOrder);
 		}else{
 			if(TuanStatus.WAIT_PAY.name().equals(tuan.getTuanStatus())){
 				tuan.setTuanStatus(TuanStatus.WAIT_JOIN.name());
