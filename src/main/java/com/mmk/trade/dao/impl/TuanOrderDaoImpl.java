@@ -79,7 +79,7 @@ public class TuanOrderDaoImpl extends SpringDataQueryDaoImpl<TuanOrder> implemen
 			sb.append(" and model.orderSort = :orderSort ");
 			params.put("orderSort", orderCondition.getOrderSort());
 		}
-		if (orderCondition.getOrderStatus() != null) {
+		if (orderCondition.getOrderStatus() != null && StringUtils.isNotBlank(orderCondition.getOrderStatus())) {
 			sb.append(" and model.orderStatus = :orderStatus ");
 			params.put("orderStatus", orderCondition.getOrderStatus());
 		}
