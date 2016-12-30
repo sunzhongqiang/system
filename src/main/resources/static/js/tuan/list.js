@@ -169,11 +169,37 @@
                 title : '用户名',
                 field : 'userName',
             },
-//                    {
-//                width : '80',
-//                title : '团状态：0，全部订单；1，待成团；2，已成团；3，拼团失败',
-//                field : 'tuanStatus',
-//            }
+                    {
+                width : '80',
+                title : '订单状态',
+                field : 'orderStatus',
+                formatter : function(value, row, index) {
+    					switch (value) {
+    					case 'WAIT_PAY':
+    						return '待付款';
+    					case 'WAIT_JOIN':
+    						return '待成团';
+    					case 'WAIT_SHIPPING':
+    						return '待发货';
+    					case 'WAIT_CHOOSE':
+    						return '待抽奖';
+    					case 'WAIT_RECEIVE':
+    						return '已发货';
+    					case 'WAIT_COMMENT':
+    						return '等待买家评价';
+    					case 'SUCCESSED':
+    						return '已成功';
+    					case 'WAIT_REFUND_GOODS':
+    						return '等待买家退货';
+    					case 'WAIT_REFUND_MONEY':
+    						return '等待卖家退款';
+    					case 'CLOSED':
+    						return '交易已关闭';
+    						
+    					}
+    				},
+    			align: 'center',
+            }
             ] ],
         });
     });

@@ -76,14 +76,20 @@
 												</div>
 											</div>
 										</td>
-										<td class="order-one" rowspan="1" colspan="1" width="10%"><span class="bold" th:text="${order.goodsPrice}"></span>元</td>
+										<td class="order-one" rowspan="1" colspan="1" width="10%"><span class="red bold" th:text="${order.goodsPrice}"></span>元</td>
 										<td class="order-one" rowspan="1" colspan="1" width="10%"><span class="bold">1</span></td>
 										
 										<td class="order-one" rowspan="1" colspan="1" width="10%">
-											<span th:if="${order.orderStatus==1}"><p class="red bold">待成团</p></span>
-											<span th:if="${order.orderStatus==2}"><p class="red bold">待发货</p><a  class="btn_send1" th:onclick="'addFun('+${order.id}+')'">发货</a></span>
-											<span th:if="${order.orderStatus==3}"><p class="green bold">已发货</p></span>
-											<span th:if="${order.orderStatus==4}"><a class="green" >已成功</a></span>
+											<span th:if="${order.orderStatus=='WAIT_PAY'}"><p class="red bold">待付款</p></span>
+											<span th:if="${order.orderStatus=='WAIT_JOIN'}"><p class="red bold">待成团</p></span>
+											<span th:if="${order.orderStatus=='WAIT_CHOOSE'}"><p class="red bold">待发货</p><a  class="btn_send1" th:onclick="'addFun('+${order.id}+')'">发货</a></span>
+											<span th:if="${order.orderStatus=='WAIT_SHIPPING'}"><p class="red bold">待发货</p><a  class="btn_send1" th:onclick="'addFun('+${order.id}+')'">发货</a></span>
+											<span th:if="${order.orderStatus=='WAIT_RECEIVE'}"><p class="green bold">已发货</p></span>
+											<span th:if="${order.orderStatus=='WAIT_COMMENT'}"><p class="red bold">等待买家评价</p></span>
+											<span th:if="${order.orderStatus=='SUCCESSED'}"><a class="green" >已成功</a></span>
+											<span th:if="${order.orderStatus=='WAIT_REFUND_GOODS'}"><a class="green" >等待买家退货</a></span>
+											<span th:if="${order.orderStatus=='WAIT_REFUND_MONEY'}"><a class="green" >等待卖家退款</a></span>
+											<span th:if="${order.orderStatus=='CLOSED'}"><a class="green" >交易已关闭</a></span>
 											<span ></span>
 										</td>
 										<!-- 子订单状态1-已推送0-推送失败2-口岸放行3-已发货 -->
