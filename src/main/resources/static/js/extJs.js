@@ -274,26 +274,56 @@ $.extend($.fn.tree.methods, {
 });
 
 //扩展tree，使其支持平滑数据格式
-$.fn.tree.defaults.loadFilter = function(data) {
+var treeLoadFilter = function(data,parent) {
 	var opt = $(this).data().tree.options;
-	var idFiled, textFiled, parentField;
+	var idField, textField, parentField;
 	if (opt.parentField) {
-		idFiled = opt.idField || 'id';
-		textFiled = opt.textFiled || 'text';
+		idField = opt.idField || 'id';
+		textField = opt.textField || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
 		var rows = $.isArray(data) ? data : data.rows;
 		for (i = 0, l = rows.length; i < l; i++) {
-			tmpMap[rows[i][idFiled]] = rows[i];
+			tmpMap[rows[i][idField]] = rows[i];
 		}
 		for (i = 0, l = rows.length; i < l; i++) {
-			if (tmpMap[rows[i][parentField]] && rows[i][idFiled] != rows[i][parentField]) {
+			if (tmpMap[rows[i][parentField]] && rows[i][idField] != rows[i][parentField]) {
 				if (!tmpMap[rows[i][parentField]]['children'])
 					tmpMap[rows[i][parentField]]['children'] = [];
-				rows[i]['text'] = rows[i][textFiled];
+				rows[i]['text'] = rows[i][textField];
 				tmpMap[rows[i][parentField]]['children'].push(rows[i]);
 			} else {
-				rows[i]['text'] = rows[i][textFiled];
+				rows[i]['text'] = rows[i][textField];
+				treeData.push(rows[i]);
+			}
+		}
+		return treeData;
+	}
+	return data;
+};
+//扩展tree，使其支持平滑数据格式
+var comboTreeLoadFilter = function(data,parent) {
+	var opt = $(this).data().tree.options;
+	var idField, textField, parentField;
+	if (opt.parentField) {
+		idField = opt.idField || 'id';
+		textField = opt.textField || 'text';
+		parentField = opt.parentField;
+		var i, l, treeData = [], tmpMap = [];
+		var rows = $.isArray(data) ? data : data.rows;
+		for (i = 0, l = rows.length; i < l; i++) {
+			rows[i]['id'] = rows[i][idField];
+			rows[i]['text'] = rows[i][textField];
+			tmpMap[rows[i][idField]] = rows[i];
+		}
+		for (i = 0, l = rows.length; i < l; i++) {
+			if (tmpMap[rows[i][parentField]] && rows[i][idField] != rows[i][parentField]) {
+				if (!tmpMap[rows[i][parentField]]['children'])
+					tmpMap[rows[i][parentField]]['children'] = [];
+				rows[i]['text'] = rows[i][textField];
+				tmpMap[rows[i][parentField]]['children'].push(rows[i]);
+			} else {
+				rows[i]['text'] = rows[i][textField];
 				treeData.push(rows[i]);
 			}
 		}
@@ -302,27 +332,29 @@ $.fn.tree.defaults.loadFilter = function(data) {
 	return data;
 };
 
+$.fn.tree.defaults.loadFilter = treeLoadFilter;
+
 // 扩展treegrid，使其支持平滑数据格式
 $.fn.treegrid.defaults.loadFilter = function(data) {
 	var opt = $(this).data().treegrid.options;
-	var idFiled, textFiled, parentField;
+	var idField, textField, parentField;
 	if (opt.parentField) {
-		idFiled = opt.idField || 'id';
-		textFiled = opt.textFiled || 'text';
+		idField = opt.idField || 'id';
+		textField = opt.textField || 'text';
 		parentField = opt.parentField;
 		var i, l, treeData = [], tmpMap = [];
 		var rows = $.isArray(data) ? data : data.rows;
 		for (i = 0, l = rows.length; i < l; i++) {
-			tmpMap[rows[i][idFiled]] = rows[i];
+			tmpMap[rows[i][idField]] = rows[i];
 		}
 		for (i = 0, l = rows.length; i < l; i++) {
-			if (tmpMap[rows[i][parentField]] && rows[i][idFiled] != rows[i][parentField]) {
+			if (tmpMap[rows[i][parentField]] && rows[i][idField] != rows[i][parentField]) {
 				if (!tmpMap[rows[i][parentField]]['children'])
 					tmpMap[rows[i][parentField]]['children'] = [];
-				rows[i]['text'] = rows[i][textFiled];
+				rows[i]['text'] = rows[i][textField];
 				tmpMap[rows[i][parentField]]['children'].push(rows[i]);
 			} else {
-				rows[i]['text'] = rows[i][textFiled];
+				rows[i]['text'] = rows[i][textField];
 				treeData.push(rows[i]);
 			}
 		}

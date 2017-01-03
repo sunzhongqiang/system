@@ -1,6 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <link rel="shortcut icon" href="/style/images/index/favicon.png" />
+<script type="text/javascript" src="/js/region/form.js"></script>
 <script type="text/javascript">
 
     $(function() {
@@ -32,6 +33,11 @@
             return false;
         });
     });
+    
+    function testTree(data,parent){
+    	console.log("data",data);
+    	console.log("parent",parent);
+    }
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
@@ -40,20 +46,8 @@
                     <tr>
                         <td class="tdTit"><label>所属区域id：</label></td>
                         <td>
-                        <select id="cc" class="easyui-combotree" name="parentId" style="width:200px;"
-						        data-options="url:'/region/loadRegionByParentId',idField:'regionId',treeField:'regionName',parentField:'parentId',required:true">
-						</select>
-						
-						<input class="easyui-combotreegrid" name="parentId"  data-options="
-						        width:'200',
-						        panelWidth:200,
-						        url:'/region/loadRegionByParentId',
-						        idField:'regionId',
-						        treeField:'name',
-						        columns:[[
-						            {field:'regionName',title:'地区',width:180},
-						        ]]" />
-						        
+	                        <select id="parentTree" class="easyui-combotree" name="parentId" style="width:200px;" >
+							</select>
                         </td>
                     </tr>
                     <tr>
