@@ -114,7 +114,7 @@ public class TuanApi {
 		order.setGoodsName(goods.getGoodsName());
 		order.setGoodsPrice(goods.getPromotePrice());
 		order.setGoodsId(goods.getId());
-		order.setOrderCode(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+		order.setOrderCode("PIN"+new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 		order.setOrderPhone(address.getMobile());
 		order.setOrderPrice(group.getGroupPrice());
 		order.setOrderSort(group.getType());
