@@ -40,6 +40,7 @@ public class CommonWebSecurity extends WebSecurityConfigurerAdapter {
 	@Resource
 	private AffirmativeBased baseACL;
 
+	//全票通过表决器
 	@Resource
 	private UnanimousBased unanimousBased;
 
